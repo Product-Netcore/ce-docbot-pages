@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Ce Docbot Summary 2026 06 17",
+  "schemaVersion": 1,
+  "description": "Daily Featurebase customer-conversation dispatch for the Netcore CE workspace, with a rolling history (currently 2026-06-15 to 2026-06-17, switchable via the date dropdown). Shows volume, internal vs external split, docs-portal vs in-panel source, themes, repeat askers, and actionable insights. Data pulled via Featurebase MCP."
+}
+</script>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CE Docbot — Daily Dispatch</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap');
+  :root{
+    --ink:#0F1116; --card:#191C24; --card2:#1F232C; --paper:#EDEAE2; --dim:#8E8C86; --signal:#F2A340;
+    --internal:#5FA393; --internal-soft:#1A2C27; --external:#E0815C; --external-soft:#332119; --design:#A18FC2; --design-soft:#28223A; --line:#272A33;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--ink);color:var(--paper);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1000px;margin:0 auto;padding:34px 22px 80px;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:translateY(0);}}
+  .anim{animation:fadeUp .5s ease both;}
+
+  .masthead{border-top:2px solid var(--signal);padding-top:16px;margin-bottom:24px;position:relative;}
+  .masthead-top{display:flex;justify-content:space-between;align-items:baseline;}
+  .wordmark{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--signal);text-transform:uppercase;}
+  select{font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--card);color:var(--paper);border:1px solid var(--signal);padding:6px 11px;border-radius:6px;cursor:pointer;position:relative;}
+  .date-picker-wrap{display:flex;align-items:center;gap:9px;}
+  .date-badge{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--signal);background:var(--card2);border:1px solid var(--signal);border-radius:20px;padding:3px 10px;letter-spacing:.04em;white-space:nowrap;animation:badgePulse 2.6s ease-in-out infinite;}
+  @keyframes badgePulse{0%,100%{box-shadow:0 0 0 0 rgba(242,163,64,.4);} 50%{box-shadow:0 0 0 6px rgba(242,163,64,0);}}
+  @keyframes selectGlow{0%,100%{box-shadow:0 0 0 0 rgba(242,163,64,.35);border-color:var(--signal);} 50%{box-shadow:0 0 0 5px rgba(242,163,64,0);border-color:#FFC97A;}}
+  select#dateSelect{animation:selectGlow 2.6s ease-in-out infinite;}
+  select#dateSelect:hover, select#dateSelect:focus{animation:none;box-shadow:0 0 0 4px rgba(242,163,64,.25);}
+  h1{font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:42px;margin:8px 0 4px;letter-spacing:-0.015em;}
+  .dateline{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px;}
+  .headline-take{font-size:15.5px;color:#CFCCC2;line-height:1.6;max-width:660px;border-left:2px solid var(--signal);padding-left:16px;}
+
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:26px 0 8px;}
+  .stat{background:var(--card);padding:18px 16px;transition:background .2s;}
+  .stat .v{font-family:'Fraunces',serif;font-size:28px;font-weight:700;}
+  .stat .l{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.05em;margin-top:5px;}
+  .qtype-row{display:flex;gap:10px;align-items:center;margin:6px 0 8px;font-size:11.5px;color:var(--dim);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.04em;}
+  .qtype-pill{padding:4px 12px;border-radius:20px;font-weight:600;}
+  .qtype-pill.tech{background:var(--external-soft);color:var(--external);}
+  .qtype-pill.gen{background:var(--internal-soft);color:var(--internal);}
+  .footnote-mark{font-size:10px;color:var(--dim);margin:2px 0 28px;font-family:'JetBrains Mono',monospace;}
+
+  .tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--signal);display:inline-block;margin-bottom:10px;}
+
+  .insights{background:var(--card);border-radius:14px;padding:24px 26px 8px;margin-bottom:32px;border:1px solid var(--line);}
+  .insights h2{font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:20px;margin:0 0 4px;}
+  .insights .sub{font-size:12.5px;color:var(--dim);margin-bottom:18px;}
+  .insight-row{display:flex;gap:14px;padding:14px 0;border-top:1px solid var(--line);}
+  .owner-chip{flex-shrink:0;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.06em;font-weight:600;padding:5px 10px;border-radius:6px;height:fit-content;width:78px;text-align:center;}
+  .owner-chip.content{background:var(--signal-soft, #3A2A14);color:var(--signal);}
+  .owner-chip.product{background:var(--internal-soft);color:var(--internal);}
+  .owner-chip.design{background:var(--design-soft);color:var(--design);}
+  .owner-chip.calibration{background:var(--card2);color:var(--dim);border:1px solid var(--line);}
+  .owner-chip.security{background:var(--external-soft);color:var(--external);}
+  .insight-body .ititle{font-size:14px;font-weight:600;margin-bottom:4px;}
+  .insight-body .idesc{font-size:13px;color:#C2BFB6;line-height:1.55;}
+
+  .fieldnote{background:var(--card);border-left:3px solid var(--signal);border-radius:0 12px 12px 0;padding:24px 28px;margin-bottom:32px;}
+  .fieldnote .quote{font-family:'Fraunces',serif;font-style:italic;font-size:22px;line-height:1.45;color:var(--paper);margin-bottom:12px;}
+  .fieldnote .who{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--signal);}
+  .fieldnote .why{font-size:13.5px;color:#B7B4AB;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);line-height:1.6;}
+
+  .master{
+    background:var(--card);border:1px solid var(--line);border-left:3px solid var(--design);border-radius:16px;
+    padding:32px 40px 36px;margin:0 0 32px;
+    position:relative;left:50%;transform:translateX(-50%);width:100%;max-width:1220px;
+  }
+  .master h2{font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:22px;margin:0 0 6px;color:var(--design);}
+  .master .sub{font-size:13px;color:var(--dim);line-height:1.6;max-width:880px;margin-bottom:24px;}
+  .master-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:28px;}
+  .master-stat{background:var(--card2);padding:16px 20px;}
+  .master-stat .v{font-family:'Fraunces',serif;font-size:24px;font-weight:700;}
+  .master-stat .l{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.05em;margin-top:5px;}
+  .master-cols{display:grid;grid-template-columns:1.15fr 1fr;gap:52px;}
+  .master-subtag{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--line);}
+
+  .power-row{display:grid;grid-template-columns:20px 1fr auto;align-items:center;column-gap:14px;padding:13px 0;border-top:1px solid var(--line);}
+  .power-row:first-child{border-top:none;}
+  .power-rank{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);}
+  .power-id{min-width:0;}
+  .power-email{display:block;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:var(--paper);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .power-sub{font-size:11.5px;color:var(--dim);margin-top:3px;display:flex;align-items:center;flex-wrap:wrap;gap:6px;}
+  .recurring-badge{background:var(--design-soft);color:var(--design);font-size:9px;padding:2px 8px;border-radius:10px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.03em;white-space:nowrap;}
+  .power-count{text-align:right;}
+  .power-count .v{font-family:'Fraunces',serif;font-size:19px;font-weight:700;color:var(--paper);}
+  .power-count .l{display:block;font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.05em;margin-top:1px;}
+
+  .area-row{display:flex;align-items:center;gap:14px;padding:11px 0;border-top:1px solid var(--line);font-size:13px;}
+  .area-row:first-child{border-top:none;}
+  .area-name{flex:0 0 168px;color:var(--paper);}
+  .area-bar-track{flex:1;height:9px;background:var(--card2);border-radius:5px;overflow:hidden;}
+  .area-bar-fill{height:100%;background:var(--design);border-radius:5px;transition:width .6s ease;}
+  .area-count{width:30px;text-align:right;font-family:'JetBrains Mono',monospace;color:var(--dim);flex-shrink:0;}
+
+  .master-note{font-size:12.5px;color:#B7B4AB;margin-top:24px;padding-top:18px;border-top:1px dashed var(--line);line-height:1.6;}
+  .master-note-label{display:block;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--design);margin-bottom:10px;}
+  .recurring-chips{display:flex;flex-wrap:wrap;gap:7px;}
+  .recurring-chip{background:var(--card2);border:1px solid var(--line);color:var(--paper);font-family:'JetBrains Mono',monospace;font-size:11px;padding:5px 11px;border-radius:20px;white-space:nowrap;}
+  @media(max-width:900px){.master{padding:26px 24px 30px;}}
+  @media(max-width:680px){.master-cols{grid-template-columns:1fr;gap:30px;} .master-grid{grid-template-columns:repeat(2,1fr);} .area-name{flex:0 0 120px;}}
+
+  .email-in{color:var(--internal);font-weight:600;}
+  .email-ex{color:var(--external);font-weight:600;}
+  .qtext{color:#E3CFF2;}
+
+  section{margin-bottom:34px;}
+  section > h2{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin:0 0 4px;}
+  section > .sub{font-size:12.5px;color:#7C7A74;margin-bottom:16px;}
+
+  .legend{display:flex;gap:18px;margin-bottom:14px;font-size:11.5px;color:var(--dim);}
+  .legend span{display:inline-flex;align-items:center;gap:6px;}
+  .swatch{width:9px;height:9px;border-radius:2px;display:inline-block;}
+  .div-row{display:flex;align-items:center;margin-bottom:11px;}
+  .div-left,.div-right{flex:1;display:flex;align-items:center;height:20px;}
+  .div-left{justify-content:flex-end;}
+  .div-right{justify-content:flex-start;}
+  .bar{height:14px;border-radius:3px 0 0 3px;transition:width .6s ease;}
+  .bar.ext{border-radius:0 3px 3px 0;}
+  .val{font-family:'JetBrains Mono',monospace;font-size:12px;width:22px;text-align:center;color:var(--dim);flex-shrink:0;}
+  .div-center{width:200px;flex-shrink:0;text-align:center;font-size:12.5px;padding:0 10px;color:#D8D5CC;}
+
+  .topask-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:15px 18px;margin-bottom:10px;transition:border-color .2s;}
+  .topask-card:hover{border-color:#3A3E48;}
+  .topask-head{display:flex;justify-content:space-between;align-items:center;}
+  .topask-email{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;}
+  .rank{font-family:'Fraunces',serif;font-size:18px;color:var(--signal);margin-right:8px;}
+  .qcount{font-size:11px;color:var(--dim);}
+  .topask-q{font-size:12.5px;color:#C9C6BD;margin-top:8px;padding-left:24px;border-left:2px solid var(--line);}
+  .topask-q .t{display:inline-block;background:var(--internal-soft);color:var(--internal);font-size:10.5px;padding:1px 7px;border-radius:10px;margin-right:6px;}
+  .friction{color:var(--external);font-size:11px;margin-top:6px;padding-left:24px;}
+
+  .tablewrap{overflow-x:auto;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th{text-align:left;font-family:'JetBrains Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--dim);font-weight:500;padding:0 10px 10px 0;border-bottom:1px solid var(--line);}
+  td{padding:13px 10px 13px 0;border-bottom:1px solid var(--line);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  tr{transition:background .15s;}
+  tr:hover{background:rgba(255,255,255,.015);}
+  .countpill{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;padding:2px 8px;border-radius:20px;display:inline-block;}
+  .countpill.in{background:var(--internal-soft);color:var(--internal);}
+  .countpill.ex{background:var(--external-soft);color:var(--external);}
+  .emaillist{font-size:11.5px;color:var(--dim);line-height:1.6;margin-top:4px;}
+  .dash{color:#454850;}
+  .greeting-row{opacity:.7;}
+
+  .disclosure{background:var(--card2);border:1px dashed var(--line);border-radius:10px;padding:18px 20px;margin-bottom:30px;}
+  .disclosure h3{font-family:'JetBrains Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);margin:0 0 10px;}
+  .disclosure ul{margin:0;padding-left:18px;font-size:12.5px;color:#A8A59C;line-height:1.7;}
+  .disclosure li{margin-bottom:6px;}
+
+  .footer-note{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#454850;text-align:center;margin-top:36px;letter-spacing:.06em;text-transform:uppercase;}
+  .empty{text-align:center;padding:80px 20px;color:var(--dim);}
+  .empty h2{font-family:'Fraunces',serif;color:var(--paper);font-style:italic;font-size:24px;}
+  @media(max-width:680px){.stats{grid-template-columns:repeat(2,1fr);} .insight-row{flex-direction:column;} .owner-chip{width:fit-content;}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app">Loading…</div>
+<script>
+// Full history embedded directly in the page (so the dropdown works for anyone
+// opening this link — no browser storage required). Each daily scheduled run
+// regenerates this ARCHIVE block with the latest day appended (rolling 14-day window).
+const ARCHIVE = {
+"2026-06-15": {
+  date: "2026-06-15",
+  totalConversations: 28,
+  resolutionRate: 100,
+  internalTotal: 12,
+  externalTotal: 16,
+  docsTotal: 15,
+  panelTotal: 13,
+  queryType: { technical: 11, generic: 17 },
+  headline: "28 conversations on June 15, all bot-resolved — but 16 of 28 (57%) fell outside the 7 defined areas, and a Clevertap email address browsed the Docs Portal three times in one day.",
+  actionableInsights: [
+    { owner:"security", title:"A competitor domain browsed the Docs Portal three times",
+      desc:"m.koiyarala@clevertap.in looked up three separate feature pages today — Segment Agent (plain-English segmentation), Web In-Line Content/DOM personalisation, and template approvals. All from a known competitor's email domain. Worth a quick check with security/marketing on whether feature-level Docs Portal content should sit behind auth." },
+    { owner:"calibration", title:"Over half of today's queries don't map to the 7 area buckets",
+      desc:"Web Push, Netcore Funnels, Segmentation, and account/access issues (sub-admin access, empty contacts page, report passwords) account for 16 of 28 conversations. This is the second day running the taxonomy gap shows up — worth expanding the area list before trend reporting gets misleading." },
+    { owner:"product", title:"Cross-product integration question worth a closer look",
+      desc:"meenakshi.kaul (CS) asked whether anything needs enabling on the Smartech side once an Unbxd integration is complete, to activate product recommendations. A concrete cross-sell/onboarding question, not a how-to — good candidate for a structured cross-product checklist." },
+    { owner:"content", title:"One teammate asked 5 different product questions in a day",
+      desc:"romit.pandit asked about PWA/TWA support, Co-Marketer, Revenue-as-a-metric in Funnels, Web Message triggers, and the Campaign Details API — all different topics, all in one sitting. If this is a recurring pattern, the underlying docs gaps may be worth consolidating into one reference page." }
+  ],
+  mostInteresting: {
+    who: "meenakshi.kaul", email: "meenakshi.kaul@netcorecloud.com",
+    query: "unbx integration is done. Anything has to be enabled for product recommendation feature from smartech side?",
+    why: "A genuine cross-product activation question (Unbxd recommendations + Smartech CE) rather than a how-to — useful signal for onboarding/cross-sell playbooks."
+  },
+  themesBySource: [
+    { theme: "How do I do X", internal: 3, external: 4 },
+    { theme: "Where's the doc/API for X", internal: 1, external: 0 },
+    { theme: "Where do I set up/find X", internal: 0, external: 2 },
+    { theme: "What does X mean/how it works", internal: 2, external: 2 },
+    { theme: "Is X possible/supported", internal: 4, external: 3 },
+    { theme: "Bare greeting, no context yet", internal: 2, external: 5 }
+  ],
+  topAskers: [
+    { email: "romit.pandit@netcorecloud.com", count: 5, friction: false,
+      queries: [
+        { theme:"Is X possible/supported", text:"Do we have any feature for PWA & TWA?" },
+        { theme:"Bare greeting, no context yet", text:"Co-Marketer in Web Push Notification" },
+        { theme:"Is X possible/supported", text:"Check if \"Revenue Amount\" can be directly mapped and displayed as a metric within Netcore Funnels" },
+        { theme:"What does X mean/how it works", text:"What are the triggers of Web Message" },
+        { theme:"Where's doc/API for X", text:"What is the API for fetching Campaign Details" }
+      ] },
+    { email: "shreyas@bag2bag.in", count: 3, friction: false,
+      queries: [
+        { theme:"Where do I set up/find X", text:"were i can find the data sent from public api from postmen" },
+        { theme:"How do I do X", text:"how to access the sub admin" },
+        { theme:"Where do I set up/find X", text:"HOW TO ACCESS THE API KEY" }
+      ] },
+    { email: "m.koiyarala@clevertap.in", count: 3, friction: false,
+      queries: [
+        { theme:"Bare greeting, no context yet", text:"Segment Agent (Plain-English Segmentation)" },
+        { theme:"Bare greeting, no context yet", text:"On-Site (Web) Web In-Line Content (DOM Personalisation): inject personalised content via CSS selectors, no per-campaign code" },
+        { theme:"Is X possible/supported", text:"Can I apply for template approvals from the dashboard?" }
+      ] }
+  ],
+  areas: [
+    { area: "API/Integration", internal: 3, external: 3,
+      internalQ: [
+        {email:"shipra.choudhary@netcorecloud.com", q:"Customer wants to send the blacklist/opt out data of whatsapp and email from our panel back to their database through API. How can they do that?"},
+        {email:"romit.pandit@netcorecloud.com", q:"What is the API for fetching Campaign Details"},
+        {email:"meenakshi.kaul@netcorecloud.com", q:"unbx integration is done. Anything has to be enabled for product recommendation feature from smartech side?"}
+      ], externalQ: [
+        {email:"shreyas@bag2bag.in", q:"were i can find the data sent from public api from postmen"},
+        {email:"shreyas@bag2bag.in", q:"HOW TO ACCESS THE API KEY"},
+        {email:"deepesh.lakhera@gmail.com", q:"Is an API sandbox / developer portal available?"}
+      ] },
+    { area: "Email", internal: 0, external: 2,
+      internalQ: [], externalQ: [
+        {email:"lalithira@gmail.com", q:"I need to download the list of email Ids from select Campaigns who have either opened or clicked"},
+        {email:"kunal.anand@nmtronics.com", q:"Hello, can we change the sender details like the domain which has not been used before?"}
+      ] },
+    { area: "CPaaS (WhatsApp/RCS/SMS)", internal: 1, external: 1,
+      internalQ: [{email:"ritika.thakur@netcorecloud.com", q:"how to personalise attributes and activity in web push and sms"}],
+      externalQ: [{email:"m.koiyarala@clevertap.in", q:"Can I apply for template approvals from the dashboard?"}] },
+    { area: "Broadcast/Webhooks", internal: 0, external: 0, internalQ: [], externalQ: [] },
+    { area: "Journey Builder", internal: 0, external: 0, internalQ: [], externalQ: [] },
+    { area: "Infra/Data residency", internal: 1, external: 1,
+      internalQ: [{email:"jibin.philip@netcorecloud.com", q:"can the netcore ce solution be deployed as a on premise platform service"}],
+      externalQ: [{email:"deepesh.lakhera@gmail.com", q:"how does netcore CE handle bot traffic and prevents it?"}] },
+    { area: "General/Unclear", internal: 7, external: 9,
+      internalQ: [
+        {email:"kush.paithane@netcorecloud.com", q:"yp"},
+        {email:"romit.pandit@netcorecloud.com", q:"Do we have any feature for PWA & TWA?"},
+        {email:"romit.pandit@netcorecloud.com", q:"Co-Marketer in Web Push Notification"},
+        {email:"heena.shah@netcorecloud.com", q:"What is the date format for attribute"},
+        {email:"romit.pandit@netcorecloud.com", q:"Check if \"Revenue Amount\" can be directly mapped and displayed as a metric within Netcore Funnels"},
+        {email:"romit.pandit@netcorecloud.com", q:"What are the triggers of Web Message"},
+        {email:"ayush.rathour@netcorecloud.com", q:"create a campaign for me"}
+      ], externalQ: [
+        {email:"rahulsolunke@bajajautocredit.com", q:"\"Hi\""},
+        {email:"tushar.khutale@bajajhousing.biz", q:"\"hi\""},
+        {email:"m.koiyarala@clevertap.in", q:"Segment Agent (Plain-English Segmentation)"},
+        {email:"shivang@miraggiolife.com", q:"How to open any report with password and how to get password for detailed report"},
+        {email:"m.koiyarala@clevertap.in", q:"On-Site (Web) Web In-Line Content (DOM Personalisation): inject personalised content via CSS selectors, no per-campaign code"},
+        {email:"sandeep.chawla@utsavfashion.com", q:"How can we set co-marketer configuration"},
+        {email:"shreyas@bag2bag.in", q:"how to access the sub admin"},
+        {email:"deepak.mishra@jmfl.com", q:"why do i see this page as empty and no contacts"},
+        {email:"melissa.hj-mohd-yusof@sc.com", q:"\"Hi\""}
+      ] }
+  ]
+},
+"2026-06-16": {
+  date: "2026-06-16",
+  totalConversations: 27,
+  resolutionRate: 96,
+  internalTotal: 15,
+  externalTotal: 12,
+  docsTotal: 15,
+  panelTotal: 12,
+  queryType: { technical: 9, generic: 18 },
+  headline: "27 conversations on June 16 — 15 internal Docs Portal lookups, 12 external panel sessions. The standout: 11 of 27 (41%) landed in 'General/Unclear' because the bot has no clean bucket yet for App Inbox, Web Push, or Web Personalization.",
+  actionableInsights: [
+    { owner:"product", title:"Real-time campaign control is a recurring roadmap ask",
+      desc:"manish@netcorecloud.com asked whether campaigns/journeys can be paused, resumed, or terminated in real time based on performance thresholds — a second consecutive day of forward-looking product questions from him (yesterday: webhook channel parity). Worth a structured intake conversation rather than ad hoc bot questions." },
+    { owner:"calibration", title:"Nearly half of today's queries don't fit the area taxonomy",
+      desc:"11 of 27 conversations (41%) landed in General/Unclear — App Inbox, Web Push browser support, Web Personalization, and account/password issues. Recommend adding 2-3 new area buckets (e.g. \"Push/App Inbox\", \"Account & Access\") so trend data stays meaningful." },
+    { owner:"design", title:"One conversation needed a human",
+      desc:"swati.jangir's \"best time and best day\" ask was too thin for the bot to resolve on its own and escalated to a human (botConversationState: handed_off_to_human) — the only non-resolved conversation today. Worth watching if this recurs." },
+    { owner:"content", title:"Image-only ticket with no text",
+      desc:"charishma.p submitted an image attachment with zero body text — the bot has no way to read or act on it. Consider a prompt nudging users to describe the issue in text when an image arrives alone." }
+  ],
+  mostInteresting: {
+    who: "manish", email: "manish@netcorecloud.com",
+    query: "Ability to modify, pause, resume, and terminate campaigns in real-time if performance thresholds are not met. Can we do this in campaign & journey?",
+    why: "Second straight day of a sharp, roadmap-shaped question from the same person — worth a direct conversation rather than letting it sit in bot logs."
+  },
+  themesBySource: [
+    { theme: "How do I do X", internal: 1, external: 3 },
+    { theme: "Where's the doc/API for X", internal: 3, external: 0 },
+    { theme: "Where do I set up/find X", internal: 1, external: 2 },
+    { theme: "What does X mean/how it works", internal: 4, external: 6 },
+    { theme: "Is X possible/supported", internal: 5, external: 0 },
+    { theme: "Bare greeting, no context yet", internal: 1, external: 1 }
+  ],
+  topAskers: [
+    { email: "sai.kiran@netcorecloud.com", count: 2, friction: false,
+      queries: [
+        { theme:"What does X mean/how it works", text:"For anonymous users, we can pass an anonymous ID in the identity field. Once that user signs up/logs in later, does the anonymous profile auto-merge with the known user, or do we need to trigger that separately?" },
+        { theme:"Where's doc/API for X", text:"give me doc for Google single sign on" }
+      ] },
+    { email: "ritika.thakur@netcorecloud.com", count: 2, friction: false,
+      queries: [
+        { theme:"What does X mean/how it works", text:"what is wait for event" },
+        { theme:"Is X possible/supported", text:"are deeplinks important for app notifications" }
+      ] }
+  ],
+  areas: [
+    { area: "API/Integration", internal: 4, external: 2,
+      internalQ: [
+        {email:"sai.kiran@netcorecloud.com", q:"For anonymous users, we can pass an anonymous ID in the identity field. Once that user signs up/logs in later, does the anonymous profile auto-merge with the known user, or do we need to trigger that separately?"},
+        {email:"utpal.dutta@netcorecloud.com", q:"is there a way to remove a list of user in bulk from black list contacts"},
+        {email:"sai.kiran@netcorecloud.com", q:"give me doc for Google single sign on"},
+        {email:"ishika.a@netcorecloud.com", q:"one of our client has implemented the google single sign on on their website, but the events related to it are still not coming, give me the document"}
+      ], externalQ: [
+        {email:"preet.panchal@clear.in", q:"how to get html for templatex?"},
+        {email:"mandar.panchal@carepalsecure.com", q:"hi, i have issue regarding data uploading"}
+      ] },
+    { area: "Email", internal: 0, external: 4,
+      internalQ: [], externalQ: [
+        {email:"anmol.panesar@impactguru.com", q:"I am trying to download a detailed report of a specific campaign sent on email — the status column only shows 'opened' and 'sent'. Is there a way to see how many got 'delivered'? Does 'sent' also mean delivered?"},
+        {email:"deepti.pardhi@bajajamc.com", q:"i was reviewing report of onboarding_completed_welcomeemail — open to click rate has a massive drop. Need suggestions for a top performing hooked subject line"},
+        {email:"vaibhavt@proteantech.in", q:"i want email delivery report"},
+        {email:"surya.prakash@aajtak.com", q:"how do we check if a campaign is delivered to a recipient email id"}
+      ] },
+    { area: "CPaaS (WhatsApp/RCS/SMS)", internal: 2, external: 1,
+      internalQ: [
+        {email:"lokesh.sharma@netcorecloud.com", q:"in rcs campaign, why does RCS unreachable count come in rcs campaign"},
+        {email:"shipra.choudhary@netcorecloud.com", q:"Can i get the document on how customer can read RCS report"}
+      ], externalQ: [
+        {email:"shivang@miraggiolife.com", q:"retail_chennai_16_june_2026 this template got rejected, tell me why"}
+      ] },
+    { area: "Broadcast/Webhooks", internal: 1, external: 0,
+      internalQ: [{email:"hiral.jhaveri@netcorecloud.com", q:"how to integrate webhook in amp emails?"}], externalQ: [] },
+    { area: "Journey Builder", internal: 2, external: 0,
+      internalQ: [
+        {email:"manish@netcorecloud.com", q:"Ability to modify, pause, resume, and terminate campaigns in real-time if performance thresholds are not met. Can we do this in campaign & journey?"},
+        {email:"ritika.thakur@netcorecloud.com", q:"what is wait for event"}
+      ], externalQ: [] },
+    { area: "Infra/Data residency", internal: 0, external: 0, internalQ: [], externalQ: [] },
+    { area: "General/Unclear", internal: 6, external: 5,
+      internalQ: [
+        {email:"meenakshi.kaul@netcorecloud.com", q:"in web personalization, is there a way to add exclude events under audience section"},
+        {email:"swati.jangir@netcorecloud.com", q:"best time and best day"},
+        {email:"romit.pandit@netcorecloud.com", q:"How does App Inbox work? Is it available for Web, App, Web In-App?"},
+        {email:"ritika.thakur@netcorecloud.com", q:"are deeplinks important for app notifications"},
+        {email:"mandovi.joseph@netcorecloud.com", q:"Do we support brave browser for push notifications?"},
+        {email:"charishma.p@netcorecloud.com", q:"[image attachment, no text]"}
+      ], externalQ: [
+        {email:"mahak.singla@antaraseniorcare.com", q:"duration showing mintis"},
+        {email:"sumit.kakade@iresearchservices.com", q:"Hi Need to speak with agent"},
+        {email:"marketing@saksham.co.in", q:"Not getting password on phone for detailed campaign report"},
+        {email:"intern.ecommerce@fabindia.net", q:"tell me total revenue generated by app push in june"},
+        {email:"pribpundao.boo@pomelofashion.com", q:"issue with website popup message"}
+      ] }
+  ]
+},
+"2026-06-17": {
+  date: "2026-06-17",
+  totalConversations: 22,
+  resolutionRate: 100,
+  internalTotal: 17,
+  externalTotal: 5,
+  docsTotal: 15,
+  panelTotal: 7,
+  queryType: { technical: 8, generic: 14 },
+  headline: "Netcore's own team drove 17 of today's 22 conversations — mostly Docs Portal lookups on Email and API/Integration. The 5 customer conversations were thin, with 4 going no further than a hello. Three things below are worth a closer look.",
+  actionableInsights: [
+    { owner:"content", title:"Contact API doc for lead-capture isn't landing",
+      desc:"Charishma asked for the Contact API spec to push leads from Meta, Facebook and Google. The bot pointed her to the Facebook Lead Ads walkthrough — she re-asked the same question minutes later. The walkthrough doesn't surface the API reference itself; worth linking it directly." },
+    { owner:"product", title:"Webhook channel parity is a live roadmap question",
+      desc:"Manish asked directly whether broadcast webhooks can extend past Email/SMS to APN, Web Push, WhatsApp and RCS. That's an \"is this possible\" question from inside the company, not a how-to — reads as roadmap input worth a quick sync with him." },
+    { owner:"design", title:"Bare greetings are being logged as resolved",
+      desc:"4 of 22 conversations were just \"Hi\" / \"Hello\" / \"Hai\" with no follow-up, yet the bot marked all of them resolved. That inflates the resolution number without anyone getting real help — may need a prompt nudging users to state their question upfront." },
+    { owner:"calibration", title:"Sample size is thin — treat today as a pulse check",
+      desc:"22 conversations across 7 areas means most buckets have 1–6 data points. Treat counts like \"5 Email asks\" or \"2 CPaaS asks\" as directional only until this trends over a week or more." }
+  ],
+  mostInteresting: {
+    who: "manish", email: "manish@netcorecloud.com",
+    query: "For Broadcast, currently, we can configure Email & SMS channels for webhook. Can we do it for other channels - APN, Web push, WA & RCS as well?",
+    why: "The most product-savvy ask of the day — thinking about webhook architecture across the full channel stack rather than troubleshooting a single channel. Scoped, specific, and roadmap-worthy."
+  },
+  themesBySource: [
+    { theme: "How do I do X", internal: 5, external: 0 },
+    { theme: "Where's the doc/API for X", internal: 4, external: 0 },
+    { theme: "Where do I set up/find X", internal: 3, external: 0 },
+    { theme: "What does X mean/how it works", internal: 4, external: 0 },
+    { theme: "Is X possible/supported", internal: 1, external: 1 },
+    { theme: "Bare greeting, no context yet", internal: 0, external: 4 }
+  ],
+  topAskers: [
+    { email: "charishma.p@netcorecloud.com", count: 2, friction: true,
+      queries: [
+        { theme:"Where's doc/API for X", text:"Could you please share the Contact API documentation that can be used to push leads captured from Meta, Facebook, and Google into Netcore via API integration?" },
+        { theme:"Where's doc/API for X", text:"Shared 2 doc links (Facebook Lead Ads integration) and re-asked: can you share the contact API to capture leads from meta, facebook and google?" }
+      ] },
+    { email: "ayush.rathour@netcorecloud.com", count: 2, friction: true,
+      queries: [
+        { theme:"How do I do X", text:"create a email campaign for me" },
+        { theme:"How do I do X", text:"help formatting the JSON body for your campaign request" }
+      ] },
+    { email: "swati.jangir@netcorecloud.com", count: 2, friction: false,
+      queries: [
+        { theme:"Where's doc/API for X", text:"Netcore ki API chahiye thi, suppressions remove and logs fetch ko automate krne ke liye" },
+        { theme:"Where do I set up/find X", text:"freshdesk integration" }
+      ] }
+  ],
+  areas: [
+    { area: "API/Integration", internal: 6, external: 0,
+      internalQ: [
+        {email:"goran.skinder@netcoreunbxd.com", q:"What is the JS tag we have on the Flair Airlines website"},
+        {email:"swati.jangir@netcorecloud.com", q:"Netcore ki API chahiye thi, suppressions remove and logs fetch ko automate krne ke liye"},
+        {email:"charishma.p@netcorecloud.com", q:"Could you please share the Contact API documentation that can be used to push leads captured from Meta, Facebook, and Google into Netcore via API integration?"},
+        {email:"charishma.p@netcorecloud.com", q:"Shared doc links and re-asked for the contact API to capture leads from meta, facebook and google"},
+        {email:"ayush.rathour@netcorecloud.com", q:"help formatting the JSON body for your campaign request"},
+        {email:"swati.jangir@netcorecloud.com", q:"freshdesk integration"}
+      ], externalQ: [] },
+    { area: "Email", internal: 5, external: 0,
+      internalQ: [
+        {email:"gourab.dash@netcorecloud.com", q:"create a email campings"},
+        {email:"gunjan.mahajan@netcorecloud.com", q:"How can we personalise email body with the events payload"},
+        {email:"prakas.prabowo@netcorecloud.com", q:"Mailscore list ID 881"},
+        {email:"ayush.rathour@netcorecloud.com", q:"create a email campaign for me"},
+        {email:"siddhant.bendkar@netcorecloud.com", q:"What is accordian AMP?"}
+      ], externalQ: [] },
+    { area: "CPaaS (WhatsApp/RCS/SMS)", internal: 2, external: 1,
+      internalQ: [
+        {email:"shipra.choudhary@netcorecloud.com", q:"How to make any RCS content Bold"},
+        {email:"romit.pandit@netcorecloud.com", q:"How to setup Opt-Out for WhatsApp & how to send the opt-out data to customer's LMS as an automation?"}
+      ], externalQ: [
+        {email:"akash.kokate3@bajajfinservmarkets.in", q:"flash sms is available?"}
+      ] },
+    { area: "Broadcast/Webhooks", internal: 1, external: 0,
+      internalQ: [{email:"manish@netcorecloud.com", q:"For Broadcast, currently, we can configure Email & SMS channels for webhook. Can we do it for other channels - APN, Web push, WA & RCS as well?"}],
+      externalQ: [] },
+    { area: "Journey Builder", internal: 1, external: 0,
+      internalQ: [{email:"jeetan.dmello@netcorecloud.com", q:"Can you describe the journey trends graph when I click on a journey."}],
+      externalQ: [] },
+    { area: "Infra/Data residency", internal: 2, external: 0,
+      internalQ: [
+        {email:"lokesh.sharma@netcorecloud.com", q:"please shared the retenetion policy for cpaas email and whatsapp api for storing email id"},
+        {email:"mandovi.joseph@netcorecloud.com", q:"Is pr1r us server or indian server"}
+      ], externalQ: [] },
+    { area: "General/Unclear (greeting only)", internal: 0, external: 4,
+      internalQ: [],
+      externalQ: [
+        {email:"neelima@confairs.com", q:"\"Hi\""},
+        {email:"amar@starlinkindia.com", q:"\"Hello\""},
+        {email:"prince241187@gmail.com", q:"\"Hi\""},
+        {email:"januchinna79@gmail.com", q:"\"Hai\""}
+      ] }
+  ]
+}
+}; // close ARCHIVE
+const DATES = Object.keys(ARCHIVE).sort().reverse();
+
+function fmtDate(d){
+  try{ return new Date(d+'T00:00:00').toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'}); }
+  catch(e){ return d; }
+}
+const OWNER_LABEL = {content:"Content", product:"Product", design:"Design", calibration:"Read this first", security:"Security"};
+
+// Aggregates across every date currently in ARCHIVE — recomputes automatically
+// as more days get appended, so this section needs no manual upkeep.
+function computeMasterSummary(archive){
+  const dates = Object.keys(archive).sort();
+  const askerMap = {};
+  const areaMap = {};
+  let totalConv = 0, totalResSum = 0, totalInternal = 0, totalExternal = 0;
+
+  dates.forEach(d=>{
+    const day = archive[d];
+    totalConv += day.totalConversations;
+    totalResSum += day.resolutionRate;
+    totalInternal += day.internalTotal;
+    totalExternal += day.externalTotal;
+
+    // Count every individual question per person (not just the curated
+    // "top askers" highlight list) so power users reflect true volume across
+    // the full tracked duration, including people who ask once per day on
+    // several different days.
+    (day.areas||[]).forEach(a=>{
+      const key = a.area.replace(' (greeting only)','');
+      if(!areaMap[key]) areaMap[key] = {internal:0, external:0};
+      areaMap[key].internal += a.internal;
+      areaMap[key].external += a.external;
+
+      const tallyAsker = (x)=>{
+        if(!askerMap[x.email]) askerMap[x.email] = {count:0, days:new Set(), areas:{}};
+        askerMap[x.email].count++;
+        askerMap[x.email].days.add(d);
+        askerMap[x.email].areas[key] = (askerMap[x.email].areas[key]||0)+1;
+      };
+      (a.internalQ||[]).forEach(tallyAsker);
+      (a.externalQ||[]).forEach(tallyAsker);
+    });
+  });
+
+  const powerUsers = Object.entries(askerMap)
+    .map(([email,v])=>({
+      email, count:v.count, dayCount:v.days.size,
+      topArea: Object.entries(v.areas).sort((a,b)=>b[1]-a[1])[0]?.[0] || '—'
+    }))
+    .sort((a,b)=>b.count-a.count || b.dayCount-a.dayCount)
+    .slice(0,6);
+
+  const topAreas = Object.entries(areaMap)
+    .map(([area,v])=>({area, total:v.internal+v.external, internal:v.internal, external:v.external}))
+    .filter(a=>a.total>0)
+    .sort((a,b)=>b.total-a.total);
+
+  const maxAreaTotal = Math.max(...topAreas.map(a=>a.total), 1);
+  const avgResolution = dates.length ? Math.round(totalResSum/dates.length) : 0;
+  const recurringUsers = powerUsers.filter(u=>u.dayCount>1);
+
+  return { dates, totalConv, avgResolution, totalInternal, totalExternal, powerUsers, topAreas, maxAreaTotal, recurringUsers };
+}
+
+function render(data, availableDates){
+  const app = document.getElementById('app');
+  if(!data){
+    app.innerHTML = '<div class="empty"><h2>No dispatch yet</h2><p>This view refreshes once the daily pull runs.</p></div>';
+    return;
+  }
+  const dateOptions = availableDates.map(d => '<option value="'+d+'" '+(d===data.date?'selected':'')+'>'+fmtDate(d)+'</option>').join('');
+  const maxTheme = Math.max(...data.themesBySource.flatMap(t=>[t.internal,t.external]), 1);
+  const m = computeMasterSummary(ARCHIVE);
+
+  app.innerHTML = `
+    <div class="masthead anim">
+      <div class="masthead-top">
+        <div class="wordmark">CE Docbot · Netcore Cloud</div>
+        <div class="date-picker-wrap">
+          <span class="date-badge">${availableDates.length} day${availableDates.length>1?'s':''} · browse ↓</span>
+          <select id="dateSelect">${dateOptions}</select>
+        </div>
+      </div>
+      <h1>Daily Dispatch</h1>
+      <div class="dateline">${fmtDate(data.date)}</div>
+      <div class="headline-take">${data.headline}</div>
+    </div>
+
+    <div class="stats anim" style="animation-delay:.05s">
+      <div class="stat"><div class="v">${data.totalConversations}</div><div class="l">Conversations</div></div>
+      <div class="stat"><div class="v">${data.resolutionRate}%</div><div class="l">Bot-handled*</div></div>
+      <div class="stat"><div class="v">${data.internalTotal}:${data.externalTotal}</div><div class="l">Netcore : Customer</div></div>
+      <div class="stat"><div class="v">${data.docsTotal}:${data.panelTotal}</div><div class="l">Docs : In-Panel</div></div>
+    </div>
+    <div class="qtype-row anim" style="animation-delay:.08s">
+      <span>Query type —</span>
+      <span class="qtype-pill tech">Technical ${data.queryType.technical}</span>
+      <span class="qtype-pill gen">Generic ${data.queryType.generic}</span>
+    </div>
+    <div class="footnote-mark">* self-reported by the bot's own session state — see calibration note below before treating this as confirmed ticket deflection</div>
+
+    <div class="insights anim" style="animation-delay:.1s">
+      <h2>What to actually do with this</h2>
+      <div class="sub">Today's signals, routed to whoever should act on them.</div>
+      ${data.actionableInsights.map(i=>`
+        <div class="insight-row">
+          <div class="owner-chip ${i.owner}">${OWNER_LABEL[i.owner]}</div>
+          <div class="insight-body">
+            <div class="ititle">${i.title}</div>
+            <div class="idesc">${i.desc}</div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="tag">Question of the day</div>
+    <div class="fieldnote anim" style="animation-delay:.15s">
+      <div class="quote">"${data.mostInteresting.query}"</div>
+      <div class="who">${data.mostInteresting.who} · ${data.mostInteresting.email}</div>
+      <div class="why">${data.mostInteresting.why}</div>
+    </div>
+
+    <section class="anim" style="animation-delay:.18s">
+      <h2>Signal — where the knowledge gap lives</h2>
+      <div class="sub">Same question themes, split by who's asking. Long Netcore bars with no customer counterpart usually mean internal enablement gaps, not customer-facing content gaps.</div>
+      <div class="legend">
+        <span><span class="swatch" style="background:var(--internal)"></span>Netcore team</span>
+        <span><span class="swatch" style="background:var(--external)"></span>Customer</span>
+      </div>
+      ${data.themesBySource.map(t=>{
+        const intPct = (t.internal/maxTheme*100);
+        const extPct = (t.external/maxTheme*100);
+        return '<div class="div-row"><div class="div-left"><span class="val">'+(t.internal||'')+'</span><div class="bar" style="width:'+intPct+'%;background:var(--internal)"></div></div><div class="div-center">'+t.theme+'</div><div class="div-right"><div class="bar ext" style="width:'+extPct+'%;background:var(--external)"></div><span class="val">'+(t.external||'')+'</span></div></div>';
+      }).join('')}
+    </section>
+
+    <section class="anim" style="animation-delay:.2s">
+      <h2>Top askers</h2>
+      <div class="sub">Most active users today, with what they actually asked and which theme it falls under. Everyone else asked once each.</div>
+      ${data.topAskers.map((u,i)=>`
+        <div class="topask-card">
+          <div class="topask-head">
+            <div><span class="rank">${i+1}</span><span class="topask-email">${u.email}</span></div>
+            <span class="qcount">${u.count} queries</span>
+          </div>
+          ${u.queries.map(q=>'<div class="topask-q"><span class="t">'+q.theme+'</span>'+q.text+'</div>').join('')}
+          ${u.friction ? '<div class="friction">⚠ same question re-asked — possible content gap or unclear first answer</div>' : ''}
+        </div>
+      `).join('')}
+    </section>
+
+    <section class="anim" style="animation-delay:.22s">
+      <h2>Beat report — query areas</h2>
+      <div class="sub">Who's asking about what, by team, and the underlying question. <span class="email-in">Netcore emails</span> · <span class="email-ex">customer emails</span> · <span class="qtext">question text</span>.</div>
+      <div class="tablewrap">
+      <table>
+        <tr><th>Area</th><th>Netcore</th><th>Customer</th></tr>
+        ${data.areas.map(a=>{
+          const isGreeting = a.area.indexOf('General') === 0;
+          const renderQ = (arr, side) => arr.length ? '<div class="emaillist">'+arr.map(x=>'<div style="margin-bottom:6px"><span class="mono email-'+side+'">'+x.email+'</span><br><span class="qtext">'+x.q+'</span></div>').join('')+'</div>' : '';
+          return '<tr class="'+(isGreeting?'greeting-row':'')+'"><td><strong>'+a.area+'</strong></td><td>'+(a.internal?'<span class="countpill in">'+a.internal+'</span>':'<span class="dash">—</span>')+renderQ(a.internalQ,'in')+'</td><td>'+(a.external?'<span class="countpill ex">'+a.external+'</span>':'<span class="dash">—</span>')+renderQ(a.externalQ,'ex')+'</td></tr>';
+        }).join('')}
+      </table>
+      </div>
+    </section>
+
+    <div class="disclosure anim" style="animation-delay:.24s">
+      <h3>What this can (and can't) tell you yet</h3>
+      <ul>
+        <li>"Bot-handled" means the bot didn't hand off to a human. It is not verified against Freshdesk, so it isn't proof a support ticket was actually prevented — treat it as a self-reported signal until that check is reinstated.</li>
+        <li>One day of data has no baseline. Numbers here are directional, not trends — wait for at least a week before treating any single count as a pattern.</li>
+        <li>Theme and area tags are classified from the first message of each conversation. Long threads may have evolved into something different than the opener suggests.</li>
+      </ul>
+    </div>
+
+    <div class="master anim" style="animation-delay:.26s">
+      <h2>Master Summary — All Days</h2>
+      <div class="sub">Cumulative view across all ${m.dates.length} day${m.dates.length>1?'s':''} tracked so far (${fmtDate(m.dates[0])} – ${fmtDate(m.dates[m.dates.length-1])}). Power users and section volume are counted from every individual question in the archive, not just same-day highlights — this recomputes automatically as more days get added.</div>
+      <div class="master-grid">
+        <div class="master-stat"><div class="v">${m.totalConv}</div><div class="l">Conversations, all-time</div></div>
+        <div class="master-stat"><div class="v">${m.avgResolution}%</div><div class="l">Avg bot-handled / day</div></div>
+        <div class="master-stat"><div class="v">${m.totalInternal}:${m.totalExternal}</div><div class="l">Netcore : Customer, all-time</div></div>
+      </div>
+      <div class="master-cols">
+        <div>
+          <div class="master-subtag">Power users — most questions across the full duration</div>
+          ${m.powerUsers.length ? m.powerUsers.map((u,i)=>`
+            <div class="power-row">
+              <span class="power-rank">${String(i+1).padStart(2,'0')}</span>
+              <div class="power-id">
+                <span class="power-email">${u.email}</span>
+                <div class="power-sub"><span>mostly ${u.topArea}</span>${u.dayCount>1?'<span class="recurring-badge">'+u.dayCount+' days active</span>':''}</div>
+              </div>
+              <div class="power-count"><span class="v">${u.count}</span><span class="l">questions</span></div>
+            </div>
+          `).join('') : '<div class="power-sub">Not enough data yet.</div>'}
+        </div>
+        <div>
+          <div class="master-subtag">Busiest sections — where questions land most</div>
+          ${m.topAreas.map(a=>`
+            <div class="area-row">
+              <span class="area-name">${a.area}</span>
+              <div class="area-bar-track"><div class="area-bar-fill" style="width:${a.total/m.maxAreaTotal*100}%"></div></div>
+              <span class="area-count">${a.total}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+      ${m.recurringUsers.length ? `<div class="master-note"><span class="master-note-label">↻ Worth a direct, proactive check-in — asked on more than one separate day</span><div class="recurring-chips">${m.recurringUsers.map(u=>`<span class="recurring-chip">${u.email}</span>`).join('')}</div></div>` : ''}
+    </div>
+
+    <div class="footer-note">CE Docbot daily pulse · Featurebase, Netcore CE workspace</div>
+  `;
+
+  const sel = document.getElementById('dateSelect');
+  if (sel) {
+    sel.addEventListener('change', (e)=>{
+      const picked = e.target.value;
+      if (ARCHIVE[picked]) render(ARCHIVE[picked], availableDates);
+    });
+  }
+}
+
+function boot(){
+  const latestDate = DATES[0];
+  render(ARCHIVE[latestDate], DATES);
+}
+boot();
+</script>
+</body>
+</html>
