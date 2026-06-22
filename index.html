@@ -2,7 +2,7 @@
 {
   "name": "Ce Docbot Summary 2026 06 17",
   "schemaVersion": 1,
-  "description": "Daily Featurebase customer-conversation summary for the Netcore CE workspace — 2026-06-17. Shows volume, internal vs external split, docs-portal vs in-panel source, themes, repeat askers, and actionable insights. Data pulled via Featurebase MCP; payload persisted to localStorage as ce-docbot-latest-summary and ce-docbot-summary-2026-06-17."
+  "description": "Daily Featurebase customer-conversation summary for the Netcore CE workspace — rolling 14-day dashboard, latest day 2026-06-18. Shows volume, internal vs external split, docs-portal vs in-panel source, themes, repeat askers, and actionable insights."
 }
 </script>
 <html lang="en">
@@ -70,6 +70,7 @@
   .master{
     background:var(--card);border:1px solid var(--line);border-left:3px solid var(--design);border-radius:16px;
     padding:32px 40px 36px;margin:0 0 32px;
+    position:relative;left:50%;transform:translateX(-50%);width:100%;max-width:1220px;
   }
   .master h2{font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:22px;margin:0 0 6px;color:var(--design);}
   .master .sub{font-size:13px;color:var(--dim);line-height:1.6;max-width:880px;margin-bottom:24px;}
@@ -167,1167 +168,448 @@
 // opening this link — no browser storage required). Each daily scheduled run
 // regenerates this ARCHIVE block with the latest day appended (rolling 14-day window).
 const ARCHIVE = {
-  "2026-06-15": {
-    "date": "2026-06-15",
-    "totalConversations": 28,
-    "resolutionRate": 100,
-    "internalTotal": 12,
-    "externalTotal": 16,
-    "docsTotal": 15,
-    "panelTotal": 13,
-    "queryType": {
-      "technical": 11,
-      "generic": 17
-    },
-    "headline": "28 conversations on June 15, all bot-resolved — but 16 of 28 (57%) fell outside the 7 defined areas, and a Clevertap email address browsed the Docs Portal three times in one day.",
-    "actionableInsights": [
-      {
-        "owner": "security",
-        "title": "A competitor domain browsed the Docs Portal three times",
-        "desc": "m.koiyarala@clevertap.in looked up three separate feature pages today — Segment Agent (plain-English segmentation), Web In-Line Content/DOM personalisation, and template approvals. All from a known competitor's email domain. Worth a quick check with security/marketing on whether feature-level Docs Portal content should sit behind auth."
-      },
-      {
-        "owner": "calibration",
-        "title": "Over half of today's queries don't map to the 7 area buckets",
-        "desc": "Web Push, Netcore Funnels, Segmentation, and account/access issues (sub-admin access, empty contacts page, report passwords) account for 16 of 28 conversations. This is the second day running the taxonomy gap shows up — worth expanding the area list before trend reporting gets misleading."
-      },
-      {
-        "owner": "product",
-        "title": "Cross-product integration question worth a closer look",
-        "desc": "meenakshi.kaul (CS) asked whether anything needs enabling on the Smartech side once an Unbxd integration is complete, to activate product recommendations. A concrete cross-sell/onboarding question, not a how-to — good candidate for a structured cross-product checklist."
-      },
-      {
-        "owner": "content",
-        "title": "One teammate asked 5 different product questions in a day",
-        "desc": "romit.pandit asked about PWA/TWA support, Co-Marketer, Revenue-as-a-metric in Funnels, Web Message triggers, and the Campaign Details API — all different topics, all in one sitting. If this is a recurring pattern, the underlying docs gaps may be worth consolidating into one reference page."
-      }
-    ],
-    "mostInteresting": {
-      "who": "meenakshi.kaul",
-      "email": "meenakshi.kaul@netcorecloud.com",
-      "query": "unbx integration is done. Anything has to be enabled for product recommendation feature from smartech side?",
-      "why": "A genuine cross-product activation question (Unbxd recommendations + Smartech CE) rather than a how-to — useful signal for onboarding/cross-sell playbooks."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 3,
-        "external": 4
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 1,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 0,
-        "external": 2
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 2,
-        "external": 2
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 4,
-        "external": 3
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 2,
-        "external": 5
-      }
-    ],
-    "topAskers": [
-      {
-        "email": "romit.pandit@netcorecloud.com",
-        "count": 5,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "Is X possible/supported",
-            "text": "Do we have any feature for PWA & TWA?"
-          },
-          {
-            "theme": "Bare greeting, no context yet",
-            "text": "Co-Marketer in Web Push Notification"
-          },
-          {
-            "theme": "Is X possible/supported",
-            "text": "Check if \"Revenue Amount\" can be directly mapped and displayed as a metric within Netcore Funnels"
-          },
-          {
-            "theme": "What does X mean/how it works",
-            "text": "What are the triggers of Web Message"
-          },
-          {
-            "theme": "Where's doc/API for X",
-            "text": "What is the API for fetching Campaign Details"
-          }
-        ]
-      },
-      {
-        "email": "shreyas@bag2bag.in",
-        "count": 3,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "Where do I set up/find X",
-            "text": "were i can find the data sent from public api from postmen"
-          },
-          {
-            "theme": "How do I do X",
-            "text": "how to access the sub admin"
-          },
-          {
-            "theme": "Where do I set up/find X",
-            "text": "HOW TO ACCESS THE API KEY"
-          }
-        ]
-      },
-      {
-        "email": "m.koiyarala@clevertap.in",
-        "count": 3,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "Bare greeting, no context yet",
-            "text": "Segment Agent (Plain-English Segmentation)"
-          },
-          {
-            "theme": "Bare greeting, no context yet",
-            "text": "On-Site (Web) Web In-Line Content (DOM Personalisation): inject personalised content via CSS selectors, no per-campaign code"
-          },
-          {
-            "theme": "Is X possible/supported",
-            "text": "Can I apply for template approvals from the dashboard?"
-          }
-        ]
-      }
-    ],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 3,
-        "external": 3,
-        "internalQ": [
-          {
-            "email": "shipra.choudhary@netcorecloud.com",
-            "q": "Customer wants to send the blacklist/opt out data of whatsapp and email from our panel back to their database through API. How can they do that?"
-          },
-          {
-            "email": "romit.pandit@netcorecloud.com",
-            "q": "What is the API for fetching Campaign Details"
-          },
-          {
-            "email": "meenakshi.kaul@netcorecloud.com",
-            "q": "unbx integration is done. Anything has to be enabled for product recommendation feature from smartech side?"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "shreyas@bag2bag.in",
-            "q": "were i can find the data sent from public api from postmen"
-          },
-          {
-            "email": "shreyas@bag2bag.in",
-            "q": "HOW TO ACCESS THE API KEY"
-          },
-          {
-            "email": "deepesh.lakhera@gmail.com",
-            "q": "Is an API sandbox / developer portal available?"
-          }
-        ]
-      },
-      {
-        "area": "Email",
-        "internal": 0,
-        "external": 2,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "lalithira@gmail.com",
-            "q": "I need to download the list of email Ids from select Campaigns who have either opened or clicked"
-          },
-          {
-            "email": "kunal.anand@nmtronics.com",
-            "q": "Hello, can we change the sender details like the domain which has not been used before?"
-          }
-        ]
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 1,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "ritika.thakur@netcorecloud.com",
-            "q": "how to personalise attributes and activity in web push and sms"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "m.koiyarala@clevertap.in",
-            "q": "Can I apply for template approvals from the dashboard?"
-          }
-        ]
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 1,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "jibin.philip@netcorecloud.com",
-            "q": "can the netcore ce solution be deployed as a on premise platform service"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "deepesh.lakhera@gmail.com",
-            "q": "how does netcore CE handle bot traffic and prevents it?"
-          }
-        ]
-      },
-      {
-        "area": "General/Unclear",
-        "internal": 7,
-        "external": 9,
-        "internalQ": [
-          {
-            "email": "kush.paithane@netcorecloud.com",
-            "q": "yp"
-          },
-          {
-            "email": "romit.pandit@netcorecloud.com",
-            "q": "Do we have any feature for PWA & TWA?"
-          },
-          {
-            "email": "romit.pandit@netcorecloud.com",
-            "q": "Co-Marketer in Web Push Notification"
-          },
-          {
-            "email": "heena.shah@netcorecloud.com",
-            "q": "What is the date format for attribute"
-          },
-          {
-            "email": "romit.pandit@netcorecloud.com",
-            "q": "Check if \"Revenue Amount\" can be directly mapped and displayed as a metric within Netcore Funnels"
-          },
-          {
-            "email": "romit.pandit@netcorecloud.com",
-            "q": "What are the triggers of Web Message"
-          },
-          {
-            "email": "ayush.rathour@netcorecloud.com",
-            "q": "create a campaign for me"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "rahulsolunke@bajajautocredit.com",
-            "q": "\"Hi\""
-          },
-          {
-            "email": "tushar.khutale@bajajhousing.biz",
-            "q": "\"hi\""
-          },
-          {
-            "email": "m.koiyarala@clevertap.in",
-            "q": "Segment Agent (Plain-English Segmentation)"
-          },
-          {
-            "email": "shivang@miraggiolife.com",
-            "q": "How to open any report with password and how to get password for detailed report"
-          },
-          {
-            "email": "m.koiyarala@clevertap.in",
-            "q": "On-Site (Web) Web In-Line Content (DOM Personalisation): inject personalised content via CSS selectors, no per-campaign code"
-          },
-          {
-            "email": "sandeep.chawla@utsavfashion.com",
-            "q": "How can we set co-marketer configuration"
-          },
-          {
-            "email": "shreyas@bag2bag.in",
-            "q": "how to access the sub admin"
-          },
-          {
-            "email": "deepak.mishra@jmfl.com",
-            "q": "why do i see this page as empty and no contacts"
-          },
-          {
-            "email": "melissa.hj-mohd-yusof@sc.com",
-            "q": "\"Hi\""
-          }
-        ]
-      }
-    ]
+"2026-06-15": {
+  date: "2026-06-15",
+  totalConversations: 28,
+  resolutionRate: 100,
+  internalTotal: 12,
+  externalTotal: 16,
+  docsTotal: 15,
+  panelTotal: 13,
+  queryType: { technical: 11, generic: 17 },
+  headline: "28 conversations on June 15, all bot-resolved — but 16 of 28 (57%) fell outside the 7 defined areas, and a Clevertap email address browsed the Docs Portal three times in one day.",
+  actionableInsights: [
+    { owner:"security", title:"A competitor domain browsed the Docs Portal three times",
+      desc:"m.koiyarala@clevertap.in looked up three separate feature pages today — Segment Agent (plain-English segmentation), Web In-Line Content/DOM personalisation, and template approvals. All from a known competitor's email domain. Worth a quick check with security/marketing on whether feature-level Docs Portal content should sit behind auth." },
+    { owner:"calibration", title:"Over half of today's queries don't map to the 7 area buckets",
+      desc:"Web Push, Netcore Funnels, Segmentation, and account/access issues (sub-admin access, empty contacts page, report passwords) account for 16 of 28 conversations. This is the second day running the taxonomy gap shows up — worth expanding the area list before trend reporting gets misleading." },
+    { owner:"product", title:"Cross-product integration question worth a closer look",
+      desc:"meenakshi.kaul (CS) asked whether anything needs enabling on the Smartech side once an Unbxd integration is complete, to activate product recommendations. A concrete cross-sell/onboarding question, not a how-to — good candidate for a structured cross-product checklist." },
+    { owner:"content", title:"One teammate asked 5 different product questions in a day",
+      desc:"romit.pandit asked about PWA/TWA support, Co-Marketer, Revenue-as-a-metric in Funnels, Web Message triggers, and the Campaign Details API — all different topics, all in one sitting. If this is a recurring pattern, the underlying docs gaps may be worth consolidating into one reference page." }
+  ],
+  mostInteresting: {
+    who: "meenakshi.kaul", email: "meenakshi.kaul@netcorecloud.com",
+    query: "unbx integration is done. Anything has to be enabled for product recommendation feature from smartech side?",
+    why: "A genuine cross-product activation question (Unbxd recommendations + Smartech CE) rather than a how-to — useful signal for onboarding/cross-sell playbooks."
   },
-  "2026-06-16": {
-    "date": "2026-06-16",
-    "totalConversations": 27,
-    "resolutionRate": 96,
-    "internalTotal": 15,
-    "externalTotal": 12,
-    "docsTotal": 15,
-    "panelTotal": 12,
-    "queryType": {
-      "technical": 9,
-      "generic": 18
-    },
-    "headline": "27 conversations on June 16 — 15 internal Docs Portal lookups, 12 external panel sessions. The standout: 11 of 27 (41%) landed in 'General/Unclear' because the bot has no clean bucket yet for App Inbox, Web Push, or Web Personalization.",
-    "actionableInsights": [
-      {
-        "owner": "product",
-        "title": "Real-time campaign control is a recurring roadmap ask",
-        "desc": "manish@netcorecloud.com asked whether campaigns/journeys can be paused, resumed, or terminated in real time based on performance thresholds — a second consecutive day of forward-looking product questions from him (yesterday: webhook channel parity). Worth a structured intake conversation rather than ad hoc bot questions."
-      },
-      {
-        "owner": "calibration",
-        "title": "Nearly half of today's queries don't fit the area taxonomy",
-        "desc": "11 of 27 conversations (41%) landed in General/Unclear — App Inbox, Web Push browser support, Web Personalization, and account/password issues. Recommend adding 2-3 new area buckets (e.g. \"Push/App Inbox\", \"Account & Access\") so trend data stays meaningful."
-      },
-      {
-        "owner": "design",
-        "title": "One conversation needed a human",
-        "desc": "swati.jangir's \"best time and best day\" ask was too thin for the bot to resolve on its own and escalated to a human (botConversationState: handed_off_to_human) — the only non-resolved conversation today. Worth watching if this recurs."
-      },
-      {
-        "owner": "content",
-        "title": "Image-only ticket with no text",
-        "desc": "charishma.p submitted an image attachment with zero body text — the bot has no way to read or act on it. Consider a prompt nudging users to describe the issue in text when an image arrives alone."
-      }
-    ],
-    "mostInteresting": {
-      "who": "manish",
-      "email": "manish@netcorecloud.com",
-      "query": "Ability to modify, pause, resume, and terminate campaigns in real-time if performance thresholds are not met. Can we do this in campaign & journey?",
-      "why": "Second straight day of a sharp, roadmap-shaped question from the same person — worth a direct conversation rather than letting it sit in bot logs."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 1,
-        "external": 3
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 3,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 1,
-        "external": 2
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 4,
-        "external": 6
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 5,
-        "external": 0
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 1,
-        "external": 1
-      }
-    ],
-    "topAskers": [
-      {
-        "email": "sai.kiran@netcorecloud.com",
-        "count": 2,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "What does X mean/how it works",
-            "text": "For anonymous users, we can pass an anonymous ID in the identity field. Once that user signs up/logs in later, does the anonymous profile auto-merge with the known user, or do we need to trigger that separately?"
-          },
-          {
-            "theme": "Where's doc/API for X",
-            "text": "give me doc for Google single sign on"
-          }
-        ]
-      },
-      {
-        "email": "ritika.thakur@netcorecloud.com",
-        "count": 2,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "What does X mean/how it works",
-            "text": "what is wait for event"
-          },
-          {
-            "theme": "Is X possible/supported",
-            "text": "are deeplinks important for app notifications"
-          }
-        ]
-      }
-    ],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 4,
-        "external": 2,
-        "internalQ": [
-          {
-            "email": "sai.kiran@netcorecloud.com",
-            "q": "For anonymous users, we can pass an anonymous ID in the identity field. Once that user signs up/logs in later, does the anonymous profile auto-merge with the known user, or do we need to trigger that separately?"
-          },
-          {
-            "email": "utpal.dutta@netcorecloud.com",
-            "q": "is there a way to remove a list of user in bulk from black list contacts"
-          },
-          {
-            "email": "sai.kiran@netcorecloud.com",
-            "q": "give me doc for Google single sign on"
-          },
-          {
-            "email": "ishika.a@netcorecloud.com",
-            "q": "one of our client has implemented the google single sign on on their website, but the events related to it are still not coming, give me the document"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "preet.panchal@clear.in",
-            "q": "how to get html for templatex?"
-          },
-          {
-            "email": "mandar.panchal@carepalsecure.com",
-            "q": "hi, i have issue regarding data uploading"
-          }
-        ]
-      },
-      {
-        "area": "Email",
-        "internal": 0,
-        "external": 4,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "anmol.panesar@impactguru.com",
-            "q": "I am trying to download a detailed report of a specific campaign sent on email — the status column only shows 'opened' and 'sent'. Is there a way to see how many got 'delivered'? Does 'sent' also mean delivered?"
-          },
-          {
-            "email": "deepti.pardhi@bajajamc.com",
-            "q": "i was reviewing report of onboarding_completed_welcomeemail — open to click rate has a massive drop. Need suggestions for a top performing hooked subject line"
-          },
-          {
-            "email": "vaibhavt@proteantech.in",
-            "q": "i want email delivery report"
-          },
-          {
-            "email": "surya.prakash@aajtak.com",
-            "q": "how do we check if a campaign is delivered to a recipient email id"
-          }
-        ]
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 2,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "lokesh.sharma@netcorecloud.com",
-            "q": "in rcs campaign, why does RCS unreachable count come in rcs campaign"
-          },
-          {
-            "email": "shipra.choudhary@netcorecloud.com",
-            "q": "Can i get the document on how customer can read RCS report"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "shivang@miraggiolife.com",
-            "q": "retail_chennai_16_june_2026 this template got rejected, tell me why"
-          }
-        ]
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 1,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "hiral.jhaveri@netcorecloud.com",
-            "q": "how to integrate webhook in amp emails?"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 2,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "manish@netcorecloud.com",
-            "q": "Ability to modify, pause, resume, and terminate campaigns in real-time if performance thresholds are not met. Can we do this in campaign & journey?"
-          },
-          {
-            "email": "ritika.thakur@netcorecloud.com",
-            "q": "what is wait for event"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "General/Unclear",
-        "internal": 6,
-        "external": 5,
-        "internalQ": [
-          {
-            "email": "meenakshi.kaul@netcorecloud.com",
-            "q": "in web personalization, is there a way to add exclude events under audience section"
-          },
-          {
-            "email": "swati.jangir@netcorecloud.com",
-            "q": "best time and best day"
-          },
-          {
-            "email": "romit.pandit@netcorecloud.com",
-            "q": "How does App Inbox work? Is it available for Web, App, Web In-App?"
-          },
-          {
-            "email": "ritika.thakur@netcorecloud.com",
-            "q": "are deeplinks important for app notifications"
-          },
-          {
-            "email": "mandovi.joseph@netcorecloud.com",
-            "q": "Do we support brave browser for push notifications?"
-          },
-          {
-            "email": "charishma.p@netcorecloud.com",
-            "q": "[image attachment, no text]"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "mahak.singla@antaraseniorcare.com",
-            "q": "duration showing mintis"
-          },
-          {
-            "email": "sumit.kakade@iresearchservices.com",
-            "q": "Hi Need to speak with agent"
-          },
-          {
-            "email": "marketing@saksham.co.in",
-            "q": "Not getting password on phone for detailed campaign report"
-          },
-          {
-            "email": "intern.ecommerce@fabindia.net",
-            "q": "tell me total revenue generated by app push in june"
-          },
-          {
-            "email": "pribpundao.boo@pomelofashion.com",
-            "q": "issue with website popup message"
-          }
-        ]
-      }
-    ]
+  themesBySource: [
+    { theme: "How do I do X", internal: 3, external: 4 },
+    { theme: "Where's the doc/API for X", internal: 1, external: 0 },
+    { theme: "Where do I set up/find X", internal: 0, external: 2 },
+    { theme: "What does X mean/how it works", internal: 2, external: 2 },
+    { theme: "Is X possible/supported", internal: 4, external: 3 },
+    { theme: "Bare greeting, no context yet", internal: 2, external: 5 }
+  ],
+  topAskers: [
+    { email: "romit.pandit@netcorecloud.com", count: 5, friction: false,
+      queries: [
+        { theme:"Is X possible/supported", text:"Do we have any feature for PWA & TWA?" },
+        { theme:"Bare greeting, no context yet", text:"Co-Marketer in Web Push Notification" },
+        { theme:"Is X possible/supported", text:"Check if \"Revenue Amount\" can be directly mapped and displayed as a metric within Netcore Funnels" },
+        { theme:"What does X mean/how it works", text:"What are the triggers of Web Message" },
+        { theme:"Where's doc/API for X", text:"What is the API for fetching Campaign Details" }
+      ] },
+    { email: "shreyas@bag2bag.in", count: 3, friction: false,
+      queries: [
+        { theme:"Where do I set up/find X", text:"were i can find the data sent from public api from postmen" },
+        { theme:"How do I do X", text:"how to access the sub admin" },
+        { theme:"Where do I set up/find X", text:"HOW TO ACCESS THE API KEY" }
+      ] },
+    { email: "m.koiyarala@clevertap.in", count: 3, friction: false,
+      queries: [
+        { theme:"Bare greeting, no context yet", text:"Segment Agent (Plain-English Segmentation)" },
+        { theme:"Bare greeting, no context yet", text:"On-Site (Web) Web In-Line Content (DOM Personalisation): inject personalised content via CSS selectors, no per-campaign code" },
+        { theme:"Is X possible/supported", text:"Can I apply for template approvals from the dashboard?" }
+      ] }
+  ],
+  areas: [
+    { area: "API/Integration", internal: 3, external: 3,
+      internalQ: [
+        {email:"shipra.choudhary@netcorecloud.com", q:"Customer wants to send the blacklist/opt out data of whatsapp and email from our panel back to their database through API. How can they do that?"},
+        {email:"romit.pandit@netcorecloud.com", q:"What is the API for fetching Campaign Details"},
+        {email:"meenakshi.kaul@netcorecloud.com", q:"unbx integration is done. Anything has to be enabled for product recommendation feature from smartech side?"}
+      ], externalQ: [
+        {email:"shreyas@bag2bag.in", q:"were i can find the data sent from public api from postmen"},
+        {email:"shreyas@bag2bag.in", q:"HOW TO ACCESS THE API KEY"},
+        {email:"deepesh.lakhera@gmail.com", q:"Is an API sandbox / developer portal available?"}
+      ] },
+    { area: "Email", internal: 0, external: 2,
+      internalQ: [], externalQ: [
+        {email:"lalithira@gmail.com", q:"I need to download the list of email Ids from select Campaigns who have either opened or clicked"},
+        {email:"kunal.anand@nmtronics.com", q:"Hello, can we change the sender details like the domain which has not been used before?"}
+      ] },
+    { area: "CPaaS (WhatsApp/RCS/SMS)", internal: 1, external: 1,
+      internalQ: [{email:"ritika.thakur@netcorecloud.com", q:"how to personalise attributes and activity in web push and sms"}],
+      externalQ: [{email:"m.koiyarala@clevertap.in", q:"Can I apply for template approvals from the dashboard?"}] },
+    { area: "Broadcast/Webhooks", internal: 0, external: 0, internalQ: [], externalQ: [] },
+    { area: "Journey Builder", internal: 0, external: 0, internalQ: [], externalQ: [] },
+    { area: "Infra/Data residency", internal: 1, external: 1,
+      internalQ: [{email:"jibin.philip@netcorecloud.com", q:"can the netcore ce solution be deployed as a on premise platform service"}],
+      externalQ: [{email:"deepesh.lakhera@gmail.com", q:"how does netcore CE handle bot traffic and prevents it?"}] },
+    { area: "General/Unclear", internal: 7, external: 9,
+      internalQ: [
+        {email:"kush.paithane@netcorecloud.com", q:"yp"},
+        {email:"romit.pandit@netcorecloud.com", q:"Do we have any feature for PWA & TWA?"},
+        {email:"romit.pandit@netcorecloud.com", q:"Co-Marketer in Web Push Notification"},
+        {email:"heena.shah@netcorecloud.com", q:"What is the date format for attribute"},
+        {email:"romit.pandit@netcorecloud.com", q:"Check if \"Revenue Amount\" can be directly mapped and displayed as a metric within Netcore Funnels"},
+        {email:"romit.pandit@netcorecloud.com", q:"What are the triggers of Web Message"},
+        {email:"ayush.rathour@netcorecloud.com", q:"create a campaign for me"}
+      ], externalQ: [
+        {email:"rahulsolunke@bajajautocredit.com", q:"\"Hi\""},
+        {email:"tushar.khutale@bajajhousing.biz", q:"\"hi\""},
+        {email:"m.koiyarala@clevertap.in", q:"Segment Agent (Plain-English Segmentation)"},
+        {email:"shivang@miraggiolife.com", q:"How to open any report with password and how to get password for detailed report"},
+        {email:"m.koiyarala@clevertap.in", q:"On-Site (Web) Web In-Line Content (DOM Personalisation): inject personalised content via CSS selectors, no per-campaign code"},
+        {email:"sandeep.chawla@utsavfashion.com", q:"How can we set co-marketer configuration"},
+        {email:"shreyas@bag2bag.in", q:"how to access the sub admin"},
+        {email:"deepak.mishra@jmfl.com", q:"why do i see this page as empty and no contacts"},
+        {email:"melissa.hj-mohd-yusof@sc.com", q:"\"Hi\""}
+      ] }
+  ]
+},
+"2026-06-16": {
+  date: "2026-06-16",
+  totalConversations: 27,
+  resolutionRate: 96,
+  internalTotal: 15,
+  externalTotal: 12,
+  docsTotal: 15,
+  panelTotal: 12,
+  queryType: { technical: 9, generic: 18 },
+  headline: "27 conversations on June 16 — 15 internal Docs Portal lookups, 12 external panel sessions. The standout: 11 of 27 (41%) landed in 'General/Unclear' because the bot has no clean bucket yet for App Inbox, Web Push, or Web Personalization.",
+  actionableInsights: [
+    { owner:"product", title:"Real-time campaign control is a recurring roadmap ask",
+      desc:"manish@netcorecloud.com asked whether campaigns/journeys can be paused, resumed, or terminated in real time based on performance thresholds — a second consecutive day of forward-looking product questions from him (yesterday: webhook channel parity). Worth a structured intake conversation rather than ad hoc bot questions." },
+    { owner:"calibration", title:"Nearly half of today's queries don't fit the area taxonomy",
+      desc:"11 of 27 conversations (41%) landed in General/Unclear — App Inbox, Web Push browser support, Web Personalization, and account/password issues. Recommend adding 2-3 new area buckets (e.g. \"Push/App Inbox\", \"Account & Access\") so trend data stays meaningful." },
+    { owner:"design", title:"One conversation needed a human",
+      desc:"swati.jangir's \"best time and best day\" ask was too thin for the bot to resolve on its own and escalated to a human (botConversationState: handed_off_to_human) — the only non-resolved conversation today. Worth watching if this recurs." },
+    { owner:"content", title:"Image-only ticket with no text",
+      desc:"charishma.p submitted an image attachment with zero body text — the bot has no way to read or act on it. Consider a prompt nudging users to describe the issue in text when an image arrives alone." }
+  ],
+  mostInteresting: {
+    who: "manish", email: "manish@netcorecloud.com",
+    query: "Ability to modify, pause, resume, and terminate campaigns in real-time if performance thresholds are not met. Can we do this in campaign & journey?",
+    why: "Second straight day of a sharp, roadmap-shaped question from the same person — worth a direct conversation rather than letting it sit in bot logs."
   },
-  "2026-06-17": {
-    "date": "2026-06-17",
-    "totalConversations": 22,
-    "resolutionRate": 100,
-    "internalTotal": 17,
-    "externalTotal": 5,
-    "docsTotal": 15,
-    "panelTotal": 7,
-    "queryType": {
-      "technical": 13,
-      "generic": 9
-    },
-    "headline": "22 conversations, 100% bot-resolved (self-reported) — API/Integration and Email tied as the top areas (6 each), and charishma.p had to ask the same lead-capture API question twice in 4 minutes.",
-    "actionableInsights": [
-      {
-        "owner": "content",
-        "title": "Niche ops docs are thin",
-        "desc": "lokesh.sharma (CPaaS/email data retention policy) and mandovi.joseph (editing a journey goal once live) both got generic bot answers with no authoritative doc link — backfill these two specific gaps."
-      },
-      {
-        "owner": "product",
-        "title": "Re-ask friction on lead-capture API",
-        "desc": "charishma.p@netcorecloud.com asked for the Contact API to push Meta/Facebook/Google leads twice within 4 minutes (1409, 1408) — the first bot answer likely didn't land; review that response."
-      },
-      {
-        "owner": "design",
-        "title": "Off-topic queries reaching the bot",
-        "desc": "prince241187@gmail.com used the CE docs bot to ask about activating a credit card — wrong channel entirely. A lightweight 'this looks unrelated to Netcore CE' redirect would reduce noise."
-      },
-      {
-        "owner": "calibration",
-        "title": "Small sample size — directional only",
-        "desc": "n=22 for the day. Treat percentages as signal, not statistically firm — lean on the 14-day rolling trend for real patterns."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Swati Jangir",
-      "email": "swati.jangir@netcorecloud.com",
-      "query": "Netcore ki API chahiye thi, suppressions remove and logs fetch ko automate krne ke liye (wants Netcore's API to automate removing suppressions and fetching logs)",
-      "why": "Moving from manual panel ops to programmatic suppression management + log retrieval — a sign of more mature, automation-minded platform usage rather than basic navigation help."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 7,
-        "external": 0
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 3,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 2,
-        "external": 1
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 3,
-        "external": 1
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 2,
-        "external": 2
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 1
-      }
-    ],
-    "topAskers": [
-      {
-        "email": "swati.jangir@netcorecloud.com",
-        "count": 2,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "Is X possible/supported",
-            "text": "freshdesk integration"
-          },
-          {
-            "theme": "Where's the doc/API for X",
-            "text": "Netcore ki API chahiye thi, suppressions remove and logs fetch ko automate krne ke liye"
-          }
-        ]
-      },
-      {
-        "email": "charishma.p@netcorecloud.com",
-        "count": 2,
-        "friction": true,
-        "queries": [
-          {
-            "theme": "Where's the doc/API for X",
-            "text": "Could you please share the Contact API documentation that can be used to push leads captured from Meta, Facebook, and Google into Netcore via API integration?"
-          },
-          {
-            "theme": "Where's the doc/API for X",
-            "text": "can you share the contact API to capture leads from meta, facebook and google?"
-          }
-        ]
-      },
-      {
-        "email": "ayush.rathour@netcorecloud.com",
-        "count": 2,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "How do I do X",
-            "text": "create a email campaign for me"
-          },
-          {
-            "theme": "How do I do X",
-            "text": "help formatting the JSON body for your campaign request"
-          }
-        ]
-      }
-    ],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 6,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "goran.skinder@netcoreunbxd.com",
-            "q": "What is the JS tag we have on the Flair Airlines website"
-          },
-          {
-            "email": "swati.jangir@netcorecloud.com",
-            "q": "Netcore ki API chahiye thi, suppressions remove and logs fetch ko automate krne ke liye"
-          },
-          {
-            "email": "charishma.p@netcorecloud.com",
-            "q": "Could you please share the Contact API documentation that can be used to push leads captured from Meta, Facebook, and Google into Netcore via API integration?"
-          },
-          {
-            "email": "charishma.p@netcorecloud.com",
-            "q": "can you share the contact API to capture leads from meta, facebook and google?"
-          },
-          {
-            "email": "ayush.rathour@netcorecloud.com",
-            "q": "help formatting the JSON body for your campaign request"
-          },
-          {
-            "email": "swati.jangir@netcorecloud.com",
-            "q": "freshdesk integration"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Email",
-        "internal": 5,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "gourab.dash@netcorecloud.com",
-            "q": "create a email campings"
-          },
-          {
-            "email": "gunjan.mahajan@netcorecloud.com",
-            "q": "How can we personalise email body with the events payload"
-          },
-          {
-            "email": "prakas.prabowo@netcorecloud.com",
-            "q": "Mailscore list ID 881"
-          },
-          {
-            "email": "ayush.rathour@netcorecloud.com",
-            "q": "create a email campaign for me"
-          },
-          {
-            "email": "siddhant.bendkar@netcorecloud.com",
-            "q": "What is accordian AMP?"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "neelima@confairs.com",
-            "q": "i want to know i get my campaign report"
-          }
-        ]
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 2,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "shipra.choudhary@netcorecloud.com",
-            "q": "How to make any RCS content Bold"
-          },
-          {
-            "email": "romit.pandit@netcorecloud.com",
-            "q": "How to setup Opt-Out for WhatsApp & how to send the opt-out data to customer's LMS as an automation?"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "akash.kokate3@bajajfinservmarkets.in",
-            "q": "flash sms is available?"
-          }
-        ]
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 1,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "manish@netcorecloud.com",
-            "q": "For Broadcast, currently, we can configure Email & SMS channels for webhook. Can we do it for other channels - APN, Web push, WA & RCS as well?"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 1,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "jeetan.dmello@netcorecloud.com",
-            "q": "Can you describe the journey trends graph when I click on a journey."
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 2,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "lokesh.sharma@netcorecloud.com",
-            "q": "please shared the retenetion policy for cpaas email and whatsapp api for storing email id"
-          },
-          {
-            "email": "mandovi.joseph@netcorecloud.com",
-            "q": "Is pr1r us server or indian server"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 3,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "amar@starlinkindia.com",
-            "q": "Hello / I want to know status of my ticket"
-          },
-          {
-            "email": "prince241187@gmail.com",
-            "q": "Hi / I need active my card"
-          },
-          {
-            "email": "januchinna79@gmail.com",
-            "q": "Hai"
-          }
-        ]
-      }
-    ]
+  themesBySource: [
+    { theme: "How do I do X", internal: 1, external: 3 },
+    { theme: "Where's the doc/API for X", internal: 3, external: 0 },
+    { theme: "Where do I set up/find X", internal: 1, external: 2 },
+    { theme: "What does X mean/how it works", internal: 4, external: 6 },
+    { theme: "Is X possible/supported", internal: 5, external: 0 },
+    { theme: "Bare greeting, no context yet", internal: 1, external: 1 }
+  ],
+  topAskers: [
+    { email: "sai.kiran@netcorecloud.com", count: 2, friction: false,
+      queries: [
+        { theme:"What does X mean/how it works", text:"For anonymous users, we can pass an anonymous ID in the identity field. Once that user signs up/logs in later, does the anonymous profile auto-merge with the known user, or do we need to trigger that separately?" },
+        { theme:"Where's doc/API for X", text:"give me doc for Google single sign on" }
+      ] },
+    { email: "ritika.thakur@netcorecloud.com", count: 2, friction: false,
+      queries: [
+        { theme:"What does X mean/how it works", text:"what is wait for event" },
+        { theme:"Is X possible/supported", text:"are deeplinks important for app notifications" }
+      ] }
+  ],
+  areas: [
+    { area: "API/Integration", internal: 4, external: 2,
+      internalQ: [
+        {email:"sai.kiran@netcorecloud.com", q:"For anonymous users, we can pass an anonymous ID in the identity field. Once that user signs up/logs in later, does the anonymous profile auto-merge with the known user, or do we need to trigger that separately?"},
+        {email:"utpal.dutta@netcorecloud.com", q:"is there a way to remove a list of user in bulk from black list contacts"},
+        {email:"sai.kiran@netcorecloud.com", q:"give me doc for Google single sign on"},
+        {email:"ishika.a@netcorecloud.com", q:"one of our client has implemented the google single sign on on their website, but the events related to it are still not coming, give me the document"}
+      ], externalQ: [
+        {email:"preet.panchal@clear.in", q:"how to get html for templatex?"},
+        {email:"mandar.panchal@carepalsecure.com", q:"hi, i have issue regarding data uploading"}
+      ] },
+    { area: "Email", internal: 0, external: 4,
+      internalQ: [], externalQ: [
+        {email:"anmol.panesar@impactguru.com", q:"I am trying to download a detailed report of a specific campaign sent on email — the status column only shows 'opened' and 'sent'. Is there a way to see how many got 'delivered'? Does 'sent' also mean delivered?"},
+        {email:"deepti.pardhi@bajajamc.com", q:"i was reviewing report of onboarding_completed_welcomeemail — open to click rate has a massive drop. Need suggestions for a top performing hooked subject line"},
+        {email:"vaibhavt@proteantech.in", q:"i want email delivery report"},
+        {email:"surya.prakash@aajtak.com", q:"how do we check if a campaign is delivered to a recipient email id"}
+      ] },
+    { area: "CPaaS (WhatsApp/RCS/SMS)", internal: 2, external: 1,
+      internalQ: [
+        {email:"lokesh.sharma@netcorecloud.com", q:"in rcs campaign, why does RCS unreachable count come in rcs campaign"},
+        {email:"shipra.choudhary@netcorecloud.com", q:"Can i get the document on how customer can read RCS report"}
+      ], externalQ: [
+        {email:"shivang@miraggiolife.com", q:"retail_chennai_16_june_2026 this template got rejected, tell me why"}
+      ] },
+    { area: "Broadcast/Webhooks", internal: 1, external: 0,
+      internalQ: [{email:"hiral.jhaveri@netcorecloud.com", q:"how to integrate webhook in amp emails?"}], externalQ: [] },
+    { area: "Journey Builder", internal: 2, external: 0,
+      internalQ: [
+        {email:"manish@netcorecloud.com", q:"Ability to modify, pause, resume, and terminate campaigns in real-time if performance thresholds are not met. Can we do this in campaign & journey?"},
+        {email:"ritika.thakur@netcorecloud.com", q:"what is wait for event"}
+      ], externalQ: [] },
+    { area: "Infra/Data residency", internal: 0, external: 0, internalQ: [], externalQ: [] },
+    { area: "General/Unclear", internal: 6, external: 5,
+      internalQ: [
+        {email:"meenakshi.kaul@netcorecloud.com", q:"in web personalization, is there a way to add exclude events under audience section"},
+        {email:"swati.jangir@netcorecloud.com", q:"best time and best day"},
+        {email:"romit.pandit@netcorecloud.com", q:"How does App Inbox work? Is it available for Web, App, Web In-App?"},
+        {email:"ritika.thakur@netcorecloud.com", q:"are deeplinks important for app notifications"},
+        {email:"mandovi.joseph@netcorecloud.com", q:"Do we support brave browser for push notifications?"},
+        {email:"charishma.p@netcorecloud.com", q:"[image attachment, no text]"}
+      ], externalQ: [
+        {email:"mahak.singla@antaraseniorcare.com", q:"duration showing mintis"},
+        {email:"sumit.kakade@iresearchservices.com", q:"Hi Need to speak with agent"},
+        {email:"marketing@saksham.co.in", q:"Not getting password on phone for detailed campaign report"},
+        {email:"intern.ecommerce@fabindia.net", q:"tell me total revenue generated by app push in june"},
+        {email:"pribpundao.boo@pomelofashion.com", q:"issue with website popup message"}
+      ] }
+  ]
+},
+"2026-06-17": {
+  date: "2026-06-17",
+  totalConversations: 22,
+  resolutionRate: 100,
+  internalTotal: 17,
+  externalTotal: 5,
+  docsTotal: 15,
+  panelTotal: 7,
+  queryType: { technical: 13, generic: 9 },
+  headline: "22 conversations, 100% bot-resolved (self-reported) — API/Integration and Email tied as the top areas (6 each), and charishma.p had to ask the same lead-capture API question twice in 4 minutes.",
+  actionableInsights: [
+    { owner:"content", title:"Niche ops docs are thin",
+      desc:"lokesh.sharma (CPaaS/email data retention policy) and mandovi.joseph (editing a journey goal once live) both got generic bot answers with no authoritative doc link — backfill these two specific gaps." },
+    { owner:"product", title:"Re-ask friction on lead-capture API",
+      desc:"charishma.p@netcorecloud.com asked for the Contact API to push Meta/Facebook/Google leads twice within 4 minutes — the first bot answer likely didn't land; review that response." },
+    { owner:"design", title:"Off-topic queries reaching the bot",
+      desc:"prince241187@gmail.com used the CE docs bot to ask about activating a credit card — wrong channel entirely. A lightweight 'this looks unrelated to Netcore CE' redirect would reduce noise." },
+    { owner:"calibration", title:"Small sample size — directional only",
+      desc:"n=22 for the day. Treat percentages as signal, not statistically firm — lean on the 14-day rolling trend for real patterns." }
+  ],
+  mostInteresting: {
+    who: "Swati Jangir", email: "swati.jangir@netcorecloud.com",
+    query: "Netcore ki API chahiye thi, suppressions remove and logs fetch ko automate krne ke liye (wants Netcore's API to automate removing suppressions and fetching logs)",
+    why: "Moving from manual panel ops to programmatic suppression management + log retrieval — a sign of more mature, automation-minded platform usage rather than basic navigation help."
   },
-  "2026-06-18": {
-    "date": "2026-06-18",
-    "totalConversations": 27,
-    "resolutionRate": 89,
-    "internalTotal": 9,
-    "externalTotal": 18,
-    "docsTotal": 10,
-    "panelTotal": 17,
-    "queryType": {
-      "technical": 13,
-      "generic": 14
-    },
-    "headline": "27 conversations on June 18, 89% bot-resolved — Email (9) and API/Integration (8) led the day, and zero conversations were true content-less greetings once you read past the opening line — every bare ‘Hi’ turned out to have a real follow-up question.",
-    "actionableInsights": [
-      {
-        "owner": "calibration",
-        "title": "Small sample, and a third was internal traffic",
-        "desc": "n=27, and 9 of those (33%) were Netcore's own staff using the Docs Portal — higher than a typical customer-only day. Read today's area/theme splits as directional, not representative of pure customer behavior."
-      },
-      {
-        "owner": "content",
-        "title": "Re-ask friction on the 'best email open time' report",
-        "desc": "katherine.maebelle.aban@prulifeuk.com.ph asked twice, 6 minutes apart in separate sessions, where to find the best email open times — first as a 'periodic trend report', then rephrased entirely. The bot's first answer likely didn't point to one clear feature; worth tightening that doc/training snippet."
-      },
-      {
-        "owner": "product",
-        "title": "Revenue-tracking default toggle may not exist",
-        "desc": "agin.sankar@netcorecloud.com tried four times to find a global 'enable revenue tracking by default' setting in Advanced Details, then escalated to a human. If there's genuinely no such toggle, that's a product gap worth a PM look, not just a docs fix."
-      },
-      {
-        "owner": "design",
-        "title": "Two ingestion paths, one stuck user",
-        "desc": "masonsenters@gmail.com tried the HTTP POST contact API, then came back the same day asking about an N8N webhook — both attempts to get a single lead into a list. Worth checking whether the lead-ingestion docs surface the right method on the first try."
-      }
-    ],
-    "mostInteresting": {
-      "who": "test (external)",
-      "email": "test@gmail.com",
-      "query": "what kind of api call is this? [api.netcoresmartech.com/apiv2?type=contact&activity=getuser&apikey=$api_key&data=$agent_id] can you give me the correct document for the same?",
-      "why": "Pulled apart a live API call by its query-string parameters (type, activity, apikey, data) and asked for the matching documented endpoint — real API literacy and self-directed debugging, not just copy-paste troubleshooting."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 1,
-        "external": 11
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 3,
-        "external": 1
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 1,
-        "external": 5
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 1,
-        "external": 0
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 3,
-        "external": 1
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 0
-      }
-    ],
-    "topAskers": [
-      {
-        "email": "masonsenters@gmail.com",
-        "count": 2,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "How do I do X",
-            "text": "I cannot, for the life of me, get a lead to successfully enter a list (Or into netcore at all) via an Http post. please help."
-          },
-          {
-            "theme": "How do I do X",
-            "text": "Hi, How do I send contacts in Via an N8N webhook?"
-          }
-        ]
-      },
-      {
-        "email": "priyanshu.2@insurancedekho.com",
-        "count": 2,
-        "friction": true,
-        "queries": [
-          {
-            "theme": "How do I do X",
-            "text": "App logins most perfromed copy"
-          },
-          {
-            "theme": "How do I do X",
-            "text": "Give mw ideas to drive app logins"
-          }
-        ]
-      },
-      {
-        "email": "lokesh.sharma@netcorecloud.com",
-        "count": 2,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "Where's the doc/API for X",
-            "text": "activity api"
-          },
-          {
-            "theme": "How do I do X",
-            "text": "how to check the users has ipted out from whatsapp"
-          }
-        ]
-      },
-      {
-        "email": "katherine.maebelle.aban@prulifeuk.com.ph",
-        "count": 2,
-        "friction": true,
-        "queries": [
-          {
-            "theme": "Where do I set up/find X",
-            "text": "i want to find the best times that my contacts opened my emails. where do i find that?"
-          },
-          {
-            "theme": "Where do I set up/find X",
-            "text": "hey, where can I find the best open times of our emails?"
-          }
-        ]
-      }
-    ],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 3,
-        "external": 5,
-        "internalQ": [
-          {
-            "email": "lokesh.sharma@netcorecloud.com",
-            "q": "activity api"
-          },
-          {
-            "email": "sai.kiran@netcorecloud.com",
-            "q": "is liquid tags only of app or web also"
-          },
-          {
-            "email": "sai.koran@netcorecloud.com",
-            "q": "Hi Krithikrishnan, What is the rate limit of our Netcore panel api calls per second, per minute, per hour"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "masonsenters@gmail.com",
-            "q": "I cannot, for the life of me, get a lead to successfully enter a list (Or into netcore at all) via an Http post. please help."
-          },
-          {
-            "email": "masonsenters@gmail.com",
-            "q": "Hi, How do I send contacts in Via an N8N webhook?"
-          },
-          {
-            "email": "yogesh.k@shoppersstop.com",
-            "q": "unable to upload lead list getting message failed, the leads containt url as well"
-          },
-          {
-            "email": "test@gmail.com",
-            "q": "what kind of api call is this? [api.netcoresmartech.com/apiv2?...] can you give me the correct document for the same?"
-          },
-          {
-            "email": "gopinath.s@avendusspark.com",
-            "q": "while doing a bulk upload, the complete lists isn't showing up"
-          }
-        ]
-      },
-      {
-        "area": "Email",
-        "internal": 3,
-        "external": 6,
-        "internalQ": [
-          {
-            "email": "khushi.chitkara@netcorecloud.com",
-            "q": "Generate a template for a sale with a heading, image, and CTA"
-          },
-          {
-            "email": "manish@netcorecloud.com",
-            "q": "payload personalization syntax (event payload, in email)"
-          },
-          {
-            "email": "agin.sankar@netcorecloud.com",
-            "q": "can we enable revenue tracking by default for all the campaigns?"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "ofeyisola@parthianpartnersng.com",
-            "q": "help proof read my text"
-          },
-          {
-            "email": "prashanth.395133@actcorp.in",
-            "q": "how to send Email to large base with dynamic Script"
-          },
-          {
-            "email": "neelima@confaisr.com",
-            "q": "ur channal not updated / how can i find unsubscribed, block, spam data from my recent campaign"
-          },
-          {
-            "email": "mcpontiveros@pjlhuillier.com",
-            "q": "is it possible to get the list and its exact reason for not being reachable?"
-          },
-          {
-            "email": "katherine.maebelle.aban@prulifeuk.com.ph",
-            "q": "i want to find the best times that my contacts opened my emails. where do i find that?"
-          },
-          {
-            "email": "katherine.maebelle.aban@prulifeuk.com.ph",
-            "q": "hey, where can I find the best open times of our emails?"
-          }
-        ]
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 1,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "lokesh.sharma@netcorecloud.com",
-            "q": "how to check the users has ipted out from whatsapp"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "kinnera@truva.in",
-            "q": "i need to check my whatsapp number quality"
-          }
-        ]
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 1,
-        "external": 4,
-        "internalQ": [
-          {
-            "email": "hiral.jhaveri@netcorecloud.com",
-            "q": "Please elaborate on \"Segment Refresh\" rules that are being applied"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "priyanshu.2@insurancedekho.com",
-            "q": "App logins most perfromed copy"
-          },
-          {
-            "email": "priyanshu.2@insurancedekho.com",
-            "q": "Give mw ideas to drive app logins"
-          },
-          {
-            "email": "sanjay@navia.co.in",
-            "q": "i need to know all active journey performance status"
-          },
-          {
-            "email": "yogeshshrikant.mokashi@tvscredit.com",
-            "q": "ID: 31365- why this journey communications are not delivered"
-          }
-        ]
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 1,
-        "external": 2,
-        "internalQ": [
-          {
-            "email": "anjali.inani@netcorecloud.com",
-            "q": "pii is not the primary key?"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "indiavatech26@gmail.com",
-            "q": "im not able to login my portal"
-          },
-          {
-            "email": "obinna.njoku@ubagroup.com",
-            "q": "i have a harvest error"
-          }
-        ]
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      }
-    ]
-  }
+  themesBySource: [
+    { theme: "How do I do X", internal: 7, external: 0 },
+    { theme: "Where's the doc/API for X", internal: 3, external: 0 },
+    { theme: "Where do I set up/find X", internal: 2, external: 1 },
+    { theme: "What does X mean/how it works", internal: 3, external: 1 },
+    { theme: "Is X possible/supported", internal: 2, external: 2 },
+    { theme: "Bare greeting, no context yet", internal: 0, external: 1 }
+  ],
+  topAskers: [
+    { email: "swati.jangir@netcorecloud.com", count: 2, friction: false,
+      queries: [
+        { theme:"Is X possible/supported", text:"freshdesk integration" },
+        { theme:"Where's doc/API for X", text:"Netcore ki API chahiye thi, suppressions remove and logs fetch ko automate krne ke liye" }
+      ] },
+    { email: "charishma.p@netcorecloud.com", count: 2, friction: true,
+      queries: [
+        { theme:"Where's doc/API for X", text:"Could you please share the Contact API documentation that can be used to push leads captured from Meta, Facebook, and Google into Netcore via API integration?" },
+        { theme:"Where's doc/API for X", text:"can you share the contact API to capture leads from meta, facebook and google?" }
+      ] },
+    { email: "ayush.rathour@netcorecloud.com", count: 2, friction: false,
+      queries: [
+        { theme:"How do I do X", text:"create a email campaign for me" },
+        { theme:"How do I do X", text:"help formatting the JSON body for your campaign request" }
+      ] }
+  ],
+  areas: [
+    { area: "API/Integration", internal: 6, external: 0,
+      internalQ: [
+        {email:"goran.skinder@netcoreunbxd.com", q:"What is the JS tag we have on the Flair Airlines website"},
+        {email:"swati.jangir@netcorecloud.com", q:"Netcore ki API chahiye thi, suppressions remove and logs fetch ko automate krne ke liye"},
+        {email:"charishma.p@netcorecloud.com", q:"Could you please share the Contact API documentation that can be used to push leads captured from Meta, Facebook, and Google into Netcore via API integration?"},
+        {email:"charishma.p@netcorecloud.com", q:"can you share the contact API to capture leads from meta, facebook and google?"},
+        {email:"ayush.rathour@netcorecloud.com", q:"help formatting the JSON body for your campaign request"},
+        {email:"swati.jangir@netcorecloud.com", q:"freshdesk integration"}
+      ], externalQ: [] },
+    { area: "Email", internal: 5, external: 1,
+      internalQ: [
+        {email:"gourab.dash@netcorecloud.com", q:"create a email campings"},
+        {email:"gunjan.mahajan@netcorecloud.com", q:"How can we personalise email body with the events payload"},
+        {email:"prakas.prabowo@netcorecloud.com", q:"Mailscore list ID 881"},
+        {email:"ayush.rathour@netcorecloud.com", q:"create a email campaign for me"},
+        {email:"siddhant.bendkar@netcorecloud.com", q:"What is accordian AMP?"}
+      ], externalQ: [
+        {email:"neelima@confairs.com", q:"i want to know i get my campaign report"}
+      ] },
+    { area: "CPaaS (WhatsApp/RCS/SMS)", internal: 2, external: 1,
+      internalQ: [
+        {email:"shipra.choudhary@netcorecloud.com", q:"How to make any RCS content Bold"},
+        {email:"romit.pandit@netcorecloud.com", q:"How to setup Opt-Out for WhatsApp & how to send the opt-out data to customer's LMS as an automation?"}
+      ], externalQ: [
+        {email:"akash.kokate3@bajajfinservmarkets.in", q:"flash sms is available?"}
+      ] },
+    { area: "Broadcast/Webhooks", internal: 1, external: 0,
+      internalQ: [{email:"manish@netcorecloud.com", q:"For Broadcast, currently, we can configure Email & SMS channels for webhook. Can we do it for other channels - APN, Web push, WA & RCS as well?"}],
+      externalQ: [] },
+    { area: "Journey Builder", internal: 1, external: 0,
+      internalQ: [{email:"jeetan.dmello@netcorecloud.com", q:"Can you describe the journey trends graph when I click on a journey."}],
+      externalQ: [] },
+    { area: "Infra/Data residency", internal: 2, external: 0,
+      internalQ: [
+        {email:"lokesh.sharma@netcorecloud.com", q:"please shared the retenetion policy for cpaas email and whatsapp api for storing email id"},
+        {email:"mandovi.joseph@netcorecloud.com", q:"Is pr1r us server or indian server"}
+      ], externalQ: [] },
+    { area: "General/Unclear (greeting only)", internal: 0, external: 3,
+      internalQ: [],
+      externalQ: [
+        {email:"amar@starlinkindia.com", q:"Hello / I want to know status of my ticket"},
+        {email:"prince241187@gmail.com", q:"Hi / I need active my card"},
+        {email:"januchinna79@gmail.com", q:"Hai"}
+      ] }
+  ]
+},
+"2026-06-18": {
+  date: "2026-06-18",
+  totalConversations: 27,
+  resolutionRate: 89,
+  internalTotal: 9,
+  externalTotal: 18,
+  docsTotal: 10,
+  panelTotal: 17,
+  queryType: { technical: 13, generic: 14 },
+  headline: "27 conversations on June 18, 89% bot-resolved — Email (9) and API/Integration (8) led the day, and zero conversations were true content-less greetings once you read past the opening line — every bare 'Hi' turned out to have a real follow-up question.",
+  actionableInsights: [
+    { owner:"calibration", title:"Small sample, and a third was internal traffic",
+      desc:"n=27, and 9 of those (33%) were Netcore's own staff using the Docs Portal — higher than a typical customer-only day. Read today's area/theme splits as directional, not representative of pure customer behavior." },
+    { owner:"content", title:"Re-ask friction on the 'best email open time' report",
+      desc:"katherine.maebelle.aban@prulifeuk.com.ph asked twice, 6 minutes apart in separate sessions, where to find the best email open times — first as a 'periodic trend report', then rephrased entirely. The bot's first answer likely didn't point to one clear feature; worth tightening that doc/training snippet." },
+    { owner:"product", title:"Revenue-tracking default toggle may not exist",
+      desc:"agin.sankar@netcorecloud.com tried four times to find a global 'enable revenue tracking by default' setting in Advanced Details, then escalated to a human. If there's genuinely no such toggle, that's a product gap worth a PM look, not just a docs fix." },
+    { owner:"design", title:"Two ingestion paths, one stuck user",
+      desc:"masonsenters@gmail.com tried the HTTP POST contact API, then came back the same day asking about an N8N webhook — both attempts to get a single lead into a list. Worth checking whether the lead-ingestion docs surface the right method on the first try." }
+  ],
+  mostInteresting: {
+    who: "test (external)", email: "test@gmail.com",
+    query: "what kind of api call is this? [api.netcoresmartech.com/apiv2?type=contact&activity=getuser&apikey=$api_key&data=$agent_id] can you give me the correct document for the same?",
+    why: "Pulled apart a live API call by its query-string parameters (type, activity, apikey, data) and asked for the matching documented endpoint — real API literacy and self-directed debugging, not just copy-paste troubleshooting."
+  },
+  themesBySource: [
+    { theme: "How do I do X", internal: 1, external: 11 },
+    { theme: "Where's the doc/API for X", internal: 3, external: 1 },
+    { theme: "Where do I set up/find X", internal: 1, external: 5 },
+    { theme: "What does X mean/how it works", internal: 1, external: 0 },
+    { theme: "Is X possible/supported", internal: 3, external: 1 },
+    { theme: "Bare greeting, no context yet", internal: 0, external: 0 }
+  ],
+  topAskers: [
+    { email: "masonsenters@gmail.com", count: 2, friction: false,
+      queries: [
+        { theme:"How do I do X", text:"I cannot, for the life of me, get a lead to successfully enter a list (Or into netcore at all) via an Http post. please help." },
+        { theme:"How do I do X", text:"Hi, How do I send contacts in Via an N8N webhook?" }
+      ] },
+    { email: "priyanshu.2@insurancedekho.com", count: 2, friction: true,
+      queries: [
+        { theme:"How do I do X", text:"App logins most perfromed copy" },
+        { theme:"How do I do X", text:"Give mw ideas to drive app logins" }
+      ] },
+    { email: "lokesh.sharma@netcorecloud.com", count: 2, friction: false,
+      queries: [
+        { theme:"Where's the doc/API for X", text:"activity api" },
+        { theme:"How do I do X", text:"how to check the users has ipted out from whatsapp" }
+      ] },
+    { email: "katherine.maebelle.aban@prulifeuk.com.ph", count: 2, friction: true,
+      queries: [
+        { theme:"Where do I set up/find X", text:"i want to find the best times that my contacts opened my emails. where do i find that?" },
+        { theme:"Where do I set up/find X", text:"hey, where can I find the best open times of our emails?" }
+      ] }
+  ],
+  areas: [
+    { area: "API/Integration", internal: 3, external: 5,
+      internalQ: [
+        {email:"lokesh.sharma@netcorecloud.com", q:"activity api"},
+        {email:"sai.kiran@netcorecloud.com", q:"is liquid tags only of app or web also"},
+        {email:"sai.koran@netcorecloud.com", q:"Hi Krithikrishnan, What is the rate limit of our Netcore panel api calls per second, per minute, per hour"}
+      ], externalQ: [
+        {email:"masonsenters@gmail.com", q:"I cannot, for the life of me, get a lead to successfully enter a list (Or into netcore at all) via an Http post. please help."},
+        {email:"masonsenters@gmail.com", q:"Hi, How do I send contacts in Via an N8N webhook?"},
+        {email:"yogesh.k@shoppersstop.com", q:"unable to upload lead list getting message failed, the leads containt url as well"},
+        {email:"test@gmail.com", q:"what kind of api call is this? [api.netcoresmartech.com/apiv2?...] can you give me the correct document for the same?"},
+        {email:"gopinath.s@avendusspark.com", q:"while doing a bulk upload, the complete lists isn't showing up"}
+      ] },
+    { area: "Email", internal: 3, external: 6,
+      internalQ: [
+        {email:"khushi.chitkara@netcorecloud.com", q:"Generate a template for a sale with a heading, image, and CTA"},
+        {email:"manish@netcorecloud.com", q:"payload personalization syntax (event payload, in email)"},
+        {email:"agin.sankar@netcorecloud.com", q:"can we enable revenue tracking by default for all the campaigns?"}
+      ], externalQ: [
+        {email:"ofeyisola@parthianpartnersng.com", q:"help proof read my text"},
+        {email:"prashanth.395133@actcorp.in", q:"how to send Email to large base with dynamic Script"},
+        {email:"neelima@confaisr.com", q:"ur channal not updated / how can i find unsubscribed, block, spam data from my recent campaign"},
+        {email:"mcpontiveros@pjlhuillier.com", q:"is it possible to get the list and its exact reason for not being reachable?"},
+        {email:"katherine.maebelle.aban@prulifeuk.com.ph", q:"i want to find the best times that my contacts opened my emails. where do i find that?"},
+        {email:"katherine.maebelle.aban@prulifeuk.com.ph", q:"hey, where can I find the best open times of our emails?"}
+      ] },
+    { area: "CPaaS (WhatsApp/RCS/SMS)", internal: 1, external: 1,
+      internalQ: [{email:"lokesh.sharma@netcorecloud.com", q:"how to check the users has ipted out from whatsapp"}],
+      externalQ: [{email:"kinnera@truva.in", q:"i need to check my whatsapp number quality"}] },
+    { area: "Broadcast/Webhooks", internal: 0, external: 0, internalQ: [], externalQ: [] },
+    { area: "Journey Builder", internal: 1, external: 4,
+      internalQ: [{email:"hiral.jhaveri@netcorecloud.com", q:"Please elaborate on \"Segment Refresh\" rules that are being applied"}],
+      externalQ: [
+        {email:"priyanshu.2@insurancedekho.com", q:"App logins most perfromed copy"},
+        {email:"priyanshu.2@insurancedekho.com", q:"Give mw ideas to drive app logins"},
+        {email:"sanjay@navia.co.in", q:"i need to know all active journey performance status"},
+        {email:"yogeshshrikant.mokashi@tvscredit.com", q:"ID: 31365- why this journey communications are not delivered"}
+      ] },
+    { area: "Infra/Data residency", internal: 1, external: 2,
+      internalQ: [{email:"anjali.inani@netcorecloud.com", q:"pii is not the primary key?"}],
+      externalQ: [
+        {email:"indiavatech26@gmail.com", q:"im not able to login my portal"},
+        {email:"obinna.njoku@ubagroup.com", q:"i have a harvest error"}
+      ] },
+    { area: "General/Unclear (greeting only)", internal: 0, external: 0, internalQ: [], externalQ: [] }
+  ]
+},
+"2026-06-21": {
+  date: "2026-06-21",
+  totalConversations: 1,
+  resolutionRate: 0,
+  internalTotal: 0,
+  externalTotal: 1,
+  docsTotal: 0,
+  panelTotal: 1,
+  queryType: { technical: 1, generic: 0 },
+  headline: "Just one conversation on June 21 — and the bot couldn't even answer it: an AI-agent token-limit error blocked the response before lukman@tonewow.net's FTP question got a real reply.",
+  actionableInsights: [
+    { owner:"product", title:"AI agent hit its monthly token limit and went silent",
+      desc:"The day's only conversation (lukman@tonewow.net asking 'where to get the ftp?') triggered an internal 'AI Agent Rate Limit Exceeded' note instead of an answer — legacy-pricing token cap, resets Jul 20, 2026. The bot still auto-sent a generic 'we'll get back to you' and handed off to a human, so this is a billing/infra block, not a content gap. Worth flagging to whoever owns the Featurebase plan — migrating to usage-based pricing ($0.29/resolution) removes the monthly-cap risk entirely." },
+    { owner:"calibration", title:"Sample size of 1 — today tells us nothing about trends",
+      desc:"n=1 for June 21. Don't read the area/theme split below as signal; it's one data point. Lean on the rolling 14-day view until volume picks back up." },
+    { owner:"content", title:"FTP access wasn't covered — and the bot never got the chance to answer",
+      desc:"The unanswered question was 'where to get the ftp?'. Worth checking whether FTP/credential retrieval has a documented self-serve path, since the rate-limit block means we don't actually know if the bot would have had an answer." },
+    { owner:"design", title:"Customer-facing message masked the real cause",
+      desc:"lukman saw a generic 'we received your message' reply with no indication the bot was blocked by an internal token limit. If this recurs, a clearer customer-facing message (or faster reset/escalation path) would reduce confusion on the customer's side." }
+  ],
+  mostInteresting: {
+    who: "lukman", email: "lukman@tonewow.net",
+    query: "where to get the ftp?",
+    why: "The only ask of the day — and the one moment the bot needed to work, it couldn't, due to the org's AI token limit. A small but concrete data point on where the rate-limit risk actually bites."
+  },
+  themesBySource: [
+    { theme: "How do I do X", internal: 0, external: 0 },
+    { theme: "Where's the doc/API for X", internal: 0, external: 0 },
+    { theme: "Where do I set up/find X", internal: 0, external: 1 },
+    { theme: "What does X mean/how it works", internal: 0, external: 0 },
+    { theme: "Is X possible/supported", internal: 0, external: 0 },
+    { theme: "Bare greeting, no context yet", internal: 0, external: 0 }
+  ],
+  topAskers: [],
+  areas: [
+    { area: "API/Integration", internal: 0, external: 0, internalQ: [], externalQ: [] },
+    { area: "Email", internal: 0, external: 0, internalQ: [], externalQ: [] },
+    { area: "CPaaS (WhatsApp/RCS/SMS)", internal: 0, external: 0, internalQ: [], externalQ: [] },
+    { area: "Broadcast/Webhooks", internal: 0, external: 0, internalQ: [], externalQ: [] },
+    { area: "Journey Builder", internal: 0, external: 0, internalQ: [], externalQ: [] },
+    { area: "Infra/Data residency", internal: 0, external: 1,
+      internalQ: [], externalQ: [
+        {email:"lukman@tonewow.net", q:"where to get the ftp?"}
+      ] },
+    { area: "General/Unclear (greeting only)", internal: 0, external: 0, internalQ: [], externalQ: [] }
+  ]
+}
 }; // close ARCHIVE
 const DATES = Object.keys(ARCHIVE).sort().reverse();
 
