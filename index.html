@@ -2,7 +2,7 @@
 {
   "name": "Ce Docbot Summary 2026 06 17",
   "schemaVersion": 1,
-  "description": "Daily Featurebase customer-conversation summary for the Netcore CE workspace — rolling 14-day dashboard, latest day 2026-06-18. Shows volume, internal vs external split, docs-portal vs in-panel source, themes, repeat askers, and actionable insights."
+  "description": "Daily Featurebase customer-conversation summary for the Netcore CE workspace — rolling 14-day dashboard, latest day 2026-06-22. Shows volume, internal vs external split, docs-portal vs in-panel source, themes, repeat askers, and actionable insights."
 }
 </script>
 <html lang="en">
@@ -608,6 +608,123 @@ const ARCHIVE = {
         {email:"lukman@tonewow.net", q:"where to get the ftp?"}
       ] },
     { area: "General/Unclear (greeting only)", internal: 0, external: 0, internalQ: [], externalQ: [] }
+  ]
+},
+"2026-06-22": {
+  date: "2026-06-22",
+  totalConversations: 33,
+  resolutionRate: 0,
+  internalTotal: 8,
+  externalTotal: 25,
+  docsTotal: 14,
+  panelTotal: 19,
+  queryType: { technical: 12, generic: 21 },
+  headline: "Bot resolved 0% of yesterday's 33 conversations — every single one hit the AI agent's monthly token cap right after the canned hello, and that legacy-pricing limit doesn't reset until July 20.",
+  actionableInsights: [
+    { owner:"product", title:"Token-cap outage from June 21 is now a full-day, every-conversation problem",
+      desc:"All 33 conversations on June 22 got only the scripted 'Hello! I'm an AI chatbot' greeting before hitting 'AI Agent Rate Limit Exceeded' (legacy pricing) — confirmed on every single conversation we pulled, not an isolated case like June 21's n=1. Bot-resolution rate is 0%, and the cap doesn't reset until Jul 20, 2026. This needs an urgent decision: migrate to usage-based pricing ($0.29/resolution) or get the legacy cap raised today." },
+    { owner:"calibration", title:"External total is inflated by an internal tester on a personal Gmail",
+      desc:"deepesh.lakhera@gmail.com (2 convos: 'hi', 'need to connect with a agent') reads like internal QA testing via a personal Gmail account rather than a real customer. Counted as external under the strict domain rule, which overstates externalTotal by 2 and understates internal traffic for the day." },
+    { owner:"content", title:"Same RBAC question, asked twice, 6.5 hours apart",
+      desc:"lokesh.sharma@netcorecloud.com asked the identical question — 'is it possible to Uncontrolled creation and modification of data attributes' — from the role-based-access-control doc page twice in one day. Given the token-cap outage, this repeat may just be bot silence rather than a doc gap, but worth a follow-up once the bot is back online." },
+    { owner:"design", title:"List/audience upload stalls are the loudest recurring complaint",
+      desc:"9 of 33 conversations (cameoindiacee, scoutitcee, qnamarcomcee, actcorpincee, ionexchange, and others) reported lists or audience uploads stuck or slow — a cross-account pattern that looks like a real upload-performance issue, independent of the bot outage." }
+  ],
+  mostInteresting: {
+    who: "manish", email: "manish@netcorecloud.com",
+    query: "Detailed analytics-tracking questions on Research screen entry points (dashboard_interacted vs menu_interacted), Buy CTA tracking across two different event sources, a cta_viewed-vs-cta_clicked did/did-not analysis, per-key data export, and bottom-tab usage analytics in the Reports section.",
+    why: "The most specific, product-savvy ask of the day — precise event-taxonomy and analytics-export questions that read like someone scoping a real integration, not just browsing docs. (The bot never actually answered it due to the rate-limit outage.)"
+  },
+  themesBySource: [
+    { theme: "How do I do X", internal: 2, external: 4 },
+    { theme: "Where's the doc/API for X", internal: 1, external: 0 },
+    { theme: "Where do I set up/find X", internal: 1, external: 1 },
+    { theme: "What does X mean/how it works", internal: 2, external: 11 },
+    { theme: "Is X possible/supported", internal: 2, external: 4 },
+    { theme: "Bare greeting, no context yet", internal: 0, external: 5 }
+  ],
+  topAskers: [
+    { email: "yesh@cameoindia.com", count: 2, friction: false,
+      queries: [
+        { theme:"Bare greeting, no context yet", text:"HI" },
+        { theme:"What does X mean/how it works", text:"Lists not getting loaded its been more than 30 mints" }
+      ] },
+    { email: "lokesh.sharma@netcorecloud.com", count: 2, friction: true,
+      queries: [
+        { theme:"Is X possible/supported", text:"is it possible to Uncontrolled creation and modification of data attributes" },
+        { theme:"Is X possible/supported", text:"is it possible to Uncontrolled creation and modification of data attributes" }
+      ] },
+    { email: "deepesh.lakhera@gmail.com", count: 2, friction: false,
+      queries: [
+        { theme:"Bare greeting, no context yet", text:"hi" },
+        { theme:"Bare greeting, no context yet", text:"need to connect with a agent" }
+      ] },
+    { email: "bishir.gogari@iifl.com", count: 2, friction: true,
+      queries: [
+        { theme:"Is X possible/supported", text:"hi , so if my role is analyst then can i access the data through api key which is at user profile ?" },
+        { theme:"Is X possible/supported", text:"so i have the api key but i have oly viewer access so even if i have viewer or analyst access can i use that api key to get the data ?" }
+      ] },
+    { email: "rachana.shrestha@sc.com", count: 2, friction: false,
+      queries: [
+        { theme:"What does X mean/how it works", text:"Hi, If i use multiple ids to send edms to clients, and client unsubscribes to one of the email address, will netcore blacklist the client for all future edm sent from this platform or just the said email address?" },
+        { theme:"Is X possible/supported", text:"Is there an option to remove the \"unsubscribe\" option from email edm?" }
+      ] }
+  ],
+  areas: [
+    { area: "API/Integration", internal: 3, external: 4,
+      internalQ: [
+        {email:"manish@netcorecloud.com", q:"Analytics-tracking questions on Research screen entry points, Buy CTA event tracking, cta_viewed vs cta_clicked did/did-not analysis, per-key data export, and bottom-tab usage in Reports."},
+        {email:"swati.jangir@netcorecloud.com", q:"web push integration"},
+        {email:"ishika.a@netcorecloud.com", q:"what if a website is not configured"}
+      ], externalQ: [
+        {email:"bishir.gogari@iifl.com", q:"so i have the api key but i have oly viewer access so even if i have viewer or analyst access can i use that api key to get the data ?"},
+        {email:"bishir.gogari@iifl.com", q:"hi , so if my role is analyst then can i access the data through api key which is at user profile ?"},
+        {email:"mayur.shinde@thinqloud.com", q:"Netcore Salesforce managed package is not vailable on appexchange"},
+        {email:"sandeep.k@multitvsolution.com", q:"how do send push notification in test mode"}
+      ] },
+    { area: "Email", internal: 0, external: 7,
+      internalQ: [], externalQ: [
+        {email:"social@veloxxmedia.com", q:"All Editors not available here. i can see only 3. drag and drop editor is not here. need that to create templates"},
+        {email:"sanjay.gupta@pdsinfotech.com", q:"Unable to upload emails on list."},
+        {email:"naveen@thinkwideweb.com", q:"Unable to upload suppression files?"},
+        {email:"rachana.shrestha@sc.com", q:"Is there an option to remove the \"unsubscribe\" option from email edm?"},
+        {email:"sanjay@navia.co.in", q:"how will i download the AMP template"},
+        {email:"rachana.shrestha@sc.com", q:"Hi, If i use multiple ids to send edms to clients, and client unsubscribes to one of the email address, will netcore blacklist the client for all future edm sent from this platform or just the said email address?"},
+        {email:"chinh.pham@ggg.com.vn", q:"can't verify domain email DNS (domain: rewards-ggg.com.vn)"}
+      ] },
+    { area: "CPaaS (WhatsApp/RCS/SMS)", internal: 0, external: 1,
+      internalQ: [], externalQ: [
+        {email:"aditya.sharma3@bajajfinservmarkets.in", q:"i want you to download all the whatsapp, sms and rcs templates for me."}
+      ] },
+    { area: "Broadcast/Webhooks", internal: 2, external: 7,
+      internalQ: [
+        {email:"anjali.inani@netcorecloud.com", q:"26036729, this amount netcore contributed in may month, so please give me ROI"},
+        {email:"gunjan.mahajan@netcorecloud.com", q:"How to enable conversion and revenue data on camapigns stats"}
+      ], externalQ: [
+        {email:"yesh@cameoindia.com", q:"Lists not getting loaded its been more than 30 mints"},
+        {email:"connect@scoutinc.xyz", q:"Hi Team, We are facing an issue with uploading new data to a new list. ID: 344"},
+        {email:"sudhanshu@qnamarcom.com", q:"Audience upload in list is taking too much time, ID 619 and ID-620 is taking too much time"},
+        {email:"prashanth.395133@actcorp.in", q:"Hi List ID's 1489 and 1490 is taking longer time for the base to upload"},
+        {email:"shubham.w@ionexchange.co.in", q:"HI THERE IS ANY PROBLEM FOR LIST UPLOAD"},
+        {email:"herdinaika@epicareer.com", q:"There's bug where i cannot see the metrics after i published"},
+        {email:"camille.villaraza@colfinancial.com", q:"please check why this campaign is suspended. It was scheduled to send today at 9:30AM. Campaign ID: 4545"}
+      ] },
+    { area: "Journey Builder", internal: 0, external: 0, internalQ: [], externalQ: [] },
+    { area: "Infra/Data residency", internal: 3, external: 0,
+      internalQ: [
+        {email:"hiral.jhaveri@netcorecloud.com", q:"once the data is deleted from the front end, how much time does it take to delete from the backend"},
+        {email:"lokesh.sharma@netcorecloud.com", q:"is it possible to Uncontrolled creation and modification of data attributes"},
+        {email:"lokesh.sharma@netcorecloud.com", q:"is it possible to Uncontrolled creation and modification of data attributes"}
+      ], externalQ: [] },
+    { area: "General/Unclear (greeting only)", internal: 0, external: 6,
+      internalQ: [], externalQ: [
+        {email:"deepesh.lakhera@gmail.com", q:"hi"},
+        {email:"prashant@mfuindia.in", q:"Hello"},
+        {email:"yesh@cameoindia.com", q:"HI"},
+        {email:"deepesh.lakhera@gmail.com", q:"need to connect with a agent"},
+        {email:"twinkle.tallewar@microscan.co.in", q:"Hi Twinkle this side"},
+        {email:"rashidbrora@yahoo.co.uk", q:"I try the go groupie link and it comes back either error 4."}
+      ] }
   ]
 }
 }; // close ARCHIVE
