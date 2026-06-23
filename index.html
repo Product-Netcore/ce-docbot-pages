@@ -2,7 +2,7 @@
 {
   "name": "Ce Docbot Summary 2026 06 17",
   "schemaVersion": 1,
-  "description": "Daily Featurebase customer-conversation summary for the Netcore CE workspace — rolling 14-day dashboard, latest day 2026-06-22. Shows volume, internal vs external split, docs-portal vs in-panel source, themes, repeat askers, and actionable insights."
+  "description": "Daily Featurebase customer-conversation summary for the Netcore CE workspace — rolling 14-day dashboard, latest day 2026-06-22. Shows volume, internal vs external split, docs-portal vs in-panel source, themes, repeat askers, actionable insights, and (from 2026-06-24 onward) a Freshdesk ticket-deflection cross-check — did the same user open a helpdesk ticket anyway, or did the bot actually deflect it."
 }
 </script>
 <html lang="en">
@@ -48,6 +48,27 @@
   .footnote-mark{font-size:10px;color:var(--dim);margin:2px 0 28px;font-family:'JetBrains Mono',monospace;}
 
   .tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--signal);display:inline-block;margin-bottom:10px;}
+
+  .deflect{background:var(--card);border-radius:14px;padding:24px 26px;margin-bottom:32px;border:1px solid var(--line);}
+  .deflect h2{font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:20px;margin:0 0 4px;}
+  .deflect .sub{font-size:12.5px;color:var(--dim);margin-bottom:18px;line-height:1.6;}
+  .deflect-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:6px;}
+  .deflect-stat{background:var(--card2);padding:16px 18px;}
+  .deflect-stat .v{font-family:'Fraunces',serif;font-size:26px;font-weight:700;}
+  .deflect-stat .l{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.05em;margin-top:4px;}
+  .deflect-stat.good .v{color:var(--internal);}
+  .deflect-stat.bad .v{color:var(--external);}
+  .deflect-subtag{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin:18px 0 8px;padding-top:14px;border-top:1px solid var(--line);}
+  .deflect-item{font-size:12.5px;color:#C2BFB6;line-height:1.6;padding:9px 0;border-top:1px dashed var(--line);}
+  .deflect-item:first-of-type{border-top:none;}
+  .deflect-item .who{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--external);font-weight:600;}
+  .deflect-item .tix{color:var(--dim);}
+  .deflect-pattern{font-size:12.5px;color:#C2BFB6;line-height:1.6;padding:9px 0;border-top:1px dashed var(--line);}
+  .deflect-pattern:first-of-type{border-top:none;}
+  .deflect-pattern .area{font-weight:600;color:var(--paper);}
+  .deflect-empty{font-size:12.5px;color:var(--dim);padding:8px 0;}
+  .deflect-caveat{font-size:11px;color:#7C7A74;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);line-height:1.5;}
+  .deflect-na{font-size:13px;color:var(--dim);padding:6px 0;}
 
   .insights{background:var(--card);border-radius:14px;padding:24px 26px 8px;margin-bottom:32px;border:1px solid var(--line);}
   .insights h2{font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:20px;margin:0 0 4px;}
@@ -736,6 +757,44 @@ function fmtDate(d){
 }
 const OWNER_LABEL = {content:"Content", product:"Product", design:"Design", calibration:"Read this first", security:"Security"};
 
+// Renders the "Ticket Deflection" card — cross-checks yesterday's docbot queries
+// against Freshdesk to see whether the bot actually saved a helpdesk ticket.
+// td is data.ticketDeflection: either the object built by Step 5 of the daily
+// pipeline, or null/undefined for days before this check existed (2026-06-24+ only).
+function renderDeflection(td){
+  if(!td){
+    return '<div class="deflect anim" style="animation-delay:.11s"><div class="deflect-na">Not tracked for this date — Freshdesk cross-check wasn\'t available (or didn\'t exist yet) when this day was processed.</div></div>';
+  }
+  var escalations = td.sameUserEscalations || [];
+  var esc = escalations.map(function(e){
+    return '<div class="deflect-item"><span class="who">'+e.email+'</span> asked &ldquo;'+e.docbotQuery+'&rdquo; ('+e.area+') — then opened <span class="tix">#'+e.ticketId+' &ldquo;'+e.ticketSubject+'&rdquo;</span> on '+e.ticketCreatedAt+'.</div>';
+  }).join('');
+  var escBlock = escalations.length
+    ? '<div class="deflect-subtag">Same user, ticket anyway — bot likely didn\'t fully resolve it</div>' + esc
+    : '<div class="deflect-empty">No same-user escalations found in the matching window — nobody who asked the bot a question also opened a ticket.</div>';
+  var patternBlock = '';
+  if(td.patternRisk && td.patternRisk.length){
+    var pat = td.patternRisk.map(function(p){
+      var examples = (p.exampleTicketSubjects && p.exampleTicketSubjects.length)
+        ? ' — e.g. &ldquo;'+p.exampleTicketSubjects.join('&rdquo;, &ldquo;')+'&rdquo;'
+        : '';
+      return '<div class="deflect-pattern"><span class="area">'+p.area+'</span>: '+p.docbotCount+' docbot conversation'+(p.docbotCount===1?'':'s')+' vs '+p.ticketCount+' helpdesk ticket'+(p.ticketCount===1?'':'s')+' in the same window'+examples+'. '+(p.note||'')+'</div>';
+    }).join('');
+    patternBlock = '<div class="deflect-subtag">Pattern risk — other users hit the same topic via a ticket</div>' + pat;
+  }
+  return '<div class="deflect anim" style="animation-delay:.11s">'
+    + '<h2>Did the bot actually save anyone a ticket?</h2>'
+    + '<div class="sub">Checked against Freshdesk for tickets raised in the matching window ('+td.windowNote+'). <span style="color:var(--internal)">Deflected</span> = no matching ticket from that user. <span style="color:var(--external)">Escalated</span> = same user opened a ticket anyway.</div>'
+    + '<div class="deflect-grid">'
+      + '<div class="deflect-stat good"><div class="v">'+td.deflectionRate+'%</div><div class="l">Deflected — '+td.deflectedCount+' of '+td.totalConversations+'</div></div>'
+      + '<div class="deflect-stat bad"><div class="v">'+escalations.length+'</div><div class="l">Escalated by same user</div></div>'
+    + '</div>'
+    + escBlock
+    + patternBlock
+    + '<div class="deflect-caveat">'+td.caveat+'</div>'
+  + '</div>';
+}
+
 // Aggregates across every date currently in ARCHIVE — recomputes automatically
 // as more days get appended, so this section needs no manual upkeep.
 function computeMasterSummary(archive){
@@ -827,7 +886,10 @@ function render(data, availableDates){
       <span class="qtype-pill tech">Technical ${data.queryType.technical}</span>
       <span class="qtype-pill gen">Generic ${data.queryType.generic}</span>
     </div>
-    <div class="footnote-mark">* self-reported by the bot's own session state — see calibration note below before treating this as confirmed ticket deflection</div>
+    <div class="footnote-mark">* self-reported by the bot's own session state — see the Ticket Deflection card below for the Freshdesk-checked version of this signal, where available</div>
+
+    <div class="tag">Ticket deflection</div>
+    ${renderDeflection(data.ticketDeflection)}
 
     <div class="insights anim" style="animation-delay:.1s">
       <h2>What to actually do with this</h2>
@@ -897,7 +959,7 @@ function render(data, availableDates){
     <div class="disclosure anim" style="animation-delay:.24s">
       <h3>What this can (and can't) tell you yet</h3>
       <ul>
-        <li>"Bot-handled" means the bot didn't hand off to a human. It is not verified against Freshdesk, so it isn't proof a support ticket was actually prevented — treat it as a self-reported signal until that check is reinstated.</li>
+        <li>"Bot-handled" is the bot's own self-reported session state. From 2026-06-24 onward, the Ticket Deflection card above cross-checks this against Freshdesk directly — treat that card as the stronger signal when it's present, and this self-reported number as directional on days without it.</li>
         <li>One day of data has no baseline. Numbers here are directional, not trends — wait for at least a week before treating any single count as a pattern.</li>
         <li>Theme and area tags are classified from the first message of each conversation. Long threads may have evolved into something different than the opener suggests.</li>
       </ul>
