@@ -30,6 +30,7 @@
 }
 *{box-sizing:border-box;}
 html,body{margin:0;padding:0;}
+html{transition:background .25s ease;}
 body{
   background:var(--paper);
   color:var(--text);
@@ -40,7 +41,47 @@ body{
 h1,h2,h3{font-family:'Fraunces',serif; margin:0; font-weight:600;}
 a{color:inherit;}
 
-.shell{display:flex; min-height:100vh;}
+/* ===== DARK MODE OVERRIDES (sidebar stays dark always; this re-themes the main column) ===== */
+html[data-theme="dark"]{
+  --paper:#15171c;
+  --paper2:#1c1f26;
+  --paperline:#2a2d36;
+  --text:#eceef0;
+  --dimtext:#9499a3;
+}
+html[data-theme="dark"] .hero .headline-take,
+html[data-theme="dark"] .fieldnote .why,
+html[data-theme="dark"] .div-center,
+html[data-theme="dark"] .deflect-item,
+html[data-theme="dark"] .deflect-empty,
+html[data-theme="dark"] .deflect-pattern,
+html[data-theme="dark"] .topask-q{color:#c7cad1;}
+html[data-theme="dark"] .footnote-mark,
+html[data-theme="dark"] .deflect-caveat,
+html[data-theme="dark"] .tag,
+html[data-theme="dark"] .footer-note{color:#6b6f78;}
+html[data-theme="dark"] .dash{color:#454952;}
+html[data-theme="dark"] .topask-card,
+html[data-theme="dark"] .recurring-chip{background:#1c1f26;}
+
+/* ===== TOPBAR ===== */
+.topbar{
+  position:sticky; top:0; z-index:60; height:50px;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 18px; background:var(--ink); border-bottom:1px solid var(--line);
+}
+.topbar-brand{font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--dim);}
+.theme-toggle{display:flex; align-items:center; gap:2px; background:var(--ink2); border:1px solid var(--line); border-radius:20px; padding:3px;}
+.theme-toggle button{
+  appearance:none; border:none; background:transparent; color:var(--dim);
+  font-family:'JetBrains Mono',monospace; font-size:10.5px; padding:5px 12px; border-radius:16px; cursor:pointer;
+  display:flex; align-items:center; gap:5px;
+}
+.theme-toggle button svg{width:12px; height:12px; flex-shrink:0;}
+.theme-toggle button.active{background:var(--ink3); color:#fff;}
+.theme-toggle button:hover:not(.active){color:#cfd2d9;}
+
+.shell{display:flex; min-height:calc(100vh - 50px);}
 
 /* ===== SIDEBAR ===== */
 .sidebar{
@@ -48,7 +89,7 @@ a{color:inherit;}
   background:var(--ink);
   color:#e9e9ec;
   padding:28px 22px 40px;
-  position:sticky; top:0; height:100vh; overflow-y:auto;
+  position:sticky; top:50px; height:calc(100vh - 50px); overflow-y:auto;
   border-right:1px solid var(--line);
 }
 .side-brand{margin-bottom:22px;}
@@ -241,6 +282,19 @@ table td{padding:10px 8px; border-bottom:1px solid var(--paperline); vertical-al
 </style>
 </head>
 <body>
+<div class="topbar">
+  <div class="topbar-brand">CE Docbot · Netcore Cloud</div>
+  <div class="theme-toggle" role="group" aria-label="Light or dark mode">
+    <button id="themeLightBtn" type="button" class="active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      Light
+    </button>
+    <button id="themeDarkBtn" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      Dark
+    </button>
+  </div>
+</div>
 <div class="shell">
   <aside class="sidebar" id="sidebar"></aside>
   <main class="main" id="main"></main>
@@ -2310,6 +2364,7 @@ const ARCHIVE = {
   }
 };
 const DATES = Object.keys(ARCHIVE).sort().reverse();
+let theme = 'light';
 
 function fmtDate(d){
   try{ return new Date(d+'T00:00:00').toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'}); }
@@ -2673,7 +2728,25 @@ function render(){
   }
 }
 
+function applyTheme(){
+  document.documentElement.setAttribute('data-theme', theme);
+  const lightBtn = document.getElementById('themeLightBtn');
+  const darkBtn = document.getElementById('themeDarkBtn');
+  if(lightBtn && darkBtn){
+    lightBtn.classList.toggle('active', theme==='light');
+    darkBtn.classList.toggle('active', theme==='dark');
+  }
+}
+function bootTopbar(){
+  const lightBtn = document.getElementById('themeLightBtn');
+  const darkBtn = document.getElementById('themeDarkBtn');
+  if(lightBtn) lightBtn.addEventListener('click', ()=>{ theme='light'; applyTheme(); });
+  if(darkBtn) darkBtn.addEventListener('click', ()=>{ theme='dark'; applyTheme(); });
+  applyTheme();
+}
+
 function boot(){
+  bootTopbar();
   if(!DATES.length){
     document.getElementById('main').innerHTML = '<div class="empty"><h2>No dispatch yet</h2><p>This view refreshes once the daily pull runs.</p></div>';
     return;
