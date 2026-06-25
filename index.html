@@ -2073,6 +2073,244 @@ const ARCHIVE = {
         "externalQ": []
       }
     ]
+  },
+  "2026-06-24": {
+    "date": "2026-06-24",
+    "totalConversations": 15,
+    "resolutionRate": 73,
+    "internalTotal": 7,
+    "externalTotal": 8,
+    "docsTotal": 6,
+    "panelTotal": 9,
+    "queryType": {
+      "technical": 7,
+      "generic": 8
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days",
+      "totalConversations": 15,
+      "sameUserEscalations": [],
+      "deflectedCount": 15,
+      "deflectionRate": 100,
+      "patternRisk": [
+        {
+          "area": "Broadcast/Webhooks",
+          "docbotCount": 1,
+          "ticketCount": 1,
+          "exampleTicketSubjects": [
+            "Query Regarding SMS Delivery Status Webhook / Callback #5200920"
+          ],
+          "note": "Khushi Chitkara's AMLI DLR/CTR SMS webhook ask (IP whitelisting + webhook URL setup on the CPaaS panel) mirrors a same-window Freshdesk ticket from Indiabulls Housing Finance asking about SMS Delivery Status Webhook/Callback — same CPaaS Team queue, same underlying gap. Different customers, same documentation hole."
+        },
+        {
+          "area": "Email",
+          "docbotCount": 5,
+          "ticketCount": 1,
+          "exampleTicketSubjects": [
+            "[vpbankscom_cee] Disable default unsubscribe footer #5200205"
+          ],
+          "note": "Quang Ngo (quang.ngo@digiconnex.vn) asked the docbot how to customize the unsubscribe footer on account aitdigitalvncee, then opened a Freshdesk ticket asking to disable the same footer -- but on a different account (vpbankscom_cee), so Tier-1's exact-email match missed it. Same human, same theme, different account context."
+        }
+      ],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. The 100% Tier-1 deflection rate is misleading on its own: zero exact-email matches, but Quang Ngo's case above shows the same person did escalate, just under a different account/email -- a blind spot in the strict email-match rule, not genuine full resolution. Also, the matching window (D through D+2) is only half-elapsed as of this run."
+    },
+    "headline": "15 conversations on June 24, 73% bot-resolved (4 handed off to a human) -- the headline number is really the Quang Ngo case: he asked the docbot to customize an unsubscribe footer, then opened an identical Freshdesk ticket the same day under a different account, exposing a blind spot in clean email-match deflection tracking.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "100% deflection rate is an artifact of the matching rule, not real resolution",
+        "desc": "Zero Tier-1 (exact-email) escalations today, so the raw math says 100% deflected. But Quang Ngo (quang.ngo@digiconnex.vn) asked the bot about disabling the unsubscribe footer on account aitdigitalvncee, then filed Freshdesk ticket #5200205 the same day asking the identical thing -- on a different account (vpbankscom_cee), so the email-match rule never caught it. Worth tracking by person, not just by exact email, if that's feasible."
+      },
+      {
+        "owner": "content",
+        "title": "DLR/CTR webhook setup for CPaaS/SMS has no clear self-serve doc",
+        "desc": "Khushi Chitkara asked the bot for IP whitelisting details and webhook URL setup steps for AMLI's SMS delivery/click-through reporting. The same week, Indiabulls Housing Finance opened a near-identical Freshdesk ticket on the same topic. Two different customers hitting the same gap is a strong signal this needs a dedicated DLR/CTR webhook how-to."
+      },
+      {
+        "owner": "design",
+        "title": "4 of 15 conversations needed a human -- resolution rate dipped from recent days",
+        "desc": "aishwarya.sinha (enable Insight Agent), rakesh.plaha (username/password template for learners), and deepesh.lakhera's two conversations (App PZ config, direct agent request) all escalated. None look like AI-rate-limit outages (per June 21-23) -- worth a quick check on whether these four genuinely needed a human or the bot gave up too early."
+      },
+      {
+        "owner": "calibration",
+        "title": "Small sample, partial ticket-matching window",
+        "desc": "n=15, and the Freshdesk matching window (D through D+2) is only half-elapsed as of this run -- a same-user escalation landing on June 26 wouldn't be caught yet. Treat today's 100% deflection figure as a floor, not a final number."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Khushi Chitkara",
+      "email": "khushi.chitkara@netcorecloud.com",
+      "query": "AMLI is using the CPaaS panel (mli_sys_net_sapi) to send SMS and wants to capture Delivery Reports (DLR) and Click-Through Reports (CTR) via webhook -- asked for the IPs to whitelist, the webhook URL configuration process, and any DLR/CTR integration documentation.",
+      "why": "A structured, multi-part technical integration ask (IP whitelisting + webhook config + docs) rather than a how-to -- and a different customer hit the identical gap on Freshdesk the same week, confirming it's a real documentation hole, not a one-off."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 2,
+        "external": 7
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 3,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 1
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "deepesh.lakhera@gmail.com",
+        "count": 2,
+        "friction": false,
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "can you tell me how to configure App PZ"
+          },
+          {
+            "theme": "Bare greeting, no context yet",
+            "text": "I am looking for a customer support agent, can you connect me?"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "jibin.philip@netcorecloud.com",
+            "q": "Do we have an integration with GA4?"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "anjali.yadav@guess.eu",
+            "q": "want to generate the api key for new domain"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 1,
+        "external": 4,
+        "internalQ": [
+          {
+            "email": "heena.shah@netcorecloud.com",
+            "q": "hosting the emailers on the NC platform"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "sonali.sahu@impactguru.com",
+            "q": "Suggest subject line options for a fundraising campaign email"
+          },
+          {
+            "email": "megha.ghansal@gla.ac.in",
+            "q": "send a customized bulk email to ~3,000 recipients with each getting a unique Employee ID (mail merge-style)"
+          },
+          {
+            "email": "quang.ngo@digiconnex.vn",
+            "q": "how to customize the default unsubscribe text?"
+          },
+          {
+            "email": "rakesh.plaha@gla.ac.in",
+            "q": "need a template to send username and password to different learners"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "khushi.chitkara@netcorecloud.com",
+            "q": "AMLI wants to capture SMS DLR/CTR via webhook on the CPaaS panel -- needs IP whitelisting, webhook URL setup, and integration docs"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "abhay.parekh@nuvama.com",
+            "q": "Not able to download/export data"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 4,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "lokesh.sharma@netcorecloud.com",
+            "q": "does password for detailed report remain same for scheduler or change every time"
+          },
+          {
+            "email": "anjali.inani@netcorecloud.com",
+            "q": "IS there any segment where they have included anonymous users"
+          },
+          {
+            "email": "ishika.a@netcorecloud.com",
+            "q": "where i can see daily active users for a month data"
+          },
+          {
+            "email": "aishwarya.sinha@netcoreunbxd.com",
+            "q": "How to enable insight agent?"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "deepesh.lakhera@gmail.com",
+            "q": "can you tell me how to configure App PZ"
+          },
+          {
+            "email": "deepesh.lakhera@gmail.com",
+            "q": "I am looking for a customer support agent, can you connect me?"
+          }
+        ]
+      }
+    ]
   }
 }; // close ARCHIVE
 const DATES = Object.keys(ARCHIVE).sort().reverse();
