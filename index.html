@@ -1,207 +1,265 @@
-<!DOCTYPE html><script type="application/json" id="cowork-artifact-meta">
-{
-  "name": "Ce Docbot Summary 2026 06 17",
-  "schemaVersion": 1,
-  "description": "Daily Featurebase customer-conversation summary for the Netcore CE workspace — rolling 14-day dashboard, latest day 2026-06-18. Shows volume, internal vs external split, docs-portal vs in-panel source, themes, repeat askers, and actionable insights."
-}
-</script>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>CE Docbot — Daily Dispatch</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CE Docbot · Daily Dispatch</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap');
-  :root{
-    --ink:#0F1116; --card:#191C24; --card2:#1F232C; --paper:#EDEAE2; --dim:#8E8C86; --signal:#F2A340;
-    --internal:#5FA393; --internal-soft:#1A2C27; --external:#E0815C; --external-soft:#332119; --design:#A18FC2; --design-soft:#28223A; --line:#272A33;
-  }
-  *{box-sizing:border-box;}
-  body{margin:0;background:var(--ink);color:var(--paper);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
-  .wrap{max-width:1000px;margin:0 auto;padding:34px 22px 80px;}
-  .mono{font-family:'JetBrains Mono',monospace;}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:translateY(0);}}
-  .anim{animation:fadeUp .5s ease both;}
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
-  .masthead{border-top:2px solid var(--signal);padding-top:16px;margin-bottom:24px;position:relative;}
-  .masthead-top{display:flex;justify-content:space-between;align-items:baseline;}
-  .wordmark{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--signal);text-transform:uppercase;}
-  select{font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--card);color:var(--paper);border:1px solid var(--signal);padding:6px 11px;border-radius:6px;cursor:pointer;position:relative;}
-  .date-picker-wrap{display:flex;align-items:center;gap:9px;}
-  .date-badge{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--signal);background:var(--card2);border:1px solid var(--signal);border-radius:20px;padding:3px 10px;letter-spacing:.04em;white-space:nowrap;animation:badgePulse 2.6s ease-in-out infinite;}
-  @keyframes badgePulse{0%,100%{box-shadow:0 0 0 0 rgba(242,163,64,.4);} 50%{box-shadow:0 0 0 6px rgba(242,163,64,0);}}
-  @keyframes selectGlow{0%,100%{box-shadow:0 0 0 0 rgba(242,163,64,.35);border-color:var(--signal);} 50%{box-shadow:0 0 0 5px rgba(242,163,64,0);border-color:#FFC97A;}}
-  select#dateSelect{animation:selectGlow 2.6s ease-in-out infinite;}
-  select#dateSelect:hover, select#dateSelect:focus{animation:none;box-shadow:0 0 0 4px rgba(242,163,64,.25);}
-  h1{font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:42px;margin:8px 0 4px;letter-spacing:-0.015em;}
-  .dateline{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px;}
-  .headline-take{font-size:15.5px;color:#CFCCC2;line-height:1.6;max-width:660px;border-left:2px solid var(--signal);padding-left:16px;}
+:root{
+  --ink:#13151a;
+  --ink2:#1b1e26;
+  --ink3:#21242d;
+  --paper:#f7f4ee;
+  --paper2:#ffffff;
+  --paperline:#e7e1d3;
+  --dim:#878c98;
+  --dimtext:#8a8674;
+  --text:#1b1e25;
+  --signal:#e3a23c;
+  --internal:#3fae9c;
+  --external:#e07856;
+  --design:#9182e6;
+  --good:#4caf82;
+  --bad:#e2654f;
+  --line:#2a2d36;
+  --content:#5a92d6;
+  --product:#3fae9c;
+  --security:#e2654f;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--paper);
+  color:var(--text);
+  font-family:'Inter',-apple-system,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.mono{font-family:'JetBrains Mono',monospace;}
+h1,h2,h3{font-family:'Fraunces',serif; margin:0; font-weight:600;}
+a{color:inherit;}
 
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:26px 0 8px;}
-  .stat{background:var(--card);padding:18px 16px;transition:background .2s;}
-  .stat .v{font-family:'Fraunces',serif;font-size:28px;font-weight:700;}
-  .stat .l{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.05em;margin-top:5px;}
-  .qtype-row{display:flex;gap:10px;align-items:center;margin:6px 0 8px;font-size:11.5px;color:var(--dim);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.04em;}
-  .qtype-pill{padding:4px 12px;border-radius:20px;font-weight:600;}
-  .qtype-pill.tech{background:var(--external-soft);color:var(--external);}
-  .qtype-pill.gen{background:var(--internal-soft);color:var(--internal);}
-  .footnote-mark{font-size:10px;color:var(--dim);margin:2px 0 28px;font-family:'JetBrains Mono',monospace;}
+.shell{display:flex; min-height:100vh;}
 
-  .tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--signal);display:inline-block;margin-bottom:10px;}
+/* ===== SIDEBAR ===== */
+.sidebar{
+  width:300px; min-width:300px;
+  background:var(--ink);
+  color:#e9e9ec;
+  padding:28px 22px 40px;
+  position:sticky; top:0; height:100vh; overflow-y:auto;
+  border-right:1px solid var(--line);
+}
+.side-brand{margin-bottom:22px;}
+.side-brand .wordmark{font-family:'Fraunces',serif; font-style:italic; font-size:22px; font-weight:600; color:#fff;}
+.side-brand .sub{font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--dim); margin-top:4px;}
 
-  .deflect{background:var(--card);border-radius:14px;padding:24px 26px;margin-bottom:32px;border:1px solid var(--line);}
-  .deflect h2{font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:20px;margin:0 0 4px;}
-  .deflect .sub{font-size:12.5px;color:var(--dim);margin-bottom:18px;line-height:1.6;}
-  .deflect-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:6px;}
-  .deflect-stat{background:var(--card2);padding:16px 18px;}
-  .deflect-stat .v{font-family:'Fraunces',serif;font-size:26px;font-weight:700;}
-  .deflect-stat .l{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.05em;margin-top:4px;}
-  .deflect-stat.good .v{color:var(--internal);}
-  .deflect-stat.bad .v{color:var(--external);}
-  .deflect-subtag{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin:18px 0 8px;padding-top:14px;border-top:1px solid var(--line);}
-  .deflect-item{font-size:12.5px;color:#C2BFB6;line-height:1.6;padding:9px 0;border-top:1px dashed var(--line);}
-  .deflect-item:first-of-type{border-top:none;}
-  .deflect-item .who{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--external);font-weight:600;}
-  .deflect-item .tix{color:var(--dim);}
-  .deflect-pattern{font-size:12.5px;color:#C2BFB6;line-height:1.6;padding:9px 0;border-top:1px dashed var(--line);}
-  .deflect-pattern:first-of-type{border-top:none;}
-  .deflect-pattern .area{font-weight:600;color:var(--paper);}
-  .deflect-empty{font-size:12.5px;color:var(--dim);padding:8px 0;}
-  .deflect-caveat{font-size:11px;color:#7C7A74;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);line-height:1.5;}
-  .deflect-na{font-size:13px;color:var(--dim);padding:6px 0;}
+.side-tabs{display:flex; flex-direction:column; gap:6px; margin-bottom:24px; background:var(--ink2); border-radius:10px; padding:5px;}
+.tab-btn{
+  appearance:none; border:none; background:transparent; color:var(--dim);
+  font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.04em;
+  text-align:left; padding:9px 12px; border-radius:7px; cursor:pointer;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.tab-btn .num{opacity:.6; margin-right:6px;}
+.tab-btn.active{background:var(--ink3); color:#fff;}
+.tab-btn:hover:not(.active){color:#cfd2d9;}
 
-  .insights{background:var(--card);border-radius:14px;padding:24px 26px 8px;margin-bottom:32px;border:1px solid var(--line);}
-  .insights h2{font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:20px;margin:0 0 4px;}
-  .insights .sub{font-size:12.5px;color:var(--dim);margin-bottom:18px;}
-  .insight-row{display:flex;gap:14px;padding:14px 0;border-top:1px solid var(--line);}
-  .owner-chip{flex-shrink:0;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.06em;font-weight:600;padding:5px 10px;border-radius:6px;height:fit-content;width:78px;text-align:center;}
-  .owner-chip.content{background:var(--signal-soft, #3A2A14);color:var(--signal);}
-  .owner-chip.product{background:var(--internal-soft);color:var(--internal);}
-  .owner-chip.design{background:var(--design-soft);color:var(--design);}
-  .owner-chip.calibration{background:var(--card2);color:var(--dim);border:1px solid var(--line);}
-  .owner-chip.security{background:var(--external-soft);color:var(--external);}
-  .insight-body .ititle{font-size:14px;font-weight:600;margin-bottom:4px;}
-  .insight-body .idesc{font-size:13px;color:#C2BFB6;line-height:1.55;}
+.side-block{margin-bottom:24px; padding-bottom:20px; border-bottom:1px solid var(--line);}
+.side-block:last-child{border-bottom:none;}
+.side-label{font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--dim); margin-bottom:10px;}
+.side-block select{
+  width:100%; background:var(--ink2); color:#fff; border:1px solid var(--line);
+  border-radius:8px; padding:8px 10px; font-family:'Inter',sans-serif; font-size:13px; cursor:pointer;
+}
+.side-static{font-size:13px; color:#cfd2d9; font-family:'JetBrains Mono',monospace;}
 
-  .fieldnote{background:var(--card);border-left:3px solid var(--signal);border-radius:0 12px 12px 0;padding:24px 28px;margin-bottom:32px;}
-  .fieldnote .quote{font-family:'Fraunces',serif;font-style:italic;font-size:22px;line-height:1.45;color:var(--paper);margin-bottom:12px;}
-  .fieldnote .who{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--signal);}
-  .fieldnote .why{font-size:13.5px;color:#B7B4AB;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);line-height:1.6;}
+.dial-wrap{display:flex; align-items:center; gap:14px;}
+.dial-pct{font-family:'JetBrains Mono',monospace; font-size:22px; font-weight:700; fill:#fff;}
+.dial-cap{font-size:11px; color:var(--dim); margin-top:2px;}
 
-  .master{
-    background:var(--card);border:1px solid var(--line);border-left:3px solid var(--design);border-radius:16px;
-    padding:32px 40px 36px;margin:0 0 32px;
-    position:relative;left:50%;transform:translateX(-50%);width:100%;max-width:1220px;
-  }
-  .master h2{font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:22px;margin:0 0 6px;color:var(--design);}
-  .master .sub{font-size:13px;color:var(--dim);line-height:1.6;max-width:880px;margin-bottom:24px;}
-  .master-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:28px;}
-  .master-stat{background:var(--card2);padding:16px 20px;}
-  .master-stat .v{font-family:'Fraunces',serif;font-size:24px;font-weight:700;}
-  .master-stat .l{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.05em;margin-top:5px;}
-  .master-cols{display:grid;grid-template-columns:1.15fr 1fr;gap:52px;}
-  .master-subtag{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--line);}
+.split-bar-track{display:flex; height:10px; border-radius:6px; overflow:hidden; background:var(--ink2); margin-bottom:8px;}
+.split-seg.internal{background:var(--internal);}
+.split-seg.external{background:var(--external);}
+.split-legend{display:flex; justify-content:space-between; font-size:11px; font-family:'JetBrains Mono',monospace;}
+.split-legend .in{color:var(--internal);}
+.split-legend .ex{color:var(--external);}
 
-  .power-row{display:grid;grid-template-columns:20px 1fr auto;align-items:center;column-gap:14px;padding:13px 0;border-top:1px solid var(--line);}
-  .power-row:first-child{border-top:none;}
-  .power-rank{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);}
-  .power-id{min-width:0;}
-  .power-email{display:block;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:var(--paper);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .power-sub{font-size:11.5px;color:var(--dim);margin-top:3px;display:flex;align-items:center;flex-wrap:wrap;gap:6px;}
-  .recurring-badge{background:var(--design-soft);color:var(--design);font-size:9px;padding:2px 8px;border-radius:10px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.03em;white-space:nowrap;}
-  .power-count{text-align:right;}
-  .power-count .v{font-family:'Fraunces',serif;font-size:19px;font-weight:700;color:var(--paper);}
-  .power-count .l{display:block;font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.05em;margin-top:1px;}
+.side-nav{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+.side-nav li a{
+  display:block; padding:7px 10px; border-radius:7px; font-size:12.5px;
+  color:var(--dim); text-decoration:none;
+}
+.side-nav li a:hover{background:var(--ink2); color:#fff;}
+.side-nav li .nnum{font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--signal); margin-right:7px;}
 
-  .area-row{display:flex;align-items:center;gap:14px;padding:11px 0;border-top:1px solid var(--line);font-size:13px;}
-  .area-row:first-child{border-top:none;}
-  .area-name{flex:0 0 168px;color:var(--paper);}
-  .area-bar-track{flex:1;height:9px;background:var(--card2);border-radius:5px;overflow:hidden;}
-  .area-bar-fill{height:100%;background:var(--design);border-radius:5px;transition:width .6s ease;}
-  .area-count{width:30px;text-align:right;font-family:'JetBrains Mono',monospace;color:var(--dim);flex-shrink:0;}
+/* ===== MAIN ===== */
+.main{flex:1; min-width:0; padding:36px 48px 80px; max-width:980px;}
+@media (max-width:760px){ .shell{flex-direction:column;} .sidebar{width:100%; height:auto; position:relative;} .main{padding:24px 20px 60px;} }
 
-  .master-note{font-size:12.5px;color:#B7B4AB;margin-top:24px;padding-top:18px;border-top:1px dashed var(--line);line-height:1.6;}
-  .master-note-label{display:block;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--design);margin-bottom:10px;}
-  .recurring-chips{display:flex;flex-wrap:wrap;gap:7px;}
-  .recurring-chip{background:var(--card2);border:1px solid var(--line);color:var(--paper);font-family:'JetBrains Mono',monospace;font-size:11px;padding:5px 11px;border-radius:20px;white-space:nowrap;}
-  @media(max-width:900px){.master{padding:26px 24px 30px;}}
-  @media(max-width:680px){.master-cols{grid-template-columns:1fr;gap:30px;} .master-grid{grid-template-columns:repeat(2,1fr);} .area-name{flex:0 0 120px;}}
+.hero{margin-bottom:8px;}
+.hero .dateline{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--dimtext); text-transform:uppercase; letter-spacing:.06em; margin-bottom:10px;}
+.hero h1{font-size:34px; font-style:italic; line-height:1.15; margin-bottom:14px;}
+.hero .headline-take{font-size:16.5px; line-height:1.55; color:#373a40; max-width:760px;}
 
-  .email-in{color:var(--internal);font-weight:600;}
-  .email-ex{color:var(--external);font-weight:600;}
-  .qtext{color:#E3CFF2;}
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:26px 0 14px;}
+.stat{background:var(--paper2); border:1px solid var(--paperline); border-radius:12px; padding:16px 14px;}
+.stat .v{font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:700;}
+.stat .l{font-size:11.5px; color:var(--dimtext); margin-top:4px;}
+@media (max-width:640px){ .stats{grid-template-columns:repeat(2,1fr);} }
 
-  section{margin-bottom:34px;}
-  section > h2{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin:0 0 4px;}
-  section > .sub{font-size:12.5px;color:#7C7A74;margin-bottom:16px;}
+.qtype-row{display:flex; gap:10px; align-items:center; margin-bottom:6px; font-size:13px; color:var(--dimtext);}
+.qtype-pill{font-family:'JetBrains Mono',monospace; font-size:12px; padding:4px 10px; border-radius:20px; border:1px solid var(--paperline);}
+.qtype-pill.tech{color:var(--internal); border-color:var(--internal);}
+.qtype-pill.gen{color:var(--external); border-color:var(--external);}
+.footnote-mark{font-size:11.5px; color:#a4a097; margin-bottom:30px;}
 
-  .legend{display:flex;gap:18px;margin-bottom:14px;font-size:11.5px;color:var(--dim);}
-  .legend span{display:inline-flex;align-items:center;gap:6px;}
-  .swatch{width:9px;height:9px;border-radius:2px;display:inline-block;}
-  .div-row{display:flex;align-items:center;margin-bottom:11px;}
-  .div-left,.div-right{flex:1;display:flex;align-items:center;height:20px;}
-  .div-left{justify-content:flex-end;}
-  .div-right{justify-content:flex-start;}
-  .bar{height:14px;border-radius:3px 0 0 3px;transition:width .6s ease;}
-  .bar.ext{border-radius:0 3px 3px 0;}
-  .val{font-family:'JetBrains Mono',monospace;font-size:12px;width:22px;text-align:center;color:var(--dim);flex-shrink:0;}
-  .div-center{width:200px;flex-shrink:0;text-align:center;font-size:12.5px;padding:0 10px;color:#D8D5CC;}
+/* accordions */
+details.acc{
+  background:var(--paper2); border:1px solid var(--paperline); border-radius:14px;
+  margin-bottom:14px; overflow:hidden;
+}
+details.acc > summary{
+  list-style:none; cursor:pointer; padding:18px 20px;
+  display:flex; align-items:center; justify-content:space-between;
+  font-family:'Fraunces',serif; font-size:18px; font-weight:600;
+}
+details.acc > summary::-webkit-details-marker{display:none;}
+details.acc > summary .snum{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--signal); margin-right:10px; font-weight:500;}
+details.acc > summary .vm{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--dimtext); display:flex; align-items:center; gap:5px; text-transform:uppercase; letter-spacing:.04em;}
+details.acc:not([open]) .vm-less{display:none;}
+details.acc[open] .vm-more{display:none;}
+details.acc .acc-body{padding:0 20px 22px;}
+details.acc .acc-sub{font-size:13.5px; color:var(--dimtext); margin:-6px 0 16px;}
 
-  .topask-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:15px 18px;margin-bottom:10px;transition:border-color .2s;}
-  .topask-card:hover{border-color:#3A3E48;}
-  .topask-head{display:flex;justify-content:space-between;align-items:center;}
-  .topask-email{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;}
-  .rank{font-family:'Fraunces',serif;font-size:18px;color:var(--signal);margin-right:8px;}
-  .qcount{font-size:11px;color:var(--dim);}
-  .topask-q{font-size:12.5px;color:#C9C6BD;margin-top:8px;padding-left:24px;border-left:2px solid var(--line);}
-  .topask-q .t{display:inline-block;background:var(--internal-soft);color:var(--internal);font-size:10.5px;padding:1px 7px;border-radius:10px;margin-right:6px;}
-  .friction{color:var(--external);font-size:11px;margin-top:6px;padding-left:24px;}
+/* deflection */
+.deflect-na{font-size:13.5px; color:var(--dimtext); font-style:italic;}
+.deflect-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;}
+.deflect-stat{border-radius:12px; padding:14px; text-align:center;}
+.deflect-stat.good{background:rgba(63,174,156,.1); border:1px solid rgba(63,174,156,.3);}
+.deflect-stat.bad{background:rgba(224,120,86,.1); border:1px solid rgba(224,120,86,.3);}
+.deflect-stat .v{font-family:'JetBrains Mono',monospace; font-size:26px; font-weight:700;}
+.deflect-stat.good .v{color:var(--internal);}
+.deflect-stat.bad .v{color:var(--external);}
+.deflect-stat .l{font-size:11.5px; color:var(--dimtext); margin-top:4px;}
+.deflect-subtag{font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--dimtext); margin:14px 0 8px;}
+.deflect-item, .deflect-empty, .deflect-pattern{font-size:13.5px; line-height:1.5; margin-bottom:8px; color:#373a40;}
+.deflect-item .who, .deflect-pattern .area{font-weight:600;}
+.deflect-item .tix{font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--external);}
+.deflect-caveat{font-size:12px; color:#a4a097; margin-top:14px; padding-top:12px; border-top:1px dashed var(--paperline);}
 
-  .tablewrap{overflow-x:auto;}
-  table{width:100%;border-collapse:collapse;font-size:13px;}
-  th{text-align:left;font-family:'JetBrains Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--dim);font-weight:500;padding:0 10px 10px 0;border-bottom:1px solid var(--line);}
-  td{padding:13px 10px 13px 0;border-bottom:1px solid var(--line);vertical-align:top;}
-  tr:last-child td{border-bottom:none;}
-  tr{transition:background .15s;}
-  tr:hover{background:rgba(255,255,255,.015);}
-  .countpill{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;padding:2px 8px;border-radius:20px;display:inline-block;}
-  .countpill.in{background:var(--internal-soft);color:var(--internal);}
-  .countpill.ex{background:var(--external-soft);color:var(--external);}
-  .emaillist{font-size:11.5px;color:var(--dim);line-height:1.6;margin-top:4px;}
-  .dash{color:#454850;}
-  .greeting-row{opacity:.7;}
+/* insights */
+.insight-row{display:flex; gap:14px; padding:14px 0; border-bottom:1px solid var(--paperline);}
+.insight-row:last-child{border-bottom:none;}
+.owner-chip{font-family:'JetBrains Mono',monospace; font-size:10.5px; padding:4px 9px; border-radius:6px; white-space:nowrap; height:fit-content; text-transform:uppercase;}
+.owner-chip.content{background:rgba(90,146,214,.12); color:var(--content);}
+.owner-chip.product{background:rgba(63,174,156,.12); color:var(--product);}
+.owner-chip.design{background:rgba(145,130,230,.12); color:var(--design);}
+.owner-chip.calibration{background:rgba(227,162,60,.15); color:var(--signal);}
+.owner-chip.security{background:rgba(226,101,79,.12); color:var(--security);}
+.ititle{font-weight:600; font-size:14.5px; margin-bottom:4px;}
+.idesc{font-size:13.5px; color:var(--dimtext); line-height:1.5;}
 
-  .disclosure{background:var(--card2);border:1px dashed var(--line);border-radius:10px;padding:18px 20px;margin-bottom:30px;}
-  .disclosure h3{font-family:'JetBrains Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);margin:0 0 10px;}
-  .disclosure ul{margin:0;padding-left:18px;font-size:12.5px;color:#A8A59C;line-height:1.7;}
-  .disclosure li{margin-bottom:6px;}
+/* fieldnote */
+.fieldnote .quote{font-family:'Fraunces',serif; font-style:italic; font-size:18px; line-height:1.4; margin-bottom:12px;}
+.fieldnote .who{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--dimtext); margin-bottom:8px;}
+.fieldnote .why{font-size:13.5px; color:#373a40; line-height:1.5;}
 
-  .footer-note{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#454850;text-align:center;margin-top:36px;letter-spacing:.06em;text-transform:uppercase;}
-  .empty{text-align:center;padding:80px 20px;color:var(--dim);}
-  .empty h2{font-family:'Fraunces',serif;color:var(--paper);font-style:italic;font-size:24px;}
-  @media(max-width:680px){.stats{grid-template-columns:repeat(2,1fr);} .insight-row{flex-direction:column;} .owner-chip{width:fit-content;}}
+/* signal bars */
+.legend{display:flex; gap:18px; font-size:12px; color:var(--dimtext); margin-bottom:14px;}
+.legend .swatch{display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:6px;}
+.div-row{display:grid; grid-template-columns:1fr 200px 1fr; align-items:center; gap:8px; margin-bottom:10px;}
+.div-left, .div-right{display:flex; align-items:center; gap:6px;}
+.div-left{justify-content:flex-end;}
+.div-left .bar, .div-right .bar{height:9px; border-radius:5px; min-width:2px;}
+.div-center{text-align:center; font-size:12.5px; color:#373a40;}
+.div-left .val, .div-right .val{font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--dimtext); min-width:14px;}
+
+/* top askers */
+.topask-card{background:var(--paper); border:1px solid var(--paperline); border-radius:10px; padding:14px 16px; margin-bottom:10px;}
+.topask-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;}
+.rank{font-family:'JetBrains Mono',monospace; font-size:11px; background:var(--ink); color:#fff; padding:2px 7px; border-radius:5px; margin-right:8px;}
+.topask-email{font-weight:600; font-size:13.5px;}
+.qcount{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--dimtext);}
+.topask-q{font-size:13px; color:#373a40; margin-bottom:4px;}
+.topask-q .t{display:inline-block; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--internal); background:rgba(63,174,156,.1); padding:2px 6px; border-radius:5px; margin-right:7px;}
+.friction{font-size:12px; color:var(--bad); margin-top:6px;}
+
+/* beat report table */
+.tablewrap{overflow-x:auto;}
+table{width:100%; border-collapse:collapse; font-size:13px;}
+table th{text-align:left; font-family:'JetBrains Mono',monospace; font-size:10.5px; text-transform:uppercase; color:var(--dimtext); padding:8px; border-bottom:1px solid var(--paperline);}
+table td{padding:10px 8px; border-bottom:1px solid var(--paperline); vertical-align:top;}
+.greeting-row{opacity:.55;}
+.countpill{font-family:'JetBrains Mono',monospace; font-size:12px; padding:2px 8px; border-radius:6px;}
+.countpill.in{background:rgba(63,174,156,.12); color:var(--internal);}
+.countpill.ex{background:rgba(224,120,86,.12); color:var(--external);}
+.dash{color:#c7c2b3;}
+.email-in{color:var(--internal); font-family:'JetBrains Mono',monospace; font-size:11.5px;}
+.email-ex{color:var(--external); font-family:'JetBrains Mono',monospace; font-size:11.5px;}
+.qtext{color:var(--dimtext); font-size:12px;}
+.emaillist{margin-top:6px;}
+
+/* disclosure */
+.disclosure ul{margin:0; padding-left:18px;}
+.disclosure li{font-size:13px; color:var(--dimtext); margin-bottom:8px; line-height:1.5;}
+
+/* master / historical */
+.master-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:22px 0 28px;}
+.master-stat{background:var(--paper2); border:1px solid var(--paperline); border-radius:12px; padding:16px;}
+.master-stat .v{font-family:'JetBrains Mono',monospace; font-size:26px; font-weight:700;}
+.master-stat .l{font-size:11.5px; color:var(--dimtext); margin-top:4px;}
+.master-cols{display:grid; grid-template-columns:1fr 1fr; gap:30px;}
+@media (max-width:760px){ .master-cols{grid-template-columns:1fr;} .master-grid{grid-template-columns:1fr;} }
+.master-subtag{font-family:'JetBrains Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--dimtext); margin-bottom:12px;}
+.power-row{display:flex; align-items:center; gap:10px; padding:10px 0; border-bottom:1px solid var(--paperline);}
+.power-rank{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--signal);}
+.power-id{flex:1;}
+.power-email{font-size:13px; font-weight:600;}
+.power-sub{font-size:11.5px; color:var(--dimtext); display:flex; gap:8px; margin-top:2px;}
+.recurring-badge{background:rgba(227,162,60,.15); color:var(--signal); padding:1px 7px; border-radius:5px;}
+.power-count{text-align:right;}
+.power-count .v{font-family:'JetBrains Mono',monospace; font-weight:700; font-size:15px;}
+.power-count .l{font-size:10px; color:var(--dimtext);}
+.area-row{display:flex; align-items:center; gap:10px; padding:8px 0;}
+.area-name{font-size:12.5px; width:150px; flex-shrink:0;}
+.area-bar-track{flex:1; height:8px; background:var(--paperline); border-radius:5px; overflow:hidden;}
+.area-bar-fill{height:100%; background:var(--internal); border-radius:5px;}
+.area-count{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--dimtext); width:24px; text-align:right;}
+.master-note{margin-top:24px; padding-top:18px; border-top:1px solid var(--paperline);}
+.master-note-label{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--signal); display:block; margin-bottom:10px;}
+.recurring-chips{display:flex; flex-wrap:wrap; gap:8px;}
+.recurring-chip{font-family:'JetBrains Mono',monospace; font-size:11.5px; background:var(--paper); border:1px solid var(--paperline); padding:5px 10px; border-radius:7px;}
+
+.tag{font-family:'JetBrains Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.08em; color:#a4a097; margin:0 0 6px;}
+.footer-note{font-size:11.5px; color:#a4a097; text-align:center; margin-top:40px; font-family:'JetBrains Mono',monospace;}
+.empty{padding:60px 0; text-align:center; color:var(--dimtext);}
+
+.anim{animation:fadeUp .5s ease both;}
+@keyframes fadeUp{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);}}
 </style>
 </head>
 <body>
-<div class="wrap" id="app">Loading…</div>
+<div class="shell">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="main" id="main"></main>
+</div>
 <script>
-// Full history embedded directly in the page (so the dropdown works for anyone
-// opening this link — no browser storage required). Each daily scheduled run
-// regenerates this ARCHIVE block with the latest day appended (rolling 14-day window).
 const ARCHIVE = {
   "2026-06-15": {
     "date": "2026-06-15",
-    "totalConversations": 28,
+    "totalConversations": 26,
     "resolutionRate": 100,
     "internalTotal": 12,
-    "externalTotal": 16,
-    "docsTotal": 15,
+    "externalTotal": 14,
+    "docsTotal": 13,
     "panelTotal": 13,
     "queryType": {
-      "technical": 11,
+      "technical": 9,
       "generic": 17
     },
-    "headline": "28 conversations on June 15, all bot-resolved — but 16 of 28 (57%) fell outside the 7 defined areas, and a Clevertap email address browsed the Docs Portal three times in one day.",
+    "headline": "26 conversations on June 15, all bot-resolved — but 16 of 26 (62%) fell outside the 7 defined areas, and a Clevertap email address browsed the Docs Portal three times in one day.",
     "actionableInsights": [
       {
         "owner": "security",
@@ -211,7 +269,7 @@ const ARCHIVE = {
       {
         "owner": "calibration",
         "title": "Over half of today's queries don't map to the 7 area buckets",
-        "desc": "Web Push, Netcore Funnels, Segmentation, and account/access issues (sub-admin access, empty contacts page, report passwords) account for 16 of 28 conversations. This is the second day running the taxonomy gap shows up — worth expanding the area list before trend reporting gets misleading."
+        "desc": "Web Push, Netcore Funnels, Segmentation, and account/access issues (sub-admin access, empty contacts page, report passwords) account for 16 of 26 conversations. This is the second day running the taxonomy gap shows up — worth expanding the area list before trend reporting gets misleading."
       },
       {
         "owner": "product",
@@ -249,12 +307,12 @@ const ARCHIVE = {
       {
         "theme": "What does X mean/how it works",
         "internal": 2,
-        "external": 2
+        "external": 1
       },
       {
         "theme": "Is X possible/supported",
         "internal": 4,
-        "external": 3
+        "external": 2
       },
       {
         "theme": "Bare greeting, no context yet",
@@ -333,7 +391,7 @@ const ARCHIVE = {
       {
         "area": "API/Integration",
         "internal": 3,
-        "external": 3,
+        "external": 2,
         "internalQ": [
           {
             "email": "shipra.choudhary@netcorecloud.com",
@@ -356,10 +414,6 @@ const ARCHIVE = {
           {
             "email": "shreyas@bag2bag.in",
             "q": "HOW TO ACCESS THE API KEY"
-          },
-          {
-            "email": "deepesh.lakhera@gmail.com",
-            "q": "Is an API sandbox / developer portal available?"
           }
         ]
       },
@@ -413,19 +467,14 @@ const ARCHIVE = {
       {
         "area": "Infra/Data residency",
         "internal": 1,
-        "external": 1,
+        "external": 0,
         "internalQ": [
           {
             "email": "jibin.philip@netcorecloud.com",
             "q": "can the netcore ce solution be deployed as a on premise platform service"
           }
         ],
-        "externalQ": [
-          {
-            "email": "deepesh.lakhera@gmail.com",
-            "q": "how does netcore CE handle bot traffic and prevents it?"
-          }
-        ]
+        "externalQ": []
       },
       {
         "area": "General/Unclear",
@@ -1483,27 +1532,22 @@ const ARCHIVE = {
   },
   "2026-06-22": {
     "date": "2026-06-22",
-    "totalConversations": 33,
+    "totalConversations": 31,
     "resolutionRate": 0,
     "internalTotal": 8,
-    "externalTotal": 25,
+    "externalTotal": 23,
     "docsTotal": 14,
-    "panelTotal": 19,
+    "panelTotal": 17,
     "queryType": {
       "technical": 12,
-      "generic": 21
+      "generic": 19
     },
-    "headline": "Bot resolved 0% of yesterday's 33 conversations — every single one hit the AI agent's monthly token cap right after the canned hello, and that legacy-pricing limit doesn't reset until July 20.",
+    "headline": "Bot resolved 0% of yesterday's 31 conversations — every single one hit the AI agent's monthly token cap right after the canned hello, and that legacy-pricing limit doesn't reset until July 20.",
     "actionableInsights": [
       {
         "owner": "product",
         "title": "Token-cap outage from June 21 is now a full-day, every-conversation problem",
-        "desc": "All 33 conversations on June 22 got only the scripted 'Hello! I'm an AI chatbot' greeting before hitting 'AI Agent Rate Limit Exceeded' (legacy pricing) — confirmed on every single conversation we pulled, not an isolated case like June 21's n=1. Bot-resolution rate is 0%, and the cap doesn't reset until Jul 20, 2026. This needs an urgent decision: migrate to usage-based pricing ($0.29/resolution) or get the legacy cap raised today."
-      },
-      {
-        "owner": "calibration",
-        "title": "External total is inflated by an internal tester on a personal Gmail",
-        "desc": "deepesh.lakhera@gmail.com (2 convos: 'hi', 'need to connect with a agent') reads like internal QA testing via a personal Gmail account rather than a real customer. Counted as external under the strict domain rule, which overstates externalTotal by 2 and understates internal traffic for the day."
+        "desc": "All 31 conversations on June 22 got only the scripted 'Hello! I'm an AI chatbot' greeting before hitting 'AI Agent Rate Limit Exceeded' (legacy pricing) — confirmed on every single conversation we pulled, not an isolated case like June 21's n=1. Bot-resolution rate is 0%, and the cap doesn't reset until Jul 20, 2026. This needs an urgent decision: migrate to usage-based pricing ($0.29/resolution) or get the legacy cap raised today."
       },
       {
         "owner": "content",
@@ -1513,7 +1557,7 @@ const ARCHIVE = {
       {
         "owner": "design",
         "title": "List/audience upload stalls are the loudest recurring complaint",
-        "desc": "9 of 33 conversations (cameoindiacee, scoutitcee, qnamarcomcee, actcorpincee, ionexchange, and others) reported lists or audience uploads stuck or slow — a cross-account pattern that looks like a real upload-performance issue, independent of the bot outage."
+        "desc": "9 of 31 conversations (cameoindiacee, scoutitcee, qnamarcomcee, actcorpincee, ionexchange, and others) reported lists or audience uploads stuck or slow — a cross-account pattern that looks like a real upload-performance issue, independent of the bot outage."
       }
     ],
     "mostInteresting": {
@@ -1551,7 +1595,7 @@ const ARCHIVE = {
       {
         "theme": "Bare greeting, no context yet",
         "internal": 0,
-        "external": 5
+        "external": 3
       }
     ],
     "topAskers": [
@@ -1582,21 +1626,6 @@ const ARCHIVE = {
           {
             "theme": "Is X possible/supported",
             "text": "is it possible to Uncontrolled creation and modification of data attributes"
-          }
-        ]
-      },
-      {
-        "email": "deepesh.lakhera@gmail.com",
-        "count": 2,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "Bare greeting, no context yet",
-            "text": "hi"
-          },
-          {
-            "theme": "Bare greeting, no context yet",
-            "text": "need to connect with a agent"
           }
         ]
       },
@@ -1792,13 +1821,9 @@ const ARCHIVE = {
       {
         "area": "General/Unclear (greeting only)",
         "internal": 0,
-        "external": 6,
+        "external": 4,
         "internalQ": [],
         "externalQ": [
-          {
-            "email": "deepesh.lakhera@gmail.com",
-            "q": "hi"
-          },
           {
             "email": "prashant@mfuindia.in",
             "q": "Hello"
@@ -1806,10 +1831,6 @@ const ARCHIVE = {
           {
             "email": "yesh@cameoindia.com",
             "q": "HI"
-          },
-          {
-            "email": "deepesh.lakhera@gmail.com",
-            "q": "need to connect with a agent"
           },
           {
             "email": "twinkle.tallewar@microscan.co.in",
@@ -2076,21 +2097,21 @@ const ARCHIVE = {
   },
   "2026-06-24": {
     "date": "2026-06-24",
-    "totalConversations": 15,
-    "resolutionRate": 73,
+    "totalConversations": 13,
+    "resolutionRate": 85,
     "internalTotal": 7,
-    "externalTotal": 8,
+    "externalTotal": 6,
     "docsTotal": 6,
-    "panelTotal": 9,
+    "panelTotal": 7,
     "queryType": {
-      "technical": 7,
-      "generic": 8
+      "technical": 6,
+      "generic": 7
     },
     "ticketDeflection": {
       "windowNote": "Same IST day through +2 days",
-      "totalConversations": 15,
+      "totalConversations": 13,
       "sameUserEscalations": [],
-      "deflectedCount": 15,
+      "deflectedCount": 13,
       "deflectionRate": 100,
       "patternRisk": [
         {
@@ -2114,7 +2135,7 @@ const ARCHIVE = {
       ],
       "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. The 100% Tier-1 deflection rate is misleading on its own: zero exact-email matches, but Quang Ngo's case above shows the same person did escalate, just under a different account/email -- a blind spot in the strict email-match rule, not genuine full resolution. Also, the matching window (D through D+2) is only half-elapsed as of this run."
     },
-    "headline": "15 conversations on June 24, 73% bot-resolved (4 handed off to a human) -- the headline number is really the Quang Ngo case: he asked the docbot to customize an unsubscribe footer, then opened an identical Freshdesk ticket the same day under a different account, exposing a blind spot in clean email-match deflection tracking.",
+    "headline": "13 conversations on June 24, 85% bot-resolved (2 handed off to a human) -- the headline number is really the Quang Ngo case: he asked the docbot to customize an unsubscribe footer, then opened an identical Freshdesk ticket the same day under a different account, exposing a blind spot in clean email-match deflection tracking.",
     "actionableInsights": [
       {
         "owner": "calibration",
@@ -2128,13 +2149,13 @@ const ARCHIVE = {
       },
       {
         "owner": "design",
-        "title": "4 of 15 conversations needed a human -- resolution rate dipped from recent days",
-        "desc": "aishwarya.sinha (enable Insight Agent), rakesh.plaha (username/password template for learners), and deepesh.lakhera's two conversations (App PZ config, direct agent request) all escalated. None look like AI-rate-limit outages (per June 21-23) -- worth a quick check on whether these four genuinely needed a human or the bot gave up too early."
+        "title": "2 of 13 conversations needed a human -- resolution rate dipped from recent days",
+        "desc": "aishwarya.sinha (enable Insight Agent) and rakesh.plaha (username/password template for learners) both escalated. Neither looks like an AI-rate-limit outage (per June 21-23) -- worth a quick check on whether these two genuinely needed a human or the bot gave up too early."
       },
       {
         "owner": "calibration",
         "title": "Small sample, partial ticket-matching window",
-        "desc": "n=15, and the Freshdesk matching window (D through D+2) is only half-elapsed as of this run -- a same-user escalation landing on June 26 wouldn't be caught yet. Treat today's 100% deflection figure as a floor, not a final number."
+        "desc": "n=13, and the Freshdesk matching window (D through D+2) is only half-elapsed as of this run -- a same-user escalation landing on June 26 wouldn't be caught yet. Treat today's 100% deflection figure as a floor, not a final number."
       }
     ],
     "mostInteresting": {
@@ -2147,7 +2168,7 @@ const ARCHIVE = {
       {
         "theme": "How do I do X",
         "internal": 2,
-        "external": 7
+        "external": 6
       },
       {
         "theme": "Where's the doc/API for X",
@@ -2172,26 +2193,10 @@ const ARCHIVE = {
       {
         "theme": "Bare greeting, no context yet",
         "internal": 0,
-        "external": 1
+        "external": 0
       }
     ],
-    "topAskers": [
-      {
-        "email": "deepesh.lakhera@gmail.com",
-        "count": 2,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "How do I do X",
-            "text": "can you tell me how to configure App PZ"
-          },
-          {
-            "theme": "Bare greeting, no context yet",
-            "text": "I am looking for a customer support agent, can you connect me?"
-          }
-        ]
-      }
-    ],
+    "topAskers": [],
     "areas": [
       {
         "area": "API/Integration",
@@ -2280,7 +2285,7 @@ const ARCHIVE = {
       {
         "area": "General/Unclear (greeting only)",
         "internal": 4,
-        "external": 2,
+        "external": 0,
         "internalQ": [
           {
             "email": "lokesh.sharma@netcorecloud.com",
@@ -2299,20 +2304,11 @@ const ARCHIVE = {
             "q": "How to enable insight agent?"
           }
         ],
-        "externalQ": [
-          {
-            "email": "deepesh.lakhera@gmail.com",
-            "q": "can you tell me how to configure App PZ"
-          },
-          {
-            "email": "deepesh.lakhera@gmail.com",
-            "q": "I am looking for a customer support agent, can you connect me?"
-          }
-        ]
+        "externalQ": []
       }
     ]
   }
-}; // close ARCHIVE
+};
 const DATES = Object.keys(ARCHIVE).sort().reverse();
 
 function fmtDate(d){
@@ -2321,13 +2317,29 @@ function fmtDate(d){
 }
 const OWNER_LABEL = {content:"Content", product:"Product", design:"Design", calibration:"Read this first", security:"Security"};
 
-// Renders the "Ticket Deflection" card — cross-checks yesterday's docbot queries
-// against Freshdesk to see whether the bot actually saved a helpdesk ticket.
-// td is data.ticketDeflection: either the object built by Step 5 of the daily
-// pipeline, or null/undefined for days before this check existed (2026-06-24+ only).
+let activeTab = 'daily';
+let activeDate = DATES[0];
+
+function ringSVG(pct, idSuffix){
+  const size=104, stroke=10, r=(size-stroke)/2, c=2*Math.PI*r;
+  const off = c - (pct/100)*c;
+  return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 '+size+' '+size+'">'
+    + '<circle cx="'+size/2+'" cy="'+size/2+'" r="'+r+'" fill="none" stroke="#2a2d36" stroke-width="'+stroke+'"/>'
+    + '<circle cx="'+size/2+'" cy="'+size/2+'" r="'+r+'" fill="none" stroke="#e3a23c" stroke-width="'+stroke+'" stroke-dasharray="'+c+'" stroke-dashoffset="'+off+'" stroke-linecap="round" transform="rotate(-90 '+size/2+' '+size/2+')"/>'
+    + '<text x="50%" y="53%" text-anchor="middle" class="dial-pct">'+pct+'%</text>'
+    + '</svg>';
+}
+
+function splitBarHTML(internal, external){
+  const total = (internal+external) || 1;
+  const ip = internal/total*100, ep = external/total*100;
+  return '<div class="split-bar-track"><div class="split-seg internal" style="width:'+ip+'%"></div><div class="split-seg external" style="width:'+ep+'%"></div></div>'
+    + '<div class="split-legend"><span class="in">Netcore '+internal+'</span><span class="ex">Customer '+external+'</span></div>';
+}
+
 function renderDeflection(td){
   if(!td){
-    return '<div class="deflect anim" style="animation-delay:.11s"><div class="deflect-na">Not tracked for this date — Freshdesk cross-check wasn\'t available (or didn\'t exist yet) when this day was processed.</div></div>';
+    return '<div class="deflect-na">Not tracked for this date — Freshdesk cross-check wasn\'t available (or didn\'t exist yet) when this day was processed.</div>';
   }
   var escalations = td.sameUserEscalations || [];
   var esc = escalations.map(function(e){
@@ -2346,21 +2358,16 @@ function renderDeflection(td){
     }).join('');
     patternBlock = '<div class="deflect-subtag">Pattern risk — other users hit the same topic via a ticket</div>' + pat;
   }
-  return '<div class="deflect anim" style="animation-delay:.11s">'
-    + '<h2>Did the bot actually save anyone a ticket?</h2>'
-    + '<div class="sub">Checked against Freshdesk for tickets raised in the matching window ('+td.windowNote+'). <span style="color:var(--internal)">Deflected</span> = no matching ticket from that user. <span style="color:var(--external)">Escalated</span> = same user opened a ticket anyway.</div>'
+  return '<div class="acc-sub">Checked against Freshdesk for tickets raised in the matching window ('+td.windowNote+'). <span style="color:var(--internal)">Deflected</span> = no matching ticket from that user. <span style="color:var(--external)">Escalated</span> = same user opened a ticket anyway.</div>'
     + '<div class="deflect-grid">'
       + '<div class="deflect-stat good"><div class="v">'+td.deflectionRate+'%</div><div class="l">Deflected — '+td.deflectedCount+' of '+td.totalConversations+'</div></div>'
       + '<div class="deflect-stat bad"><div class="v">'+escalations.length+'</div><div class="l">Escalated by same user</div></div>'
     + '</div>'
     + escBlock
     + patternBlock
-    + '<div class="deflect-caveat">'+td.caveat+'</div>'
-  + '</div>';
+    + '<div class="deflect-caveat">'+td.caveat+'</div>';
 }
 
-// Aggregates across every date currently in ARCHIVE — recomputes automatically
-// as more days get appended, so this section needs no manual upkeep.
 function computeMasterSummary(archive){
   const dates = Object.keys(archive).sort();
   const askerMap = {};
@@ -2374,10 +2381,6 @@ function computeMasterSummary(archive){
     totalInternal += day.internalTotal;
     totalExternal += day.externalTotal;
 
-    // Count every individual question per person (not just the curated
-    // "top askers" highlight list) so power users reflect true volume across
-    // the full tracked duration, including people who ask once per day on
-    // several different days.
     (day.areas||[]).forEach(a=>{
       const key = a.area.replace(' (greeting only)','');
       if(!areaMap[key]) areaMap[key] = {internal:0, external:0};
@@ -2415,171 +2418,268 @@ function computeMasterSummary(archive){
   return { dates, totalConv, avgResolution, totalInternal, totalExternal, powerUsers, topAreas, maxAreaTotal, recurringUsers };
 }
 
-function render(data, availableDates){
-  const app = document.getElementById('app');
-  if(!data){
-    app.innerHTML = '<div class="empty"><h2>No dispatch yet</h2><p>This view refreshes once the daily pull runs.</p></div>';
-    return;
-  }
-  const dateOptions = availableDates.map(d => '<option value="'+d+'" '+(d===data.date?'selected':'')+'>'+fmtDate(d)+'</option>').join('');
-  const maxTheme = Math.max(...data.themesBySource.flatMap(t=>[t.internal,t.external]), 1);
+function renderSidebar(){
   const m = computeMasterSummary(ARCHIVE);
+  const data = ARCHIVE[activeDate];
+  const dialPct = activeTab==='daily' ? data.resolutionRate : m.avgResolution;
+  const dialCap = activeTab==='daily' ? "Bot-handled, today" : "Avg bot-handled / day";
+  const splitInt = activeTab==='daily' ? data.internalTotal : m.totalInternal;
+  const splitExt = activeTab==='daily' ? data.externalTotal : m.totalExternal;
 
-  app.innerHTML = `
-    <div class="masthead anim">
-      <div class="masthead-top">
-        <div class="wordmark">CE Docbot · Netcore Cloud</div>
-        <div class="date-picker-wrap">
-          <span class="date-badge">${availableDates.length} day${availableDates.length>1?'s':''} · browse ↓</span>
-          <select id="dateSelect">${dateOptions}</select>
-        </div>
-      </div>
-      <h1>Daily Dispatch</h1>
-      <div class="dateline">${fmtDate(data.date)}</div>
-      <div class="headline-take">${data.headline}</div>
+  const dateOptions = DATES.map(d => '<option value="'+d+'" '+(d===activeDate?'selected':'')+'>'+fmtDate(d)+'</option>').join('');
+
+  const dailyNav = [
+    ['sec-verdict','01','Verdict'],
+    ['sec-deflect','02','Did the bot save a ticket?'],
+    ['sec-act','03','Act on this'],
+    ['sec-question','04','Question of the day'],
+    ['sec-signal','05','Signal — knowledge gaps'],
+    ['sec-askers','06','Top askers'],
+    ['sec-beat','07','Beat report'],
+    ['sec-caveats','08','Caveats']
+  ];
+  const histNav = [
+    ['sec-h-verdict','01','All-time verdict'],
+    ['sec-h-power','02','Power users'],
+    ['sec-h-areas','03','Busiest sections'],
+    ['sec-h-recur','04','Worth a check-in']
+  ];
+  const nav = activeTab==='daily' ? dailyNav : histNav;
+
+  return `
+    <div class="side-brand">
+      <div class="wordmark">CE Docbot</div>
+      <div class="sub">Netcore Cloud · Daily Dispatch</div>
     </div>
 
-    <div class="stats anim" style="animation-delay:.05s">
-      <div class="stat"><div class="v">${data.totalConversations}</div><div class="l">Conversations</div></div>
-      <div class="stat"><div class="v">${data.resolutionRate}%</div><div class="l">Bot-handled*</div></div>
-      <div class="stat"><div class="v">${data.internalTotal}:${data.externalTotal}</div><div class="l">Netcore : Customer</div></div>
-      <div class="stat"><div class="v">${data.docsTotal}:${data.panelTotal}</div><div class="l">Docs : In-Panel</div></div>
-    </div>
-    <div class="qtype-row anim" style="animation-delay:.08s">
-      <span>Query type —</span>
-      <span class="qtype-pill tech">Technical ${data.queryType.technical}</span>
-      <span class="qtype-pill gen">Generic ${data.queryType.generic}</span>
-    </div>
-    <div class="footnote-mark">* self-reported by the bot's own session state — see the Ticket Deflection card below for the Freshdesk-checked version of this signal, where available</div>
-
-    <div class="tag">Ticket deflection</div>
-    ${renderDeflection(data.ticketDeflection)}
-
-    <div class="insights anim" style="animation-delay:.1s">
-      <h2>What to actually do with this</h2>
-      <div class="sub">Today's signals, routed to whoever should act on them.</div>
-      ${data.actionableInsights.map(i=>`
-        <div class="insight-row">
-          <div class="owner-chip ${i.owner}">${OWNER_LABEL[i.owner]}</div>
-          <div class="insight-body">
-            <div class="ititle">${i.title}</div>
-            <div class="idesc">${i.desc}</div>
-          </div>
-        </div>
-      `).join('')}
+    <div class="side-tabs">
+      <button class="tab-btn ${activeTab==='daily'?'active':''}" data-tab="daily"><span><span class="num">01</span>Daily</span></button>
+      <button class="tab-btn ${activeTab==='historical'?'active':''}" data-tab="historical"><span><span class="num">02</span>Overall Historical Summary Analysis</span></button>
     </div>
 
-    <div class="tag">Question of the day</div>
-    <div class="fieldnote anim" style="animation-delay:.15s">
-      <div class="quote">"${data.mostInteresting.query}"</div>
-      <div class="who">${data.mostInteresting.who} · ${data.mostInteresting.email}</div>
-      <div class="why">${data.mostInteresting.why}</div>
+    ${activeTab==='daily' ? `
+    <div class="side-block">
+      <div class="side-label">Browsing</div>
+      <select id="dateSelect">${dateOptions}</select>
+    </div>` : `
+    <div class="side-block">
+      <div class="side-label">Coverage</div>
+      <div class="side-static">${fmtDate(m.dates[0])} – ${fmtDate(m.dates[m.dates.length-1])}<br>${m.dates.length} day${m.dates.length>1?'s':''} tracked</div>
+    </div>`}
+
+    <div class="side-block">
+      <div class="side-label">${dialCap}</div>
+      <div class="dial-wrap">${ringSVG(dialPct)}</div>
     </div>
 
-    <section class="anim" style="animation-delay:.18s">
-      <h2>Signal — where the knowledge gap lives</h2>
-      <div class="sub">Same question themes, split by who's asking. Long Netcore bars with no customer counterpart usually mean internal enablement gaps, not customer-facing content gaps.</div>
-      <div class="legend">
-        <span><span class="swatch" style="background:var(--internal)"></span>Netcore team</span>
-        <span><span class="swatch" style="background:var(--external)"></span>Customer</span>
-      </div>
-      ${data.themesBySource.map(t=>{
-        const intPct = (t.internal/maxTheme*100);
-        const extPct = (t.external/maxTheme*100);
-        return '<div class="div-row"><div class="div-left"><span class="val">'+(t.internal||'')+'</span><div class="bar" style="width:'+intPct+'%;background:var(--internal)"></div></div><div class="div-center">'+t.theme+'</div><div class="div-right"><div class="bar ext" style="width:'+extPct+'%;background:var(--external)"></div><span class="val">'+(t.external||'')+'</span></div></div>';
-      }).join('')}
-    </section>
+    <div class="side-block">
+      <div class="side-label">Netcore : Customer</div>
+      ${splitBarHTML(splitInt, splitExt)}
+    </div>
 
-    <section class="anim" style="animation-delay:.2s">
-      <h2>Top askers</h2>
-      <div class="sub">Most active users today, with what they actually asked and which theme it falls under. Everyone else asked once each.</div>
-      ${data.topAskers.map((u,i)=>`
-        <div class="topask-card">
-          <div class="topask-head">
-            <div><span class="rank">${i+1}</span><span class="topask-email">${u.email}</span></div>
-            <span class="qcount">${u.count} queries</span>
-          </div>
-          ${u.queries.map(q=>'<div class="topask-q"><span class="t">'+q.theme+'</span>'+q.text+'</div>').join('')}
-          ${u.friction ? '<div class="friction">⚠ same question re-asked — possible content gap or unclear first answer</div>' : ''}
-        </div>
-      `).join('')}
-    </section>
-
-    <section class="anim" style="animation-delay:.22s">
-      <h2>Beat report — query areas</h2>
-      <div class="sub">Who's asking about what, by team, and the underlying question. <span class="email-in">Netcore emails</span> · <span class="email-ex">customer emails</span> · <span class="qtext">question text</span>.</div>
-      <div class="tablewrap">
-      <table>
-        <tr><th>Area</th><th>Netcore</th><th>Customer</th></tr>
-        ${data.areas.map(a=>{
-          const isGreeting = a.area.indexOf('General') === 0;
-          const renderQ = (arr, side) => arr.length ? '<div class="emaillist">'+arr.map(x=>'<div style="margin-bottom:6px"><span class="mono email-'+side+'">'+x.email+'</span><br><span class="qtext">'+x.q+'</span></div>').join('')+'</div>' : '';
-          return '<tr class="'+(isGreeting?'greeting-row':'')+'"><td><strong>'+a.area+'</strong></td><td>'+(a.internal?'<span class="countpill in">'+a.internal+'</span>':'<span class="dash">—</span>')+renderQ(a.internalQ,'in')+'</td><td>'+(a.external?'<span class="countpill ex">'+a.external+'</span>':'<span class="dash">—</span>')+renderQ(a.externalQ,'ex')+'</td></tr>';
-        }).join('')}
-      </table>
-      </div>
-    </section>
-
-    <div class="disclosure anim" style="animation-delay:.24s">
-      <h3>What this can (and can't) tell you yet</h3>
-      <ul>
-        <li>"Bot-handled" is the bot's own self-reported session state. From 2026-06-24 onward, the Ticket Deflection card above cross-checks this against Freshdesk directly — treat that card as the stronger signal when it's present, and this self-reported number as directional on days without it.</li>
-        <li>One day of data has no baseline. Numbers here are directional, not trends — wait for at least a week before treating any single count as a pattern.</li>
-        <li>Theme and area tags are classified from the first message of each conversation. Long threads may have evolved into something different than the opener suggests.</li>
+    <div class="side-block">
+      <div class="side-label">Jump to</div>
+      <ul class="side-nav">
+        ${nav.map(n=>'<li><a href="#'+n[0]+'"><span class="nnum">'+n[1]+'</span>'+n[2]+'</a></li>').join('')}
       </ul>
     </div>
+  `;
+}
 
-    <div class="master anim" style="animation-delay:.26s">
-      <h2>Master Summary — All Days</h2>
-      <div class="sub">Cumulative view across all ${m.dates.length} day${m.dates.length>1?'s':''} tracked so far (${fmtDate(m.dates[0])} – ${fmtDate(m.dates[m.dates.length-1])}). Power users and section volume are counted from every individual question in the archive, not just same-day highlights — this recomputes automatically as more days get added.</div>
-      <div class="master-grid">
-        <div class="master-stat"><div class="v">${m.totalConv}</div><div class="l">Conversations, all-time</div></div>
-        <div class="master-stat"><div class="v">${m.avgResolution}%</div><div class="l">Avg bot-handled / day</div></div>
-        <div class="master-stat"><div class="v">${m.totalInternal}:${m.totalExternal}</div><div class="l">Netcore : Customer, all-time</div></div>
+function renderDailyMain(data){
+  const maxTheme = Math.max(...data.themesBySource.flatMap(t=>[t.internal,t.external]), 1);
+  return `
+    <div class="hero anim" id="sec-verdict">
+      <div class="dateline">${fmtDate(data.date)}</div>
+      <h1>Daily Dispatch</h1>
+      <div class="headline-take">${data.headline}</div>
+      <div class="stats">
+        <div class="stat"><div class="v">${data.totalConversations}</div><div class="l">Conversations</div></div>
+        <div class="stat"><div class="v">${data.resolutionRate}%</div><div class="l">Bot-handled*</div></div>
+        <div class="stat"><div class="v">${data.internalTotal}:${data.externalTotal}</div><div class="l">Netcore : Customer</div></div>
+        <div class="stat"><div class="v">${data.docsTotal}:${data.panelTotal}</div><div class="l">Docs : In-Panel</div></div>
       </div>
-      <div class="master-cols">
-        <div>
-          <div class="master-subtag">Power users — most questions across the full duration</div>
-          ${m.powerUsers.length ? m.powerUsers.map((u,i)=>`
-            <div class="power-row">
-              <span class="power-rank">${String(i+1).padStart(2,'0')}</span>
-              <div class="power-id">
-                <span class="power-email">${u.email}</span>
-                <div class="power-sub"><span>mostly ${u.topArea}</span>${u.dayCount>1?'<span class="recurring-badge">'+u.dayCount+' days active</span>':''}</div>
-              </div>
-              <div class="power-count"><span class="v">${u.count}</span><span class="l">questions</span></div>
-            </div>
-          `).join('') : '<div class="power-sub">Not enough data yet.</div>'}
-        </div>
-        <div>
-          <div class="master-subtag">Busiest sections — where questions land most</div>
-          ${m.topAreas.map(a=>`
-            <div class="area-row">
-              <span class="area-name">${a.area}</span>
-              <div class="area-bar-track"><div class="area-bar-fill" style="width:${a.total/m.maxAreaTotal*100}%"></div></div>
-              <span class="area-count">${a.total}</span>
-            </div>
-          `).join('')}
-        </div>
+      <div class="qtype-row">
+        <span>Query type —</span>
+        <span class="qtype-pill tech">Technical ${data.queryType.technical}</span>
+        <span class="qtype-pill gen">Generic ${data.queryType.generic}</span>
       </div>
-      ${m.recurringUsers.length ? `<div class="master-note"><span class="master-note-label">↻ Worth a direct, proactive check-in — asked on more than one separate day</span><div class="recurring-chips">${m.recurringUsers.map(u=>`<span class="recurring-chip">${u.email}</span>`).join('')}</div></div>` : ''}
+      <div class="footnote-mark">* self-reported by the bot's own session state — see the Ticket Deflection card below for the Freshdesk-checked version of this signal, where available</div>
     </div>
+
+    <details class="acc anim" id="sec-deflect">
+      <summary><span><span class="snum">02</span>Did the bot actually save anyone a ticket?</span><span class="vm"><span class="vm-more">View more ↓</span><span class="vm-less">View less ↑</span></span></summary>
+      <div class="acc-body">${renderDeflection(data.ticketDeflection)}</div>
+    </details>
+
+    <details class="acc anim" id="sec-act">
+      <summary><span><span class="snum">03</span>What to actually do with this</span><span class="vm"><span class="vm-more">View more ↓</span><span class="vm-less">View less ↑</span></span></summary>
+      <div class="acc-body">
+        <div class="acc-sub">Today's signals, routed to whoever should act on them.</div>
+        ${data.actionableInsights.map(i=>`
+          <div class="insight-row">
+            <div class="owner-chip ${i.owner}">${OWNER_LABEL[i.owner]}</div>
+            <div class="insight-body">
+              <div class="ititle">${i.title}</div>
+              <div class="idesc">${i.desc}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </details>
+
+    <details class="acc anim" id="sec-question">
+      <summary><span><span class="snum">04</span>Question of the day</span><span class="vm"><span class="vm-more">View more ↓</span><span class="vm-less">View less ↑</span></span></summary>
+      <div class="acc-body fieldnote">
+        <div class="quote">"${data.mostInteresting.query}"</div>
+        <div class="who">${data.mostInteresting.who} · ${data.mostInteresting.email}</div>
+        <div class="why">${data.mostInteresting.why}</div>
+      </div>
+    </details>
+
+    <details class="acc anim" id="sec-signal">
+      <summary><span><span class="snum">05</span>Signal — where the knowledge gap lives</span><span class="vm"><span class="vm-more">View more ↓</span><span class="vm-less">View less ↑</span></span></summary>
+      <div class="acc-body">
+        <div class="acc-sub">Same question themes, split by who's asking. Long Netcore bars with no customer counterpart usually mean internal enablement gaps, not customer-facing content gaps.</div>
+        <div class="legend">
+          <span><span class="swatch" style="background:var(--internal)"></span>Netcore team</span>
+          <span><span class="swatch" style="background:var(--external)"></span>Customer</span>
+        </div>
+        ${data.themesBySource.map(t=>{
+          const intPct = (t.internal/maxTheme*100);
+          const extPct = (t.external/maxTheme*100);
+          return '<div class="div-row"><div class="div-left"><span class="val">'+(t.internal||'')+'</span><div class="bar" style="width:'+intPct+'%;background:var(--internal)"></div></div><div class="div-center">'+t.theme+'</div><div class="div-right"><div class="bar ext" style="width:'+extPct+'%;background:var(--external)"></div><span class="val">'+(t.external||'')+'</span></div></div>';
+        }).join('')}
+      </div>
+    </details>
+
+    <details class="acc anim" id="sec-askers">
+      <summary><span><span class="snum">06</span>Top askers</span><span class="vm"><span class="vm-more">View more ↓</span><span class="vm-less">View less ↑</span></span></summary>
+      <div class="acc-body">
+        <div class="acc-sub">Most active users today, with what they actually asked and which theme it falls under. Everyone else asked once each.</div>
+        ${data.topAskers.map((u,i)=>`
+          <div class="topask-card">
+            <div class="topask-head">
+              <div><span class="rank">${i+1}</span><span class="topask-email">${u.email}</span></div>
+              <span class="qcount">${u.count} queries</span>
+            </div>
+            ${u.queries.map(q=>'<div class="topask-q"><span class="t">'+q.theme+'</span>'+q.text+'</div>').join('')}
+            ${u.friction ? '<div class="friction">⚠ same question re-asked — possible content gap or unclear first answer</div>' : ''}
+          </div>
+        `).join('')}
+      </div>
+    </details>
+
+    <details class="acc anim" id="sec-beat">
+      <summary><span><span class="snum">07</span>Beat report — query areas</span><span class="vm"><span class="vm-more">View more ↓</span><span class="vm-less">View less ↑</span></span></summary>
+      <div class="acc-body">
+        <div class="acc-sub">Who's asking about what, by team, and the underlying question. <span class="email-in">Netcore emails</span> · <span class="email-ex">customer emails</span> · <span class="qtext">question text</span>.</div>
+        <div class="tablewrap">
+        <table>
+          <tr><th>Area</th><th>Netcore</th><th>Customer</th></tr>
+          ${data.areas.map(a=>{
+            const isGreeting = a.area.indexOf('General') === 0;
+            const renderQ = (arr, side) => arr.length ? '<div class="emaillist">'+arr.map(x=>'<div style="margin-bottom:6px"><span class="mono email-'+side+'">'+x.email+'</span><br><span class="qtext">'+x.q+'</span></div>').join('')+'</div>' : '';
+            return '<tr class="'+(isGreeting?'greeting-row':'')+'"><td><strong>'+a.area+'</strong></td><td>'+(a.internal?'<span class="countpill in">'+a.internal+'</span>':'<span class="dash">—</span>')+renderQ(a.internalQ,'in')+'</td><td>'+(a.external?'<span class="countpill ex">'+a.external+'</span>':'<span class="dash">—</span>')+renderQ(a.externalQ,'ex')+'</td></tr>';
+          }).join('')}
+        </table>
+        </div>
+      </div>
+    </details>
+
+    <details class="acc anim" id="sec-caveats">
+      <summary><span><span class="snum">08</span>What this can (and can't) tell you yet</span><span class="vm"><span class="vm-more">View more ↓</span><span class="vm-less">View less ↑</span></span></summary>
+      <div class="acc-body disclosure">
+        <ul>
+          <li>"Bot-handled" is the bot's own self-reported session state. From 2026-06-24 onward, the Ticket Deflection card above cross-checks this against Freshdesk directly — treat that card as the stronger signal when it's present, and this self-reported number as directional on days without it.</li>
+          <li>One day of data has no baseline. Numbers here are directional, not trends — wait for at least a week before treating any single count as a pattern.</li>
+          <li>Theme and area tags are classified from the first message of each conversation. Long threads may have evolved into something different than the opener suggests.</li>
+        </ul>
+      </div>
+    </details>
 
     <div class="footer-note">CE Docbot daily pulse · Featurebase, Netcore CE workspace</div>
   `;
+}
 
+function renderHistoricalMain(){
+  const m = computeMasterSummary(ARCHIVE);
+  return `
+    <div class="hero anim" id="sec-h-verdict">
+      <div class="dateline">${fmtDate(m.dates[0])} – ${fmtDate(m.dates[m.dates.length-1])}</div>
+      <h1>Overall Historical Summary Analysis</h1>
+      <div class="headline-take">Cumulative view across all ${m.dates.length} day${m.dates.length>1?'s':''} tracked so far. Power users and section volume are counted from every individual question in the archive, not just same-day highlights — this recomputes automatically as more days get added.</div>
+      <div class="stats" style="grid-template-columns:repeat(3,1fr)">
+        <div class="stat"><div class="v">${m.totalConv}</div><div class="l">Conversations, all-time</div></div>
+        <div class="stat"><div class="v">${m.avgResolution}%</div><div class="l">Avg bot-handled / day</div></div>
+        <div class="stat"><div class="v">${m.totalInternal}:${m.totalExternal}</div><div class="l">Netcore : Customer, all-time</div></div>
+      </div>
+    </div>
+
+    <details class="acc anim" id="sec-h-power">
+      <summary><span><span class="snum">02</span>Power users — most questions across the full duration</span><span class="vm"><span class="vm-more">View more ↓</span><span class="vm-less">View less ↑</span></span></summary>
+      <div class="acc-body">
+        ${m.powerUsers.length ? m.powerUsers.map((u,i)=>`
+          <div class="power-row">
+            <span class="power-rank">${String(i+1).padStart(2,'0')}</span>
+            <div class="power-id">
+              <span class="power-email">${u.email}</span>
+              <div class="power-sub"><span>mostly ${u.topArea}</span>${u.dayCount>1?'<span class="recurring-badge">'+u.dayCount+' days active</span>':''}</div>
+            </div>
+            <div class="power-count"><span class="v">${u.count}</span><span class="l">questions</span></div>
+          </div>
+        `).join('') : '<div class="power-sub">Not enough data yet.</div>'}
+      </div>
+    </details>
+
+    <details class="acc anim" id="sec-h-areas">
+      <summary><span><span class="snum">03</span>Busiest sections — where questions land most</span><span class="vm"><span class="vm-more">View more ↓</span><span class="vm-less">View less ↑</span></span></summary>
+      <div class="acc-body">
+        ${m.topAreas.map(a=>`
+          <div class="area-row">
+            <span class="area-name">${a.area}</span>
+            <div class="area-bar-track"><div class="area-bar-fill" style="width:${a.total/m.maxAreaTotal*100}%"></div></div>
+            <span class="area-count">${a.total}</span>
+          </div>
+        `).join('')}
+      </div>
+    </details>
+
+    ${m.recurringUsers.length ? `
+    <details class="acc anim" id="sec-h-recur">
+      <summary><span><span class="snum">04</span>Worth a direct, proactive check-in</span><span class="vm"><span class="vm-more">View more ↓</span><span class="vm-less">View less ↑</span></span></summary>
+      <div class="acc-body">
+        <div class="master-note-label">Asked on more than one separate day</div>
+        <div class="recurring-chips">${m.recurringUsers.map(u=>`<span class="recurring-chip">${u.email}</span>`).join('')}</div>
+      </div>
+    </details>` : ''}
+
+    <div class="footer-note">CE Docbot daily pulse · Featurebase, Netcore CE workspace</div>
+  `;
+}
+
+function render(){
+  const sidebar = document.getElementById('sidebar');
+  const main = document.getElementById('main');
+  sidebar.innerHTML = renderSidebar();
+  main.innerHTML = activeTab==='daily' ? renderDailyMain(ARCHIVE[activeDate]) : renderHistoricalMain();
+
+  sidebar.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ activeTab = btn.dataset.tab; render(); });
+  });
   const sel = document.getElementById('dateSelect');
-  if (sel) {
-    sel.addEventListener('change', (e)=>{
-      const picked = e.target.value;
-      if (ARCHIVE[picked]) render(ARCHIVE[picked], availableDates);
-    });
+  if(sel){
+    sel.addEventListener('change', (e)=>{ activeDate = e.target.value; render(); });
   }
 }
 
 function boot(){
-  const latestDate = DATES[0];
-  render(ARCHIVE[latestDate], DATES);
+  if(!DATES.length){
+    document.getElementById('main').innerHTML = '<div class="empty"><h2>No dispatch yet</h2><p>This view refreshes once the daily pull runs.</p></div>';
+    return;
+  }
+  activeDate = DATES[0];
+  render();
 }
 boot();
 </script>
