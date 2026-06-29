@@ -2,7 +2,7 @@
 {
   "name": "Ce Docbot Summary 2026 06 17",
   "schemaVersion": 1,
-  "description": "Daily Featurebase customer-conversation summary for the Netcore CE workspace — rolling 14-day dashboard, latest day 2026-06-18. Shows volume, internal vs external split, docs-portal vs in-panel source, themes, repeat askers, and actionable insights."
+  "description": "Daily Featurebase customer-conversation summary for the Netcore CE workspace — rolling 14-day dashboard, latest day 2026-06-28. Shows volume, internal vs external split, docs-portal vs in-panel source, themes, repeat askers, and actionable insights."
 }
 </script>
 <html lang="en">
@@ -2919,6 +2919,306 @@ const ARCHIVE = /*ARCHIVE_JSON_PLACEHOLDER*/{
           {
             "email": "abhishek.arora@clix.capital",
             "q": "Hi"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-06-27": {
+    "date": "2026-06-27",
+    "totalConversations": 3,
+    "resolutionRate": 100,
+    "internalTotal": 0,
+    "externalTotal": 3,
+    "docsTotal": 3,
+    "panelTotal": 0,
+    "queryType": {
+      "technical": 1,
+      "generic": 2
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days",
+      "totalConversations": 3,
+      "sameUserEscalations": [],
+      "deflectedCount": 3,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit — treat as a directional signal. Checked both unique requester emails (mustkimraj@gmail.com, ramanjeet.singh@iiflhomeloans.com) via Freshdesk global search — zero ticket matches for either. Tier-2 keyword search for 'communication log' (Infra/Data residency, the day's repeat theme) returned 36 historical tickets, but the nearest is 4 days old and from an unrelated company (Indiabulls Housing Finance) — no match inside the relevant window."
+    },
+    "headline": "Quiet day — 3 conversations on June 27, 100% bot-resolved, all external. IIFL Home Loans hit the platform's 12-month data-retention wall twice in 8 minutes; separately, a user needed 3 follow-ups before the bot could explain there's no UI button to re-download an already-uploaded HTML template, only a backend API.",
+    "actionableInsights": [
+      {
+        "owner": "content/product",
+        "title": "No UI path to re-download an uploaded HTML template",
+        "desc": "mustkimraj@gmail.com tried three different phrasings (\"download the file\", \"download the design\", \"download uploaded html files\") before the bot's real answer landed: there's no documented \"download\" button for a template once it's uploaded — the only route is the Get Email Template API. If the UI genuinely lacks this, it's a product gap; if it exists, the bot/docs aren't surfacing it. Worth a quick check with engineering."
+      },
+      {
+        "owner": "CS/support",
+        "title": "Same user, two log requests, 8 minutes apart — denied both times",
+        "desc": "ramanjeet.singh@iiflhomeloans.com first asked for 2022 communication logs (blocked by the 12-month retention policy), then immediately asked for logs against a specific Netcore ID (NC-229993, not found). No Freshdesk ticket followed, but two denied asks this close together from one account is a stronger signal than either alone — worth a proactive CS touch rather than waiting for an escalation."
+      },
+      {
+        "owner": "calibration",
+        "title": "n=3 — third quiet day running, still not a trend",
+        "desc": "June 26 was the last double-digit-volume day. Keep reading single-day numbers as data points, not signal — lean on the rolling 14-day view."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Mustkim Husain",
+      "email": "mustkimraj@gmail.com",
+      "query": "Wants to download an already-uploaded HTML email template/design back out of the editor",
+      "why": "Took three follow-ups to land on the real ask, and the bot's only documented answer was a backend API call (Get Email Template) — a real product gap, not just a doc gap."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 0
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "ramanjeet.singh@iiflhomeloans.com",
+        "count": 2,
+        "friction": true,
+        "queries": [
+          {
+            "theme": "Is X possible/supported",
+            "text": "Communication logs for year 2022 — blocked by 12-month data retention policy"
+          },
+          {
+            "theme": "Where do I set up/find X",
+            "text": "Communication log for Netcore ID NC-229993 — record not found"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "mustkimraj@gmail.com",
+            "q": "Wants to re-download an uploaded HTML email template/design — no UI path, only the Get Email Template API"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "ramanjeet.singh@iiflhomeloans.com",
+            "q": "Communication logs for year 2022 — blocked by 12-month data retention policy"
+          },
+          {
+            "email": "ramanjeet.singh@iiflhomeloans.com",
+            "q": "Communication log for Netcore ID NC-229993 — record not found"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      }
+    ]
+  },
+  "2026-06-28": {
+    "date": "2026-06-28",
+    "totalConversations": 2,
+    "resolutionRate": 100,
+    "internalTotal": 1,
+    "externalTotal": 1,
+    "docsTotal": 2,
+    "panelTotal": 0,
+    "queryType": {
+      "technical": 0,
+      "generic": 2
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days",
+      "totalConversations": 2,
+      "sameUserEscalations": [],
+      "deflectedCount": 2,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit — treat as a directional signal. Checked both unique requester emails (heena.shah@netcorecloud.com, murtimurti067@gmail.com) via Freshdesk global search — zero ticket matches for either. Tier-2 keyword search for 'frequency capping' (Broadcast/Webhooks, the only area with a hit) returned no tickets inside the matching window — the most recent match was 3 days old."
+    },
+    "headline": "Quietest day on record — just 2 conversations on June 28, both bot-resolved and neither produced a single Freshdesk ticket: one a real product question on broadcast frequency-capping defaults, the other a Hindi-language '2-wheeler loan' ask with nothing to do with Netcore CE.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "Sample size of 2 — today is a data point, not a trend",
+        "desc": "n=2 for June 28, the smallest day in the archive so far. Don't read today's 100% deflection rate or theme split as signal — lean entirely on the rolling 14-day view."
+      },
+      {
+        "owner": "content",
+        "title": "Frequency capping's default state still isn't documented",
+        "desc": "Heena Shah (internal) asked whether frequency capping is enabled or disabled by default for new campaigns; the bot explicitly said the docs don't specify this and could only describe how to toggle it manually. Quick fix — state the actual default plainly on the Frequency Capping help page."
+      },
+      {
+        "owner": "design",
+        "title": "Off-topic, non-English query reached the bot with no redirect",
+        "desc": "Pradeep Singh (gmail.com) asked the CE docs bot, in Hindi, for help getting a '2-wheeler loan' — entirely unrelated to Netcore CE. The bot correctly declined, but a lightweight 'this looks unrelated to Netcore CE' redirect earlier in the flow (same pattern seen with the June 17 credit-card-activation ask) would cut this kind of noise before it burns a full session."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Heena Shah",
+      "email": "heena.shah@netcorecloud.com",
+      "query": "Frequency capping for broadcast campaigns — is it enabled or disabled by default for new campaigns?",
+      "why": "A precise, product-savvy follow-up (global vs. campaign-level toggle, default state) rather than basic navigation help — the most specific ask of a very quiet day."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 0
+      }
+    ],
+    "topAskers": [],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "heena.shah@netcorecloud.com",
+            "q": "Frequency capping for broadcast campaigns — is it enabled or disabled by default for new campaigns?"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "murtimurti067@gmail.com",
+            "q": "2 whiler paroan chaiye / Loan (off-topic loan request in Hindi, not a CE product question)"
           }
         ]
       }
