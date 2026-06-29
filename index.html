@@ -336,6 +336,80 @@ table td{padding:10px 8px; border-bottom:1px solid var(--paperline); vertical-al
 .takeaway-bullets li.reco{color:var(--text); font-weight:500;}
 .takeaway-bullets li .mono{color:var(--text); font-weight:600;}
 
+/* busiest sections — leadership view (top 3 cards + condensed "also active" list) */
+.lead-areas{display:flex; flex-direction:column; gap:12px; margin-top:4px;}
+.lead-area-card{
+  display:flex; gap:16px; padding:18px 18px;
+  background:var(--paper2); border:1px solid var(--paperline); border-left:3px solid var(--signal);
+  border-radius:12px; transition:box-shadow .15s ease;
+}
+.lead-area-card:hover{box-shadow:0 4px 14px rgba(0,0,0,.06);}
+.lead-area-card.internal{border-left-color:var(--internal);}
+.lead-area-card.external{border-left-color:var(--external);}
+.lead-area-card.balanced{border-left-color:var(--signal);}
+.lead-area-rank{
+  font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:700; flex-shrink:0;
+  width:28px; height:28px; border-radius:50%; background:var(--ink); color:#fff;
+  display:flex; align-items:center; justify-content:center;
+}
+.lead-area-body{flex:1; min-width:0;}
+.lead-area-top{display:flex; align-items:baseline; justify-content:space-between; gap:10px; flex-wrap:wrap;}
+.lead-area-name{font-family:'Fraunces',serif; font-weight:600; font-size:17px;}
+.lead-area-pct{font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--dimtext); white-space:nowrap;}
+.lead-area-total{font-size:12px; color:var(--dimtext); margin:3px 0 10px;}
+.lead-area-body .split-bar-track{margin-bottom:6px;}
+.lead-area-insight{font-size:13.5px; line-height:1.5; color:var(--text); margin-top:8px; padding-left:14px; position:relative;}
+.lead-area-insight::before{content:'→'; position:absolute; left:0; color:var(--signal); font-weight:700;}
+.lead-area-insight .mono{font-weight:700;}
+
+.other-areas{margin-top:18px; padding-top:16px; border-top:1px solid var(--paperline);}
+.other-areas-label{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--signal); display:block; margin-bottom:10px;}
+.other-areas-list{display:flex; flex-wrap:wrap; gap:8px;}
+.other-area-chip{font-family:'JetBrains Mono',monospace; font-size:11.5px; background:var(--paper); border:1px solid var(--paperline); padding:5px 10px; border-radius:7px; color:var(--text);}
+.other-area-chip .mono{font-weight:700;}
+.other-area-chip .dim{color:var(--dimtext); font-weight:400;}
+
+/* click-through affordances */
+.lead-area-card{cursor:pointer;}
+.other-area-chip{cursor:pointer; transition:background .15s ease;}
+.other-area-chip:hover{background:var(--paperline);}
+.power-row{cursor:pointer;}
+.power-cta{color:var(--dimtext); font-size:15px; flex-shrink:0; transition:transform .15s ease, color .15s ease;}
+.power-row:hover .power-cta{color:var(--signal); transform:translateX(2px);}
+.cta-hint{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--signal); margin-top:10px; display:inline-flex; align-items:center; gap:4px;}
+.cta-hint::after{content:'→'; transition:transform .15s ease;}
+.lead-area-card:hover .cta-hint::after{transform:translateX(3px);}
+
+/* area trend chip — first half vs second half of the tracked window */
+.lead-area-trend{font-family:'JetBrains Mono',monospace; font-size:10.5px; padding:2px 8px; border-radius:6px; margin-left:8px; white-space:nowrap;}
+.lead-area-trend.up{background:rgba(226,101,79,.15); color:var(--bad);}
+.lead-area-trend.down{background:rgba(76,175,130,.15); color:var(--good);}
+
+/* drilldown modal — shared by area + power-user click-through */
+.modal-overlay{display:none; position:fixed; inset:0; background:rgba(10,10,12,.55); z-index:50; align-items:center; justify-content:center; padding:24px;}
+.modal-overlay.open{display:flex;}
+.modal-box{background:var(--paper2); border:1px solid var(--paperline); border-radius:14px; max-width:680px; width:100%; max-height:80vh; display:flex; flex-direction:column; box-shadow:0 20px 60px rgba(0,0,0,.3); position:relative;}
+.modal-close{position:absolute; top:14px; right:14px; background:none; border:none; font-size:24px; line-height:1; color:var(--dimtext); cursor:pointer; padding:2px 9px; border-radius:6px;}
+.modal-close:hover{background:var(--paper); color:var(--text);}
+.modal-head{padding:22px 26px 14px; border-bottom:1px solid var(--paperline);}
+.modal-title{font-family:'Fraunces',serif; font-weight:600; font-size:19px; margin-bottom:6px; padding-right:32px; word-break:break-word;}
+.modal-meta{font-size:12px; color:var(--dimtext); line-height:1.5;}
+.modal-meta .mono{color:var(--text); font-weight:700;}
+.modal-body{padding:6px 26px 22px; overflow-y:auto; flex:1;}
+.modal-q{padding:12px 0; border-bottom:1px solid var(--paperline);}
+.modal-q:last-child{border-bottom:none;}
+.modal-q-meta{display:flex; gap:6px; align-items:center; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--dimtext); margin-bottom:5px; flex-wrap:wrap;}
+.modal-q-meta .mono{color:var(--dimtext);}
+.modal-q-badge{padding:1px 7px; border-radius:5px; font-weight:600; text-transform:uppercase; letter-spacing:.04em; font-size:9.5px;}
+.modal-q-badge.internal{background:rgba(63,174,156,.15); color:var(--internal);}
+.modal-q-badge.external{background:rgba(224,120,86,.15); color:var(--external);}
+.modal-q-badge.technical{background:rgba(90,146,214,.15); color:var(--content);}
+.modal-q-badge.generic{background:rgba(227,162,60,.15); color:var(--signal);}
+.modal-q-badge.spam{background:rgba(226,101,79,.15); color:var(--bad);}
+.modal-q-first{background:rgba(227,162,60,.2); color:var(--signal); padding:1px 7px; border-radius:5px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; font-size:9.5px;}
+.modal-q-text{font-size:13.5px; line-height:1.5; color:var(--text);}
+.modal-empty{padding:30px 0; text-align:center; color:var(--dimtext); font-size:13px;}
+
 .tag{font-family:'JetBrains Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.08em; color:#a4a097; margin:0 0 6px;}
 .footer-note{font-size:11.5px; color:#a4a097; text-align:center; margin-top:40px; font-family:'JetBrains Mono',monospace;}
 .empty{padding:60px 0; text-align:center; color:var(--dimtext);}
@@ -361,6 +435,16 @@ table td{padding:10px 8px; border-bottom:1px solid var(--paperline); vertical-al
 <div class="shell">
   <aside class="sidebar" id="sidebar"></aside>
   <main class="main" id="main"></main>
+</div>
+<div class="modal-overlay" id="drillModal">
+  <div class="modal-box">
+    <button class="modal-close" id="drillModalClose" type="button" aria-label="Close">&times;</button>
+    <div class="modal-head">
+      <div class="modal-title" id="drillModalTitle"></div>
+      <div class="modal-meta" id="drillModalMeta"></div>
+    </div>
+    <div class="modal-body" id="drillModalBody"></div>
+  </div>
 </div>
 <script>
 const ARCHIVE = /*ARCHIVE_JSON_PLACEHOLDER*/{
@@ -3296,32 +3380,45 @@ function classifyAreaPattern(internal, external){
   return {label:'balanced — both sides hit this equally', cls:'balanced'};
 }
 
-// Heuristic only — classifies on question-opener phrasing, not a re-run of the original
-// AI tagging. Used to surface *what kind* of question dominates an area, not to reconcile counts.
-function classifyQuestionOpener(text){
-  const t = (text||'').trim().toLowerCase();
-  if(/^(how (do|can|to|does|would)|can (i|you|we))/.test(t)) return '“how do I…”';
-  if(/^where/.test(t)) return '“where can I find…”';
-  if(/^(what|which)/.test(t)) return '“what is/does…”';
-  if(/^(is|are|does|will|do)\b/.test(t)) return '“is X possible/supported…”';
-  if(/(error|fail|issue|broken|stuck|not work|doesn'?t work)/.test(t)) return 'troubleshooting / something broke';
-  return 'other';
+// Ties each top area's one-line insight to a real, already-computed signal (upload/harvest
+// failures, or a same-user Freshdesk escalation) when one exists for that area; falls back to
+// the internal/external skew framing otherwise. Deliberately NOT a phrase-bucket heuristic —
+// that produced noise ("mostly 'how do I' asks") rather than something a CTO/CEO would act on.
+function buildAreaInsight(a, m){
+  const upHits = (m.uploadHits||[]).filter(h=>h.area===a.area);
+  if(upHits.length){
+    const pctOfArea = a.total ? Math.round(upHits.length/a.total*100) : 0;
+    return '<span class="mono">'+upHits.length+'</span> of these ('+pctOfArea+'%) are upload/data-ingestion failures — a recurring platform-reliability pattern, not isolated user error.';
+  }
+  const escForArea = (m.deflEscalations||[]).filter(e=>e.area===a.area);
+  if(escForArea.length){
+    return '<span class="mono">'+escForArea.length+'</span> of '+a.total+' escalated to a Freshdesk ticket from the same person — the bot’s answer alone didn’t close the loop.';
+  }
+  const label = a.pattern.label;
+  return label.charAt(0).toUpperCase()+label.slice(1)+'.';
 }
 
-function summarizeAreaPattern(samples, fallbackLabel){
-  if(!samples || !samples.length) return fallbackLabel;
-  const buckets = {};
-  samples.forEach(s=>{
-    const k = classifyQuestionOpener(s.q);
-    (buckets[k] = buckets[k]||[]).push(s.q);
+// Splits the tracked window in half (by date, not by count) and compares an area's
+// per-day question rate in the second half vs the first — a real "is this getting worse
+// or better" signal, not just a static total. Needs >=4 tracked days to be meaningful.
+function computeAreaTrend(area, m){
+  const dates = m.dates;
+  if(dates.length < 4) return null;
+  const mid = Math.ceil(dates.length/2);
+  const firstHalf = new Set(dates.slice(0, mid));
+  const secondHalf = new Set(dates.slice(mid));
+  let firstCount = 0, secondCount = 0;
+  m.allQuestions.forEach(q=>{
+    if(q.area !== area) return;
+    if(firstHalf.has(q.date)) firstCount++;
+    else if(secondHalf.has(q.date)) secondCount++;
   });
-  let ranked = Object.entries(buckets).filter(e=>e[0]!=='other').sort((a,b)=>b[1].length-a[1].length);
-  if(!ranked.length) ranked = Object.entries(buckets).sort((a,b)=>b[1].length-a[1].length);
-  const top = ranked.slice(0,2);
-  const phrase = top.map(e=>e[0]+' ('+e[1].length+')').join(' and ');
-  const example = (top[0] && top[0][1][0]) || '';
-  const exShort = example.length > 72 ? example.slice(0,69)+'…' : example;
-  return 'Mostly '+phrase+' asks — '+fallbackLabel+(exShort ? ' <span class="ex">· e.g. “'+exShort+'”</span>' : '');
+  if(firstCount===0 && secondCount===0) return null;
+  const firstRate = firstCount/firstHalf.size;
+  const secondRate = secondCount/secondHalf.size;
+  if(firstRate===0) return null;
+  const pctChange = Math.round((secondRate-firstRate)/firstRate*100);
+  return {firstCount, secondCount, pctChange};
 }
 
 // Heuristic only — used purely to power the "show me examples" click-through on the
@@ -3331,6 +3428,41 @@ function classifyQueryType(text){
   const t = (text||'').toLowerCase();
   const techCues = ['api','integration','webhook','error','fail','bug','not working',"doesn't work",'config','json','csv','script','code','sdk','token','auth','segment','journey','rate limit','sync','timeout','404','500','log','endpoint','payload','schema','sso','smtp','dkim','dns','retry','queue','export','import'];
   return techCues.some(c=>t.indexOf(c)>=0) ? 'technical' : 'generic';
+}
+
+// Some inbound traffic to this bot isn't a Netcore CE question at all — stray loan/credit/
+// lottery/job-spam style messages that look like they landed here by mistake (shared WhatsApp
+// number, wrong contact, generic bot/scraper noise). Left in, they pollute every aggregate
+// below with content nobody on the CE team can or should act on. Detected items are NEVER
+// silently dropped — they're filtered out of the analysis arrays below AND listed in full,
+// with the matched reason, in the "Data hygiene" panel so this stays auditable, not opaque.
+const SPAM_SIGNALS = [
+  {cat:'Loan / credit request', kws:['loan','cibil','credit card apply','apply for credit card','udhar chahiye','udhar chaiye','paisa chahiye','loan chahiye','loan chaiye','gold loan','personal loan','home loan','car loan',' emi ','emi options for','emi kab','payu finance','pay u finance','bajaj finance','finance se ho','finance karwana']},
+  {cat:'Investment / trading spam', kws:['mutual fund','sip investment','demat account','stock tips','crypto invest','bitcoin invest','forex trading','share market tips','intraday tips']},
+  {cat:'Lottery / prize scam', kws:['you have won','claim your prize','lottery','jackpot','lucky draw winner','congratulations you']},
+  {cat:'Gambling', kws:['casino','betting app','satta ','online betting','rummy app']},
+  {cat:'Job / earn-money spam', kws:['work from home job','earn money daily','part time job offer','data entry job','earn from home','job vacancy']},
+  {cat:'Government ID / KYC spam', kws:['aadhar card update','pan card update','kyc pending','kyc update required','update your kyc']},
+  {cat:'Government subsidy / scheme spam', kws:['subsidy','sarkari yojana','pm yojana','kisan yojana','yojana ka labh','scheme ka paisa']},
+  {cat:'Insurance spam', kws:['insurance policy','renew your policy','policy renewal','lic policy']}
+];
+
+// Pure greetings with no actual question ("hi", "hello", "hey" and nothing else) carry zero
+// product signal — they're session-opener noise, not a CE topic, and inflate area/user counts
+// without telling any PM anything actionable. Matched on the FULL trimmed message, never as a
+// substring, so a real question that happens to start with "Hi, how do I..." is never caught.
+const GREETING_ONLY_RE = /^(hi+|h+ello+|hey+|hii+|helo+|yo|sup|good\s?(morning|afternoon|evening|day)|greetings|namaste|hola)[\s!.,?]*$/i;
+
+function detectSpam(text){
+  const raw = (text||'').trim();
+  if(GREETING_ONLY_RE.test(raw)) return 'Greeting only — no actual question';
+  const t = ' '+raw.toLowerCase()+' ';
+  for(const sig of SPAM_SIGNALS){
+    for(const kw of sig.kws){
+      if(t.indexOf(kw) >= 0) return sig.cat;
+    }
+  }
+  return null;
 }
 
 function findPatternRiskByKeyword(archive, keyword){
@@ -3356,6 +3488,7 @@ function computeMasterSummary(archive){
   let uploadHits = [];
   let competitorHits = [];
   let allQuestions = [];
+  let suppressed = [];
   let deflDeflected = 0, deflChecked = 0, deflDaysTracked = [], deflEscalations = [];
 
   const BASIC_THEMES = ['How do I do X', "What does X mean/how it works", 'Where do I set up/find X', "Where's the doc/API for X"];
@@ -3380,8 +3513,6 @@ function computeMasterSummary(archive){
     (day.areas||[]).forEach(a=>{
       const key = a.area.replace(' (greeting only)','');
       if(!areaMap[key]) areaMap[key] = {internal:0, external:0, samples:[]};
-      areaMap[key].internal += a.internal;
-      areaMap[key].external += a.external;
 
       const tally = (x, map)=>{
         if(!map[x.email]) map[x.email] = {count:0, days:new Set(), areas:{}};
@@ -3389,15 +3520,24 @@ function computeMasterSummary(archive){
         map[x.email].days.add(d);
         map[x.email].areas[key] = (map[x.email].areas[key]||0)+1;
       };
+      // Area/power-user/drilldown aggregates are built ONLY from non-spam questions —
+      // each item is checked against detectSpam() before it's allowed to count toward
+      // anything. Matches are routed to `suppressed` instead, never silently discarded.
       (a.internalQ||[]).forEach(x=>{
+        const spamCat = detectSpam(x.q);
+        if(spamCat){ suppressed.push({date:d, area:key, side:'internal', email:x.email, q:x.q, reason:spamCat}); return; }
         tally(x, askerInternal);
+        areaMap[key].internal++;
         areaMap[key].samples.push({q:x.q});
         allQuestions.push({date:d, area:key, side:'internal', email:x.email, q:x.q});
         const text = (x.q||'').toLowerCase();
         if(UPLOAD_KW.some(k=>text.indexOf(k)>=0)) uploadHits.push({date:d, area:key, side:'internal', email:x.email, q:x.q});
       });
       (a.externalQ||[]).forEach(x=>{
+        const spamCat = detectSpam(x.q);
+        if(spamCat){ suppressed.push({date:d, area:key, side:'external', email:x.email, q:x.q, reason:spamCat}); return; }
         tally(x, askerExternal);
+        areaMap[key].external++;
         areaMap[key].samples.push({q:x.q});
         allQuestions.push({date:d, area:key, side:'external', email:x.email, q:x.q});
         const text = (x.q||'').toLowerCase();
@@ -3431,23 +3571,29 @@ function computeMasterSummary(archive){
   const powerUsersInternal = buildPowerList(askerInternal);
   const powerUsersExternal = buildPowerList(askerExternal);
 
+  // validTotalConv = raw logged volume minus detected spam/off-topic noise. Used as the
+  // denominator for area share so "% of volume" reflects genuine CE questions, not bot/spam
+  // traffic that happened to land in the same inbox. The raw totalConv (hero stat) is left
+  // untouched since it's sourced straight from each day's own pipeline count.
+  const validTotalConv = Math.max(totalConv - suppressed.length, 0);
+
   const topAreas = Object.entries(areaMap)
     .map(([area,v])=>{
       const total = v.internal+v.external;
       const pattern = classifyAreaPattern(v.internal, v.external);
-      return {area, total, internal:v.internal, external:v.external, pattern, patternText: summarizeAreaPattern(v.samples, pattern.label)};
+      const pct = validTotalConv ? Math.round(total/validTotalConv*100) : 0;
+      return {area, total, internal:v.internal, external:v.external, pattern, pct};
     })
     .filter(a=>a.total>0)
     .sort((a,b)=>b.total-a.total);
 
-  const maxAreaTotal = Math.max(...topAreas.map(a=>Math.max(a.internal,a.external)), 1);
   const avgResolution = dates.length ? Math.round(totalResSum/dates.length) : 0;
 
   const basicTotal = basicInternal + basicExternal;
   const basicPct = totalConv ? Math.round(basicTotal/totalConv*100) : 0;
 
   const apiArea = topAreas.find(a=>a.area.indexOf('API') >= 0) || null;
-  const apiPct = (apiArea && totalConv) ? Math.round(apiArea.total/totalConv*100) : 0;
+  const apiPct = (apiArea && validTotalConv) ? Math.round(apiArea.total/validTotalConv*100) : 0;
 
   const uploadExternalCount = uploadHits.filter(h=>h.side==='external').length;
   const uploadInternalCount = uploadHits.filter(h=>h.side==='internal').length;
@@ -3460,15 +3606,16 @@ function computeMasterSummary(archive){
   const topInternalRepeat = powerUsersInternal[0] || null;
 
   return {
-    dates, totalConv, avgResolution, totalInternal, totalExternal,
+    dates, totalConv, validTotalConv, avgResolution, totalInternal, totalExternal,
     techTotal, genTotal,
     powerUsersInternal, powerUsersExternal,
-    topAreas, maxAreaTotal,
+    topAreas,
     basicInternal, basicExternal, basicTotal, basicPct,
     apiArea, apiPct,
     uploadHits, uploadExternalCount, uploadInternalCount, uploadPeak,
     deflDeflected, deflChecked, deflRate, deflDaysTracked, deflEscalations,
-    quangCase, competitorHits, topInternalRepeat, allQuestions
+    quangCase, competitorHits, topInternalRepeat, allQuestions,
+    suppressed, suppressedCount: suppressed.length
   };
 }
 
@@ -3496,7 +3643,8 @@ function renderSidebar(){
     ['sec-h-verdict','01','All-time verdict'],
     ['sec-h-takeaways','02','Key takeaways'],
     ['sec-h-areas','03','Busiest sections'],
-    ['sec-h-power','04','Power users']
+    ['sec-h-power','04','Power users'],
+    ['sec-h-hygiene','05','Data hygiene']
   ];
   const nav = activeTab==='daily' ? dailyNav : histNav;
 
@@ -3665,13 +3813,14 @@ function renderHistoricalMain(){
     : null;
 
   const powerColumn = (list)=> list.length ? list.map((u,i)=>`
-      <div class="power-row">
+      <div class="power-row" data-drill-email="${u.email}" title="Click to see ${u.email}'s questions, oldest first">
         <span class="power-rank">${String(i+1).padStart(2,'0')}</span>
         <div class="power-id">
           <span class="power-email">${u.email}</span>
           <div class="power-sub"><span>mostly ${u.topArea}</span>${u.dayCount>1?'<span class="recurring-badge">'+u.dayCount+' days active</span>':''}</div>
         </div>
         <div class="power-count"><span class="v">${u.count}</span><span class="l">sessions</span></div>
+        <span class="power-cta" aria-hidden="true">→</span>
       </div>
     `).join('') : '<div class="power-sub">Not enough data yet.</div>';
 
@@ -3726,7 +3875,7 @@ function renderHistoricalMain(){
             <div class="ttitle">${m.apiArea ? m.apiArea.area+' is '+m.apiPct+'% of all volume — the single largest topic, and it’s demand signal, not noise' : 'API/Integration volume not yet tracked'}</div>
             <ul class="takeaway-bullets">
               ${m.apiArea
-                ? '<li><span class="mono">'+m.apiArea.total+'</span> of <span class="mono">'+m.totalConv+'</span> conversations (<span class="mono">'+m.apiPct+'%</span>) — '+m.apiArea.internal+' internal, '+m.apiArea.external+' customer</li><li class="reco">Fix: build pre-built API recipes / integration templates for the repeated paths — stop answering the same integration question one bot reply at a time</li>'
+                ? '<li><span class="mono">'+m.apiArea.total+'</span> of <span class="mono">'+m.validTotalConv+'</span> valid conversations (<span class="mono">'+m.apiPct+'%</span>) — '+m.apiArea.internal+' internal, '+m.apiArea.external+' customer</li><li class="reco">Fix: build pre-built API recipes / integration templates for the repeated paths — stop answering the same integration question one bot reply at a time</li>'
                 : '<li>No API/Integration area has shown up in the tracked window yet.</li>'}
             </ul>
           </div>
@@ -3759,17 +3908,46 @@ function renderHistoricalMain(){
     <details class="acc anim" id="sec-h-areas">
       <summary><span><span class="snum">03</span>Busiest sections — where questions land most</span><span class="vm"><span class="vm-more">View more ↓</span><span class="vm-less">View less ↑</span></span></summary>
       <div class="acc-body">
-        <div class="acc-sub">Same area, split by who's asking. Heavy Netcore-only bars usually mean an internal enablement gap; heavy customer-only bars usually mean a self-serve or content gap. The line under each bar is the actual question pattern behind the numbers — not a repeat of the topic name.</div>
+        ${(() => {
+          const top3 = m.topAreas.slice(0,3);
+          const rest = m.topAreas.slice(3);
+          const top3Pct = m.validTotalConv ? Math.round(top3.reduce((s,a)=>s+a.total,0)/m.validTotalConv*100) : 0;
+          return `
+        <div class="acc-sub">The top ${top3.length} topic${top3.length===1?'':'s'} below account for <span class="mono">${top3Pct}%</span> of all valid questions logged across ${m.dates.length} days${m.suppressedCount ? ' ('+m.suppressedCount+' off-topic/spam item'+(m.suppressedCount===1?'':'s')+' excluded — see Data hygiene below)' : ''}. Each carries one concrete reason it matters — not just a volume count.</div>
         <div class="legend">
           <span><span class="swatch" style="background:var(--internal)"></span>Netcore team</span>
           <span><span class="swatch" style="background:var(--external)"></span>Customer</span>
         </div>
-        ${m.topAreas.map(a=>{
-          const intPct = (a.internal/m.maxAreaTotal*100);
-          const extPct = (a.external/m.maxAreaTotal*100);
-          return '<div class="area-block"><div class="div-row" style="margin-bottom:0"><div class="div-left"><span class="val">'+(a.internal||'')+'</span><div class="bar" style="width:'+intPct+'%;background:var(--internal)"></div></div><div class="div-center">'+a.area+'</div><div class="div-right"><div class="bar ext" style="width:'+extPct+'%;background:var(--external)"></div><span class="val">'+(a.external||'')+'</span></div></div>'
-            + '<div class="area-pattern '+a.pattern.cls+'">'+a.patternText+'</div></div>';
-        }).join('')}
+        <div class="lead-areas">
+          ${top3.map((a,i)=>{
+            const trend = computeAreaTrend(a.area, m);
+            const trendHTML = trend
+              ? '<span class="lead-area-trend '+(trend.pctChange>=0?'up':'down')+'">'+(trend.pctChange>=0?'▲ +'+trend.pctChange+'%':'▼ '+Math.abs(trend.pctChange)+'%')+' in the 2nd half of the window — '+(trend.pctChange>=0?'growing':'cooling off')+'</span>'
+              : '';
+            return `
+            <div class="lead-area-card ${a.pattern.cls}" data-drill-area="${a.area}" title="Click to see all ${a.total} questions for ${a.area}">
+              <div class="lead-area-rank">${String(i+1).padStart(2,'0')}</div>
+              <div class="lead-area-body">
+                <div class="lead-area-top">
+                  <span class="lead-area-name">${a.area}</span>
+                  <span class="lead-area-pct">${a.pct}% of all volume</span>
+                </div>
+                <div class="lead-area-total">${a.total} conversations${trendHTML}</div>
+                ${splitBarHTML(a.internal, a.external)}
+                <div class="lead-area-insight">${buildAreaInsight(a, m)}</div>
+                <div class="cta-hint">View all ${a.total} questions for ${a.area}</div>
+              </div>
+            </div>`;
+          }).join('')}
+        </div>
+        ${rest.length ? `
+        <div class="other-areas">
+          <div class="other-areas-label">Also active — lower volume, still tracked (click any to see its questions)</div>
+          <div class="other-areas-list">
+            ${rest.map(a=>`<span class="other-area-chip" data-drill-area="${a.area}" title="Click to see all ${a.total} questions for ${a.area}">${a.area} <span class="mono">${a.total}</span> <span class="dim">(${a.pct}%)</span></span>`).join('')}
+          </div>
+        </div>` : ''}`;
+        })()}
       </div>
     </details>
 
@@ -3787,6 +3965,14 @@ function renderHistoricalMain(){
             ${powerColumn(m.powerUsersExternal)}
           </div>
         </div>
+      </div>
+    </details>
+
+    <details class="acc anim" id="sec-h-hygiene">
+      <summary><span><span class="snum">05</span>Data hygiene — excluded from analysis</span><span class="vm"><span class="vm-more">View more ↓</span><span class="vm-less">View less ↑</span></span></summary>
+      <div class="acc-body">
+        <div class="acc-sub">${m.suppressedCount} message${m.suppressedCount===1?'':'s'} auto-detected as off-topic / bot-style traffic — loan, credit-card, lottery, job, KYC and similar spam patterns with no connection to Netcore CE — and excluded from every aggregate above (Busiest sections, Power users, both drilldowns). Nothing is hidden: every excluded item is listed below with its reason, so this stays auditable rather than a silent filter. Scope note — the "Conversations, all-time" counter at the top of this page still includes these, since it's read straight from each day's own pipeline total rather than recomputed here.</div>
+        ${renderSuppressedFeed(m.suppressed)}
       </div>
     </details>
 
@@ -3833,6 +4019,79 @@ function wireQtypeStat(panelId, statId, questions){
     panel.innerHTML = '<div class="qtype-panel-tag">Auto-classified from question text — illustrative examples, not an exact reconciliation of the totals above.</div>'
       + '<div class="qtype-panel-cols"><div><div class="qtype-panel-sub tech">Technical</div>'+classifiedExamplesHTML(tech)+'</div><div><div class="qtype-panel-sub gen">Generic</div>'+classifiedExamplesHTML(gen)+'</div></div>';
     panel.classList.add('open');
+  });
+}
+
+// Shared "question feed" drilldown — powers both the area click-through (PM wants to see
+// the actual questions behind a topic) and the power-user click-through (gauge what level/type
+// of question a repeat asker is sending, starting from their first one).
+function questionTypeBadges(q){
+  const type = classifyQueryType(q.q);
+  const sideCls = q.side==='internal' ? 'internal' : 'external';
+  const sideLabel = q.side==='internal' ? 'Netcore' : 'Customer';
+  return '<span class="modal-q-badge '+sideCls+'">'+sideLabel+'</span><span class="modal-q-badge '+type+'">'+(type==='technical'?'Technical':'Generic')+'</span>';
+}
+
+function renderQuestionFeed(items, opts){
+  opts = opts || {};
+  if(!items.length) return '<div class="modal-empty">No questions captured for this view yet.</div>';
+  return items.map((q,i)=>{
+    const firstTag = (opts.flagFirst && i===0) ? '<span class="modal-q-first">First question asked</span>' : '';
+    const areaTag = (opts.showArea && q.area) ? ' · '+q.area : '';
+    return '<div class="modal-q"><div class="modal-q-meta">'+fmtDate(q.date)+areaTag+' · <span class="mono">'+q.email+'</span> '+questionTypeBadges(q)+' '+firstTag+'</div><div class="modal-q-text">'+q.q+'</div></div>';
+  }).join('');
+}
+
+// Renders the full audit trail of messages auto-detected as off-topic/spam (loan, credit,
+// lottery, job-spam etc.) and excluded from every other aggregate in this dashboard. Always
+// shown in full, never collapsed behind a count, so the exclusion stays checkable by a human.
+function renderSuppressedFeed(items){
+  if(!items.length) return '<div class="modal-empty">Nothing suppressed yet — every question in the archive currently classifies as on-topic.</div>';
+  return items.slice().sort((a,b)=> b.date.localeCompare(a.date)).map(q=>{
+    const sideCls = q.side==='internal' ? 'internal' : 'external';
+    const sideLabel = q.side==='internal' ? 'Netcore' : 'Customer';
+    return '<div class="modal-q"><div class="modal-q-meta">'+fmtDate(q.date)+' · '+q.area+' · <span class="mono">'+q.email+'</span> <span class="modal-q-badge '+sideCls+'">'+sideLabel+'</span> <span class="modal-q-badge spam">'+q.reason+'</span></div><div class="modal-q-text">'+q.q+'</div></div>';
+  }).join('');
+}
+
+function openDrillModal(title, meta, bodyHTML){
+  document.getElementById('drillModalTitle').textContent = title;
+  document.getElementById('drillModalMeta').innerHTML = meta;
+  document.getElementById('drillModalBody').innerHTML = bodyHTML;
+  document.getElementById('drillModal').classList.add('open');
+}
+function closeDrillModal(){
+  document.getElementById('drillModal').classList.remove('open');
+}
+
+function openAreaDrilldown(area){
+  const m = computeMasterSummary(ARCHIVE);
+  const items = m.allQuestions.filter(q=>q.area===area).slice().sort((x,y)=> y.date.localeCompare(x.date));
+  const a = m.topAreas.find(x=>x.area===area) || {total:items.length, pct:0, internal:0, external:0};
+  const meta = '<span class="mono">'+a.total+'</span> question'+(a.total===1?'':'s')+' · '+a.pct+'% of all-time volume · '+a.internal+' Netcore : '+a.external+' Customer — newest first';
+  openDrillModal(area, meta, renderQuestionFeed(items, {showArea:false}));
+}
+
+function openUserDrilldown(email){
+  const m = computeMasterSummary(ARCHIVE);
+  const items = m.allQuestions.filter(q=>q.email===email).slice().sort((x,y)=> x.date.localeCompare(y.date));
+  const u = m.powerUsersInternal.concat(m.powerUsersExternal).find(x=>x.email===email);
+  const meta = '<span class="mono">'+items.length+'</span> question'+(items.length===1?'':'s')+' across '+(u?u.dayCount:items.length)+' day'+((u&&u.dayCount===1)?'':'s')+' · mostly '+(u?u.topArea:'—')+' — oldest first, so you can see what they started with';
+  openDrillModal(email, meta, renderQuestionFeed(items, {showArea:true, flagFirst:true}));
+}
+
+function wireDrillModal(){
+  const overlay = document.getElementById('drillModal');
+  const closeBtn = document.getElementById('drillModalClose');
+  if(!overlay || !closeBtn) return;
+  closeBtn.addEventListener('click', closeDrillModal);
+  overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeDrillModal(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeDrillModal(); });
+  document.getElementById('main').addEventListener('click', (e)=>{
+    const areaEl = e.target.closest('[data-drill-area]');
+    if(areaEl){ openAreaDrilldown(areaEl.dataset.drillArea); return; }
+    const userEl = e.target.closest('[data-drill-email]');
+    if(userEl){ openUserDrilldown(userEl.dataset.drillEmail); return; }
   });
 }
 
@@ -3895,6 +4154,7 @@ function bootTopbar(){
 
 function boot(){
   bootTopbar();
+  wireDrillModal();
   if(!DATES.length){
     document.getElementById('main').innerHTML = '<div class="empty"><h2>No dispatch yet</h2><p>This view refreshes once the daily pull runs.</p></div>';
     return;
