@@ -3803,7 +3803,7 @@ function buildAreaInsight(a, m){
   }
   const escForArea = (m.deflEscalations||[]).filter(e=>e.area===a.area);
   if(escForArea.length){
-    return '<span class="mono">'+escForArea.length+'</span> of '+a.total+' escalated to a Freshdesk ticket from the same person — the bot’s answer alone didn’t close the loop.';
+    return `<span class="mono">${escForArea.length}</span> of ${a.total} escalated to a Freshdesk ticket from the same person — the bot's answer alone didn't close the loop.`;
   }
   const label = a.pattern.label;
   return label.charAt(0).toUpperCase()+label.slice(1)+'.';
@@ -4264,7 +4264,7 @@ function renderHistoricalMain(){
             <ul class="takeaway-bullets">
               <li><span class="mono">${m.basicTotal}</span> of <span class="mono">${m.totalConv}</span> conversations (<span class="mono">${m.basicPct}%</span>) are navigational — how do I / where do I find / what does X mean</li>
               <li>Split <span class="mono">${m.basicInternal}</span> internal : <span class="mono">${m.basicExternal}</span> customer — near 50/50, so this isn't just a customer self-serve problem</li>
-              ${m.topInternalRepeat ? '<li class="reco">Fix: turn <span class="mono">'+m.topInternalRepeat.email+'</span>'s '+m.topInternalRepeat.count+' repeat questions on '+m.topInternalRepeat.topArea+' into a pinned internal FAQ</li>' : ''}
+              ${m.topInternalRepeat ? '<li class="reco">Fix: turn <span class="mono">'+m.topInternalRepeat.email+'</span>\'s '+m.topInternalRepeat.count+' repeat questions on '+m.topInternalRepeat.topArea+' into a pinned internal FAQ</li>' : ''}
             </ul>
           </div>
         </div>
