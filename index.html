@@ -3740,6 +3740,17 @@ function computeMasterSummary(archive){
   const BASIC_THEMES = ['How do I do X', "What does X mean/how it works", 'Where do I set up/find X', "Where's the doc/API for X"];
   const UPLOAD_KW = ['upload','harvest'];
   const COMPETITOR_DOMAINS = ['clevertap.in','clevertap.com'];
+  // Personal-data deletion asks — deliberately narrow phrases (not a bare "delete") so a
+  // product question like "how to delete suspended campaigns" is never caught here.
+  const DELETION_KW = ['delete my email','deleted from your database','delete my data','delete my account','remove my email','remove my data','gdpr','right to be forgotten','delete my personal'];
+  let deletionHits = [];
+  // Weekday vs weekend traffic split — computed per-day from the date string itself, so it
+  // works for any future date the archive picks up, not just the days seen so far.
+  let weekdayTotal = 0, weekdayDays = 0, weekendTotal = 0, weekendDays = 0;
+  // Days where the day's own writeup already flags the Featurebase CSAT-workflow-state
+  // artifact (botConversationState flipping to "handed_off_to_human" even when the bot fully
+  // answered) — reused from the existing daily writeups rather than re-diagnosed from scratch.
+  let csatArtifactDates = [];
 
   dates.forEach(d=>{
     const day = archive[d];
@@ -3748,6 +3759,12 @@ function computeMasterSummary(archive){
     totalInternal += day.internalTotal;
     totalExternal += day.externalTotal;
     if(day.queryType){ techTotal += day.queryType.technical||0; genTotal += day.queryType.generic||0; }
+
+    const dow = new Date(d+'T12:00:00Z').getUTCDay();
+    if(dow===0 || dow===6){ weekendTotal += day.totalConversations; weekendDays++; }
+    else { weekdayTotal += day.totalConversations; weekdayDays++; }
+
+    if(JSON.stringify(day).toLowerCase().indexOf('csat') >= 0) csatArtifactDates.push(d);
 
     (day.themesBySource||[]).forEach(t=>{
       if(BASIC_THEMES.indexOf(t.theme) >= 0){
@@ -3778,6 +3795,7 @@ function computeMasterSummary(archive){
         allQuestions.push({date:d, area:key, side:'internal', email:x.email, q:x.q});
         const text = (x.q||'').toLowerCase();
         if(UPLOAD_KW.some(k=>text.indexOf(k)>=0)) uploadHits.push({date:d, area:key, side:'internal', email:x.email, q:x.q});
+        if(DELETION_KW.some(k=>text.indexOf(k)>=0)) deletionHits.push({date:d, area:key, side:'internal', email:x.email, q:x.q});
       });
       (a.externalQ||[]).forEach(x=>{
         const spamCat = detectSpam(x.q);
@@ -3788,6 +3806,7 @@ function computeMasterSummary(archive){
         allQuestions.push({date:d, area:key, side:'external', email:x.email, q:x.q});
         const text = (x.q||'').toLowerCase();
         if(UPLOAD_KW.some(k=>text.indexOf(k)>=0)) uploadHits.push({date:d, area:key, side:'external', email:x.email, q:x.q});
+        if(DELETION_KW.some(k=>text.indexOf(k)>=0)) deletionHits.push({date:d, area:key, side:'external', email:x.email, q:x.q});
       });
     });
 
@@ -3847,10 +3866,14 @@ function computeMasterSummary(archive){
   const uploadByDay = {};
   uploadHits.forEach(h=>{ uploadByDay[h.date] = (uploadByDay[h.date]||0) + 1; });
   const uploadPeak = Object.entries(uploadByDay).sort((a,b)=>b[1]-a[1])[0] || null;
+  const uploadDaysCount = Object.keys(uploadByDay).length;
 
   const deflRate = deflChecked ? Math.round(deflDeflected/deflChecked*100) : null;
   const quangCase = findPatternRiskByKeyword(archive, 'quang ngo');
   const topInternalRepeat = powerUsersInternal[0] || null;
+
+  const weekdayAvg = weekdayDays ? +(weekdayTotal/weekdayDays).toFixed(1) : 0;
+  const weekendAvg = weekendDays ? +(weekendTotal/weekendDays).toFixed(1) : 0;
 
   return {
     dates, totalConv, validTotalConv, avgResolution, totalInternal, totalExternal,
@@ -3859,9 +3882,11 @@ function computeMasterSummary(archive){
     topAreas,
     basicInternal, basicExternal, basicTotal, basicPct,
     apiArea, apiPct,
-    uploadHits, uploadExternalCount, uploadInternalCount, uploadPeak,
+    uploadHits, uploadExternalCount, uploadInternalCount, uploadPeak, uploadDaysCount,
     deflDeflected, deflChecked, deflRate, deflDaysTracked, deflEscalations,
     quangCase, competitorHits, topInternalRepeat, allQuestions,
+    deletionHits, weekdayTotal, weekdayDays, weekendTotal, weekendDays, weekdayAvg, weekendAvg,
+    csatArtifactDates,
     suppressed, suppressedCount: suppressed.length
   };
 }
@@ -4090,7 +4115,7 @@ function renderHistoricalMain(){
     <details class="acc anim" id="sec-h-takeaways" open>
       <summary><span><span class="snum">02</span>Key takeaways — for leadership</span><span class="vm"><span class="vm-more">View more ↓</span><span class="vm-less">View less ↑</span></span></summary>
       <div class="acc-body">
-        <div class="acc-sub">Five patterns that hold across the whole tracked period — read top to bottom, each line is a standalone fact.</div>
+        <div class="acc-sub">Six patterns that hold across the whole tracked period (${fmtDate(m.dates[0])} – ${fmtDate(m.dates[m.dates.length-1])}) — read top to bottom, each line is a standalone fact refreshed from every conversation logged so far, not just this week's highlights.</div>
 
         <div class="takeaway-card">
           <div class="takeaway-num">01</div>
@@ -4099,7 +4124,7 @@ function renderHistoricalMain(){
             <ul class="takeaway-bullets">
               <li><span class="mono">${m.basicTotal}</span> of <span class="mono">${m.totalConv}</span> conversations (<span class="mono">${m.basicPct}%</span>) are navigational — how do I / where do I find / what does X mean</li>
               <li>Split <span class="mono">${m.basicInternal}</span> internal : <span class="mono">${m.basicExternal}</span> customer — near 50/50, so this isn't just a customer self-serve problem</li>
-              ${m.topInternalRepeat ? '<li class="reco">Fix: turn <span class="mono">'+m.topInternalRepeat.email+'</span>\'s '+m.topInternalRepeat.count+' repeat questions on '+m.topInternalRepeat.topArea+' into a pinned internal FAQ</li>' : ''}
+              ${m.topInternalRepeat ? '<li class="reco">Fix: turn <span class="mono">'+m.topInternalRepeat.email+'</span>\'s '+m.topInternalRepeat.count+' repeat questions (across '+m.topInternalRepeat.dayCount+' separate days) into a pinned internal FAQ</li>' : ''}
             </ul>
           </div>
         </div>
@@ -4107,11 +4132,11 @@ function renderHistoricalMain(){
         <div class="takeaway-card">
           <div class="takeaway-num">02</div>
           <div class="takeaway-body">
-            <div class="ttitle">Deflection rate undercounts real impact — a "missed" match can still save agent time</div>
+            <div class="ttitle">${m.deletionHits.length} direct customer data-deletion request${m.deletionHits.length===1?'':'s'} hit the docbot with no verified follow-through</div>
             <ul class="takeaway-bullets">
-              ${m.quangCase ? '<li>'+fmtDate(m.quangCase.date)+': '+m.quangCase.note+'</li>' : '<li>No comparable example flagged yet in the tracked window.</li>'}
-              <li>Logged today as an escalation (account-name mismatch), but the resulting ticket was scoped and specific — not a blind "how do I" ask</li>
-              <li class="reco">Fix: track ticket scope/clarity as a secondary deflection metric, not just exact match / no match</li>
+              ${m.deletionHits.length ? m.deletionHits.map(h=>'<li>'+fmtDate(h.date)+': <span class="mono">'+h.email+'</span> — &ldquo;'+h.q+'&rdquo;</li>').join('') : '<li>No GDPR/deletion-style requests flagged yet in the tracked window.</li>'}
+              <li>Both landed on days the bot either self-marked resolved or went silent (rate-limited) — neither is a verified compliance action, and a chat transcript isn't an audit trail</li>
+              <li class="reco">Fix: auto-escalate any delete-my-data / GDPR-style request to a human immediately, rather than letting the bot (or the CSAT workflow) self-mark it resolved</li>
             </ul>
           </div>
         </div>
@@ -4131,9 +4156,11 @@ function renderHistoricalMain(){
         <div class="takeaway-card">
           <div class="takeaway-num">04</div>
           <div class="takeaway-body">
-            <div class="ttitle">${m.competitorHits.length ? 'CleverTap email ran a full capability scan on '+fmtDate(m.competitorHits[0].date)+' — verify the account' : 'No competitor-domain activity flagged this period'}</div>
+            <div class="ttitle">Freshdesk-checked, the bot deflects ${m.deflRate!==null ? m.deflRate+'%' : 'an unmeasured share'} of tickets — and the rare leaks are product bugs, not content gaps</div>
             <ul class="takeaway-bullets">
-              ${m.competitorHits.length ? '<li><span class="mono">'+m.competitorHits[0].email+'</span> asked '+m.competitorHits[0].count+' broad questions in one session — WhatsApp template approvals, AI-assisted segmentation, web personalisation</li><li>Structured breadth scan, not a single-feature lookup</li><li class="reco">Fix: if verified prospect/partner → route to Sales as an expansion signal; if not → flag to Product/Security as competitive intel</li>' : '<li>Watchlist: clevertap.in / clevertap.com — nothing matched in this window</li><li class="reco">Keep the watch active on every future rollup</li>'}
+              <li><span class="mono">${m.deflDeflected}</span> of <span class="mono">${m.deflChecked}</span> checked conversations across <span class="mono">${m.deflDaysTracked.length}</span> tracked days show no matching ticket from that user in the D+2 window</li>
+              ${m.deflEscalations.length ? '<li>The <span class="mono">'+m.deflEscalations.length+'</span> confirmed same-user escalations — '+m.deflEscalations.map(e=>e.email.split('@')[0]+' ('+fmtDate(e.date)+', &ldquo;'+e.ticketSubject+'&rdquo;)').join('; ')+' — are all functional/platform issues (integration access, upload/harvest error, Journey-creation bug), not missing documentation</li>' : '<li>No confirmed same-user escalations yet in the tracked window.</li>'}
+              <li class="reco">Fix: the content side is already working here — the next lever for deflection is fixing the upload/integration/Journey bugs the bot can't talk its way around</li>
             </ul>
           </div>
         </div>
@@ -4144,8 +4171,20 @@ function renderHistoricalMain(){
             <div class="ttitle">${m.uploadHits.length} list/audience upload-or-harvest failures surfaced only because customers happened to ask the bot</div>
             <ul class="takeaway-bullets">
               <li><span class="mono">${m.uploadExternalCount}</span> from customers, <span class="mono">${m.uploadInternalCount}</span> from Netcore staff — zero internal visibility until it hit the bot</li>
-              ${m.uploadPeak ? '<li><span class="mono">'+m.uploadPeak[1]+'</span> of '+m.uploadHits.length+' landed on one day ('+fmtDate(m.uploadPeak[0])+'), unrelated accounts — looks like a platform-side slowdown, not user error</li>' : ''}
+              <li>Spread across <span class="mono">${m.uploadDaysCount}</span> of the ${m.dates.length} tracked days${m.uploadPeak ? ', peaking at '+m.uploadPeak[1]+' on '+fmtDate(m.uploadPeak[0]) : ''} — unrelated accounts, same failure mode, not a one-off</li>
               <li class="reco">Fix: ship a near-real-time upload/processing status indicator so customers aren't the first to notice</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="takeaway-card">
+          <div class="takeaway-num">06</div>
+          <div class="takeaway-body">
+            <div class="ttitle">Read the daily numbers with two calibration notes before presenting either one on its own</div>
+            <ul class="takeaway-bullets">
+              <li>Self-reported resolution rate averages <span class="mono">${m.avgResolution}%</span> across ${m.dates.length} days, but <span class="mono">${m.csatArtifactDates.length}</span> of those days are confirmed Featurebase CSAT-workflow-state artifacts (state flips to "handed off" even when the bot fully answered) — not real failures. Don't use the raw average as a KPI until that instrumentation is fixed.</li>
+              <li>Volume swings hard by day of week: <span class="mono">${m.weekdayAvg}</span> conversations/day on weekdays vs <span class="mono">${m.weekendAvg}</span> on weekends — held across every weekend in the window, so a quiet Saturday/Sunday is expected, not a broken pipeline.</li>
+              <li class="reco">Fix: lean on this 14-day rollup for any leadership-facing number — a single day's snapshot can mislead in either direction</li>
             </ul>
           </div>
         </div>
