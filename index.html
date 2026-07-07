@@ -2,7 +2,7 @@
 {
   "name": "Ce Docbot Summary 2026 06 17",
   "schemaVersion": 1,
-  "description": "CE Docbot 14-day rolling summary (Jun 22 – Jul 5, 2026) — latest day 2026-07-05"
+  "description": "CE Docbot 14-day rolling summary (Jun 23 – Jul 6, 2026) — latest day 2026-07-06"
 }
 </script>
 <html lang="en">
@@ -448,320 +448,6 @@ table td{padding:10px 8px; border-bottom:1px solid var(--paperline); vertical-al
 </div>
 <script>
 const ARCHIVE = /*ARCHIVE_JSON_PLACEHOLDER*/{
-  "2026-06-22": {
-    "date": "2026-06-22",
-    "totalConversations": 31,
-    "resolutionRate": 0,
-    "internalTotal": 8,
-    "externalTotal": 23,
-    "docsTotal": 14,
-    "panelTotal": 17,
-    "queryType": {
-      "technical": 12,
-      "generic": 19
-    },
-    "headline": "Bot resolved 0% of yesterday's 31 conversations — every single one hit the AI agent's monthly token cap right after the canned hello, and that legacy-pricing limit doesn't reset until July 20.",
-    "actionableInsights": [
-      {
-        "owner": "product",
-        "title": "Token-cap outage from June 21 is now a full-day, every-conversation problem",
-        "desc": "All 31 conversations on June 22 got only the scripted 'Hello! I'm an AI chatbot' greeting before hitting 'AI Agent Rate Limit Exceeded' (legacy pricing) — confirmed on every single conversation we pulled, not an isolated case like June 21's n=1. Bot-resolution rate is 0%, and the cap doesn't reset until Jul 20, 2026. This needs an urgent decision: migrate to usage-based pricing ($0.29/resolution) or get the legacy cap raised today."
-      },
-      {
-        "owner": "content",
-        "title": "Same RBAC question, asked twice, 6.5 hours apart",
-        "desc": "lokesh.sharma@netcorecloud.com asked the identical question — 'is it possible to Uncontrolled creation and modification of data attributes' — from the role-based-access-control doc page twice in one day. Given the token-cap outage, this repeat may just be bot silence rather than a doc gap, but worth a follow-up once the bot is back online."
-      },
-      {
-        "owner": "design",
-        "title": "List/audience upload stalls are the loudest recurring complaint",
-        "desc": "9 of 31 conversations (cameoindiacee, scoutitcee, qnamarcomcee, actcorpincee, ionexchange, and others) reported lists or audience uploads stuck or slow — a cross-account pattern that looks like a real upload-performance issue, independent of the bot outage."
-      }
-    ],
-    "mostInteresting": {
-      "who": "manish",
-      "email": "manish@netcorecloud.com",
-      "query": "Detailed analytics-tracking questions on Research screen entry points (dashboard_interacted vs menu_interacted), Buy CTA tracking across two different event sources, a cta_viewed-vs-cta_clicked did/did-not analysis, per-key data export, and bottom-tab usage analytics in the Reports section.",
-      "why": "The most specific, product-savvy ask of the day — precise event-taxonomy and analytics-export questions that read like someone scoping a real integration, not just browsing docs. (The bot never actually answered it due to the rate-limit outage.)"
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 2,
-        "external": 4
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 1,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 1,
-        "external": 1
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 2,
-        "external": 11
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 2,
-        "external": 4
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 3
-      }
-    ],
-    "topAskers": [
-      {
-        "email": "yesh@cameoindia.com",
-        "count": 2,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "Bare greeting, no context yet",
-            "text": "HI"
-          },
-          {
-            "theme": "What does X mean/how it works",
-            "text": "Lists not getting loaded its been more than 30 mints"
-          }
-        ]
-      },
-      {
-        "email": "lokesh.sharma@netcorecloud.com",
-        "count": 2,
-        "friction": true,
-        "queries": [
-          {
-            "theme": "Is X possible/supported",
-            "text": "is it possible to Uncontrolled creation and modification of data attributes"
-          },
-          {
-            "theme": "Is X possible/supported",
-            "text": "is it possible to Uncontrolled creation and modification of data attributes"
-          }
-        ]
-      },
-      {
-        "email": "bishir.gogari@iifl.com",
-        "count": 2,
-        "friction": true,
-        "queries": [
-          {
-            "theme": "Is X possible/supported",
-            "text": "hi , so if my role is analyst then can i access the data through api key which is at user profile ?"
-          },
-          {
-            "theme": "Is X possible/supported",
-            "text": "so i have the api key but i have oly viewer access so even if i have viewer or analyst access can i use that api key to get the data ?"
-          }
-        ]
-      },
-      {
-        "email": "rachana.shrestha@sc.com",
-        "count": 2,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "What does X mean/how it works",
-            "text": "Hi, If i use multiple ids to send edms to clients, and client unsubscribes to one of the email address, will netcore blacklist the client for all future edm sent from this platform or just the said email address?"
-          },
-          {
-            "theme": "Is X possible/supported",
-            "text": "Is there an option to remove the \"unsubscribe\" option from email edm?"
-          }
-        ]
-      }
-    ],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 3,
-        "external": 4,
-        "internalQ": [
-          {
-            "email": "manish@netcorecloud.com",
-            "q": "Analytics-tracking questions on Research screen entry points, Buy CTA event tracking, cta_viewed vs cta_clicked did/did-not analysis, per-key data export, and bottom-tab usage in Reports."
-          },
-          {
-            "email": "swati.jangir@netcorecloud.com",
-            "q": "web push integration"
-          },
-          {
-            "email": "ishika.a@netcorecloud.com",
-            "q": "what if a website is not configured"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "bishir.gogari@iifl.com",
-            "q": "so i have the api key but i have oly viewer access so even if i have viewer or analyst access can i use that api key to get the data ?"
-          },
-          {
-            "email": "bishir.gogari@iifl.com",
-            "q": "hi , so if my role is analyst then can i access the data through api key which is at user profile ?"
-          },
-          {
-            "email": "mayur.shinde@thinqloud.com",
-            "q": "Netcore Salesforce managed package is not vailable on appexchange"
-          },
-          {
-            "email": "sandeep.k@multitvsolution.com",
-            "q": "how do send push notification in test mode"
-          }
-        ]
-      },
-      {
-        "area": "Email",
-        "internal": 0,
-        "external": 7,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "social@veloxxmedia.com",
-            "q": "All Editors not available here. i can see only 3. drag and drop editor is not here. need that to create templates"
-          },
-          {
-            "email": "sanjay.gupta@pdsinfotech.com",
-            "q": "Unable to upload emails on list."
-          },
-          {
-            "email": "naveen@thinkwideweb.com",
-            "q": "Unable to upload suppression files?"
-          },
-          {
-            "email": "rachana.shrestha@sc.com",
-            "q": "Is there an option to remove the \"unsubscribe\" option from email edm?"
-          },
-          {
-            "email": "sanjay@navia.co.in",
-            "q": "how will i download the AMP template"
-          },
-          {
-            "email": "rachana.shrestha@sc.com",
-            "q": "Hi, If i use multiple ids to send edms to clients, and client unsubscribes to one of the email address, will netcore blacklist the client for all future edm sent from this platform or just the said email address?"
-          },
-          {
-            "email": "chinh.pham@ggg.com.vn",
-            "q": "can't verify domain email DNS (domain: rewards-ggg.com.vn)"
-          }
-        ]
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 0,
-        "external": 1,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "aditya.sharma3@bajajfinservmarkets.in",
-            "q": "i want you to download all the whatsapp, sms and rcs templates for me."
-          }
-        ]
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 2,
-        "external": 7,
-        "internalQ": [
-          {
-            "email": "anjali.inani@netcorecloud.com",
-            "q": "26036729, this amount netcore contributed in may month, so please give me ROI"
-          },
-          {
-            "email": "gunjan.mahajan@netcorecloud.com",
-            "q": "How to enable conversion and revenue data on camapigns stats"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "yesh@cameoindia.com",
-            "q": "Lists not getting loaded its been more than 30 mints"
-          },
-          {
-            "email": "connect@scoutinc.xyz",
-            "q": "Hi Team, We are facing an issue with uploading new data to a new list. ID: 344"
-          },
-          {
-            "email": "sudhanshu@qnamarcom.com",
-            "q": "Audience upload in list is taking too much time, ID 619 and ID-620 is taking too much time"
-          },
-          {
-            "email": "prashanth.395133@actcorp.in",
-            "q": "Hi List ID's 1489 and 1490 is taking longer time for the base to upload"
-          },
-          {
-            "email": "shubham.w@ionexchange.co.in",
-            "q": "HI THERE IS ANY PROBLEM FOR LIST UPLOAD"
-          },
-          {
-            "email": "herdinaika@epicareer.com",
-            "q": "There's bug where i cannot see the metrics after i published"
-          },
-          {
-            "email": "camille.villaraza@colfinancial.com",
-            "q": "please check why this campaign is suspended. It was scheduled to send today at 9:30AM. Campaign ID: 4545"
-          }
-        ]
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 3,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "hiral.jhaveri@netcorecloud.com",
-            "q": "once the data is deleted from the front end, how much time does it take to delete from the backend"
-          },
-          {
-            "email": "lokesh.sharma@netcorecloud.com",
-            "q": "is it possible to Uncontrolled creation and modification of data attributes"
-          },
-          {
-            "email": "lokesh.sharma@netcorecloud.com",
-            "q": "is it possible to Uncontrolled creation and modification of data attributes"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 4,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "prashant@mfuindia.in",
-            "q": "Hello"
-          },
-          {
-            "email": "yesh@cameoindia.com",
-            "q": "HI"
-          },
-          {
-            "email": "twinkle.tallewar@microscan.co.in",
-            "q": "Hi Twinkle this side"
-          },
-          {
-            "email": "rashidbrora@yahoo.co.uk",
-            "q": "I try the go groupie link and it comes back either error 4."
-          }
-        ]
-      }
-    ]
-  },
   "2026-06-23": {
     "date": "2026-06-23",
     "totalConversations": 11,
@@ -3553,6 +3239,267 @@ const ARCHIVE = /*ARCHIVE_JSON_PLACEHOLDER*/{
         "externalQ": []
       }
     ]
+  },
+  "2026-07-06": {
+    "date": "2026-07-06",
+    "totalConversations": 19,
+    "resolutionRate": 0,
+    "internalTotal": 9,
+    "externalTotal": 10,
+    "docsTotal": 9,
+    "panelTotal": 10,
+    "queryType": {
+      "technical": 7,
+      "generic": 12
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-07-06 00:00 IST to 2026-07-08 23:59 IST); checked through current time, 2026-07-07 (window only partially elapsed)",
+      "totalConversations": 19,
+      "sameUserEscalations": [
+        {
+          "email": "ba.ankitapandey@gmail.com",
+          "docbotQuery": "My domain support.warra.in shows DKIM verified in Domain Authentication, but a real test email sent from info@support.warra.in is failing DKIM validation (confirmed via Gmail's 'Show Original'). Can you check why DKIM signing isn't being applied to this sender?",
+          "area": "Email",
+          "theme": "What does X mean/how it works",
+          "ticketId": "5207219",
+          "ticketSubject": "Feedback on Netcore CE : DKIM Validation Failing Despite Domain Showing \"Verified\" in Domain Authentication of support.warra.in",
+          "ticketCreatedAt": "2026-07-06T14:08:00+05:30"
+        }
+      ],
+      "deflectedCount": 18,
+      "deflectionRate": 95,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. IMPORTANT: this was a full AI-agent rate-limit outage day (see headline) -- every one of the 19 conversations got zero real bot answer, so 'deflected' here does NOT mean resolved, only that no matching Freshdesk ticket was found. Direct email search for ba.ankitapandey@gmail.com returned 0 tickets (a known false-negative pattern, same as the June 26 Harvest Error case) -- her DKIM escalation only surfaced via a keyword search on 'DKIM'. Treat the 95% figure as a floor, not a precise figure. Checked all 17 unique requester emails individually plus keyword searches for SMS consent, unsubscribe/404, webhook attribute alias, client ID, onsite message, and attribute character limit -- no other in-window matches found. Window only half-elapsed as of this run (D+2 = Jul 8 hasn't happened yet)."
+    },
+    "headline": "Full AI-agent rate-limit outage returned on July 6 -- all 19 conversations hit 'AI Agent Rate Limit Exceeded' and got zero real bot answer (0% resolution, same failure mode as the June 21-22 outage, cap reset now slipped to Aug 2). Ba. Ankita Pandey's DKIM issue (support.warra.in) escalated to a full Freshdesk ticket the same afternoon -- proof that on outage days, 'deflection' numbers mean silence, not resolution.",
+    "actionableInsights": [
+      {
+        "owner": "product",
+        "title": "AI agent rate-limit outage is back -- full-day, every conversation, again",
+        "desc": "All 19 conversations on July 6 got only the scripted greeting before hitting 'AI Agent Rate Limit Exceeded' (legacy pricing) -- identical to the June 21-22 outage. The reset date has slipped from Jul 20 (per the June 22 entry) to Aug 2, meaning the org keeps burning through the monthly token cap before month-end. Zero bot resolution across the board. Same urgent decision flagged three weeks ago still stands: migrate to usage-based pricing ($0.29/resolution) or get the legacy cap raised -- otherwise this outage will keep recurring."
+      },
+      {
+        "owner": "content",
+        "title": "Ba. ankitapandey's DKIM issue shows the outage has a real customer cost",
+        "desc": "She asked the docbot about DKIM validation failing on support.warra.in, got zero answer (rate-limited), then filed Freshdesk ticket #5207219 the same afternoon with full diagnostic detail already worked out (SPF pass, DKIM fail per Gmail 'Show Original', DNS CNAME confirmed correct). Direct proof the outage pushes real technical issues to human agents instead of letting the bot deflect them."
+      },
+      {
+        "owner": "content",
+        "title": "Akash Singh (iresearchservices) hit two separate data-upload failures same day, admin manually redirected to helpdesk",
+        "desc": "Both conversations (Private Facilities batch, Ilumio batch) got the rate-limit message; an admin manually told him to email helpdesk@netcorecloud.com directly. No matching Freshdesk ticket found yet (checked his exact email plus an 'iresearchservices' keyword search), but worth a follow-up check in a day or two given the explicit redirect."
+      },
+      {
+        "owner": "calibration",
+        "title": "0% resolution today is a real outage number, not a classification artifact",
+        "desc": "Unlike June 25 (where a Featurebase field flip made the bot look unresolved when it wasn't), every one of today's 19 transcripts independently confirms zero real bot answers -- this is a genuine 0%, not cosmetic. Freshdesk email search also produced a false negative on ba.ankitapandey@gmail.com (ticket only surfaced via keyword search), so treat the 95% deflection figure as a floor, not precise."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Ba. Ankita Pandey",
+      "email": "ba.ankitapandey@gmail.com",
+      "query": "Domain support.warra.in shows DKIM as verified in Domain Authentication, but a real test email sent from info@support.warra.in fails DKIM validation on the receiving end (confirmed via Gmail's 'Show Original': SPF pass, DKIM fail, DMARC fail) -- asked whether DKIM signing is actually being applied to this sender at send time despite DNS showing correctly configured.",
+      "why": "A precise, evidence-backed technical diagnosis, not a vague complaint -- correctly isolates a platform-side signing/configuration issue from a DNS problem. Escalated to a full Freshdesk ticket with the same diagnostic detail the same day, confirming this was a real unresolved issue, not user confusion."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 5,
+        "external": 2
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 2,
+        "external": 5
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 2,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 1
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "akash.singh@iresearchservices.com",
+        "count": 2,
+        "friction": true,
+        "queries": [
+          {
+            "theme": "What does X mean/how it works",
+            "text": "Data has been not uploaded Private Facilities_58243-02-06-July-26-CDQA"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "Data has not uploaded for Ilumio-06-July-26-CDQA"
+          }
+        ]
+      },
+      {
+        "email": "komal.sharma@netcorecloud.com",
+        "count": 2,
+        "friction": true,
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "SMS consent management"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "how to manage consent for SMS"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 3,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "akshay.shetty@khelomore.com",
+            "q": "what is this account client ID?"
+          },
+          {
+            "email": "akash.singh@iresearchservices.com",
+            "q": "Data has been not uploaded Private Facilities_58243-02-06-July-26-CDQA"
+          },
+          {
+            "email": "akash.singh@iresearchservices.com",
+            "q": "Data has not uploaded for Ilumio-06-July-26-CDQA"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 5,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "lvparks@msn.com",
+            "q": "Trying to unsubscribe from an Airports Parking.Com link -- gets 'page doesn't exist' when clicking the unsubscribe link"
+          },
+          {
+            "email": "pennymelvillsmith@duck.com",
+            "q": "Keep on getting 404 messages when tapping links in safe emails"
+          },
+          {
+            "email": "amirthan@tonegroup.net",
+            "q": "how to edit the html for emails"
+          },
+          {
+            "email": "ba.ankitapandey@gmail.com",
+            "q": "DKIM validation failing on support.warra.in despite domain showing verified in Domain Authentication"
+          },
+          {
+            "email": "tripti.kaushik@swansol.com",
+            "q": "how to add pdf in blank template"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 3,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "komal.sharma@netcorecloud.com",
+            "q": "SMS consent management"
+          },
+          {
+            "email": "komal.sharma@netcorecloud.com",
+            "q": "how to manage consent for SMS"
+          },
+          {
+            "email": "test@netcorecloud.com",
+            "q": "how do i generate whatsapp content recommendations"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "heena.shah@netcorecloud.com",
+            "q": "what is attribute alias in webhook?"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 2,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "jaishnitha.vs@netcorecloud.com",
+            "q": "how to create an onsite messsage for web"
+          },
+          {
+            "email": "mili.kanoo@netcorecloud.com",
+            "q": "If we add a DND, and the message falls in DND hours, will it be received next day?"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "vishal.paikrao@creditt.com",
+            "q": "want to check user interaction time wise in engagement"
+          }
+        ]
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "shipra.choudhary@netcorecloud.com",
+            "q": "can we increase the attribute value character limit?"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 2,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "kunal.khatri@netcorecloud.com",
+            "q": "How can i add a email id for a user to access the CE platform"
+          },
+          {
+            "email": "ritika.thakur@netcorecloud.com",
+            "q": "how many of my employees can I add as users who can acess the panel"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "abc@nfkl.com",
+            "q": "hey"
+          }
+        ]
+      }
+    ]
   }
 }/*END_PLACEHOLDER*/;
 const DATES = Object.keys(ARCHIVE).sort().reverse();
@@ -4451,5 +4398,4 @@ function boot(){
 boot();
 </script>
 </body>
-<!-- rebuild-trigger 2026-07-06T3 -->
 </html>
