@@ -2,7 +2,7 @@
 {
   "name": "Ce Docbot Summary 2026 06 17",
   "schemaVersion": 1,
-  "description": "CE Docbot 14-day rolling summary (Jun 23 – Jul 6, 2026) — latest day 2026-07-06"
+  "description": "CE Docbot 14-day rolling summary (Jun 24 – Jul 7, 2026) — latest day 2026-07-07"
 }
 </script>
 <html lang="en">
@@ -448,257 +448,6 @@ table td{padding:10px 8px; border-bottom:1px solid var(--paperline); vertical-al
 </div>
 <script>
 const ARCHIVE = /*ARCHIVE_JSON_PLACEHOLDER*/{
-  "2026-06-23": {
-    "date": "2026-06-23",
-    "totalConversations": 11,
-    "resolutionRate": 64,
-    "internalTotal": 9,
-    "externalTotal": 2,
-    "docsTotal": 10,
-    "panelTotal": 1,
-    "queryType": {
-      "technical": 6,
-      "generic": 5
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days",
-      "totalConversations": 11,
-      "sameUserEscalations": [
-        {
-          "email": "shipra.choudhary@netcorecloud.com",
-          "docbotQuery": "For Google & FB audience integration: what level of access is needed (above Read Only?) and what data gets shared across platforms",
-          "area": "API/Integration",
-          "theme": "Is X possible/supported",
-          "ticketId": "5199549",
-          "ticketSubject": "The Leela<> Google & FB audience integration",
-          "ticketCreatedAt": "2026-06-23T15:28:00+05:30"
-        }
-      ],
-      "deflectedCount": 10,
-      "deflectionRate": 91,
-      "patternRisk": [
-        {
-          "area": "API/Integration",
-          "docbotCount": 4,
-          "ticketCount": 2,
-          "exampleTicketSubjects": [
-            "V+ Short: Google & FB Audience #5199503",
-            "V+ Short: Google & FB Audience #5199665"
-          ],
-          "note": "Beyond Shipra's direct escalation, two more Google/FB Audience tickets surfaced in the same window (internal Netcore staff, not docbot users) — signals an active feature/support thread, not a one-off ask."
-        }
-      ],
-      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit — treat as a directional signal. Note: manish@netcorecloud.com had 3 Freshdesk tickets same-day, but all were unrelated MA Sharekhan account-management work (funnel config, email delivery) — excluded from sameUserEscalations by judgment since they don't match his docbot query about report operators. Also: Sergio Lafuente's (slafuentec@yahoo.es) GDPR deletion request shows 0 tickets and counts as 'deflected' here, but that's misleading — see actionableInsights, the bot never actually answered him (rate-limited)."
-    },
-    "headline": "First non-zero resolution day since the June 21-22 token-limit outage (both 0%) — but 4 of 11 queries yesterday, including a customer's GDPR deletion request, still hit the AI agent's monthly rate limit and got zero response.",
-    "actionableInsights": [
-      {
-        "owner": "calibration",
-        "title": "AI agent rate-limit outage still active, just intermittent now",
-        "desc": "Conversations 1513 (Khushi), 1514 (Snega), 1515 (Taizeen), and 1516 (Sergio) all hit 'AI Agent Rate Limit Exceeded' under legacy pricing — same root cause that zeroed out resolution on June 21 and June 22. It's no longer hitting 100% of conversations, but it's not fixed either. Push for the usage-based pricing migration ($0.29/resolution) or a raised legacy cap before this swings back to a full-day outage."
-      },
-      {
-        "owner": "content",
-        "title": "A customer's GDPR-style deletion request got silence, not just an unhelpful answer",
-        "desc": "Sergio Lafuente (slafuentec@yahoo.es) asked the bot to delete his email from Netcore's database — the request was rate-limited (zero bot response) and he has no Freshdesk contact record at all, so it never escalated either. By the raw deflection math he counts as 'deflected,' but the bot never actually engaged. This is the day's highest-risk unresolved query — recommend a manual follow-up with him directly."
-      },
-      {
-        "owner": "product",
-        "title": "Google/FB audience integration access model needs a clear doc",
-        "desc": "Shipra Choudhary asked the bot, then escalated the identical access-level/data-sharing question to Freshdesk ticket #5199549 (The Leela) same-day, and two more 'V+ Short: Google & FB Audience' tickets surfaced in the same window. Worth a dedicated FAQ/doc on access-level requirements and cross-platform data sharing for this integration before the next customer hits the same wall."
-      },
-      {
-        "owner": "calibration",
-        "title": "Small sample — treat the 91% deflection rate as directional",
-        "desc": "n=11 for the day, and the 'deflection rate' assumes silence = success for the 4 rate-limited conversations, which it isn't. Don't read today's numbers as a clean trend until the rate-limit issue is resolved and volume is back to a normal day (20-30)."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Shipra Choudhary",
-      "email": "shipra.choudhary@netcorecloud.com",
-      "query": "For Google & FB audience integration: what level of access is needed (above 'Read Only'?) and what data will be shared across platforms?",
-      "why": "Tied directly to a live customer deal (The Leela) — she escalated the identical question to a Freshdesk ticket the same day, confirming this is a real, business-critical access/data-governance question the bot's answer alone didn't fully close out."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 1,
-        "external": 0
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 1,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 1,
-        "external": 0
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 4,
-        "external": 0
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 2,
-        "external": 2
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 0
-      }
-    ],
-    "topAskers": [
-      {
-        "email": "khushi.chitkara@netcorecloud.com",
-        "count": 2,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "What does X mean/how it works",
-            "text": "competitive advantages of segment agent"
-          },
-          {
-            "theme": "Is X possible/supported",
-            "text": "is it possible that the file placed on S3 is in CSV format and is not password protected"
-          }
-        ]
-      },
-      {
-        "email": "anjali.inani@netcorecloud.com",
-        "count": 2,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "Where do I set up/find X",
-            "text": "specify capture parameter"
-          },
-          {
-            "theme": "What does X mean/how it works",
-            "text": "\"wait for event\" in journey use?"
-          }
-        ]
-      },
-      {
-        "email": "shipra.choudhary@netcorecloud.com",
-        "count": 2,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "Where's the doc/API for X",
-            "text": "document for an API from which customer can create segments in their database and push it to the Netcore panel"
-          },
-          {
-            "theme": "Is X possible/supported",
-            "text": "For Google & FB audience integration: what level of access is needed and what data will be shared across platforms"
-          }
-        ]
-      }
-    ],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 4,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "anjali.inani@netcorecloud.com",
-            "q": "specify capture parameter"
-          },
-          {
-            "email": "shipra.choudhary@netcorecloud.com",
-            "q": "document for an API from which customer can create segments in their database and push it to the Netcore panel"
-          },
-          {
-            "email": "khushi.chitkara@netcorecloud.com",
-            "q": "is it possible that the file placed on S3 is in CSV format and is not password protected"
-          },
-          {
-            "email": "shipra.choudhary@netcorecloud.com",
-            "q": "For Google & FB audience integration: what level of access is needed and what data will be shared across platforms"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Email",
-        "internal": 0,
-        "external": 1,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "slafuentec@yahoo.es",
-            "q": "I want my email deleted from your database"
-          }
-        ]
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 4,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "khushi.chitkara@netcorecloud.com",
-            "q": "competitive advantages of segment agent"
-          },
-          {
-            "email": "anjali.inani@netcorecloud.com",
-            "q": "\"wait for event\" in journey use?"
-          },
-          {
-            "email": "manish@netcorecloud.com",
-            "q": "give me information about operators used in reports"
-          },
-          {
-            "email": "lokesh.sharma@netcorecloud.com",
-            "q": "what is the logic of clicks in journey - unique click or total click"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "snega.s18@shriramfinance.in",
-            "q": "Is that possible I can create journey in the co marketer"
-          }
-        ]
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 1,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "taizeen.shaikh@netcorecloud.com",
-            "q": "how to configure secure IP"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      }
-    ]
-  },
   "2026-06-24": {
     "date": "2026-06-24",
     "totalConversations": 13,
@@ -3500,8 +3249,268 @@ const ARCHIVE = /*ARCHIVE_JSON_PLACEHOLDER*/{
         ]
       }
     ]
-  }
-}/*END_PLACEHOLDER*/;
+  },
+  "2026-07-07": {
+    "date": "2026-07-07",
+    "totalConversations": 21,
+    "resolutionRate": 5,
+    "internalTotal": 8,
+    "externalTotal": 13,
+    "docsTotal": 7,
+    "panelTotal": 14,
+    "queryType": {
+      "technical": 4,
+      "generic": 17
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-07-07 00:00 IST to 2026-07-09 23:59 IST); checked through current time, 2026-07-08 (window only partially elapsed -- D+2 = Jul 9 hasn't happened yet)",
+      "totalConversations": 21,
+      "sameUserEscalations": [],
+      "deflectedCount": 21,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as directional only. IMPORTANT: this was a second straight day of the AI-agent rate-limit outage (see headline) -- 20 of 21 conversations got zero real bot answer, so 'deflected' here does NOT mean resolved, only that no matching Freshdesk ticket was found yet. Checked all 19 unique requester emails individually (zero matches) plus company/keyword spot-checks (hdfcresearch, kotaklifesmt, cata_goldies_cee, 'unable to send campaigns', 'kotaklifesmt journey template') -- no in-window matches found. Given the outage's real business-impact signals (Gaureesh's live-campaign deadline, Mahendra's repeated send failures, Sardar's explicit negative rating), treat the 100% figure as a floor that could still move once the window fully elapses on Jul 9."
+    },
+    "headline": "Second straight day of the AI-agent rate-limit outage -- 20 of 21 conversations on July 7 got zero real bot answer (only 1 of 21 resolved), and Gaureesh Desai at Kotak Life got no help with a live-campaign deadline due before 12:30 the same day.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "AI agent rate-limit outage is now a 2-day streak, not a one-off",
+        "desc": "20 of 21 conversations on July 7 hit 'AI Agent Rate Limit Exceeded' -- identical to the July 6 full-outage day. Reset date is still Aug 2, 2026. Only bilqis.ishola@heirsinsurancebrokers.com got a real bot answer. The usage-based pricing migration ($0.49/resolution per the latest banner) or a raised legacy cap needs a decision now -- this is no longer an isolated incident."
+      },
+      {
+        "owner": "product",
+        "title": "Kotak Life's live-campaign deadline was blocked by the outage",
+        "desc": "gaureesh.desai@kotak.com (kotaklifesmt panel) reported a missing email template in a journey and explicitly said the campaign was supposed to go live today before 12:30 -- got zero real bot help due to the rate limit. Time-sensitive, named enterprise account -- worth a direct human follow-up today, not a re-run of the bot session."
+      },
+      {
+        "owner": "CS/support",
+        "title": "A customer explicitly rated the outage experience 'Worst!'",
+        "desc": "sardarali.sayed@neoniche.com asked why campaign counts (sent/delivered) weren't showing, got only the rate-limit holding message, and left an explicit 'Worst!' rating in a follow-up email reply. Concrete evidence the outage is costing real CSAT, not just deflection-rate optics."
+      },
+      {
+        "owner": "content",
+        "title": "Mahendra Karande (HDFC Securities) asked twice in 6 minutes about campaign/email send failures",
+        "desc": "mahendra.karande@hdfcsec.com first asked 'Not able to publish campaigns' (09:20 IST) then 'Something wrong with the system, unable to send campaigns, also unable to send test emails' (09:26 IST) -- both hit the rate limit with no diagnosis. Given the specificity (publish + test-send both failing), this reads like a real platform issue independent of the AI outage and deserves an engineering look, not just a bot retry."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Lokesh Sharma",
+      "email": "lokesh.sharma@netcorecloud.com",
+      "query": "Requested help building Unreachable-style segments for Email, SMS, and Notifications (APN/BPN) mirroring the logic Netcore already provides for WhatsApp and RCS -- specifying exact sub-logic per channel (unsubscribed users, soft/hard bounces for Email; unsubscribed/blocked for SMS and Notifications).",
+      "why": "A fully worked-out, cross-channel segmentation design rather than a basic how-to -- shows deep platform fluency in applying an existing WhatsApp/RCS feature pattern to other channels. Got no real bot answer due to the outage, which is itself notable."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 2,
+        "external": 4
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 4,
+        "external": 6
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 2
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "prasads@mfuindia.in",
+        "count": 2,
+        "friction": false,
+        "queries": [
+          {
+            "theme": "Bare greeting, no context yet",
+            "text": "hi"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "we have sheduld email but sent mail number not showing"
+          }
+        ]
+      },
+      {
+        "email": "mahendra.karande@hdfcsec.com",
+        "count": 2,
+        "friction": true,
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "Not able to publish campaigns"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "Something wrong with the system, unable to send campaigns, also unable to send test emails"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 3,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "gargi.mukherjee@netcorecloud.com",
+            "q": "what are the datatypes available for my attributes?"
+          },
+          {
+            "email": "charishma.p@netcorecloud.com",
+            "q": "What is channel ID and where to get it from? (for app push notification)"
+          },
+          {
+            "email": "hardeep.singh@netcorecloud.com",
+            "q": "My client wants to upload daily file of 4-5L records in S3 with 250 Attributes, how much time would it take to upload onto the panel?"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "bilqis.ishola@heirsinsurancebrokers.com",
+            "q": "Please confirm that this email exists in HLA Customers list"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 1,
+        "external": 3,
+        "internalQ": [
+          {
+            "email": "manish@netcorecloud.com",
+            "q": "How can email ids be Blacklisted using the Global Blacklist feature? Please share rationale. / what is mass blacklist email?"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "ujjwal@successgyan.com",
+            "q": "We have a query regarding the block list contact"
+          },
+          {
+            "email": "prasads@mfuindia.in",
+            "q": "we have sheduld email but sent mail number not showing"
+          },
+          {
+            "email": "mahendra.karande@hdfcsec.com",
+            "q": "Something wrong with the system, unable to send campaigns, also unable to send test emails"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "lokesh.sharma@netcorecloud.com",
+            "q": "Need help creating segments for Email, SMS, and Notifications similar to what Netcore provides for WhatsApp and RCS (Unreachable)"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 1,
+        "external": 4,
+        "internalQ": [
+          {
+            "email": "utpal.dutta@netcorecloud.com",
+            "q": "Campaign Slicing explain in brief"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "darryl.chua@trycata.com",
+            "q": "check who just set campaign ID 104 live, it was previously a draft that never sent out"
+          },
+          {
+            "email": "mahendra.karande@hdfcsec.com",
+            "q": "Not able to publish campaigns"
+          },
+          {
+            "email": "taimoortongu@fil.net.in",
+            "q": "campaign report does not display any data"
+          },
+          {
+            "email": "sardarali.sayed@neoniche.com",
+            "q": "not able to see the count of sent, delivered, etc. for any of my campaigns"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "drashtant.pambhar@netcorecloud.com",
+            "q": "What exactly is Agentic AI?"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "gaureesh.desai@kotak.com",
+            "q": "Email template not seen in journey section I created; campaign needs to go live today before 12:30"
+          }
+        ]
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 1,
+        "external": 4,
+        "internalQ": [
+          {
+            "email": "akash.gupta@netcorecloud.com",
+            "q": "help me with the guide to create user role in panel"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "prasads@mfuindia.in",
+            "q": "hi (bare greeting, no follow-up)"
+          },
+          {
+            "email": "haneem.hussain@tm.com.my",
+            "q": "dashboard is not showing figures"
+          },
+          {
+            "email": "magunamaguna555@gmail.com",
+            "q": "Hi iam maguna / please check My order (off-topic, unrelated to Netcore CE)"
+          },
+          {
+            "email": "akanksha.juyal@spicemoney.com",
+            "q": "I want to enable tooltip on a page guide me"
+          }
+        ]
+      }
+    ]
+  }}/*END_PLACEHOLDER*/;
 const DATES = Object.keys(ARCHIVE).sort().reverse();
 let theme = 'light';
 
