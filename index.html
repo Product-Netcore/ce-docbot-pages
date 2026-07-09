@@ -2,7 +2,7 @@
 {
   "name": "Ce Docbot Summary 2026 06 17",
   "schemaVersion": 1,
-  "description": "CE Docbot 14-day rolling summary (Jun 25 – Jul 8, 2026) — latest day 2026-07-08"
+  "description": "CE Docbot 14-day rolling summary (Jun 25 – Jul 8, 2026) — latest day 2026-07-08. Historical tab now shows since-last-report deltas, a Trending Now card, and NEW badges."
 }
 </script>
 <html lang="en">
@@ -416,6 +416,44 @@ table td{padding:10px 8px; border-bottom:1px solid var(--paperline); vertical-al
 
 .anim{animation:fadeUp .5s ease both;}
 @keyframes fadeUp{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);}}
+
+/* since-last-report delta strip */
+.since-strip{
+  display:flex; flex-wrap:wrap; gap:8px 20px; align-items:center;
+  margin:16px 0 4px; padding:12px 16px; background:var(--paper2); border:1px solid var(--paperline);
+  border-radius:10px; font-size:12.5px; color:var(--dimtext);
+}
+.since-strip .since-label{font-family:'JetBrains Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.06em; color:var(--signal); margin-right:4px; flex-basis:100%;}
+.since-strip .since-item{display:inline-flex; align-items:center; gap:5px; color:var(--text); font-family:'JetBrains Mono',monospace; font-size:12px;}
+.since-strip .since-item .arrow-up, .since-strip .since-item .arrow-down{font-weight:700; color:var(--signal);}
+.since-strip .since-item .dim{color:var(--dimtext);}
+.since-strip .since-empty{font-style:italic; color:var(--dimtext); font-size:12.5px;}
+
+.badge-new{
+  font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:.05em;
+  background:var(--signal); color:#1b1508; padding:2px 6px; border-radius:5px; margin-left:6px; vertical-align:middle;
+  display:inline-block;
+}
+
+.mini-metric{font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--dimtext); margin-top:4px;}
+.mini-metric .mono{color:var(--text); font-weight:600;}
+
+.sharp-mover-callout{
+  display:flex; gap:12px; align-items:flex-start; padding:14px 16px; margin:12px 0 16px;
+  background:rgba(227,162,60,.08); border:1px solid rgba(227,162,60,.3); border-radius:10px;
+}
+.sharp-mover-callout .icon{font-size:17px; line-height:1.3;}
+.sharp-mover-callout .body{font-size:13.5px; color:var(--text); line-height:1.5;}
+.sharp-mover-callout .body .mono{font-weight:700;}
+
+.trending-week{margin-top:14px; padding-top:12px; border-top:1px dashed var(--paperline);}
+.trending-week-label{font-family:'JetBrains Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.06em; color:var(--signal); margin-bottom:8px;}
+.trending-week-row{display:flex; justify-content:space-between; align-items:center; font-size:12.5px; padding:5px 0; cursor:pointer;}
+.trending-week-row:hover{color:var(--signal);}
+.trending-week-row .email{font-family:'JetBrains Mono',monospace; font-size:11.5px;}
+.trending-week-row .cnt{color:var(--dimtext); font-family:'JetBrains Mono',monospace; font-size:11px;}
+.trending-week-row .dim{color:var(--dimtext); font-style:italic; cursor:default;}
+
 </style>
 </head>
 <body>
@@ -3672,8 +3710,8 @@ function findPatternRiskByKeyword(archive, keyword){
   return null;
 }
 
-function computeMasterSummary(archive){
-  const dates = Object.keys(archive).sort();
+function computeMasterSummary(archive, dateSubset){
+  const dates = (dateSubset || Object.keys(archive)).slice().sort();
   const askerInternal = {};
   const askerExternal = {};
   const areaMap = {};
@@ -3689,14 +3727,25 @@ function computeMasterSummary(archive){
   const BASIC_THEMES = ['How do I do X', "What does X mean/how it works", 'Where do I set up/find X', "Where's the doc/API for X"];
   const UPLOAD_KW = ['upload','harvest'];
   const COMPETITOR_DOMAINS = ['clevertap.in','clevertap.com'];
+  const DELETION_KW = ['delete my email','deleted from your database','delete my data','delete my account','remove my email','remove my data','gdpr','right to be forgotten','delete my personal'];
+  let deletionHits = [];
+  let weekdayTotal = 0, weekdayDays = 0, weekendTotal = 0, weekendDays = 0;
+  let csatArtifactDates = [];
 
   dates.forEach(d=>{
     const day = archive[d];
+    if(!day) return;
     totalConv += day.totalConversations;
     totalResSum += day.resolutionRate;
     totalInternal += day.internalTotal;
     totalExternal += day.externalTotal;
     if(day.queryType){ techTotal += day.queryType.technical||0; genTotal += day.queryType.generic||0; }
+
+    const dow = new Date(d+'T12:00:00Z').getUTCDay();
+    if(dow===0 || dow===6){ weekendTotal += day.totalConversations; weekendDays++; }
+    else { weekdayTotal += day.totalConversations; weekdayDays++; }
+
+    if(JSON.stringify(day).toLowerCase().indexOf('csat') >= 0) csatArtifactDates.push(d);
 
     (day.themesBySource||[]).forEach(t=>{
       if(BASIC_THEMES.indexOf(t.theme) >= 0){
@@ -3727,6 +3776,7 @@ function computeMasterSummary(archive){
         allQuestions.push({date:d, area:key, side:'internal', email:x.email, q:x.q});
         const text = (x.q||'').toLowerCase();
         if(UPLOAD_KW.some(k=>text.indexOf(k)>=0)) uploadHits.push({date:d, area:key, side:'internal', email:x.email, q:x.q});
+        if(DELETION_KW.some(k=>text.indexOf(k)>=0)) deletionHits.push({date:d, area:key, side:'internal', email:x.email, q:x.q});
       });
       (a.externalQ||[]).forEach(x=>{
         const spamCat = detectSpam(x.q);
@@ -3737,6 +3787,7 @@ function computeMasterSummary(archive){
         allQuestions.push({date:d, area:key, side:'external', email:x.email, q:x.q});
         const text = (x.q||'').toLowerCase();
         if(UPLOAD_KW.some(k=>text.indexOf(k)>=0)) uploadHits.push({date:d, area:key, side:'external', email:x.email, q:x.q});
+        if(DELETION_KW.some(k=>text.indexOf(k)>=0)) deletionHits.push({date:d, area:key, side:'external', email:x.email, q:x.q});
       });
     });
 
@@ -3755,16 +3806,16 @@ function computeMasterSummary(archive){
     }
   });
 
-  const buildPowerList = (map)=> Object.entries(map)
+  const buildPowerList = (map, n)=> Object.entries(map)
     .map(([email,v])=>({
       email, count:v.count, dayCount:v.days.size,
       topArea: Object.entries(v.areas).sort((a,b)=>b[1]-a[1])[0]?.[0] || '—'
     }))
     .sort((a,b)=>b.count-a.count || b.dayCount-a.dayCount)
-    .slice(0,6);
+    .slice(0, n||6);
 
-  const powerUsersInternal = buildPowerList(askerInternal);
-  const powerUsersExternal = buildPowerList(askerExternal);
+  const powerUsersInternal = buildPowerList(askerInternal, 6);
+  const powerUsersExternal = buildPowerList(askerExternal, 6);
 
   // validTotalConv = raw logged volume minus detected spam/off-topic noise. Used as the
   // denominator for area share so "% of volume" reflects genuine CE questions, not bot/spam
@@ -3796,25 +3847,50 @@ function computeMasterSummary(archive){
   const uploadByDay = {};
   uploadHits.forEach(h=>{ uploadByDay[h.date] = (uploadByDay[h.date]||0) + 1; });
   const uploadPeak = Object.entries(uploadByDay).sort((a,b)=>b[1]-a[1])[0] || null;
+  const uploadDaysCount = Object.keys(uploadByDay).length;
 
   const deflRate = deflChecked ? Math.round(deflDeflected/deflChecked*100) : null;
   const quangCase = findPatternRiskByKeyword(archive, 'quang ngo');
   const topInternalRepeat = powerUsersInternal[0] || null;
 
-  return {
+  const weekdayAvg = weekdayDays ? +(weekdayTotal/weekdayDays).toFixed(1) : 0;
+  const weekendAvg = weekendDays ? +(weekendTotal/weekendDays).toFixed(1) : 0;
+
+  const result = {
     dates, totalConv, validTotalConv, avgResolution, totalInternal, totalExternal,
     techTotal, genTotal,
     powerUsersInternal, powerUsersExternal,
     topAreas,
     basicInternal, basicExternal, basicTotal, basicPct,
     apiArea, apiPct,
-    uploadHits, uploadExternalCount, uploadInternalCount, uploadPeak,
+    uploadHits, uploadExternalCount, uploadInternalCount, uploadPeak, uploadDaysCount,
     deflDeflected, deflChecked, deflRate, deflDaysTracked, deflEscalations,
     quangCase, competitorHits, topInternalRepeat, allQuestions,
+    deletionHits, weekdayTotal, weekdayDays, weekendTotal, weekendDays, weekdayAvg, weekendAvg,
+    csatArtifactDates,
     suppressed, suppressedCount: suppressed.length
   };
+
+  // Sharpest-moving area across the WHOLE tracked area list (not just the top-3 that get
+  // shown by default) — first half of the window vs second half. Lets a fast-mover that's
+  // currently 4th or 5th by raw volume still surface somewhere on the page instead of
+  // being buried in the "Also active" chip row.
+  let sharpestMover = null;
+  topAreas.forEach(a=>{
+    const trend = computeAreaTrend(a.area, result);
+    if(trend && (!sharpestMover || Math.abs(trend.pctChange) > Math.abs(sharpestMover.trend.pctChange))){
+      sharpestMover = {area: a.area, areaData: a, trend};
+    }
+  });
+  result.sharpestMover = sharpestMover;
+
+  return result;
 }
 
+// Diffs the current full rolling window against the same window with the newest tracked
+// day removed — i.e. "what does this report say that the last one didn't." This is what
+// powers the "Since last report" strip and the Trending Now card; it needs >=2 tracked
+// days and returns null otherwise (e.g. the very first day ever logged).
 function renderSidebar(){
   const m = computeMasterSummary(ARCHIVE);
   const data = ARCHIVE[activeDate];
@@ -4002,8 +4078,104 @@ function renderDailyMain(data){
   `;
 }
 
+function computeSinceLastReport(archive){
+  const datesAll = Object.keys(archive).sort();
+  if(datesAll.length < 2) return null;
+  const datesPrev = datesAll.slice(0, -1);
+  const mFull = computeMasterSummary(archive, datesAll);
+  const mPrev = computeMasterSummary(archive, datesPrev);
+  const latestDate = datesAll[datesAll.length-1];
+
+  const newEscalations = mFull.deflEscalations.filter(e => e.date === latestDate);
+
+  const prevAreaTotals = {};
+  mPrev.topAreas.forEach(a => { prevAreaTotals[a.area] = a.total; });
+  const newAreas = mFull.topAreas.filter(a => !prevAreaTotals[a.area]);
+
+  const prevReasons = new Set(mPrev.suppressed.map(s=>s.reason));
+  const newSpamCats = Array.from(new Set(mFull.suppressed.filter(s=>!prevReasons.has(s.reason)).map(s=>s.reason)));
+
+  const prevInternalEmails = new Set(mPrev.powerUsersInternal.map(u=>u.email));
+  const newInternalPower = mFull.powerUsersInternal.filter(u=>!prevInternalEmails.has(u.email));
+  const prevExternalEmails = new Set(mPrev.powerUsersExternal.map(u=>u.email));
+  const newExternalPower = mFull.powerUsersExternal.filter(u=>!prevExternalEmails.has(u.email));
+
+  return {
+    latestDate,
+    deflRateDelta: (mFull.deflRate!==null && mPrev.deflRate!==null) ? mFull.deflRate - mPrev.deflRate : null,
+    deflRateFull: mFull.deflRate, deflRatePrev: mPrev.deflRate,
+    apiPctDelta: (mFull.apiArea && mPrev.apiArea) ? mFull.apiPct - mPrev.apiPct : null,
+    apiPctFull: mFull.apiPct, apiPctPrev: mPrev.apiPct,
+    basicPctDelta: mFull.basicPct - mPrev.basicPct,
+    basicPctFull: mFull.basicPct, basicPctPrev: mPrev.basicPct,
+    avgResDelta: mFull.avgResolution - mPrev.avgResolution,
+    avgResFull: mFull.avgResolution, avgResPrev: mPrev.avgResolution,
+    newEscalations, newAreas, newSpamCats, newInternalPower, newExternalPower,
+    mFull, mPrev
+  };
+}
+
+// Ranked pool of "what's actually new" signals for the Trending Now card. Each candidate
+// only clears the bar if it passed a real threshold (>=3pt swings, >=20% area trend, etc)
+// — a quiet day with nothing material renders an honest empty state instead of manufacturing
+// a signal out of noise.
+function buildTrendingSignals(since){
+  if(!since) return [];
+  const signals = [];
+  const m = since.mFull;
+
+  if(since.newEscalations.length){
+    signals.push({p:100, html:'<li><span class="mono">'+since.newEscalations.length+'</span> new same-user Freshdesk escalation'+(since.newEscalations.length===1?'':'s')+' since the last report — '+since.newEscalations.map(e=>e.email.split('@')[0]+' (&ldquo;'+e.ticketSubject+'&rdquo;)').join('; ')+'</li>'});
+  }
+  if(since.newAreas.length){
+    signals.push({p:85, html:'<li>First-ever appearance in the tracked window for <span class="mono">'+since.newAreas.map(a=>a.area).join(', ')+'</span><span class="badge-new">NEW</span></li>'});
+  }
+  if(m.sharpestMover && Math.abs(m.sharpestMover.trend.pctChange) >= 20){
+    const t = m.sharpestMover.trend;
+    signals.push({p: 70+Math.min(Math.abs(t.pctChange),30), html:'<li><span class="mono">'+m.sharpestMover.area+'</span> '+(t.pctChange>=0?'grew <span class="mono">+':'cooled <span class="mono">')+t.pctChange+'%</span> in the 2nd half of the window vs the 1st half — the sharpest mover of any tracked area right now, regardless of its overall rank</li>'});
+  }
+  if(since.deflRateDelta !== null && Math.abs(since.deflRateDelta) >= 3){
+    signals.push({p:65, html:'<li>Deflection rate moved <span class="mono">'+(since.deflRateDelta>=0?'+':'')+since.deflRateDelta+'pts</span> since the last report ('+since.deflRatePrev+'% → '+since.deflRateFull+'%)</li>'});
+  }
+  if(since.newInternalPower.length || since.newExternalPower.length){
+    const names = since.newInternalPower.concat(since.newExternalPower).map(u=>u.email.split('@')[0]);
+    signals.push({p:60, html:'<li>New face'+(names.length===1?'':'s')+' in the power-user leaderboard: <span class="mono">'+names.join(', ')+'</span><span class="badge-new">NEW</span> — wasn\'t in the top 6 as of the last report</li>'});
+  }
+  if(since.apiPctDelta !== null && Math.abs(since.apiPctDelta) >= 3){
+    signals.push({p:55, html:'<li>API/Integration share moved <span class="mono">'+(since.apiPctDelta>=0?'+':'')+since.apiPctDelta+'pts</span> since the last report ('+since.apiPctPrev+'% → '+since.apiPctFull+'%)</li>'});
+  }
+  if(since.newSpamCats.length){
+    signals.push({p:35, html:'<li>New off-topic pattern detected: <span class="mono">'+since.newSpamCats.join(', ')+'</span><span class="badge-new">NEW</span> — see Data hygiene below</li>'});
+  }
+
+  return signals.sort((a,b)=>b.p-a.p).slice(0,4);
+}
+
+function renderSinceStrip(since){
+  if(!since){
+    return '<div class="since-strip"><span class="since-empty">Not enough history yet for a since-last-report comparison — needs at least 2 tracked days.</span></div>';
+  }
+  const arrow = (v)=> v===null ? '<span class="dim">—</span>' : (v>0 ? '<span class="arrow-up">▲ +'+v+'</span>' : (v<0 ? '<span class="arrow-down">▼ '+v+'</span>' : '<span class="dim">flat</span>'));
+  const items = [];
+  items.push('<span class="since-item">Deflection '+(since.deflRatePrev!==null?since.deflRatePrev+'%':'—')+' → '+(since.deflRateFull!==null?since.deflRateFull+'%':'—')+' '+arrow(since.deflRateDelta)+'</span>');
+  items.push('<span class="since-item">API share '+since.apiPctPrev+'% → '+since.apiPctFull+'% '+arrow(since.apiPctDelta)+'</span>');
+  items.push('<span class="since-item">Avg resolution '+since.avgResPrev+'% → '+since.avgResFull+'% '+arrow(since.avgResDelta)+'</span>');
+  if(since.newEscalations.length) items.push('<span class="since-item">'+since.newEscalations.length+' new escalation'+(since.newEscalations.length===1?'':'s')+'<span class="badge-new">NEW</span></span>');
+  if(since.newAreas.length) items.push('<span class="since-item">'+since.newAreas.length+' new area'+(since.newAreas.length===1?'':'s')+'<span class="badge-new">NEW</span></span>');
+  return '<div class="since-strip"><span class="since-label">Since last report ('+fmtDate(since.latestDate)+' added)</span>'+items.join('')+'</div>';
+}
+
 function renderHistoricalMain(){
-  const m = computeMasterSummary(ARCHIVE);
+  const since = computeSinceLastReport(ARCHIVE);
+  const m = since ? since.mFull : computeMasterSummary(ARCHIVE);
+  const datesAll = Object.keys(ARCHIVE).sort();
+  const mRecent = datesAll.length >= 3 ? computeMasterSummary(ARCHIVE, datesAll.slice(-3)) : null;
+  const mWeek = datesAll.length >= 2 ? computeMasterSummary(ARCHIVE, datesAll.slice(-4)) : null;
+  const trendingSignals = buildTrendingSignals(since);
+  const newAreaNames = new Set(since ? since.newAreas.map(a=>a.area) : []);
+  const allTimeInternalEmails = new Set(m.powerUsersInternal.map(u=>u.email));
+  const allTimeExternalEmails = new Set(m.powerUsersExternal.map(u=>u.email));
+
   const deflWindowLabel = m.deflDaysTracked.length
     ? (m.deflDaysTracked.length === 1 ? fmtDate(m.deflDaysTracked[0]) : (fmtDate(m.deflDaysTracked[0]) + ' – ' + fmtDate(m.deflDaysTracked[m.deflDaysTracked.length-1])))
     : null;
@@ -4020,6 +4192,13 @@ function renderHistoricalMain(){
       </div>
     `).join('') : '<div class="power-sub">Not enough data yet.</div>';
 
+  const trendingColumn = (weekList, allTimeSet)=> weekList.length ? weekList.map(u=>`
+      <div class="trending-week-row" data-drill-email="${u.email}" title="Click to see ${u.email}'s questions">
+        <span class="email">${u.email}${!allTimeSet.has(u.email)?'<span class="badge-new">NEW</span>':''}</span>
+        <span class="cnt">${u.count} this window</span>
+      </div>
+    `).join('') : '<div class="trending-week-row"><span class="dim">No repeat askers in the last few days.</span></div>';
+
   return `
     <div class="hero anim" id="sec-h-verdict">
       <div class="dateline">${fmtDate(m.dates[0])} – ${fmtDate(m.dates[m.dates.length-1])}</div>
@@ -4027,28 +4206,27 @@ function renderHistoricalMain(){
       <div class="headline-take">Cumulative view across all ${m.dates.length} day${m.dates.length>1?'s':''} tracked so far — recomputed fresh from every individual question in the archive each time a new day is added, not just same-day highlights.</div>
       <div class="stats cols-5">
         <div class="stat"><div class="v">${m.totalConv}</div><div class="l">Conversations, all-time</div></div>
-        <div class="stat"><div class="v">${m.avgResolution}%</div><div class="l">Avg bot-handled / day*</div></div>
-        <div class="stat"><div class="v">${m.deflRate!==null ? m.deflRate+'%' : '—'}</div><div class="l">Tickets deflected${deflWindowLabel ? ' ('+deflWindowLabel+')' : ' — not yet tracked'}</div></div>
+        <div class="stat"><div class="v">${m.avgResolution}%</div><div class="l">Avg bot-handled / day*</div>${mRecent?'<div class="mini-metric">Last 3 days: <span class="mono">'+mRecent.avgResolution+'%</span></div>':''}</div>
+        <div class="stat"><div class="v">${m.deflRate!==null ? m.deflRate+'%' : '—'}</div><div class="l">Tickets deflected${deflWindowLabel ? ' ('+deflWindowLabel+')' : ' — not yet tracked'}</div>${mRecent&&mRecent.deflRate!==null?'<div class="mini-metric">Last 3 days: <span class="mono">'+mRecent.deflRate+'%</span></div>':''}</div>
         <div class="stat"><div class="v">${m.totalInternal}:${m.totalExternal}</div><div class="l">Netcore : Customer</div></div>
         <div class="stat clickable" id="statQtypeH"><div class="v">${m.techTotal}:${m.genTotal}</div><div class="l">Technical : Generic — click for examples</div></div>
       </div>
       <div class="qtype-panel" id="qtypePanelH"></div>
+      ${renderSinceStrip(since)}
       <div class="footnote-mark">* self-reported by the bot's own session state. The deflection figure is the stronger, Freshdesk-checked signal — ${m.deflChecked} conversations checked so far, ${m.deflDeflected} with no matching ticket from that user (${m.deflEscalations.length} confirmed same-user escalation${m.deflEscalations.length===1?'':'s'}). Coverage widens as deflection tracking rolls back across earlier days.</div>
     </div>
 
     <details class="acc anim" id="sec-h-takeaways" open>
       <summary><span><span class="snum">02</span>Key takeaways — for leadership</span><span class="vm"><span class="vm-more">View more ↓</span><span class="vm-less">View less ↑</span></span></summary>
       <div class="acc-body">
-        <div class="acc-sub">Five patterns that hold across the whole tracked period — read top to bottom, each line is a standalone fact.</div>
+        <div class="acc-sub">Trending Now is rebuilt from a since-last-report diff every time a day is added — it's the only card here guaranteed to change. The other six hold structurally across the whole tracked period (${fmtDate(m.dates[0])} – ${fmtDate(m.dates[m.dates.length-1])}).</div>
 
         <div class="takeaway-card">
           <div class="takeaway-num">01</div>
           <div class="takeaway-body">
-            <div class="ttitle">Enablement gap, not a customer onboarding gap — ${m.basicPct}% of volume is "how/where," and staff ask it as much as customers</div>
+            <div class="ttitle">Trending now — what's different since the last report</div>
             <ul class="takeaway-bullets">
-              <li><span class="mono">${m.basicTotal}</span> of <span class="mono">${m.totalConv}</span> conversations (<span class="mono">${m.basicPct}%</span>) are navigational — how do I / where do I find / what does X mean</li>
-              <li>Split <span class="mono">${m.basicInternal}</span> internal : <span class="mono">${m.basicExternal}</span> customer — near 50/50, so this isn't just a customer self-serve problem</li>
-              ${m.topInternalRepeat ? '<li class="reco">Fix: turn <span class="mono">'+m.topInternalRepeat.email+'</span>\'s '+m.topInternalRepeat.count+' repeat questions on '+m.topInternalRepeat.topArea+' into a pinned internal FAQ</li>' : ''}
+              ${trendingSignals.length ? trendingSignals.map(s=>s.html).join('') : '<li>No material shifts since the last report — today\'s addition landed within the normal range on every tracked metric. Not a bug: some days are just quiet.</li>'}
             </ul>
           </div>
         </div>
@@ -4056,17 +4234,28 @@ function renderHistoricalMain(){
         <div class="takeaway-card">
           <div class="takeaway-num">02</div>
           <div class="takeaway-body">
-            <div class="ttitle">Deflection rate undercounts real impact — a "missed" match can still save agent time</div>
+            <div class="ttitle">Enablement gap, not a customer onboarding gap — ${m.basicPct}% of volume is "how/where," and staff ask it as much as customers</div>
             <ul class="takeaway-bullets">
-              ${m.quangCase ? '<li>'+fmtDate(m.quangCase.date)+': '+m.quangCase.note+'</li>' : '<li>No comparable example flagged yet in the tracked window.</li>'}
-              <li>Logged today as an escalation (account-name mismatch), but the resulting ticket was scoped and specific — not a blind "how do I" ask</li>
-              <li class="reco">Fix: track ticket scope/clarity as a secondary deflection metric, not just exact match / no match</li>
+              <li><span class="mono">${m.basicTotal}</span> of <span class="mono">${m.totalConv}</span> conversations (<span class="mono">${m.basicPct}%</span>) are navigational — how do I / where do I find / what does X mean</li>
+              <li>Split <span class="mono">${m.basicInternal}</span> internal : <span class="mono">${m.basicExternal}</span> customer — near 50/50, so this isn't just a customer self-serve problem</li>
+              ${m.topInternalRepeat ? '<li class="reco">Fix: turn <span class="mono">'+m.topInternalRepeat.email+'</span>\'s '+m.topInternalRepeat.count+' repeat questions (across '+m.topInternalRepeat.dayCount+' separate days) into a pinned internal FAQ</li>' : ''}
             </ul>
           </div>
         </div>
 
         <div class="takeaway-card">
           <div class="takeaway-num">03</div>
+          <div class="takeaway-body">
+            <div class="ttitle">${m.deletionHits.length} direct customer data-deletion request${m.deletionHits.length===1?'':'s'} hit the docbot with no verified follow-through</div>
+            <ul class="takeaway-bullets">
+              ${m.deletionHits.length ? m.deletionHits.map(h=>'<li>'+fmtDate(h.date)+': <span class="mono">'+h.email+'</span> — &ldquo;'+h.q+'&rdquo;</li>').join('') : '<li>No GDPR/deletion-style requests flagged yet in the tracked window.</li>'}
+              <li class="reco">Fix: auto-escalate any delete-my-data / GDPR-style request to a human immediately, rather than letting the bot (or the CSAT workflow) self-mark it resolved</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="takeaway-card">
+          <div class="takeaway-num">04</div>
           <div class="takeaway-body">
             <div class="ttitle">${m.apiArea ? m.apiArea.area+' is '+m.apiPct+'% of all volume — the single largest topic, and it\'s demand signal, not noise' : 'API/Integration volume not yet tracked'}</div>
             <ul class="takeaway-bullets">
@@ -4078,23 +4267,37 @@ function renderHistoricalMain(){
         </div>
 
         <div class="takeaway-card">
-          <div class="takeaway-num">04</div>
+          <div class="takeaway-num">05</div>
           <div class="takeaway-body">
-            <div class="ttitle">${m.competitorHits.length ? 'CleverTap email ran a full capability scan on '+fmtDate(m.competitorHits[0].date)+' — verify the account' : 'No competitor-domain activity flagged this period'}</div>
+            <div class="ttitle">Freshdesk-checked, the bot deflects ${m.deflRate!==null ? m.deflRate+'%' : 'an unmeasured share'} of tickets — and the rare leaks are product bugs, not content gaps</div>
             <ul class="takeaway-bullets">
-              ${m.competitorHits.length ? '<li><span class="mono">'+m.competitorHits[0].email+'</span> asked '+m.competitorHits[0].count+' broad questions in one session — WhatsApp template approvals, AI-assisted segmentation, web personalisation</li><li>Structured breadth scan, not a single-feature lookup</li><li class="reco">Fix: if verified prospect/partner → route to Sales as an expansion signal; if not → flag to Product/Security as competitive intel</li>' : '<li>Watchlist: clevertap.in / clevertap.com — nothing matched in this window</li><li class="reco">Keep the watch active on every future rollup</li>'}
+              <li><span class="mono">${m.deflDeflected}</span> of <span class="mono">${m.deflChecked}</span> checked conversations across <span class="mono">${m.deflDaysTracked.length}</span> tracked days show no matching ticket from that user in the D+2 window</li>
+              ${m.deflEscalations.length ? '<li>The <span class="mono">'+m.deflEscalations.length+'</span> confirmed same-user escalations — '+m.deflEscalations.map(e=>e.email.split('@')[0]+' ('+fmtDate(e.date)+', &ldquo;'+e.ticketSubject+'&rdquo;)').join('; ')+' — are all functional/platform issues (integration access, upload/harvest error, Journey-creation bug), not missing documentation</li>' : '<li>No confirmed same-user escalations yet in the tracked window.</li>'}
+              <li class="reco">Fix: the content side is already working here — the next lever for deflection is fixing the upload/integration/Journey bugs the bot can't talk its way around</li>
             </ul>
           </div>
         </div>
 
         <div class="takeaway-card">
-          <div class="takeaway-num">05</div>
+          <div class="takeaway-num">06</div>
           <div class="takeaway-body">
             <div class="ttitle">${m.uploadHits.length} list/audience upload-or-harvest failures surfaced only because customers happened to ask the bot</div>
             <ul class="takeaway-bullets">
               <li><span class="mono">${m.uploadExternalCount}</span> from customers, <span class="mono">${m.uploadInternalCount}</span> from Netcore staff — zero internal visibility until it hit the bot</li>
-              ${m.uploadPeak ? '<li><span class="mono">'+m.uploadPeak[1]+'</span> of '+m.uploadHits.length+' landed on one day ('+fmtDate(m.uploadPeak[0])+'), unrelated accounts — looks like a platform-side slowdown, not user error</li>' : ''}
+              <li>Spread across <span class="mono">${m.uploadDaysCount}</span> of the ${m.dates.length} tracked days${m.uploadPeak ? ', peaking at '+m.uploadPeak[1]+' on '+fmtDate(m.uploadPeak[0]) : ''} — unrelated accounts, same failure mode, not a one-off</li>
               <li class="reco">Fix: ship a near-real-time upload/processing status indicator so customers aren't the first to notice</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="takeaway-card">
+          <div class="takeaway-num">07</div>
+          <div class="takeaway-body">
+            <div class="ttitle">Read the daily numbers with two calibration notes before presenting either one on its own</div>
+            <ul class="takeaway-bullets">
+              <li>Self-reported resolution rate averages <span class="mono">${m.avgResolution}%</span> across ${m.dates.length} days, but <span class="mono">${m.csatArtifactDates.length}</span> of those days are confirmed Featurebase CSAT-workflow-state artifacts (state flips to "handed off" even when the bot fully answered) — not real failures. Don't use the raw average as a KPI until that instrumentation is fixed.</li>
+              <li>Volume swings hard by day of week: <span class="mono">${m.weekdayAvg}</span> conversations/day on weekdays vs <span class="mono">${m.weekendAvg}</span> on weekends — held across every weekend in the window, so a quiet Saturday/Sunday is expected, not a broken pipeline.</li>
+              <li class="reco">Fix: lean on this 14-day rollup for any leadership-facing number — a single day's snapshot can mislead in either direction</li>
             </ul>
           </div>
         </div>
@@ -4108,8 +4311,10 @@ function renderHistoricalMain(){
           const top3 = m.topAreas.slice(0,3);
           const rest = m.topAreas.slice(3);
           const top3Pct = m.validTotalConv ? Math.round(top3.reduce((s,a)=>s+a.total,0)/m.validTotalConv*100) : 0;
+          const sharpBuried = m.sharpestMover && !top3.some(a=>a.area===m.sharpestMover.area) && Math.abs(m.sharpestMover.trend.pctChange) >= 15;
           return `
         <div class="acc-sub">The top ${top3.length} topic${top3.length===1?'':'s'} below account for <span class="mono">${top3Pct}%</span> of all valid questions logged across ${m.dates.length} days${m.suppressedCount ? ' ('+m.suppressedCount+' off-topic/spam item'+(m.suppressedCount===1?'':'s')+' excluded — see Data hygiene below)' : ''}. Each carries one concrete reason it matters — not just a volume count.</div>
+        ${sharpBuried ? '<div class="sharp-mover-callout"><span class="icon">⚡</span><div class="body"><span class="mono">'+m.sharpestMover.area+'</span> isn\'t in the top 3 by volume, but it moved <span class="mono">'+(m.sharpestMover.trend.pctChange>=0?'+':'')+m.sharpestMover.trend.pctChange+'%</span> in the 2nd half of the window vs the 1st — the sharpest mover of any tracked area right now. Worth watching even though it\'s buried below.</div></div>' : ''}
         <div class="legend">
           <span><span class="swatch" style="background:var(--internal)"></span>Netcore team</span>
           <span><span class="swatch" style="background:var(--external)"></span>Customer</span>
@@ -4120,12 +4325,13 @@ function renderHistoricalMain(){
             const trendHTML = trend
               ? '<span class="lead-area-trend '+(trend.pctChange>=0?'up':'down')+'">'+(trend.pctChange>=0?'▲ +'+trend.pctChange+'%':'▼ '+Math.abs(trend.pctChange)+'%')+' in the 2nd half of the window — '+(trend.pctChange>=0?'growing':'cooling off')+'</span>'
               : '';
+            const newBadge = newAreaNames.has(a.area) ? '<span class="badge-new">NEW</span>' : '';
             return `
             <div class="lead-area-card ${a.pattern.cls}" data-drill-area="${a.area}" title="Click to see all ${a.total} questions for ${a.area}">
               <div class="lead-area-rank">${String(i+1).padStart(2,'0')}</div>
               <div class="lead-area-body">
                 <div class="lead-area-top">
-                  <span class="lead-area-name">${a.area}</span>
+                  <span class="lead-area-name">${a.area}${newBadge}</span>
                   <span class="lead-area-pct">${a.pct}% of all volume</span>
                 </div>
                 <div class="lead-area-total">${a.total} conversations${trendHTML}</div>
@@ -4140,7 +4346,7 @@ function renderHistoricalMain(){
         <div class="other-areas">
           <div class="other-areas-label">Also active — lower volume, still tracked (click any to see its questions)</div>
           <div class="other-areas-list">
-            ${rest.map(a=>`<span class="other-area-chip" data-drill-area="${a.area}" title="Click to see all ${a.total} questions for ${a.area}">${a.area} <span class="mono">${a.total}</span> <span class="dim">(${a.pct}%)</span></span>`).join('')}
+            ${rest.map(a=>`<span class="other-area-chip" data-drill-area="${a.area}" title="Click to see all ${a.total} questions for ${a.area}">${a.area}${newAreaNames.has(a.area)?'<span class="badge-new">NEW</span>':''} <span class="mono">${a.total}</span> <span class="dim">(${a.pct}%)</span></span>`).join('')}
           </div>
         </div>` : ''}`;
         })()}
@@ -4155,10 +4361,12 @@ function renderHistoricalMain(){
           <div>
             <div class="master-subtag">Internal — Netcore team</div>
             ${powerColumn(m.powerUsersInternal)}
+            ${mWeek ? '<div class="trending-week"><div class="trending-week-label">🔥 Trending this window (last 4 tracked days)</div>'+trendingColumn(mWeek.powerUsersInternal.slice(0,3), allTimeInternalEmails)+'</div>' : ''}
           </div>
           <div>
             <div class="master-subtag">External — Customers</div>
             ${powerColumn(m.powerUsersExternal)}
+            ${mWeek ? '<div class="trending-week"><div class="trending-week-label">🔥 Trending this window (last 4 tracked days)</div>'+trendingColumn(mWeek.powerUsersExternal.slice(0,3), allTimeExternalEmails)+'</div>' : ''}
           </div>
         </div>
       </div>
