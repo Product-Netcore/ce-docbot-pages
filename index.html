@@ -2,7 +2,7 @@
 {
   "name": "Ce Docbot Summary 2026 06 17",
   "schemaVersion": 1,
-  "description": "CE Docbot 14-day rolling summary (Jun 24 – Jul 7, 2026) — latest day 2026-07-07"
+  "description": "CE Docbot 14-day rolling summary (Jun 25 – Jul 8, 2026) — latest day 2026-07-08"
 }
 </script>
 <html lang="en">
@@ -448,219 +448,6 @@ table td{padding:10px 8px; border-bottom:1px solid var(--paperline); vertical-al
 </div>
 <script>
 const ARCHIVE = /*ARCHIVE_JSON_PLACEHOLDER*/{
-  "2026-06-24": {
-    "date": "2026-06-24",
-    "totalConversations": 13,
-    "resolutionRate": 85,
-    "internalTotal": 7,
-    "externalTotal": 6,
-    "docsTotal": 6,
-    "panelTotal": 7,
-    "queryType": {
-      "technical": 6,
-      "generic": 7
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days",
-      "totalConversations": 13,
-      "sameUserEscalations": [],
-      "deflectedCount": 13,
-      "deflectionRate": 100,
-      "patternRisk": [
-        {
-          "area": "Broadcast/Webhooks",
-          "docbotCount": 1,
-          "ticketCount": 1,
-          "exampleTicketSubjects": [
-            "Query Regarding SMS Delivery Status Webhook / Callback #5200920"
-          ],
-          "note": "Khushi Chitkara's AMLI DLR/CTR SMS webhook ask (IP whitelisting + webhook URL setup on the CPaaS panel) mirrors a same-window Freshdesk ticket from Indiabulls Housing Finance asking about SMS Delivery Status Webhook/Callback — same CPaaS Team queue, same underlying gap. Different customers, same documentation hole."
-        },
-        {
-          "area": "Email",
-          "docbotCount": 5,
-          "ticketCount": 1,
-          "exampleTicketSubjects": [
-            "[vpbankscom_cee] Disable default unsubscribe footer #5200205"
-          ],
-          "note": "Quang Ngo (quang.ngo@digiconnex.vn) asked the docbot how to customize the unsubscribe footer on account aitdigitalvncee, then opened a Freshdesk ticket asking to disable the same footer -- but on a different account (vpbankscom_cee), so Tier-1's exact-email match missed it. Same human, same theme, different account context."
-        }
-      ],
-      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. The 100% Tier-1 deflection rate is misleading on its own: zero exact-email matches, but Quang Ngo's case above shows the same person did escalate, just under a different account/email -- a blind spot in the strict email-match rule, not genuine full resolution. Also, the matching window (D through D+2) is only half-elapsed as of this run."
-    },
-    "headline": "13 conversations on June 24, 85% bot-resolved (2 handed off to a human) -- the headline number is really the Quang Ngo case: he asked the docbot to customize an unsubscribe footer, then opened an identical Freshdesk ticket the same day under a different account, exposing a blind spot in clean email-match deflection tracking.",
-    "actionableInsights": [
-      {
-        "owner": "calibration",
-        "title": "100% deflection rate is an artifact of the matching rule, not real resolution",
-        "desc": "Zero Tier-1 (exact-email) escalations today, so the raw math says 100% deflected. But Quang Ngo (quang.ngo@digiconnex.vn) asked the bot about disabling the unsubscribe footer on account aitdigitalvncee, then filed Freshdesk ticket #5200205 the same day asking the identical thing -- on a different account (vpbankscom_cee), so the email-match rule never caught it. Worth tracking by person, not just by exact email, if that's feasible."
-      },
-      {
-        "owner": "content",
-        "title": "DLR/CTR webhook setup for CPaaS/SMS has no clear self-serve doc",
-        "desc": "Khushi Chitkara asked the bot for IP whitelisting details and webhook URL setup steps for AMLI's SMS delivery/click-through reporting. The same week, Indiabulls Housing Finance opened a near-identical Freshdesk ticket on the same topic. Two different customers hitting the same gap is a strong signal this needs a dedicated DLR/CTR webhook how-to."
-      },
-      {
-        "owner": "design",
-        "title": "2 of 13 conversations needed a human -- resolution rate dipped from recent days",
-        "desc": "aishwarya.sinha (enable Insight Agent) and rakesh.plaha (username/password template for learners) both escalated. Neither looks like an AI-rate-limit outage (per June 21-23) -- worth a quick check on whether these two genuinely needed a human or the bot gave up too early."
-      },
-      {
-        "owner": "calibration",
-        "title": "Small sample, partial ticket-matching window",
-        "desc": "n=13, and the Freshdesk matching window (D through D+2) is only half-elapsed as of this run -- a same-user escalation landing on June 26 wouldn't be caught yet. Treat today's 100% deflection figure as a floor, not a final number."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Khushi Chitkara",
-      "email": "khushi.chitkara@netcorecloud.com",
-      "query": "AMLI is using the CPaaS panel (mli_sys_net_sapi) to send SMS and wants to capture Delivery Reports (DLR) and Click-Through Reports (CTR) via webhook -- asked for the IPs to whitelist, the webhook URL configuration process, and any DLR/CTR integration documentation.",
-      "why": "A structured, multi-part technical integration ask (IP whitelisting + webhook config + docs) rather than a how-to -- and a different customer hit the identical gap on Freshdesk the same week, confirming it's a real documentation hole, not a one-off."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 2,
-        "external": 6
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 1,
-        "external": 0
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 1,
-        "external": 0
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 3,
-        "external": 0
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 0
-      }
-    ],
-    "topAskers": [],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 1,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "jibin.philip@netcorecloud.com",
-            "q": "Do we have an integration with GA4?"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "anjali.yadav@guess.eu",
-            "q": "want to generate the api key for new domain"
-          }
-        ]
-      },
-      {
-        "area": "Email",
-        "internal": 1,
-        "external": 4,
-        "internalQ": [
-          {
-            "email": "heena.shah@netcorecloud.com",
-            "q": "hosting the emailers on the NC platform"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "sonali.sahu@impactguru.com",
-            "q": "Suggest subject line options for a fundraising campaign email"
-          },
-          {
-            "email": "megha.ghansal@gla.ac.in",
-            "q": "send a customized bulk email to ~3,000 recipients with each getting a unique Employee ID (mail merge-style)"
-          },
-          {
-            "email": "quang.ngo@digiconnex.vn",
-            "q": "how to customize the default unsubscribe text?"
-          },
-          {
-            "email": "rakesh.plaha@gla.ac.in",
-            "q": "need a template to send username and password to different learners"
-          }
-        ]
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 1,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "khushi.chitkara@netcorecloud.com",
-            "q": "AMLI wants to capture SMS DLR/CTR via webhook on the CPaaS panel -- needs IP whitelisting, webhook URL setup, and integration docs"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 0,
-        "external": 1,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "abhay.parekh@nuvama.com",
-            "q": "Not able to download/export data"
-          }
-        ]
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 4,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "lokesh.sharma@netcorecloud.com",
-            "q": "does password for detailed report remain same for scheduler or change every time"
-          },
-          {
-            "email": "anjali.inani@netcorecloud.com",
-            "q": "IS there any segment where they have included anonymous users"
-          },
-          {
-            "email": "ishika.a@netcorecloud.com",
-            "q": "where i can see daily active users for a month data"
-          },
-          {
-            "email": "aishwarya.sinha@netcoreunbxd.com",
-            "q": "How to enable insight agent?"
-          }
-        ],
-        "externalQ": []
-      }
-    ]
-  },
   "2026-06-25": {
     "date": "2026-06-25",
     "totalConversations": 14,
@@ -3510,7 +3297,213 @@ const ARCHIVE = /*ARCHIVE_JSON_PLACEHOLDER*/{
         ]
       }
     ]
-  }}/*END_PLACEHOLDER*/;
+  },
+  "2026-07-08": {
+    "date": "2026-07-08",
+    "totalConversations": 14,
+    "resolutionRate": 100,
+    "internalTotal": 4,
+    "externalTotal": 10,
+    "docsTotal": 6,
+    "panelTotal": 8,
+    "queryType": {
+      "technical": 4,
+      "generic": 10
+    },
+    "ticketDeflection": null,
+    "headline": "14 conversations on July 8, 100% bot self-reported resolved -- but at least 2 of those (Alok Chakraborty's blank template gallery, Ujjwal's stuck whitelist) ended on an open troubleshooting thread, not a real fix. Freshdesk session was logged out this run, so ticket-deflection tracking is skipped for today.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "100% self-reported resolution doesn't hold up under a manual read",
+        "desc": "Every conversation shows botConversationState: 'resolved', but Alok Chakraborty's (synapsewave_cee) template gallery was still blank after 4 troubleshooting rounds (refresh, incognito, cache check) with no final fix confirmed, and Ujjwal's (successgyancee) whitelist action on a blocklisted contact 'not working' ended with the bot suggesting a workaround he hadn't yet tried. Same pattern flagged since June 25 -- don't read the resolvedRate field at face value."
+      },
+      {
+        "owner": "content",
+        "title": "Freshdesk session expired -- no ticket-deflection data for July 8",
+        "desc": "The browser's Freshdesk session showed a login page instead of the ticket dashboard, so Tier-1/Tier-2 escalation checks couldn't run this pass. ticketDeflection is null for today -- re-authenticate the Freshdesk browser session before the next run so this doesn't become a recurring gap."
+      },
+      {
+        "owner": "product",
+        "title": "Amit Dobhal re-asked the same contact-edit bug twice in 8 minutes",
+        "desc": "amit.dobhal@theprint.in first asked why manual contact edits weren't reflecting, then 8 minutes later asked why a first/last-name save was reflecting blank -- same underlying dashboard bug, described two ways. The bot's answers leaned on API-side explanations (setUserIdentity, primary key) for what looks like a pure dashboard UI issue. Worth a direct engineering check on theprint's account for a stuck-write bug."
+      },
+      {
+        "owner": "design",
+        "title": "Joseph Ocampo II found a real UX dead-end in template categorization",
+        "desc": "josephocampoii-ji.ocampo@aia.com (bpiphilamcee) tried three times to create a new template category -- the UI shows 'Choose Category or Add New' with no actual add button, and saving without one silently defaults to Uncategorized. This reads as a genuine missing UI control, not a doc gap -- worth a quick product check."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Débora Silva",
+      "email": "debora.silva@pixellabor.com.br",
+      "query": "Reported that background-image-with-overlaid-text blocks in an email template look fine in HTML editor but aren't responsive across mobile devices when built in the Advanced Drag & Drop editor -- asked in Portuguese, with the bot correctly diagnosing it as a fixed-width background-image rendering limitation specific to the D&D editor's email-client compatibility.",
+      "why": "A precise, editor-specific CSS/rendering root-cause question (not just 'how do I') from a real production template issue spanning multiple devices -- genuine technical depth, handled cross-language."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 1,
+        "external": 9
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 2,
+        "external": 0
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 0
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "amit.dobhal@theprint.in",
+        "count": 2,
+        "friction": true,
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "while editing contact manually it's not reflecting"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "Hi, while changing the user first name and last name, after save it's not reflecting, still showing blank"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 1,
+        "external": 5,
+        "internalQ": [
+          {
+            "email": "jibin.philip@netcorecloud.com",
+            "q": "can CE platform integrate with woocommerce customer site?"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "amit.dobhal@theprint.in",
+            "q": "while editing contact manually it's not reflecting"
+          },
+          {
+            "email": "amit.dobhal@theprint.in",
+            "q": "while changing the user first name and last name, after save it's not reflecting, still showing blank"
+          },
+          {
+            "email": "jndsckjs@vkjsdv.co",
+            "q": "How can I create API keys? / is there a way to create api keys using an API"
+          },
+          {
+            "email": "tester@netcoretester.com",
+            "q": "full API flow: create contact, add to list, create email campaign, send via API, sync vs async, list IDs"
+          },
+          {
+            "email": "ujjwal@successgyan.com",
+            "q": "whitelisted contact still showing under blocklist, whitelist action not saving"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 5,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "debora.silva@pixellabor.com.br",
+            "q": "background image + text block not responsive on mobile in Advanced Drag & Drop editor"
+          },
+          {
+            "email": "alok.chakraborty@synapsewave.com",
+            "q": "template gallery under Product (22) category showing completely blank"
+          },
+          {
+            "email": "akanksha.mehta@yubimarkets.com",
+            "q": "why does my template CC 26 not show a 'use' button"
+          },
+          {
+            "email": "josephocampoii-ji.ocampo@aia.com",
+            "q": "how to create new template groups/categories -- no add-category button visible"
+          },
+          {
+            "email": "anuradhachaudhari@kotak.com",
+            "q": "how to use template in email"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "utpal.dutta@netcorecloud.com",
+            "q": "what is the max size of a PDF attachment in WhatsApp? can we send multiple PDFs?"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "romit.pandit@netcorecloud.com",
+            "q": "How to do A/B testing in broadcast email campaigns"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "lokesh.sharma@netcorecloud.com",
+            "q": "if segment is exported from the panel and status is processed, what does it mean"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      }
+    ]
+  }
+}/*END_PLACEHOLDER*/;
 const DATES = Object.keys(ARCHIVE).sort().reverse();
 let theme = 'light';
 
@@ -3696,17 +3689,6 @@ function computeMasterSummary(archive){
   const BASIC_THEMES = ['How do I do X', "What does X mean/how it works", 'Where do I set up/find X', "Where's the doc/API for X"];
   const UPLOAD_KW = ['upload','harvest'];
   const COMPETITOR_DOMAINS = ['clevertap.in','clevertap.com'];
-  // Personal-data deletion asks — deliberately narrow phrases (not a bare "delete") so a
-  // product question like "how to delete suspended campaigns" is never caught here.
-  const DELETION_KW = ['delete my email','deleted from your database','delete my data','delete my account','remove my email','remove my data','gdpr','right to be forgotten','delete my personal'];
-  let deletionHits = [];
-  // Weekday vs weekend traffic split — computed per-day from the date string itself, so it
-  // works for any future date the archive picks up, not just the days seen so far.
-  let weekdayTotal = 0, weekdayDays = 0, weekendTotal = 0, weekendDays = 0;
-  // Days where the day's own writeup already flags the Featurebase CSAT-workflow-state
-  // artifact (botConversationState flipping to "handed_off_to_human" even when the bot fully
-  // answered) — reused from the existing daily writeups rather than re-diagnosed from scratch.
-  let csatArtifactDates = [];
 
   dates.forEach(d=>{
     const day = archive[d];
@@ -3715,12 +3697,6 @@ function computeMasterSummary(archive){
     totalInternal += day.internalTotal;
     totalExternal += day.externalTotal;
     if(day.queryType){ techTotal += day.queryType.technical||0; genTotal += day.queryType.generic||0; }
-
-    const dow = new Date(d+'T12:00:00Z').getUTCDay();
-    if(dow===0 || dow===6){ weekendTotal += day.totalConversations; weekendDays++; }
-    else { weekdayTotal += day.totalConversations; weekdayDays++; }
-
-    if(JSON.stringify(day).toLowerCase().indexOf('csat') >= 0) csatArtifactDates.push(d);
 
     (day.themesBySource||[]).forEach(t=>{
       if(BASIC_THEMES.indexOf(t.theme) >= 0){
@@ -3751,7 +3727,6 @@ function computeMasterSummary(archive){
         allQuestions.push({date:d, area:key, side:'internal', email:x.email, q:x.q});
         const text = (x.q||'').toLowerCase();
         if(UPLOAD_KW.some(k=>text.indexOf(k)>=0)) uploadHits.push({date:d, area:key, side:'internal', email:x.email, q:x.q});
-        if(DELETION_KW.some(k=>text.indexOf(k)>=0)) deletionHits.push({date:d, area:key, side:'internal', email:x.email, q:x.q});
       });
       (a.externalQ||[]).forEach(x=>{
         const spamCat = detectSpam(x.q);
@@ -3762,7 +3737,6 @@ function computeMasterSummary(archive){
         allQuestions.push({date:d, area:key, side:'external', email:x.email, q:x.q});
         const text = (x.q||'').toLowerCase();
         if(UPLOAD_KW.some(k=>text.indexOf(k)>=0)) uploadHits.push({date:d, area:key, side:'external', email:x.email, q:x.q});
-        if(DELETION_KW.some(k=>text.indexOf(k)>=0)) deletionHits.push({date:d, area:key, side:'external', email:x.email, q:x.q});
       });
     });
 
@@ -3822,14 +3796,10 @@ function computeMasterSummary(archive){
   const uploadByDay = {};
   uploadHits.forEach(h=>{ uploadByDay[h.date] = (uploadByDay[h.date]||0) + 1; });
   const uploadPeak = Object.entries(uploadByDay).sort((a,b)=>b[1]-a[1])[0] || null;
-  const uploadDaysCount = Object.keys(uploadByDay).length;
 
   const deflRate = deflChecked ? Math.round(deflDeflected/deflChecked*100) : null;
   const quangCase = findPatternRiskByKeyword(archive, 'quang ngo');
   const topInternalRepeat = powerUsersInternal[0] || null;
-
-  const weekdayAvg = weekdayDays ? +(weekdayTotal/weekdayDays).toFixed(1) : 0;
-  const weekendAvg = weekendDays ? +(weekendTotal/weekendDays).toFixed(1) : 0;
 
   return {
     dates, totalConv, validTotalConv, avgResolution, totalInternal, totalExternal,
@@ -3838,11 +3808,9 @@ function computeMasterSummary(archive){
     topAreas,
     basicInternal, basicExternal, basicTotal, basicPct,
     apiArea, apiPct,
-    uploadHits, uploadExternalCount, uploadInternalCount, uploadPeak, uploadDaysCount,
+    uploadHits, uploadExternalCount, uploadInternalCount, uploadPeak,
     deflDeflected, deflChecked, deflRate, deflDaysTracked, deflEscalations,
     quangCase, competitorHits, topInternalRepeat, allQuestions,
-    deletionHits, weekdayTotal, weekdayDays, weekendTotal, weekendDays, weekdayAvg, weekendAvg,
-    csatArtifactDates,
     suppressed, suppressedCount: suppressed.length
   };
 }
@@ -4071,7 +4039,7 @@ function renderHistoricalMain(){
     <details class="acc anim" id="sec-h-takeaways" open>
       <summary><span><span class="snum">02</span>Key takeaways — for leadership</span><span class="vm"><span class="vm-more">View more ↓</span><span class="vm-less">View less ↑</span></span></summary>
       <div class="acc-body">
-        <div class="acc-sub">Six patterns that hold across the whole tracked period (${fmtDate(m.dates[0])} – ${fmtDate(m.dates[m.dates.length-1])}) — read top to bottom, each line is a standalone fact refreshed from every conversation logged so far, not just this week's highlights.</div>
+        <div class="acc-sub">Five patterns that hold across the whole tracked period — read top to bottom, each line is a standalone fact.</div>
 
         <div class="takeaway-card">
           <div class="takeaway-num">01</div>
@@ -4080,7 +4048,7 @@ function renderHistoricalMain(){
             <ul class="takeaway-bullets">
               <li><span class="mono">${m.basicTotal}</span> of <span class="mono">${m.totalConv}</span> conversations (<span class="mono">${m.basicPct}%</span>) are navigational — how do I / where do I find / what does X mean</li>
               <li>Split <span class="mono">${m.basicInternal}</span> internal : <span class="mono">${m.basicExternal}</span> customer — near 50/50, so this isn't just a customer self-serve problem</li>
-              ${m.topInternalRepeat ? '<li class="reco">Fix: turn <span class="mono">'+m.topInternalRepeat.email+'</span>\'s '+m.topInternalRepeat.count+' repeat questions (across '+m.topInternalRepeat.dayCount+' separate days) into a pinned internal FAQ</li>' : ''}
+              ${m.topInternalRepeat ? '<li class="reco">Fix: turn <span class="mono">'+m.topInternalRepeat.email+'</span>\'s '+m.topInternalRepeat.count+' repeat questions on '+m.topInternalRepeat.topArea+' into a pinned internal FAQ</li>' : ''}
             </ul>
           </div>
         </div>
@@ -4088,11 +4056,11 @@ function renderHistoricalMain(){
         <div class="takeaway-card">
           <div class="takeaway-num">02</div>
           <div class="takeaway-body">
-            <div class="ttitle">${m.deletionHits.length} direct customer data-deletion request${m.deletionHits.length===1?'':'s'} hit the docbot with no verified follow-through</div>
+            <div class="ttitle">Deflection rate undercounts real impact — a "missed" match can still save agent time</div>
             <ul class="takeaway-bullets">
-              ${m.deletionHits.length ? m.deletionHits.map(h=>'<li>'+fmtDate(h.date)+': <span class="mono">'+h.email+'</span> — &ldquo;'+h.q+'&rdquo;</li>').join('') : '<li>No GDPR/deletion-style requests flagged yet in the tracked window.</li>'}
-              <li>Both landed on days the bot either self-marked resolved or went silent (rate-limited) — neither is a verified compliance action, and a chat transcript isn't an audit trail</li>
-              <li class="reco">Fix: auto-escalate any delete-my-data / GDPR-style request to a human immediately, rather than letting the bot (or the CSAT workflow) self-mark it resolved</li>
+              ${m.quangCase ? '<li>'+fmtDate(m.quangCase.date)+': '+m.quangCase.note+'</li>' : '<li>No comparable example flagged yet in the tracked window.</li>'}
+              <li>Logged today as an escalation (account-name mismatch), but the resulting ticket was scoped and specific — not a blind "how do I" ask</li>
+              <li class="reco">Fix: track ticket scope/clarity as a secondary deflection metric, not just exact match / no match</li>
             </ul>
           </div>
         </div>
@@ -4112,11 +4080,9 @@ function renderHistoricalMain(){
         <div class="takeaway-card">
           <div class="takeaway-num">04</div>
           <div class="takeaway-body">
-            <div class="ttitle">Freshdesk-checked, the bot deflects ${m.deflRate!==null ? m.deflRate+'%' : 'an unmeasured share'} of tickets — and the rare leaks are product bugs, not content gaps</div>
+            <div class="ttitle">${m.competitorHits.length ? 'CleverTap email ran a full capability scan on '+fmtDate(m.competitorHits[0].date)+' — verify the account' : 'No competitor-domain activity flagged this period'}</div>
             <ul class="takeaway-bullets">
-              <li><span class="mono">${m.deflDeflected}</span> of <span class="mono">${m.deflChecked}</span> checked conversations across <span class="mono">${m.deflDaysTracked.length}</span> tracked days show no matching ticket from that user in the D+2 window</li>
-              ${m.deflEscalations.length ? '<li>The <span class="mono">'+m.deflEscalations.length+'</span> confirmed same-user escalations — '+m.deflEscalations.map(e=>e.email.split('@')[0]+' ('+fmtDate(e.date)+', &ldquo;'+e.ticketSubject+'&rdquo;)').join('; ')+' — are all functional/platform issues (integration access, upload/harvest error, Journey-creation bug), not missing documentation</li>' : '<li>No confirmed same-user escalations yet in the tracked window.</li>'}
-              <li class="reco">Fix: the content side is already working here — the next lever for deflection is fixing the upload/integration/Journey bugs the bot can't talk its way around</li>
+              ${m.competitorHits.length ? '<li><span class="mono">'+m.competitorHits[0].email+'</span> asked '+m.competitorHits[0].count+' broad questions in one session — WhatsApp template approvals, AI-assisted segmentation, web personalisation</li><li>Structured breadth scan, not a single-feature lookup</li><li class="reco">Fix: if verified prospect/partner → route to Sales as an expansion signal; if not → flag to Product/Security as competitive intel</li>' : '<li>Watchlist: clevertap.in / clevertap.com — nothing matched in this window</li><li class="reco">Keep the watch active on every future rollup</li>'}
             </ul>
           </div>
         </div>
@@ -4127,20 +4093,8 @@ function renderHistoricalMain(){
             <div class="ttitle">${m.uploadHits.length} list/audience upload-or-harvest failures surfaced only because customers happened to ask the bot</div>
             <ul class="takeaway-bullets">
               <li><span class="mono">${m.uploadExternalCount}</span> from customers, <span class="mono">${m.uploadInternalCount}</span> from Netcore staff — zero internal visibility until it hit the bot</li>
-              <li>Spread across <span class="mono">${m.uploadDaysCount}</span> of the ${m.dates.length} tracked days${m.uploadPeak ? ', peaking at '+m.uploadPeak[1]+' on '+fmtDate(m.uploadPeak[0]) : ''} — unrelated accounts, same failure mode, not a one-off</li>
+              ${m.uploadPeak ? '<li><span class="mono">'+m.uploadPeak[1]+'</span> of '+m.uploadHits.length+' landed on one day ('+fmtDate(m.uploadPeak[0])+'), unrelated accounts — looks like a platform-side slowdown, not user error</li>' : ''}
               <li class="reco">Fix: ship a near-real-time upload/processing status indicator so customers aren't the first to notice</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="takeaway-card">
-          <div class="takeaway-num">06</div>
-          <div class="takeaway-body">
-            <div class="ttitle">Read the daily numbers with two calibration notes before presenting either one on its own</div>
-            <ul class="takeaway-bullets">
-              <li>Self-reported resolution rate averages <span class="mono">${m.avgResolution}%</span> across ${m.dates.length} days, but <span class="mono">${m.csatArtifactDates.length}</span> of those days are confirmed Featurebase CSAT-workflow-state artifacts (state flips to "handed off" even when the bot fully answered) — not real failures. Don't use the raw average as a KPI until that instrumentation is fixed.</li>
-              <li>Volume swings hard by day of week: <span class="mono">${m.weekdayAvg}</span> conversations/day on weekdays vs <span class="mono">${m.weekendAvg}</span> on weekends — held across every weekend in the window, so a quiet Saturday/Sunday is expected, not a broken pipeline.</li>
-              <li class="reco">Fix: lean on this 14-day rollup for any leadership-facing number — a single day's snapshot can mislead in either direction</li>
             </ul>
           </div>
         </div>
