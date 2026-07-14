@@ -486,257 +486,6 @@ table td{padding:10px 8px; border-bottom:1px solid var(--paperline); vertical-al
 </div>
 <script>
 const ARCHIVE = /*ARCHIVE_JSON_PLACEHOLDER*/{
-  "2026-06-29": {
-    "date": "2026-06-29",
-    "totalConversations": 15,
-    "resolutionRate": 7,
-    "internalTotal": 12,
-    "externalTotal": 3,
-    "docsTotal": 10,
-    "panelTotal": 5,
-    "queryType": {
-      "technical": 8,
-      "generic": 7
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days (June 29 00:00 IST to July 1 23:59 IST)",
-      "totalConversations": 15,
-      "sameUserEscalations": [],
-      "deflectedCount": 15,
-      "deflectionRate": 100,
-      "patternRisk": [],
-      "caveat": "Browser-search based on Freshdesk's UI, not exhaustive. Note: 14 of 15 conversations show botConversationState 'handed_off_to_human' — consistent with the CSAT-workflow state flip first noted June 25, not a real handoff outage. Checked all 3 external requester emails (brijesh@freepricecompare.com, sramesh@integratedindia.in, lyndaobiano99@gmail.com) via Freshdesk global search — zero ticket matches inside the window. Also searched for June 29 area topics (Gupshup integration, MX shifting, bulk CSV upload, delete user API) — no tickets found in the matching window. 100% deflection rate treats the handed-off conversations as handled internally via bot handoff, not through Freshdesk — directional only."
-    },
-    "headline": "15 conversations on June 29, 7% bot self-reported resolved — 14/15 'handed_off_to_human' is almost certainly the CSAT-workflow state flip (same pattern since June 25), not a real outage. Shipra Choudhary asked back-to-back about bulk CSV upload API and user data deletion, and Jaishnitha VS ran 3 consecutive conceptual questions on CE's data model.",
-    "actionableInsights": [
-      {
-        "owner": "calibration",
-        "title": "14/15 'handed_off_to_human' — CSAT workflow, not an outage",
-        "desc": "Consistent with the June 25 calibration note: the CSAT-rating workflow now flips botConversationState to 'handed_off_to_human' even when the bot gave a full answer. Only brijesh@freepricecompare.com showed 'resolved'. Don't read the 7% resolution rate as a real signal — the actual resolution rate is likely similar to recent days (70-100%)."
-      },
-      {
-        "owner": "product",
-        "title": "Shipra asked for bulk CSV upload API and delete user API in quick succession",
-        "desc": "shipra.choudhary@netcorecloud.com asked for the bulk CSV upload API doc and then immediately asked 'Do we have a delete user API to enable user data deletion?' — likely related to a customer data compliance/GDPR use case. Both handed off. If these are linked to a live customer ask, they need a direct follow-up rather than a re-do bot session."
-      },
-      {
-        "owner": "content",
-        "title": "Jaishnitha asked 3 consecutive CE data-model questions in one sitting",
-        "desc": "jaishnitha.vs@netcorecloud.com asked about attributes vs affinity vs propensity, list vs segment use cases, and line graph vs table in the analytics dashboard — all in one session, all conceptual. A 'CE Data Model 101' reference page could replace 3 separate bot sessions with one authoritative read."
-      },
-      {
-        "owner": "design",
-        "title": "Imran Shaikh needed both CPaaS setup and MX Shifting help in one session",
-        "desc": "imran.shaikh@netcorecloud.com asked 'Can you let me know how to setup CPaaS' then 'Hi Can you help with MX Shifting' in the same session — a new team member onboarding pattern. Cross-linking the CPaaS setup guide with the email domain/MX configuration doc would prevent two separate sessions for adjacent tasks."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Shipra Choudhary",
-      "email": "shipra.choudhary@netcorecloud.com",
-      "query": "Do we have a delete user API to enable user data deletion.",
-      "why": "A compliance-critical capability check (GDPR-adjacent user data deletion API) asked back-to-back with a bulk CSV upload API request — suggests a live customer data management/compliance project rather than idle curiosity."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 3,
-        "external": 3
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 2,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 5,
-        "external": 0
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 2,
-        "external": 0
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 0
-      }
-    ],
-    "topAskers": [
-      {
-        "email": "jaishnitha.vs@netcorecloud.com",
-        "count": 3,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "What does X mean/how it works",
-            "text": "whats the differance between attributes, affinity and propensity"
-          },
-          {
-            "theme": "What does X mean/how it works",
-            "text": "i need a detailed explanation of a list and segment and also use cases of where will you use list and segment"
-          },
-          {
-            "theme": "What does X mean/how it works",
-            "text": "whats the differance between the line graph in the first and the below table with numbers"
-          }
-        ]
-      },
-      {
-        "email": "shipra.choudhary@netcorecloud.com",
-        "count": 2,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "Where's the doc/API for X",
-            "text": "Please share doc for bulk csv upload api"
-          },
-          {
-            "theme": "Is X possible/supported",
-            "text": "Do we have a delete user API to enable user data deletion."
-          }
-        ]
-      },
-      {
-        "email": "imran.shaikh@netcorecloud.com",
-        "count": 2,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "How do I do X",
-            "text": "Can you let me know how to setup CPaaS"
-          },
-          {
-            "theme": "How do I do X",
-            "text": "Hi Can you help with MX Shifting"
-          }
-        ]
-      }
-    ],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 5,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "francois.souare@netcorecloud.com",
-            "q": "i am using 100% event allocated what to do?"
-          },
-          {
-            "email": "neeraj.pallathu@netcorecloud.com",
-            "q": "If a user unsubscribes in Shopify, will the same user be blocked or blacklisted in Netcore?"
-          },
-          {
-            "email": "shipra.choudhary@netcorecloud.com",
-            "q": "Please share doc for bulk csv upload api"
-          },
-          {
-            "email": "shipra.choudhary@netcorecloud.com",
-            "q": "Do we have a delete user API to enable user data deletion."
-          },
-          {
-            "email": "jibin.philip@netcorecloud.com",
-            "q": "does CE have integration with gupshup"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Email",
-        "internal": 1,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "imran.shaikh@netcorecloud.com",
-            "q": "Hi Can you help with MX Shifting"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 2,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "lokesh.sharma@netcorecloud.com",
-            "q": "what is the format for payload in sms"
-          },
-          {
-            "email": "imran.shaikh@netcorecloud.com",
-            "q": "Can you let me know how to setup CPaaS"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 1,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "sramesh@integratedindia.in",
-            "q": "list added but yet to confirm"
-          }
-        ]
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 0,
-        "external": 2,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "brijesh@freepricecompare.com",
-            "q": "FTP Configured but not importing file"
-          },
-          {
-            "email": "lyndaobiano99@gmail.com",
-            "q": "i need scan bar to add to the authenticator"
-          }
-        ]
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 4,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "jaishnitha.vs@netcorecloud.com",
-            "q": "whats the differance between attributes, affinity and propensity"
-          },
-          {
-            "email": "jaishnitha.vs@netcorecloud.com",
-            "q": "i need a detailed explanation of a list and segment and also use cases of where will you use list and segment"
-          },
-          {
-            "email": "jaishnitha.vs@netcorecloud.com",
-            "q": "whats the differance between the line graph in the first and the below table with numbers"
-          },
-          {
-            "email": "siddhant.bendkar@netcorecloud.com",
-            "q": "what is App PZ?"
-          }
-        ],
-        "externalQ": []
-      }
-    ]
-  },
   "2026-06-30": {
     "date": "2026-06-30",
     "totalConversations": 23,
@@ -3638,6 +3387,186 @@ const ARCHIVE = /*ARCHIVE_JSON_PLACEHOLDER*/{
         "external": 0,
         "internalQ": [],
         "externalQ": []
+      }
+    ]
+  },
+  "2026-07-13": {
+    "date": "2026-07-13",
+    "totalConversations": 10,
+    "resolutionRate": 90,
+    "internalTotal": 2,
+    "externalTotal": 8,
+    "docsTotal": 3,
+    "panelTotal": 7,
+    "queryType": {
+      "technical": 1,
+      "generic": 9
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (July 13 00:00 IST to July 15 23:59 IST — window still partially open as of this run)",
+      "totalConversations": 10,
+      "sameUserEscalations": [],
+      "deflectedCount": 10,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit — treat as a directional signal. Checked all 10 unique requester emails via Tier 1 global search — zero ticket matches for any. Tier 2 keyword searches for WhatsApp template approval, CPaaS panel detailed reports, unique clicks per link, and download-open-email-IDs also returned zero matches inside the window. Note: Hiral Jhaveri (internal, asked about CPaaS report downloads today) has a near-identical Freshdesk ticket from 22 days ago (OTP issue on detailed report download) and HDFC Credila (Piyush's company) has an email API integration ticket from 8 days ago — both are recurring-topic signals, not window matches, so not counted as escalations. Matching window partially open (extends to July 15, which hasn't occurred yet as of this run on July 14)."
+    },
+    "headline": "10 real conversations on July 13 (1 excluded test account filtered out), 90% bot self-reported resolved and 100% Freshdesk-deflected so far — Email reporting dominated with 4 of 10 asks (open-ID export, bot-flagged opens, per-link click tracking), and darryl.chua@trycata.com asked the bot to enable the Email channel for them, a request only a human can actually act on.",
+    "actionableInsights": [
+      {
+        "owner": "product",
+        "title": "Customer asked the bot to enable a channel — it can't",
+        "desc": "darryl.chua@trycata.com (cata_goldies_cee panel) asked 'why is email not available as a channel for me? please enable it.' Bot self-reported resolved, but channel enablement is an account-config action, not something a docbot can do. Worth checking what the bot actually told them, and whether there's a clear routing path to CS/onboarding for entitlement requests like this."
+      },
+      {
+        "owner": "content",
+        "title": "Three separate customers asked Email-reporting questions in one day",
+        "desc": "ashish@aima.in (download open email IDs), anuj.jamdegni@intoday.com (what do 'bot' opens mean in campaign performance), and Kat/katherine.maebelle.aban@prulifeuk.com.ph (per-link unique click tracking, handed off) all hit different corners of the same Email analytics/reporting surface. A single 'Reading Your Campaign Performance Report' doc covering ID export, bot-traffic flagging, and per-link clicks would cover all three asks in one read."
+      },
+      {
+        "owner": "content",
+        "title": "Hiral's CPaaS report-download question echoes a ticket from 22 days ago",
+        "desc": "hiral.jhaveri@netcorecloud.com asked how to download detailed reports from the CPaaS panel today; Freshdesk shows she filed a ticket 22 days ago about an OTP blocker on the same report-download flow (hdfcfuncee panel). Not inside this run's matching window so not counted as a deflection miss, but worth a quick check on whether that OTP issue was ever actually fixed."
+      },
+      {
+        "owner": "calibration",
+        "title": "n=10 — small sample, treat the 90%/100% numbers as directional",
+        "desc": "Only Kat's per-link click question was handed off to a human; the other 9 self-reported resolved. With this few data points, one handoff swings the rate by 10 points — read the 14-day rolling trend, not any single day, for a stable signal."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Kat (PruLife UK)",
+      "email": "katherine.maebelle.aban@prulifeuk.com.ph",
+      "query": "is it possible to get the unique clicks for each link in this campaign?",
+      "why": "Asked for granular per-link unique click tracking on a live, named campaign (GIO Campaign July 2026, ID 5615) — a specific analytics ask that got handed off to a human, suggesting real reporting depth the bot couldn't self-serve, not just basic navigation help."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 1,
+        "external": 1
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 1,
+        "external": 3
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 1
+      }
+    ],
+    "topAskers": [],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "timessportsnow@gmail.com",
+            "q": "what is required to send email via API"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 4,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "darryl.chua@trycata.com",
+            "q": "Hi, why is email not available as a channel for me? please enable it"
+          },
+          {
+            "email": "ashish@aima.in",
+            "q": "Hi..From which option i can downlaod the open email ids of a campaign"
+          },
+          {
+            "email": "anuj.jamdegni@intoday.com",
+            "q": "in campaign performance of ite_advantage opens are showing bot what are these"
+          },
+          {
+            "email": "katherine.maebelle.aban@prulifeuk.com.ph",
+            "q": "is it possible to get the unique clicks for each link in this campaign?"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 2,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "khushi.chitkara@netcorecloud.com",
+            "q": "is it possible to track cta on call button in whatsapp templates"
+          },
+          {
+            "email": "hiral.jhaveri@netcorecloud.com",
+            "q": "how to download detailed reports from the cpaas panel"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "piyush1@credila.com",
+            "q": "how much time it will take to approve WhatsApp templates"
+          }
+        ]
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "aanya_patil@aesl.in",
+            "q": "Is there any cheatcode to netcore to understand the functioning"
+          },
+          {
+            "email": "amrit.neupane@sc.com",
+            "q": "Hi"
+          }
+        ]
       }
     ]
   }
