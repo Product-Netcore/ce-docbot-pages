@@ -2,7 +2,7 @@
 {
   "name": "Ce Docbot Summary 2026 06 17",
   "schemaVersion": 1,
-  "description": "CE Docbot 14-day rolling summary (Jun 22 – Jul 5, 2026) — latest day 2026-07-05"
+  "description": "CE Docbot 14-day rolling summary (Jul 1 – Jul 14, 2026) — latest day 2026-07-14"
 }
 </script>
 <html lang="en">
@@ -487,343 +487,6 @@ table td{padding:10px 8px; border-bottom:1px solid var(--paperline); vertical-al
 </div>
 <script>
 const ARCHIVE = {
-  "2026-06-30": {
-    "date": "2026-06-30",
-    "totalConversations": 23,
-    "resolutionRate": 100,
-    "internalTotal": 8,
-    "externalTotal": 15,
-    "docsTotal": 9,
-    "panelTotal": 14,
-    "queryType": {
-      "technical": 4,
-      "generic": 19
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days (June 30 00:00 IST to July 2 23:59 IST)",
-      "totalConversations": 23,
-      "sameUserEscalations": [
-        {
-          "email": "imaad@bbcollective.co",
-          "docbotQuery": "Unable to create 'Journey'",
-          "area": "Journey Builder",
-          "theme": "How do I do X",
-          "ticketId": "5203381",
-          "ticketSubject": "Unable to access 'Journey' on Netcore Engage: lemillindiacomcee",
-          "ticketCreatedAt": "2026-06-30T10:19:00+05:30"
-        }
-      ],
-      "deflectedCount": 22,
-      "deflectionRate": 96,
-      "patternRisk": [
-        {
-          "area": "API/Integration",
-          "docbotCount": 3,
-          "ticketCount": 1,
-          "exampleTicketSubjects": [
-            "[Urgent - P0] Facebook Leads Ads - NU PLDT #5204275"
-          ],
-          "note": "emquizon@pldt.com.ph (nextupgradece panel) asked the docbot 'how do we save Facebook Lead ads to a list?' on June 30. Freshdesk ticket #5204275 '[Urgent - P0] Facebook Leads Ads - NU PLDT' was filed by Charishma P (Netcore CS) on July 1 (within D+2 window). Not a Tier-1 same-email match — ticket filed by internal CS, not the requester — but clearly the same customer's need escalated to CS the morning after the docbot session."
-        }
-      ],
-      "caveat": "Browser-search based on Freshdesk's UI, not exhaustive. Note: email search for imaad@bbcollective.co returned 0 tickets (false negative — same Freshdesk email-search limitation seen on June 26); ticket #5203381 found via keyword search ('journey unable to create'). Ticket was created just 10 minutes after imaad's docbot conversation at 10:09 IST — near-instant escalation. Matching window (June 30-July 2) still partially open; a same-user escalation landing July 2 wouldn't yet be captured."
-    },
-    "headline": "23 conversations on June 30, 100% bot self-reported resolved, 96% Freshdesk-deflected — imaad@bbcollective.co filed ticket #5203381 just 10 minutes after asking the docbot about a Journey creation issue, and PLDT's Facebook Lead Ads question escalated to an Urgent P0 Freshdesk ticket the next morning.",
-    "actionableInsights": [
-      {
-        "owner": "product",
-        "title": "Journey creation failure escalated to Freshdesk within 10 minutes",
-        "desc": "imaad@bbcollective.co asked 'Unable to create Journey' at 10:09 IST and opened Freshdesk ticket #5203381 at 10:19 IST — the bot's answer (self-reported: resolved) clearly didn't help with the actual error. Worth checking the bot's response to confirm it gave actionable steps, and verifying whether the lemillindiacomcee panel has a known journey-creation bug."
-      },
-      {
-        "owner": "content",
-        "title": "Lokesh hit the docs portal 4 times in one day for template/guide content",
-        "desc": "lokesh.sharma@netcorecloud.com asked for a PDF version of the channel template guide, then a best-practices guide for all channels, then how to set up auto-response, then what 'POST' means in WhatsApp custom buttons — all in one day. A centralized 'Channel Template Creation Hub' with all-channel coverage and a WhatsApp button-type reference would collapse 4 sessions into 1."
-      },
-      {
-        "owner": "product",
-        "title": "PLDT's Facebook Lead Ads need became an Urgent P0 Freshdesk ticket the next morning",
-        "desc": "emquizon@pldt.com.ph asked the docbot 'how do we save Facebook Lead ads to a list?' on June 30. By July 1 morning, Freshdesk ticket #5204275 '[Urgent - P0] Facebook Leads Ads - NU PLDT' was opened by Charishma P (Netcore CS). Either the bot answer was insufficient or the customer escalated through their CS contact — either way, the Facebook Lead Ads integration how-to needs a sharper self-serve doc."
-      },
-      {
-        "owner": "design",
-        "title": "5 bare greetings and an empty message — 22% of conversations were noise",
-        "desc": "5 of 23 conversations were bare greetings (niteshk 'Hie' + empty, jared 'Hi', acbb 'hi', acbb 'hello'). acbb@gmail.com appears to be a QA/test account (panel: qa_manual1). Excluding the QA account, effective real volume = 21, with 4 of those still being bare greetings — the first-message prompt could be strengthened to elicit a real question before opening a conversation."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Savitha Vasanthan (Global Airport Parking)",
-      "email": "savithavasanthan95@gmail.com",
-      "query": "hi check my logic is correct to get not sent in June but sent in May for this segment [link to live segment URL on pr13r]",
-      "why": "Sent a live production segment URL and asked the bot to validate complex segment logic ('sent in May, not sent in June') — the most technically specific and real-work ask of the day, showing genuine platform fluency."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 2,
-        "external": 5
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 2,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 1,
-        "external": 1
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 1,
-        "external": 4
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 2,
-        "external": 0
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 5
-      }
-    ],
-    "topAskers": [
-      {
-        "email": "lokesh.sharma@netcorecloud.com",
-        "count": 4,
-        "friction": true,
-        "queries": [
-          {
-            "theme": "Where's the doc/API for X",
-            "text": "do we have pdf version for all channel template creation guide"
-          },
-          {
-            "theme": "Where's the doc/API for X",
-            "text": "share the guide for all channel template creation with best practices"
-          },
-          {
-            "theme": "How do I do X",
-            "text": "how to setup the auto response"
-          },
-          {
-            "theme": "What does X mean/how it works",
-            "text": "what is post in custom button whatsapp"
-          }
-        ],
-        "panel": "NA"
-      },
-      {
-        "email": "niteshk@aptech.co.in",
-        "count": 3,
-        "friction": true,
-        "queries": [
-          {
-            "theme": "Bare greeting, no context yet",
-            "text": "Hie"
-          },
-          {
-            "theme": "Bare greeting, no context yet",
-            "text": "[empty opening message]"
-          },
-          {
-            "theme": "Where do I set up/find X",
-            "text": "What is the helpdesk email id?"
-          }
-        ],
-        "panel": "aptechglobaltraining"
-      },
-      {
-        "email": "acbb@gmail.com",
-        "count": 2,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "Bare greeting, no context yet",
-            "text": "hi"
-          },
-          {
-            "theme": "Bare greeting, no context yet",
-            "text": "hello"
-          }
-        ],
-        "panel": "qa_manual1"
-      }
-    ],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 0,
-        "external": 3,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "ashish.mall@ambit.co",
-            "q": "What is creator role",
-            "panel": "ambitwealthcee"
-          },
-          {
-            "email": "savithavasanthan95@gmail.com",
-            "q": "hi check my logic is correct to get not sent in June but sent in MAY for this segment [live segment URL on pr13r/globalairportparking]",
-            "panel": "cheapestairportpark"
-          },
-          {
-            "email": "emquizon@pldt.com.ph",
-            "q": "how do we save Facebook Lead ads to a list?",
-            "panel": "nextupgradece"
-          }
-        ]
-      },
-      {
-        "area": "Email",
-        "internal": 1,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "harshita.a@netcorecloud.com",
-            "q": "Is there a limit on how many email domains can be added in a single panel?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 2,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "shipra.choudhary@netcorecloud.com",
-            "q": "How to write the variable in sms template for attribute",
-            "panel": "NA"
-          },
-          {
-            "email": "lokesh.sharma@netcorecloud.com",
-            "q": "what is post in custom button whatsapp",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 0,
-        "external": 1,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "imaad@bbcollective.co",
-            "q": "Unable to create 'Journey'",
-            "panel": "lemillindiacomcee"
-          }
-        ]
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 5,
-        "external": 11,
-        "internalQ": [
-          {
-            "email": "romit.pandit@netcorecloud.com",
-            "q": "How can I check subscription and unsubscription of Web Push Notification on daily basis?",
-            "panel": "NA"
-          },
-          {
-            "email": "lokesh.sharma@netcorecloud.com",
-            "q": "do we have pdf version for all channel template creation guide",
-            "panel": "NA"
-          },
-          {
-            "email": "lokesh.sharma@netcorecloud.com",
-            "q": "share the guide for all channel template creation with best practices",
-            "panel": "NA"
-          },
-          {
-            "email": "lokesh.sharma@netcorecloud.com",
-            "q": "how to setup the auto response",
-            "panel": "NA"
-          },
-          {
-            "email": "hiral.jhaveri@netcorecloud.com",
-            "q": "In case of APNs, the titles having more than 34 characters are truncated?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "niteshk@aptech.co.in",
-            "q": "What is the helpdesk email id?",
-            "panel": "aptechglobaltraining"
-          },
-          {
-            "email": "niteshk@aptech.co.in",
-            "q": "[empty opening message]",
-            "panel": "aptechglobaltraining"
-          },
-          {
-            "email": "niteshk@aptech.co.in",
-            "q": "Hie",
-            "panel": "aptechglobaltraining"
-          },
-          {
-            "email": "mis_analyst@parinaam.org",
-            "q": "how to change primary email id",
-            "panel": "parinaam_ce"
-          },
-          {
-            "email": "pinkyghosh@ahuramazdagroup.com",
-            "q": "i logout my mail but now i did not login to it",
-            "panel": "NA"
-          },
-          {
-            "email": "jared.onkangi@sc.com",
-            "q": "Hi",
-            "panel": "sckenya"
-          },
-          {
-            "email": "dini.septiani@tickledmedia.com",
-            "q": "how to test push notification useing business triggered",
-            "panel": "theasianparentce"
-          },
-          {
-            "email": "acbb@gmail.com",
-            "q": "hi",
-            "panel": "qa_manual1"
-          },
-          {
-            "email": "acbb@gmail.com",
-            "q": "hello",
-            "panel": "qa_manual1"
-          },
-          {
-            "email": "jaekaytee@airasia.com",
-            "q": "what is NIVO?",
-            "panel": "airasiabigmailsmt"
-          },
-          {
-            "email": "tarmizi@tm.com.my",
-            "q": "what is the different between engage with user and analyze user behaviour",
-            "panel": "unificee"
-          }
-        ]
-      }
-    ]
-  },
   "2026-07-01": {
     "date": "2026-07-01",
     "totalConversations": 13,
@@ -3776,6 +3439,262 @@ const ARCHIVE = {
             "email": "amrit.neupane@sc.com",
             "q": "Hi",
             "panel": "scnepal"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-07-14": {
+    "date": "2026-07-14",
+    "totalConversations": 13,
+    "resolutionRate": 0,
+    "internalTotal": 7,
+    "externalTotal": 6,
+    "docsTotal": 4,
+    "panelTotal": 9,
+    "queryType": {
+      "technical": 5,
+      "generic": 8
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (July 14 00:00 IST to July 16 23:59 IST)",
+      "totalConversations": 13,
+      "sameUserEscalations": [],
+      "deflectedCount": 13,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. Checked all 10 unique requester emails (arief.sugiharto@erajaya.com, lokesh.sharma@netcorecloud.com, prateek.singh@netcorecloud.com, pratik.suratwala@sunpharma.com, vani.ganasutrisna@netcorecloud.com, sanchi.a@ctpl.io, manish@wsfxglobalpay.com, akash.gupta@netcorecloud.com, utpal.dutta@netcorecloud.com, kpena@jobint.com) via Tier 1 email search -- zero ticket matches. Tier 2 keyword searches (event API, dynamic content block, campaign edit grayed out, domain wise report, international whatsapp, cohort) also returned zero in-window matches. Window only half-elapsed as of this run (D+2 = July 16 hasn't happened yet) -- a same-user escalation landing July 16 wouldn't yet be captured."
+    },
+    "headline": "13 conversations on July 14, 100% Freshdesk-deflected but 0% bot self-reported resolved (every conversation shows botConversationState 'handed_off_to_human', the known CSAT-workflow artifact) -- manish@wsfxglobalpay.com ran two back-to-back sessions building a Netcore Event API integration from scratch (key, payload, Postman, auth), and arief@erajaya.com hit a genuine dynamic-content-block inconsistency the bot couldn't fully resolve.",
+    "actionableInsights": [
+      {
+        "owner": "product",
+        "title": "Same user, two sessions, one Event API integration",
+        "desc": "manish@wsfxglobalpay.com (wsfx_cee panel) opened two conversations 4 minutes apart, working from 'how do I create an API to store data' through to 'give me the India URL, payload sample, and auth details for Postman' -- a real integration build split across sessions. A single 'Event API Quickstart' (region URLs, payload sample, auth header, ready-to-import Postman collection) would collapse this into one visit."
+      },
+      {
+        "owner": "content",
+        "title": "Dynamic content block rule inconsistency went unresolved",
+        "desc": "arief.sugiharto@erajaya.com (underarmour_ce panel) described inconsistencies defining a Product Display block for product browse; the bot explained Dynamic Blocks generally and asked a clarifying question but never got a follow-up answer before handoff. Worth a targeted troubleshooting doc for common Dynamic Block rule errors (unsupported characters, attribute mismatches)."
+      },
+      {
+        "owner": "content",
+        "title": "Sanchi needed a report she couldn't find nav for",
+        "desc": "sanchi.a@ctpl.io asked 'where is the reports section' before asking for a domain-wise June email report (requested/failed counts). A direct 'Domain-wise Delivery Report' link in the reports nav would remove the extra navigation question."
+      },
+      {
+        "owner": "calibration",
+        "title": "n=13, 0% resolution is the known CSAT-workflow artifact, not real bot failure",
+        "desc": "All 13 conversations show botConversationState 'handed_off_to_human' despite the bot giving complete, well-cited answers in most sessions (e.g. prateek's full JSON payload for the Create Campaign API, manish's Event API walkthrough) -- same pattern documented on July 4 and July 6. Freshdesk deflection (100%) is the more reliable resolution signal for this day."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Manish (WSFx Global Pay)",
+      "email": "manish@wsfxglobalpay.com",
+      "query": "I got the api key, please help creating an api and define properties for that API -- need URL for India, payload sample, and authorization details for postman setup; also need the Netcore Event API documentation and steps to create a new event API to get data and set properties",
+      "why": "A genuine self-serve integration build, not navigation help -- worked from API key through payload structure, region URL, auth headers, and Postman setup across two sessions. Real hands-on integration work from a customer actively wiring up event tracking."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 3,
+        "external": 4
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 4,
+        "external": 1
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 0
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "manish@wsfxglobalpay.com",
+        "count": 2,
+        "friction": true,
+        "panel": "wsfx_cee",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "Hi -- I need to create an api in netcore that will accept data from my application and store it in Netcore, please provide me the best way"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "I got the api key, please help creating an api and define properties for that API / need URL for India, payload sample, and authorization details for postman setup / need Netcore Event API documentation / steps to create new event api"
+          }
+        ]
+      },
+      {
+        "email": "lokesh.sharma@netcorecloud.com",
+        "count": 2,
+        "friction": false,
+        "panel": "NA",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "what are prerequisites for sending the international whatsapp"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "can we use 01/01/2022"
+          }
+        ]
+      },
+      {
+        "email": "vani.ganasutrisna@netcorecloud.com",
+        "count": 2,
+        "friction": false,
+        "panel": "smartechai",
+        "queries": [
+          {
+            "theme": "What does X mean/how it works",
+            "text": "apa itu CPAAS?"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "What is Common Activity Payload in Cohort - drilldown section"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 2,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "prateek.singh@netcorecloud.com",
+            "q": "I want to send emails via API, I have the audience and template uploaded on the CE panel. How can I do it?",
+            "panel": "NA"
+          },
+          {
+            "email": "akash.gupta@netcorecloud.com",
+            "q": "What are the different ways of uploading contacts on Netcore CE panel",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "manish@wsfxglobalpay.com",
+            "q": "I need to create an api in netcore that will accept data from my application and store it in Netcore, please provide me the best way",
+            "panel": "wsfx_cee"
+          },
+          {
+            "email": "manish@wsfxglobalpay.com",
+            "q": "I got the api key, please help creating an api and define properties for that API -- URL for India, payload sample, auth details for postman setup, Netcore Event API documentation",
+            "panel": "wsfx_cee"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 3,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "arief.sugiharto@erajaya.com",
+            "q": "I'm about to create dynamic content but i found inconsistencies, when i want to define a block for product browse",
+            "panel": "underarmour_ce"
+          },
+          {
+            "email": "sanchi.a@ctpl.io",
+            "q": "where is the reports section in this / i need domain wise june month report how many email requested, how many email send failed",
+            "panel": "ctpl_cee"
+          },
+          {
+            "email": "kpena@jobint.com",
+            "q": "hello! i cant edit campaigns! the campaign is Drafts, my profile is Admin but i see a grayed-out button if i enter en camping",
+            "panel": "bumeranfinanzas"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 2,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "lokesh.sharma@netcorecloud.com",
+            "q": "what are prerequisites for sending the international whatsapp",
+            "panel": "NA"
+          },
+          {
+            "email": "vani.ganasutrisna@netcorecloud.com",
+            "q": "apa itu CPAAS?",
+            "panel": "smartechai"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "vani.ganasutrisna@netcorecloud.com",
+            "q": "What is Common Activity Payload in Cohort - drilldown section",
+            "panel": "smartechai"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 2,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "lokesh.sharma@netcorecloud.com",
+            "q": "can we use 01/01/2022",
+            "panel": "NA"
+          },
+          {
+            "email": "utpal.dutta@netcorecloud.com",
+            "q": "what is the max delay in web PZ?",
+            "panel": "shriramfl_cee"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "pratik.suratwala@sunpharma.com",
+            "q": "hi / what is password",
+            "panel": "sunpharmasmt"
           }
         ]
       }
