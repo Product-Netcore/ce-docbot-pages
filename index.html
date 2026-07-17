@@ -2,7 +2,7 @@
 {
   "name": "Ce Docbot Summary 2026 06 17",
   "schemaVersion": 1,
-  "description": "CE Docbot 14-day rolling summary (Jul 2 – Jul 15, 2026) — latest day 2026-07-15"
+  "description": "CE Docbot 14-day rolling summary (Jul 1 – Jul 14, 2026) — latest day 2026-07-14"
 }
 </script>
 <html lang="en">
@@ -455,6 +455,32 @@ table td{padding:10px 8px; border-bottom:1px solid var(--paperline); vertical-al
 .trending-week-row .cnt{color:var(--dimtext); font-family:'JetBrains Mono',monospace; font-size:11px;}
 .trending-week-row .dim{color:var(--dimtext); font-style:italic; cursor:default;}
 
+/* intro / about-this-dashboard banner — first-thing a new visitor sees, lives inside
+   the main column (not the sidebar) so it stays put across tab switches */
+.intro-banner{
+  background:var(--paper2); border:1px solid var(--paperline); border-left:3px solid var(--signal);
+  border-radius:12px; margin-bottom:22px; overflow:hidden;
+}
+.intro-banner summary{
+  list-style:none; cursor:pointer; padding:13px 18px;
+  display:flex; align-items:center; gap:9px;
+}
+.intro-banner summary::-webkit-details-marker{display:none;}
+.intro-banner summary .ib-icon{font-family:'Fraunces',serif; font-style:italic; font-weight:700; color:var(--signal); font-size:15px; flex-shrink:0;}
+.intro-banner summary .ib-title{color:var(--text); font-weight:600; font-size:13.5px; font-family:'Inter',sans-serif;}
+.intro-banner summary .ib-caret{margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--dimtext); flex-shrink:0;}
+.intro-banner[open] summary .ib-caret .ib-caret-closed{display:none;}
+.intro-banner:not([open]) summary .ib-caret .ib-caret-open{display:none;}
+.intro-banner .ib-body{padding:2px 18px 18px; border-top:1px solid var(--paperline); padding-top:14px;}
+.intro-banner .ib-lede{font-size:13.5px; line-height:1.6; color:#373a40;}
+html[data-theme="dark"] .intro-banner .ib-lede{color:#c7cad1;}
+.intro-banner .ib-lede strong{color:var(--text);}
+.intro-banner .ib-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px 20px; margin-top:16px;}
+@media (max-width:640px){ .intro-banner .ib-grid{grid-template-columns:1fr;} }
+.intro-banner .ib-item .ib-label{font-family:'JetBrains Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.06em; color:var(--signal); margin-bottom:4px; display:block;}
+.intro-banner .ib-item .ib-val{font-size:13px; line-height:1.5; color:var(--dimtext);}
+.intro-banner .ib-foot{font-size:12px; color:#a4a097; margin-top:16px; padding-top:12px; border-top:1px dashed var(--paperline); font-style:italic;}
+
 </style>
 </head>
 <body>
@@ -487,272 +513,6 @@ table td{padding:10px 8px; border-bottom:1px solid var(--paperline); vertical-al
 </div>
 <script>
 const ARCHIVE = {
-  "2026-07-02": {
-    "date": "2026-07-02",
-    "totalConversations": 18,
-    "resolutionRate": 100,
-    "internalTotal": 5,
-    "externalTotal": 13,
-    "docsTotal": 6,
-    "panelTotal": 12,
-    "queryType": {
-      "technical": 1,
-      "generic": 17
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days (July 2 00:00 IST to July 4 23:59 IST)",
-      "totalConversations": 18,
-      "sameUserEscalations": [],
-      "deflectedCount": 18,
-      "deflectionRate": 100,
-      "patternRisk": [],
-      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit — treat as a directional signal. Checked julie@wealthmintr.com, vikrant@nalli.com, tripti.kaushik@swansol.com, sandie-b.gadia@aia.com, imkomaldm@gmail.com — zero ticket matches. Note: 18 deduped from 19 raw conversations (anand@gdata.in sent identical 'Hi' twice; counted once)."
-    },
-    "headline": "18 conversations on July 2 (after deduping one identical greeting), 100% bot-resolved — Email was the busiest area with 5 queries, ba.ankitapandey@gmail.com hit both an HTML-template edit block and a test-email send failure in the same day, and vikrant@nalli.com requested a full 1-year week-on-week email performance report.",
-    "actionableInsights": [
-      {
-        "owner": "design",
-        "title": "Two separate Email failures for one user in one day",
-        "desc": "ba.ankitapandey@gmail.com (servicesintlsmart panel) couldn't edit an HTML template, then couldn't send a test email — two distinct failure modes in a single session. Could be a panel-level permission issue, a template lock, or just onboarding friction; worth a proactive CS check before they raise a ticket."
-      },
-      {
-        "owner": "content",
-        "title": "WhatsApp carousel image specs + multiple CTA feasibility — two separate questions from lokesh",
-        "desc": "lokesh.sharma@netcorecloud.com asked for WhatsApp carousel image dimensions and then the feasibility of multiple CTAs + click tracking in the same day. A 'WhatsApp Template Creation Cheatsheet' covering image specs, supported button types, and CTA tracking in one reference would collapse two sessions into one."
-      },
-      {
-        "owner": "product",
-        "title": "vikrant@nalli.com's 1-year weekly email analytics ask",
-        "desc": "vikrant@nalli.com requested week-on-week sent volume, open rate, and CTR for the past year (Monday–Sunday weeks). If the CE panel doesn't surface this natively at 1-year weekly granularity, it's a reporting gap worth a product backlog note — this is a standard exec/BI analytics need."
-      },
-      {
-        "owner": "calibration",
-        "title": "n=18 after dedup — 4 bare greetings (22% noise)",
-        "desc": "rinkiroylic@gmail.com (off-topic loan), suryadreddy89@gmail.com (hi), anand@gdata.in (Hi — deduped), itmgr@bombaygymkhana.com (hi) were all pure greetings with no follow-up. Effective real question volume = 14 of 18."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Vikrant Moon (Nalli)",
-      "email": "vikrant@nalli.com",
-      "query": "I wanted to get week on week how many emailers were sent, how much was volume (sent to), open rate and click through rate, week on week from past 1 Year, week starts from Monday to Sunday",
-      "why": "A specific, date-bounded, multi-metric analytics request with a custom week boundary (Mon–Sun) — shows real campaign performance management work, not basic navigation help."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 0,
-        "external": 7
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 1,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 3,
-        "external": 1
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 1,
-        "external": 1
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 4
-      }
-    ],
-    "topAskers": [
-      {
-        "email": "ba.ankitapandey@gmail.com",
-        "count": 2,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "How do I do X",
-            "text": "why I am not able to edit a HTML template"
-          },
-          {
-            "theme": "How do I do X",
-            "text": "why am I not able to send test email?"
-          }
-        ],
-        "panel": "servicesintlsmart"
-      },
-      {
-        "email": "lokesh.sharma@netcorecloud.com",
-        "count": 2,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "Where's the doc/API for X",
-            "text": "what are dimensions for whatsapp carousel images"
-          },
-          {
-            "theme": "Is X possible/supported",
-            "text": "Feasibility of inclusion of multiple CTAs and respective tracking on communications initiated via Netcore (For Whatsapp)"
-          }
-        ],
-        "panel": "NA"
-      }
-    ],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 0,
-        "external": 3,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "julie@wealthmintr.com",
-            "q": "Trying to blocklist a contact and it's not saving my changes",
-            "panel": "wealthmintrce"
-          },
-          {
-            "email": "amirthan@tonegroup.net",
-            "q": "what is textline when creating attributes?",
-            "panel": "tonewowce"
-          },
-          {
-            "email": "akash.singh@iresearchservices.com",
-            "q": "I had recently uploaded data but data has been not uploaded yet",
-            "panel": "iresearchservices"
-          }
-        ]
-      },
-      {
-        "area": "Email",
-        "internal": 1,
-        "external": 4,
-        "internalQ": [
-          {
-            "email": "harshita.a@netcorecloud.com",
-            "q": "wHY DOES A TEMPLATE GOES TO ARCHIVED STATE",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "tripti.kaushik@swansol.com",
-            "q": "i don't have any code i have a simple mail in my notebook how to upload",
-            "panel": "swansol_ce"
-          },
-          {
-            "email": "ba.ankitapandey@gmail.com",
-            "q": "why I am not able to edit a HTML template",
-            "panel": "servicesintlsmart"
-          },
-          {
-            "email": "ba.ankitapandey@gmail.com",
-            "q": "why am I not able to send test email?",
-            "panel": "servicesintlsmart"
-          },
-          {
-            "email": "vikrant@nalli.com",
-            "q": "I wanted to get week on week emailers sent, volume, open rate and CTR, week on week from past 1 Year (Mon–Sun weeks)",
-            "panel": "nallicee"
-          }
-        ]
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 2,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "lokesh.sharma@netcorecloud.com",
-            "q": "what are dimensions for whatsapp carousel images",
-            "panel": "NA"
-          },
-          {
-            "email": "lokesh.sharma@netcorecloud.com",
-            "q": "Feasibility of inclusion of multiple CTAs and respective tracking on communications via Netcore (WhatsApp)",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "imkomaldm@gmail.com",
-            "q": "Images are cropping in my whatsapp message",
-            "panel": "ekke_cee"
-          }
-        ]
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 2,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "kairavi.gupta@netcorecloud.com",
-            "q": "Trends spikes/dip detection",
-            "panel": "NA"
-          },
-          {
-            "email": "sakshi.kothari@netcorecloud.com",
-            "q": "the first cohort which i see in cohort analysis is the unique count for total count?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 0,
-        "external": 1,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "sandie-b.gadia@aia.com",
-            "q": "does this panel have MFA authentication?",
-            "panel": "aiacomphcee"
-          }
-        ]
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 4,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "rinkiroylic@gmail.com",
-            "q": "Please guide me how I received my approval loan amount my bank (off-topic loan query)",
-            "panel": "NA"
-          },
-          {
-            "email": "suryadreddy89@gmail.com",
-            "q": "hi",
-            "panel": "bighaatce"
-          },
-          {
-            "email": "anand@gdata.in",
-            "q": "Hi (deduped — sent twice)",
-            "panel": "gdatacee"
-          },
-          {
-            "email": "itmgr@bombaygymkhana.com",
-            "q": "hi",
-            "panel": "bombaygymkhanacomce"
-          }
-        ]
-      }
-    ]
-  },
   "2026-07-03": {
     "date": "2026-07-03",
     "totalConversations": 21,
@@ -3730,6 +3490,234 @@ const ARCHIVE = {
         ]
       }
     ]
+  },
+  "2026-07-16": {
+    "date": "2026-07-16",
+    "totalConversations": 15,
+    "resolutionRate": 0,
+    "internalTotal": 10,
+    "externalTotal": 5,
+    "docsTotal": 10,
+    "panelTotal": 5,
+    "queryType": {
+      "technical": 6,
+      "generic": 9
+    },
+    "ticketDeflection": null,
+    "headline": "15 conversations on July 16, all handed off to human (0% self-reported resolution) -- Netcore staffer Utpal Dutta and customer Anandan (Muthoot) both hit the bot with Facebook Custom Audience setup questions on the same muthootfincorpcee panel three minutes apart, and Darryl Chua (Cata) needed a 2FA reset after losing his authenticator app.",
+    "actionableInsights": [
+      {
+        "owner": "product",
+        "title": "FB Custom Audience setup asked twice, 3 minutes apart, same panel",
+        "desc": "utpal.dutta@netcorecloud.com (internal, muthootfincorpcee panel) asked for step-by-step Facebook Custom Audience setup at 07:13 IST, then anandan.p@muthoot.com (external, same panel) asked to integrate FB audience at 07:16 IST. Reads like staff live-assisting the customer and both separately hitting the bot -- if this setup is a common friction point, a dedicated step-by-step doc would collapse duplicate sessions into one."
+      },
+      {
+        "owner": "content",
+        "title": "2FA reset request -- no clear self-serve path surfaced",
+        "desc": "darryl.chua@trycata.com (cata_goldies_cee) needed to reset a user's 2FA after losing the authenticator app. Bot correctly handed this off to a human (security-sensitive action), but worth checking whether a documented self-serve 2FA-reset flow exists to cut down on these handoffs."
+      },
+      {
+        "owner": "content",
+        "title": "Anjali Inani (Netcore) ran two unrelated Docs Portal searches same day",
+        "desc": "anjali.inani@netcorecloud.com asked about A/B testing vs split campaigns (12:10 IST) and WhatsApp video size limits (09:08 IST) -- different topics, not a re-ask (friction=false), but suggests she was researching across two unrelated areas, possibly prepping for a customer call."
+      },
+      {
+        "owner": "calibration",
+        "title": "n=15, 0% self-reported resolution -- every conversation handed off to human",
+        "desc": "All 15 conversations show botConversationState 'handed_off_to_human', echoing the pattern seen on July 6-7 (rate-limit outage) and other days. Freshdesk session was also logged out this run, so there's no ticket-deflection cross-check to confirm whether these handoffs reflect a genuine bot/outage issue or the routine CSAT-workflow state flip documented since June 25. Re-authenticate the Freshdesk browser session before the next run."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Mili Kanoo",
+      "email": "mili.kanoo@netcorecloud.com",
+      "query": "How many maximum number of payloads can be added in one event?",
+      "why": "A specific event-schema/API constraint question rather than a how-to or navigation ask -- shows engineering-level integration depth about event payload limits."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 1,
+        "external": 2
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 3,
+        "external": 2
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 2,
+        "external": 0
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 3,
+        "external": 1
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 0
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "anjali.inani@netcorecloud.com",
+        "count": 2,
+        "friction": false,
+        "panel": "NA",
+        "queries": [
+          {
+            "theme": "Where's the doc/API for X",
+            "text": "what is whatsapp video size"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "A/B Testing vs Split Campaign"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 2,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "utpal.dutta@netcorecloud.com",
+            "q": "hey can you help me with the step by step facebook custom audiance setup",
+            "panel": "muthootfincorpcee"
+          },
+          {
+            "email": "mili.kanoo@netcorecloud.com",
+            "q": "How many maximum number of payloads can be added in one event?",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "anandan.p@muthoot.com",
+            "q": "help me to integrate to fb audience",
+            "panel": "muthootfincorpcee"
+          },
+          {
+            "email": "aaronaudea@gmail.com",
+            "q": "email api",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 2,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "anjali.inani@netcorecloud.com",
+            "q": "A/B Testing vs Split Campaign",
+            "panel": "NA"
+          },
+          {
+            "email": "shipra.choudhary@netcorecloud.com",
+            "q": "do you have any video guide on how to create and email campaigns",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 3,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "hiral.jhaveri@netcorecloud.com",
+            "q": "how to get detailed email cpaas report from the cpaas panel",
+            "panel": "NA"
+          },
+          {
+            "email": "anjali.inani@netcorecloud.com",
+            "q": "what is whatsapp video size",
+            "panel": "NA"
+          },
+          {
+            "email": "jaishnitha.vs@netcorecloud.com",
+            "q": "can we set up a timeframe for an url in whatsapp",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "test@gmail.com",
+            "q": "tell me the dimesnion of image for whatsapp catalogue template",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 2,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "gunjan.mahajan@netcorecloud.com",
+            "q": "custom orders",
+            "panel": "NA"
+          },
+          {
+            "email": "lokesh.sharma@netcorecloud.com",
+            "q": "what is the difference betwenn product picker and product collection.",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "pharameswara.pertiwi@dominos.co.id",
+            "q": "whats the meaning of predictive and propensity model?",
+            "panel": "dominoscee"
+          }
+        ]
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "vani.ganasutrisna@netcorecloud.com",
+            "q": "apa bedanya Boxx dan Unbxd? (what's the difference between Boxx and Unbxd?)",
+            "panel": "smartechai"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "darryl.chua@trycata.com",
+            "q": "how do I reset a 2fa for one of my users. the auth app is lost.",
+            "panel": "cata_goldies_cee"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      }
+    ]
   }
 };
 const DATES = Object.keys(ARCHIVE).sort().reverse();
@@ -4168,9 +4156,36 @@ function renderAllAskersFallback(data){
   `).join('');
 }
 
+// Static "what is this page" primer — same markup on both Daily and Historical tabs,
+// lives inside #main (not #sidebar) so its own open/closed state survives whatever the
+// user is doing, but gets reset to open on every render() since we don't use browser
+// storage here. First-time visitors read top-to-bottom, so it goes above the hero.
+function renderIntroBanner(){
+  return `
+    <details class="intro-banner anim" open>
+      <summary>
+        <span class="ib-icon">i</span>
+        <span class="ib-title">About this dashboard — what it is, what's in it, where it comes from</span>
+        <span class="ib-caret"><span class="ib-caret-open">hide ↑</span><span class="ib-caret-closed">show ↓</span></span>
+      </summary>
+      <div class="ib-body">
+        <div class="ib-lede"><strong>CE Docbot Daily Dispatch</strong> tracks every conversation Netcore's AI support bot has — on the public Docs Portal and inside customer panels — and turns it into a daily read on what people are actually stuck on. It exists so the Customer Engagement team can spot content gaps, product confusion, and internal enablement gaps as they happen, instead of finding out from a support ticket weeks later.</div>
+        <div class="ib-grid">
+          <div class="ib-item"><span class="ib-label">Data source</span><div class="ib-val">Featurebase (Netcore CE workspace) for every docbot conversation, cross-checked against Freshdesk to see if the same query still turned into a support ticket.</div></div>
+          <div class="ib-item"><span class="ib-label">Coverage</span><div class="ib-val">Rolling 14-day window — Netcore staff and customers, Docs Portal and in-panel, resolved and unresolved conversations alike.</div></div>
+          <div class="ib-item"><span class="ib-label">Update cadence</span><div class="ib-val">Regenerated once a day for the previous IST calendar day; the oldest tracked day drops off as each new one is added.</div></div>
+          <div class="ib-item"><span class="ib-label">Built for</span><div class="ib-val">Content, product, and support teams — deflection efficacy, recurring pain points, and where documentation is thin.</div></div>
+        </div>
+        <div class="ib-foot">Every number on this page traces back to an actual conversation — nothing here is estimated or sampled. Use the <strong>Daily</strong> / <strong>Overall Historical Summary</strong> tabs in the sidebar to switch views.</div>
+      </div>
+    </details>
+  `;
+}
+
 function renderDailyMain(data){
   const maxTheme = Math.max(...data.themesBySource.flatMap(t=>[t.internal,t.external]), 1);
   return `
+    ${renderIntroBanner()}
     <div class="hero anim" id="sec-verdict">
       <div class="dateline">${fmtDate(data.date)}</div>
       <h1>Daily Dispatch</h1>
@@ -4406,6 +4421,7 @@ function renderHistoricalMain(){
     `).join('') : '<div class="trending-week-row"><span class="dim">No repeat askers in the last few days.</span></div>';
 
   return `
+    ${renderIntroBanner()}
     <div class="hero anim" id="sec-h-verdict">
       <div class="dateline">${fmtDate(m.dates[0])} – ${fmtDate(m.dates[m.dates.length-1])}</div>
       <h1>Overall Historical Summary Analysis</h1>
