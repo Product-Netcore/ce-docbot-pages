@@ -2,7 +2,7 @@
 {
   "name": "Ce Docbot Summary 2026 06 17",
   "schemaVersion": 1,
-  "description": "CE Docbot 14-day rolling summary (Jul 1 – Jul 14, 2026) — latest day 2026-07-14"
+  "description": "CE Docbot 14-day rolling summary (Jul 7 – Jul 20, 2026) — latest day 2026-07-20"
 }
 </script>
 <html lang="en">
@@ -513,400 +513,6 @@ html[data-theme="dark"] .intro-banner .ib-lede{color:#c7cad1;}
 </div>
 <script>
 const ARCHIVE = {
-  "2026-07-05": {
-    "date": "2026-07-05",
-    "totalConversations": 0,
-    "resolutionRate": 0,
-    "internalTotal": 0,
-    "externalTotal": 0,
-    "docsTotal": 0,
-    "panelTotal": 0,
-    "queryType": {
-      "technical": 0,
-      "generic": 0
-    },
-    "ticketDeflection": null,
-    "headline": "Zero conversations on July 5 (Sunday) — quietest day in the archive; no docbot activity recorded.",
-    "actionableInsights": [
-      {
-        "owner": "calibration",
-        "title": "n=0 — Sunday with zero docbot traffic",
-        "desc": "No conversations on July 5. Consistent with weekend low-traffic pattern. The 14-day rolling view is the meaningful signal; this data point is a normal zero."
-      }
-    ],
-    "mostInteresting": {
-      "who": "—",
-      "email": "—",
-      "query": "No conversations on this day",
-      "why": "Zero-volume Sunday — no data to surface."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 0
-      }
-    ],
-    "topAskers": [],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Email",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      }
-    ]
-  },
-  "2026-07-06": {
-    "date": "2026-07-06",
-    "totalConversations": 19,
-    "resolutionRate": 0,
-    "internalTotal": 9,
-    "externalTotal": 10,
-    "docsTotal": 9,
-    "panelTotal": 10,
-    "queryType": {
-      "technical": 7,
-      "generic": 12
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days (2026-07-06 00:00 IST to 2026-07-08 23:59 IST); checked through current time, 2026-07-07 (window only partially elapsed)",
-      "totalConversations": 19,
-      "sameUserEscalations": [
-        {
-          "email": "ba.ankitapandey@gmail.com",
-          "docbotQuery": "My domain support.warra.in shows DKIM verified in Domain Authentication, but a real test email sent from info@support.warra.in is failing DKIM validation (confirmed via Gmail's 'Show Original'). Can you check why DKIM signing isn't being applied to this sender?",
-          "area": "Email",
-          "theme": "What does X mean/how it works",
-          "ticketId": "5207219",
-          "ticketSubject": "Feedback on Netcore CE : DKIM Validation Failing Despite Domain Showing \"Verified\" in Domain Authentication of support.warra.in",
-          "ticketCreatedAt": "2026-07-06T14:08:00+05:30"
-        }
-      ],
-      "deflectedCount": 18,
-      "deflectionRate": 95,
-      "patternRisk": [],
-      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. IMPORTANT: this was a full AI-agent rate-limit outage day (see headline) -- every one of the 19 conversations got zero real bot answer, so 'deflected' here does NOT mean resolved, only that no matching Freshdesk ticket was found. Direct email search for ba.ankitapandey@gmail.com returned 0 tickets (a known false-negative pattern, same as the June 26 Harvest Error case) -- her DKIM escalation only surfaced via a keyword search on 'DKIM'. Treat the 95% figure as a floor, not a precise figure. Checked all 17 unique requester emails individually plus keyword searches for SMS consent, unsubscribe/404, webhook attribute alias, client ID, onsite message, and attribute character limit -- no other in-window matches found. Window only half-elapsed as of this run (D+2 = Jul 8 hasn't happened yet)."
-    },
-    "headline": "Full AI-agent rate-limit outage returned on July 6 -- all 19 conversations hit 'AI Agent Rate Limit Exceeded' and got zero real bot answer (0% resolution, same failure mode as the June 21-22 outage, cap reset now slipped to Aug 2). Ba. Ankita Pandey's DKIM issue (support.warra.in) escalated to a full Freshdesk ticket the same afternoon -- proof that on outage days, 'deflection' numbers mean silence, not resolution.",
-    "actionableInsights": [
-      {
-        "owner": "product",
-        "title": "AI agent rate-limit outage is back -- full-day, every conversation, again",
-        "desc": "All 19 conversations on July 6 got only the scripted greeting before hitting 'AI Agent Rate Limit Exceeded' (legacy pricing) -- identical to the June 21-22 outage. The reset date has slipped from Jul 20 (per the June 22 entry) to Aug 2, meaning the org keeps burning through the monthly token cap before month-end. Zero bot resolution across the board. Same urgent decision flagged three weeks ago still stands: migrate to usage-based pricing ($0.29/resolution) or get the legacy cap raised -- otherwise this outage will keep recurring."
-      },
-      {
-        "owner": "content",
-        "title": "Ba. ankitapandey's DKIM issue shows the outage has a real customer cost",
-        "desc": "She asked the docbot about DKIM validation failing on support.warra.in, got zero answer (rate-limited), then filed Freshdesk ticket #5207219 the same afternoon with full diagnostic detail already worked out (SPF pass, DKIM fail per Gmail 'Show Original', DNS CNAME confirmed correct). Direct proof the outage pushes real technical issues to human agents instead of letting the bot deflect them."
-      },
-      {
-        "owner": "content",
-        "title": "Akash Singh (iresearchservices) hit two separate data-upload failures same day, admin manually redirected to helpdesk",
-        "desc": "Both conversations (Private Facilities batch, Ilumio batch) got the rate-limit message; an admin manually told him to email helpdesk@netcorecloud.com directly. No matching Freshdesk ticket found yet (checked his exact email plus an 'iresearchservices' keyword search), but worth a follow-up check in a day or two given the explicit redirect."
-      },
-      {
-        "owner": "calibration",
-        "title": "0% resolution today is a real outage number, not a classification artifact",
-        "desc": "Unlike June 25 (where a Featurebase field flip made the bot look unresolved when it wasn't), every one of today's 19 transcripts independently confirms zero real bot answers -- this is a genuine 0%, not cosmetic. Freshdesk email search also produced a false negative on ba.ankitapandey@gmail.com (ticket only surfaced via keyword search), so treat the 95% deflection figure as a floor, not precise."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Ba. Ankita Pandey",
-      "email": "ba.ankitapandey@gmail.com",
-      "query": "Domain support.warra.in shows DKIM as verified in Domain Authentication, but a real test email sent from info@support.warra.in fails DKIM validation on the receiving end (confirmed via Gmail's 'Show Original': SPF pass, DKIM fail, DMARC fail) -- asked whether DKIM signing is actually being applied to this sender at send time despite DNS showing correctly configured.",
-      "why": "A precise, evidence-backed technical diagnosis, not a vague complaint -- correctly isolates a platform-side signing/configuration issue from a DNS problem. Escalated to a full Freshdesk ticket with the same diagnostic detail the same day, confirming this was a real unresolved issue, not user confusion."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 5,
-        "external": 2
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 0,
-        "external": 2
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 2,
-        "external": 5
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 2,
-        "external": 0
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 1
-      }
-    ],
-    "topAskers": [
-      {
-        "email": "akash.singh@iresearchservices.com",
-        "count": 2,
-        "friction": true,
-        "queries": [
-          {
-            "theme": "What does X mean/how it works",
-            "text": "Data has been not uploaded Private Facilities_58243-02-06-July-26-CDQA"
-          },
-          {
-            "theme": "What does X mean/how it works",
-            "text": "Data has not uploaded for Ilumio-06-July-26-CDQA"
-          }
-        ],
-        "panel": "iresearchservices"
-      },
-      {
-        "email": "komal.sharma@netcorecloud.com",
-        "count": 2,
-        "friction": true,
-        "queries": [
-          {
-            "theme": "How do I do X",
-            "text": "SMS consent management"
-          },
-          {
-            "theme": "How do I do X",
-            "text": "how to manage consent for SMS"
-          }
-        ],
-        "panel": "NA"
-      }
-    ],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 0,
-        "external": 3,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "akshay.shetty@khelomore.com",
-            "q": "what is this account client ID?",
-            "panel": "khelomorecee"
-          },
-          {
-            "email": "akash.singh@iresearchservices.com",
-            "q": "Data has been not uploaded Private Facilities_58243-02-06-July-26-CDQA",
-            "panel": "iresearchservices"
-          },
-          {
-            "email": "akash.singh@iresearchservices.com",
-            "q": "Data has not uploaded for Ilumio-06-July-26-CDQA",
-            "panel": "iresearchservices"
-          }
-        ]
-      },
-      {
-        "area": "Email",
-        "internal": 0,
-        "external": 5,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "lvparks@msn.com",
-            "q": "Trying to unsubscribe from an Airports Parking.Com link -- gets 'page doesn't exist' when clicking the unsubscribe link",
-            "panel": "NA"
-          },
-          {
-            "email": "pennymelvillsmith@duck.com",
-            "q": "Keep on getting 404 messages when tapping links in safe emails",
-            "panel": "NA"
-          },
-          {
-            "email": "amirthan@tonegroup.net",
-            "q": "how to edit the html for emails",
-            "panel": "tonewowce"
-          },
-          {
-            "email": "ba.ankitapandey@gmail.com",
-            "q": "DKIM validation failing on support.warra.in despite domain showing verified in Domain Authentication",
-            "panel": "servicesintlsmart"
-          },
-          {
-            "email": "tripti.kaushik@swansol.com",
-            "q": "how to add pdf in blank template",
-            "panel": "swansol_ce"
-          }
-        ]
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 3,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "komal.sharma@netcorecloud.com",
-            "q": "SMS consent management",
-            "panel": "NA"
-          },
-          {
-            "email": "komal.sharma@netcorecloud.com",
-            "q": "how to manage consent for SMS",
-            "panel": "NA"
-          },
-          {
-            "email": "test@netcorecloud.com",
-            "q": "how do i generate whatsapp content recommendations",
-            "panel": "tprappin1_custid"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 1,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "heena.shah@netcorecloud.com",
-            "q": "what is attribute alias in webhook?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 2,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "jaishnitha.vs@netcorecloud.com",
-            "q": "how to create an onsite messsage for web",
-            "panel": "NA"
-          },
-          {
-            "email": "mili.kanoo@netcorecloud.com",
-            "q": "If we add a DND, and the message falls in DND hours, will it be received next day?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "vishal.paikrao@creditt.com",
-            "q": "want to check user interaction time wise in engagement",
-            "panel": "creditt_cee"
-          }
-        ]
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 1,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "shipra.choudhary@netcorecloud.com",
-            "q": "can we increase the attribute value character limit?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 2,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "kunal.khatri@netcorecloud.com",
-            "q": "How can i add a email id for a user to access the CE platform",
-            "panel": "smartechai"
-          },
-          {
-            "email": "ritika.thakur@netcorecloud.com",
-            "q": "how many of my employees can I add as users who can acess the panel",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "abc@nfkl.com",
-            "q": "hey",
-            "panel": "qa_manual1"
-          }
-        ]
-      }
-    ]
-  },
   "2026-07-07": {
     "date": "2026-07-07",
     "totalConversations": 21,
@@ -3782,8 +3388,431 @@ const ARCHIVE = {
         ]
       }
     ]
+  },
+  "2026-07-19": {
+    "date": "2026-07-19",
+    "totalConversations": 2,
+    "resolutionRate": 100,
+    "internalTotal": 1,
+    "externalTotal": 1,
+    "docsTotal": 0,
+    "panelTotal": 2,
+    "queryType": {
+      "technical": 0,
+      "generic": 2
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-07-19 00:00 IST to 2026-07-21 23:59 IST); checked through current time, 2026-07-20 (window only partially elapsed — D+2 = Jul 21 hasn't happened yet)",
+      "totalConversations": 2,
+      "sameUserEscalations": [],
+      "deflectedCount": 2,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit — treat as a directional signal. Direct email search for both askers (kalpit@netcorecloud.com, ariff@grameenphone.com) returned zero tickets. Keyword spot-checks for 'journey' and 'campaign report' (the two areas hit today) surfaced no tickets created in-window that share the same underlying theme — several journey-keyword hits existed but were all execution/troubleshooting issues (trigger counts, revenue tracking), not the conceptual 'what are the AI offerings' ask. With only 2 conversations today, this is a very thin sample."
+    },
+    "headline": "Quietest weekend yet — just 2 conversations on July 19 (Sunday), both self-reported resolved and clean on Freshdesk (100% deflected, zero escalations for either asker). Second n=2 day in a row after Saturday's low.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "n=2 — Sunday low-volume day, read all rates as directional only",
+        "desc": "Only 2 conversations on July 19, both self-reported 'resolved' with no Freshdesk escalation found for either asker. A 100% resolution/deflection rate off n=2 isn't statistically meaningful — the 14-day rolling view is the real signal, not this single day."
+      },
+      {
+        "owner": "content",
+        "title": "Internal staffer asked a broad 'AI offerings' overview question — likely exploratory, not a blocked task",
+        "desc": "kalpit@netcorecloud.com (shopcrocsmt panel) asked 'tell me about ce AI offerings'; bot correctly listed all 5 live AI agents (Campaign Insights, Journey Insights, Content, Decisioning, Segment) with doc links. Reads like internal exploration/training use rather than a genuine blocked task — worth keeping in mind since low-stakes internal queries like this inflate the 'resolved' count without reflecting real customer friction."
+      },
+      {
+        "owner": "content",
+        "title": "Automated campaign-report question resolved cleanly — good sign for that doc path",
+        "desc": "ariff@grameenphone.com (grameenphone_cee) asked whether automatic email reports of campaigns are possible; bot correctly pointed to the campaign summary report slider plus Profile > Logs for tracking scheduled downloads. No Freshdesk escalation found — this is one doc flow that appears to be working as intended."
+      },
+      {
+        "owner": "product",
+        "title": "Two n=2 weekend days back-to-back (Sat 7/18, Sun 7/19)",
+        "desc": "Consistent with the established weekend low-traffic pattern already seen on other Sundays (e.g. July 5, n=0). Nothing anomalous here — flagging only so the 14-day trend line isn't misread as a sudden traffic drop."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Ariff Ahmed",
+      "email": "ariff@grameenphone.com",
+      "query": "Asked whether it's possible to set up automatic email reports of campaigns — bot pointed to the campaign summary report slider and Profile > Logs for tracking scheduled report downloads.",
+      "why": "The more concrete, product-specific ask of the two conversations today — a real recurring-reporting need rather than a general overview question — and it resolved cleanly with no Freshdesk escalation."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 0
+      }
+    ],
+    "topAskers": [],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "ariff@grameenphone.com",
+            "q": "is it possible to set up automatic email reports of campaigns?",
+            "panel": "grameenphone_cee"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "kalpit@netcorecloud.com",
+            "q": "tell me about ce AI offerings",
+            "panel": "shopcrocsmt"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      }
+    ]
+  },
+  "2026-07-20": {
+    "date": "2026-07-20",
+    "totalConversations": 18,
+    "resolutionRate": 100,
+    "internalTotal": 7,
+    "externalTotal": 11,
+    "docsTotal": 8,
+    "panelTotal": 10,
+    "queryType": {
+      "technical": 6,
+      "generic": 12
+    },
+    "ticketDeflection": null,
+    "headline": "18 conversations on July 20, 100% bot self-reported resolved -- but a manual read shows at least 3 threads (Gagandeep Kaur's PDF-in-email-body ask, Andrea Olayon's Email+SMS combo question, the Amazon S3 export dropdown showing '[object Object]') ended on an unanswered bot question, not a confirmed fix. Freshdesk session was logged out this run, so ticket-deflection tracking is skipped for today.",
+    "actionableInsights": [
+      {
+        "owner": "design",
+        "title": "Real frontend bug found: S3 connection dropdown renders '[object Object]'",
+        "desc": "anil@policy2day.com (financetoday_cee) hit a dropdown that displayed literal '[object Object]' instead of his Amazon S3 connection name when trying to export a segment. The bot correctly identified it as 'a known frontend rendering bug' and offered to draft an email to his Account Manager instead of fixing it live. Worth a direct engineering ticket -- this is a confirmed UI defect, not a doc gap."
+      },
+      {
+        "owner": "content",
+        "title": "Two users re-asked the same underlying question within the hour",
+        "desc": "aaolayon@pjlhuillier.com (cebuanalhuillier_cee) asked 'Companion SMS with email' (06:21) then 'Email with SMS' (07:00) -- both hunting for a way to bundle Email+SMS into one broadcast, which the bot confirmed isn't supported (only via two synced campaigns or a Journey). Separately, akash.sharma@netcorecloud.com asked the same 'how do I tell if a client is using feature X' pattern twice (journey path optimizer, then STO) five hours apart. Both patterns suggest the docs don't clearly state these limitations/lookups up front, pushing users to re-ask."
+      },
+      {
+        "owner": "product",
+        "title": "Amey Vaidya's pre-sales merch-triggers question is time-sensitive",
+        "desc": "amey.vaidya@netcorecloud.com asked, on behalf of a live pitch to meatigo.com, whether Merchandising triggers can work without a centralized inventory system (pincode-level stock varies). This is a real deal-blocking feasibility question, not a how-to -- worth a direct answer from product/solutions rather than leaving it to the bot's general response, given the 'as soon as possible' ask."
+      },
+      {
+        "owner": "calibration",
+        "title": "100% self-reported resolution doesn't hold up under a manual read",
+        "desc": "All 18 conversations show botConversationState 'resolved', but at least 3 ended with the bot asking a follow-up question the customer never answered (Gagandeep Kaur's PDF-in-email-body ask, Andrea Olayon's Companion SMS thread, parts of Anil's S3 export thread). Same pattern flagged repeatedly since June 25 -- treat the resolvedRate field as a workflow artifact, not a quality signal. Freshdesk session was also logged out this run, so today has zero cross-checked ticket-deflection data -- re-authenticate before the next run."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Amey Vaidya",
+      "email": "amey.vaidya@netcorecloud.com",
+      "query": "Asked whether Merchandising triggers can be used for a hyperlocal-inventory prospect (meatigo.com) that has no centralized inventory system -- i.e., a product might be in stock at one pincode but not another, unlike Licious. Wanted to know if merch triggers require centralized inventory, and if so, what to tell the prospect they'd need to provide.",
+      "why": "A real pre-sales technical feasibility question with product-architecture depth (centralized vs. decentralized inventory as a prerequisite for merchandising triggers), not a basic navigation ask -- shows genuine platform fluency applied to a live deal, not just self-service support."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 4
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 2,
+        "external": 0
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 3,
+        "external": 4
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 2,
+        "external": 3
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 0
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "ipo@cameoindia.com",
+        "count": 2,
+        "friction": true,
+        "panel": "cameoindiacee",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "Want to cancel a campaingn"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "Can a campaingn / Cancel a campaingn"
+          }
+        ]
+      },
+      {
+        "email": "aaolayon@pjlhuillier.com",
+        "count": 2,
+        "friction": true,
+        "panel": "cebuanalhuillier_cee",
+        "queries": [
+          {
+            "theme": "What does X mean/how it works",
+            "text": "Companion SMS with email"
+          },
+          {
+            "theme": "Is X possible/supported",
+            "text": "Email with SMS (one-off campaign for both channels)"
+          }
+        ]
+      },
+      {
+        "email": "akash.sharma@netcorecloud.com",
+        "count": 2,
+        "friction": true,
+        "panel": "NA",
+        "queries": [
+          {
+            "theme": "Where do I set up/find X",
+            "text": "How Can i know the client is using the STO feature or not"
+          },
+          {
+            "theme": "Where do I set up/find X",
+            "text": "How can I identify the client is using the journey path optimizer or not?"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "rubal.adwani@netcorecloud.com",
+            "q": "what are payloads?",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "mayank@kloctechnologies.com",
+            "q": "add to wishlist event is not working",
+            "panel": "nallicee"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "gkaur@globepub.com",
+            "q": "Can we upload PDF brochure in body of the email",
+            "panel": "servicesintlsmart"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 3,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "kajol.shah@edelweissarc.in",
+            "q": "Can I send audio clips through whatsapp?",
+            "panel": "edelweissarcnew_cee"
+          },
+          {
+            "email": "aaolayon@pjlhuillier.com",
+            "q": "Companion SMS with email",
+            "panel": "cebuanalhuillier_cee"
+          },
+          {
+            "email": "aaolayon@pjlhuillier.com",
+            "q": "Email with SMS (one-off campaign for both channels)",
+            "panel": "cebuanalhuillier_cee"
+          }
+        ]
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 3,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "ipo@cameoindia.com",
+            "q": "Want to cancel a campaingn",
+            "panel": "cameoindiacee"
+          },
+          {
+            "email": "ipo@cameoindia.com",
+            "q": "Can a campaingn / Cancel a campaingn",
+            "panel": "cameoindiacee"
+          },
+          {
+            "email": "bilal@advplus.ae",
+            "q": "Delete a webhook",
+            "panel": "advpluscee"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 4,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "akash.sharma@netcorecloud.com",
+            "q": "How can I identify the client is using the journey path optimizer or not?",
+            "panel": "NA"
+          },
+          {
+            "email": "vani.ganasutrisna@netcorecloud.com",
+            "q": "what is user path",
+            "panel": "NA"
+          },
+          {
+            "email": "amey.vaidya@netcorecloud.com",
+            "q": "Can Merchandising triggers work for a prospect (meatigo.com) with no centralized inventory system, pincode-level stock varies",
+            "panel": "NA"
+          },
+          {
+            "email": "akash.sharma@netcorecloud.com",
+            "q": "How Can i know the client is using the STO feature or not",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "kulwinder.singh@way.com",
+            "q": "how to split communication or pathways in journey as per activity as we are able to do in klaviyo",
+            "panel": "globalairportparking"
+          },
+          {
+            "email": "jmlagaso@pldt.com.ph",
+            "q": "what is the difference between on site messages and personalized content",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 2,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "anjali.inani@netcorecloud.com",
+            "q": "do we any limitation on attributes on panel",
+            "panel": "NA"
+          },
+          {
+            "email": "hardeep.singh@netcorecloud.com",
+            "q": "Regarding S3 import, how does the AWS Lambda auto trigger work, on what frequency, how does it check for new files?",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "anil@policy2day.com",
+            "q": "event export segment to Amazon S3 -- batch connection dropdown not showing / renders [object Object]",
+            "panel": "financetoday_cee"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      }
+    ]
   }
-};
+}
+;
 const DATES = Object.keys(ARCHIVE).sort().reverse();
 let theme = 'light';
 
