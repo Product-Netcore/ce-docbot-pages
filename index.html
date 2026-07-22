@@ -513,290 +513,6 @@ html[data-theme="dark"] .intro-banner .ib-lede{color:#c7cad1;}
 </div>
 <script>
 const ARCHIVE = {
-  "2026-07-07": {
-    "date": "2026-07-07",
-    "totalConversations": 21,
-    "resolutionRate": 5,
-    "internalTotal": 8,
-    "externalTotal": 13,
-    "docsTotal": 7,
-    "panelTotal": 14,
-    "queryType": {
-      "technical": 4,
-      "generic": 17
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days (2026-07-07 00:00 IST to 2026-07-09 23:59 IST); checked through current time, 2026-07-08 (window only partially elapsed -- D+2 = Jul 9 hasn't happened yet)",
-      "totalConversations": 21,
-      "sameUserEscalations": [],
-      "deflectedCount": 21,
-      "deflectionRate": 100,
-      "patternRisk": [],
-      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as directional only. IMPORTANT: this was a second straight day of the AI-agent rate-limit outage (see headline) -- 20 of 21 conversations got zero real bot answer, so 'deflected' here does NOT mean resolved, only that no matching Freshdesk ticket was found yet. Checked all 19 unique requester emails individually (zero matches) plus company/keyword spot-checks (hdfcresearch, kotaklifesmt, cata_goldies_cee, 'unable to send campaigns', 'kotaklifesmt journey template') -- no in-window matches found. Given the outage's real business-impact signals (Gaureesh's live-campaign deadline, Mahendra's repeated send failures, Sardar's explicit negative rating), treat the 100% figure as a floor that could still move once the window fully elapses on Jul 9."
-    },
-    "headline": "Second straight day of the AI-agent rate-limit outage -- 20 of 21 conversations on July 7 got zero real bot answer (only 1 of 21 resolved), and Gaureesh Desai at Kotak Life got no help with a live-campaign deadline due before 12:30 the same day.",
-    "actionableInsights": [
-      {
-        "owner": "calibration",
-        "title": "AI agent rate-limit outage is now a 2-day streak, not a one-off",
-        "desc": "20 of 21 conversations on July 7 hit 'AI Agent Rate Limit Exceeded' -- identical to the July 6 full-outage day. Reset date is still Aug 2, 2026. Only bilqis.ishola@heirsinsurancebrokers.com got a real bot answer. The usage-based pricing migration ($0.49/resolution per the latest banner) or a raised legacy cap needs a decision now -- this is no longer an isolated incident."
-      },
-      {
-        "owner": "product",
-        "title": "Kotak Life's live-campaign deadline was blocked by the outage",
-        "desc": "gaureesh.desai@kotak.com (kotaklifesmt panel) reported a missing email template in a journey and explicitly said the campaign was supposed to go live today before 12:30 -- got zero real bot help due to the rate limit. Time-sensitive, named enterprise account -- worth a direct human follow-up today, not a re-run of the bot session."
-      },
-      {
-        "owner": "CS/support",
-        "title": "A customer explicitly rated the outage experience 'Worst!'",
-        "desc": "sardarali.sayed@neoniche.com asked why campaign counts (sent/delivered) weren't showing, got only the rate-limit holding message, and left an explicit 'Worst!' rating in a follow-up email reply. Concrete evidence the outage is costing real CSAT, not just deflection-rate optics."
-      },
-      {
-        "owner": "content",
-        "title": "Mahendra Karande (HDFC Securities) asked twice in 6 minutes about campaign/email send failures",
-        "desc": "mahendra.karande@hdfcsec.com first asked 'Not able to publish campaigns' (09:20 IST) then 'Something wrong with the system, unable to send campaigns, also unable to send test emails' (09:26 IST) -- both hit the rate limit with no diagnosis. Given the specificity (publish + test-send both failing), this reads like a real platform issue independent of the AI outage and deserves an engineering look, not just a bot retry."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Lokesh Sharma",
-      "email": "lokesh.sharma@netcorecloud.com",
-      "query": "Requested help building Unreachable-style segments for Email, SMS, and Notifications (APN/BPN) mirroring the logic Netcore already provides for WhatsApp and RCS -- specifying exact sub-logic per channel (unsubscribed users, soft/hard bounces for Email; unsubscribed/blocked for SMS and Notifications).",
-      "why": "A fully worked-out, cross-channel segmentation design rather than a basic how-to -- shows deep platform fluency in applying an existing WhatsApp/RCS feature pattern to other channels. Got no real bot answer due to the outage, which is itself notable."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 2,
-        "external": 4
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 1,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 0,
-        "external": 1
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 4,
-        "external": 6
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 1,
-        "external": 0
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 2
-      }
-    ],
-    "topAskers": [
-      {
-        "email": "prasads@mfuindia.in",
-        "count": 2,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "Bare greeting, no context yet",
-            "text": "hi"
-          },
-          {
-            "theme": "What does X mean/how it works",
-            "text": "we have sheduld email but sent mail number not showing"
-          }
-        ],
-        "panel": "mfuindiasmt"
-      },
-      {
-        "email": "mahendra.karande@hdfcsec.com",
-        "count": 2,
-        "friction": true,
-        "queries": [
-          {
-            "theme": "How do I do X",
-            "text": "Not able to publish campaigns"
-          },
-          {
-            "theme": "What does X mean/how it works",
-            "text": "Something wrong with the system, unable to send campaigns, also unable to send test emails"
-          }
-        ],
-        "panel": "hdfcresearch"
-      }
-    ],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 3,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "gargi.mukherjee@netcorecloud.com",
-            "q": "what are the datatypes available for my attributes?",
-            "panel": "NA"
-          },
-          {
-            "email": "charishma.p@netcorecloud.com",
-            "q": "What is channel ID and where to get it from? (for app push notification)",
-            "panel": "landbankcee"
-          },
-          {
-            "email": "hardeep.singh@netcorecloud.com",
-            "q": "My client wants to upload daily file of 4-5L records in S3 with 250 Attributes, how much time would it take to upload onto the panel?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "bilqis.ishola@heirsinsurancebrokers.com",
-            "q": "Please confirm that this email exists in HLA Customers list",
-            "panel": "heirsinsurancegroup"
-          }
-        ]
-      },
-      {
-        "area": "Email",
-        "internal": 1,
-        "external": 3,
-        "internalQ": [
-          {
-            "email": "manish@netcorecloud.com",
-            "q": "How can email ids be Blacklisted using the Global Blacklist feature? Please share rationale. / what is mass blacklist email?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "ujjwal@successgyan.com",
-            "q": "We have a query regarding the block list contact",
-            "panel": "successgyancee"
-          },
-          {
-            "email": "prasads@mfuindia.in",
-            "q": "we have sheduld email but sent mail number not showing",
-            "panel": "mfuindiasmt"
-          },
-          {
-            "email": "mahendra.karande@hdfcsec.com",
-            "q": "Something wrong with the system, unable to send campaigns, also unable to send test emails",
-            "panel": "hdfcresearch"
-          }
-        ]
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 1,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "lokesh.sharma@netcorecloud.com",
-            "q": "Need help creating segments for Email, SMS, and Notifications similar to what Netcore provides for WhatsApp and RCS (Unreachable)",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 1,
-        "external": 4,
-        "internalQ": [
-          {
-            "email": "utpal.dutta@netcorecloud.com",
-            "q": "Campaign Slicing explain in brief",
-            "panel": "shriramfl_cee"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "darryl.chua@trycata.com",
-            "q": "check who just set campaign ID 104 live, it was previously a draft that never sent out",
-            "panel": "cata_goldies_cee"
-          },
-          {
-            "email": "mahendra.karande@hdfcsec.com",
-            "q": "Not able to publish campaigns",
-            "panel": "hdfcresearch"
-          },
-          {
-            "email": "taimoortongu@fil.net.in",
-            "q": "campaign report does not display any data",
-            "panel": "empyrean"
-          },
-          {
-            "email": "sardarali.sayed@neoniche.com",
-            "q": "not able to see the count of sent, delivered, etc. for any of my campaigns",
-            "panel": "neonichesolutionscee"
-          }
-        ]
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 1,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "drashtant.pambhar@netcorecloud.com",
-            "q": "What exactly is Agentic AI?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "gaureesh.desai@kotak.com",
-            "q": "Email template not seen in journey section I created; campaign needs to go live today before 12:30",
-            "panel": "kotaklifesmt"
-          }
-        ]
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 1,
-        "external": 4,
-        "internalQ": [
-          {
-            "email": "akash.gupta@netcorecloud.com",
-            "q": "help me with the guide to create user role in panel",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "prasads@mfuindia.in",
-            "q": "hi (bare greeting, no follow-up)",
-            "panel": "mfuindiasmt"
-          },
-          {
-            "email": "haneem.hussain@tm.com.my",
-            "q": "dashboard is not showing figures",
-            "panel": "unificee"
-          },
-          {
-            "email": "magunamaguna555@gmail.com",
-            "q": "Hi iam maguna / please check My order (off-topic, unrelated to Netcore CE)",
-            "panel": "NA"
-          },
-          {
-            "email": "akanksha.juyal@spicemoney.com",
-            "q": "I want to enable tooltip on a page guide me",
-            "panel": "spicemoneysmart"
-          }
-        ]
-      }
-    ]
-  },
   "2026-07-08": {
     "date": "2026-07-08",
     "totalConversations": 14,
@@ -1048,7 +764,7 @@ const ARCHIVE = {
       "patternRisk": [],
       "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit — treat as a directional signal. Freshdesk's own email-search tool returned 0 tickets for sanjay@navia.co.in (a false negative — same limitation seen June 26); the match was found instead via a 'whatsapp template' keyword search. All 25 unique external requesters across the July 9-12 backfill were checked by direct email search; this was the only same-user match, and it only surfaced via the keyword-search fallback — so a clean email search for the other 24 is not airtight proof they were fully deflected, just the best signal available."
     },
-    "headline": "28 conversations on July 9 (deduped from 29), 96% Freshdesk-deflected — but Sanjay at Navia Markets asked the docbot how to check an active WhatsApp template, then filed an Urgent ticket 47 minutes later when approved templates across two panels turned out to be stuck in ‘Pending.’ Self-reported bot resolution reads 0%, which is the known CSAT-workflow flip, not a real outage.",
+    "headline": "28 conversations on July 9 (deduped from 29), 96% Freshdesk-deflected — but Sanjay at Navia Markets asked the docbot how to check an active WhatsApp template, then filed an Urgent ticket 47 minutes later when approved templates across two panels turned out to be stuck in 'Pending.' Self-reported bot resolution reads 0%, which is the known CSAT-workflow flip, not a real outage.",
     "actionableInsights": [
       {
         "owner": "calibration",
@@ -3808,6 +3524,339 @@ const ARCHIVE = {
         "external": 0,
         "internalQ": [],
         "externalQ": []
+      }
+    ]
+  },
+  "2026-07-21": {
+    "date": "2026-07-21",
+    "totalConversations": 22,
+    "resolutionRate": 77,
+    "internalTotal": 13,
+    "externalTotal": 9,
+    "docsTotal": 3,
+    "panelTotal": 19,
+    "queryType": {
+      "technical": 7,
+      "generic": 15
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-07-21 00:00 IST to 2026-07-23 23:59 IST); window still open as of this run (2026-07-22)",
+      "totalConversations": 22,
+      "sameUserEscalations": [],
+      "deflectedCount": 22,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit — treat as a directional signal. Checked all 14 unique requester emails via Tier 1 global search — zero ticket matches for any. Tier 2 keyword checks for the day's most notable topics ('list upload different account', 'fenceexpo', 'infinityinks', 'thesouledstore logs') also returned zero in-window matches — the 'list upload' keyword search surfaced 37 historically recurring auto-generated 'List uploading issue' tickets from an unrelated bot-monitored account (asteroidtechno and others), none dated in this window or tied to the fenceexpo/dtatsupport2 conversation. Window extends through July 23, still partially open as of this check."
+    },
+    "headline": "22 conversations on July 21, 77% bot self-reported resolved and 100% Freshdesk-deflected so far — Pintu Kundu at fenceexpo reported list uploads bleeding across two completely separate, distinctly-logged-in accounts (a real multi-tenancy concern worth an engineering look regardless of ticket status), while a cluster of Netcore staff spent the day re-litigating List vs Segment vs Cohort vs Funnel terminology.",
+    "actionableInsights": [
+      {
+        "owner": "product",
+        "title": "Cross-account data leakage reported on list upload (fenceexpo)",
+        "desc": "dtatsupport2@nm-india.com (Pintu Kundu, fenceexpo panel) reported that a list uploaded to one account is showing up in a second, completely distinct account with separate login credentials. Bot marked this 'resolved' but this reads like a genuine multi-tenancy/data-isolation bug, not a how-to question — no matching Freshdesk ticket yet, but this warrants a direct engineering check today rather than waiting for an escalation."
+      },
+      {
+        "owner": "content",
+        "title": "List vs Segment vs Cohort vs Funnel confusion hit 3 internal staff, 6 conversations, one day",
+        "desc": "charvi.agarwal@netcorecloud.com (4 conversations: segments-from-cohort, user-path-vs-funnel, cohort-use-cases, cohort-vs-segment), plus ninad.borkar's 'List vs segment' and prathamesh.borkar's 'lists vs segments' — all smartechai panel, all internal Netcore staff. If this terminology trips up internal staff this often, external customers are likely just as confused. One consolidated 'Lists, Segments, Cohorts & Funnels — what's the difference' reference doc would cover all six asks."
+      },
+      {
+        "owner": "calibration",
+        "title": "59% of today's volume was internal Netcore staff, mostly definitional",
+        "desc": "13 of 22 conversations came from Netcore staff (smartechai/Atom panels), and most were terminology/definition questions rather than customer production issues. Treat today's theme and resolution-rate mix as skewed toward internal usage patterns, not a clean read on external customer friction."
+      },
+      {
+        "owner": "product",
+        "title": "prasad.aher@quant.in re-asked the same timeline-display issue twice in under 2 minutes",
+        "desc": "Two separate conversations (11:21 and 11:22 IST) from the same user, both about the profile/timeline view not showing details — resolved via bot explaining a recent behavior change (timeline now shows last 7 days instead of full history). If this was a recent product change, a one-time in-app notice would likely have preempted both conversations."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Madhusha Bhati",
+      "email": "madhusha.bhati@gmail.com",
+      "query": "Asked whether Netcore Co-Marketer can generate creatives, which channels it supports, and specifically about template design use — a three-part evaluation of the AI creative-generation feature.",
+      "why": "A structured, multi-part evaluation of a newer AI feature (Co-Marketer) rather than a basic navigation question — reads like a prospect or new user seriously assessing capability breadth before committing, the most product-evaluative ask of the day."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 2,
+        "external": 4
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 1,
+        "external": 1
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 9,
+        "external": 2
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 1,
+        "external": 1
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 1
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "ninad.borkar@netcorecloud.com",
+        "count": 4,
+        "friction": false,
+        "panel": "smartechai",
+        "queries": [
+          {
+            "theme": "What does X mean/how it works",
+            "text": "User Data table in CE"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "what are attributes in CE platform"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "what are webhooks"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "What is the difference between List and segment"
+          }
+        ]
+      },
+      {
+        "email": "charvi.agarwal@netcorecloud.com",
+        "count": 4,
+        "friction": false,
+        "panel": "smartechai",
+        "queries": [
+          {
+            "theme": "Is X possible/supported",
+            "text": "can i make segments from cohort? / cant create segments from user path analysis right?"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "difference between a user path and a funnel"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "suggest top cohort 5 use cases for ecom industry"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "whats the difference between a cohort and a segement"
+          }
+        ]
+      },
+      {
+        "email": "prasad.aher@quant.in",
+        "count": 2,
+        "friction": true,
+        "panel": "quantsmt",
+        "queries": [
+          {
+            "theme": "What does X mean/how it works",
+            "text": "we are facing an issue with the profile account not showing timeline details"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "we are not showing profile details of timeline information"
+          }
+        ]
+      },
+      {
+        "email": "prathamesh.borkar@netcorecloud.com",
+        "count": 2,
+        "friction": false,
+        "panel": "smartechai",
+        "queries": [
+          {
+            "theme": "What does X mean/how it works",
+            "text": "What is the maximum number of events a client can add?"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "What is the difference between lists and segments"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 4,
+        "external": 3,
+        "internalQ": [
+          {
+            "email": "ninad.borkar@netcorecloud.com",
+            "q": "User Data table in CE",
+            "panel": "smartechai"
+          },
+          {
+            "email": "ninad.borkar@netcorecloud.com",
+            "q": "what are attributes in CE platform",
+            "panel": "smartechai"
+          },
+          {
+            "email": "anjali.inani@netcorecloud.com",
+            "q": "where can i see that, attribute data is stored on panel",
+            "panel": "NA"
+          },
+          {
+            "email": "prathamesh.borkar@netcorecloud.com",
+            "q": "What is the maximum number of events a client can add?",
+            "panel": "smartechai"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "prasad.aher@quant.in",
+            "q": "we are facing an issue with the profile account not showing timeline details",
+            "panel": "quantsmt"
+          },
+          {
+            "email": "prasad.aher@quant.in",
+            "q": "we are not showing profile details of timeline information",
+            "panel": "quantsmt"
+          },
+          {
+            "email": "dtatsupport2@nm-india.com",
+            "q": "issue uploading lists — list uploaded to one account reflecting in a different, distinctly-logged-in account",
+            "panel": "fenceexpo"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "sricharan@infiniteinks.com",
+            "q": "not receiving password reset emails for admin account; requested human agent",
+            "panel": "infinityinks_cee"
+          },
+          {
+            "email": "ipo@cameoindia.com",
+            "q": "how can we cancel a mail campaign / pause an active one",
+            "panel": "cameoindiacee"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 2,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "ninad.borkar@netcorecloud.com",
+            "q": "what are webhooks",
+            "panel": "smartechai"
+          },
+          {
+            "email": "rubal.adwani@netcorecloud.com",
+            "q": "what is difference between web message, web pop up, web personalization, web push notification",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "gauransh.kumar@thesouledstore.com",
+            "q": "Where are the logs",
+            "panel": "thesouledstorecee"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 7,
+        "external": 3,
+        "internalQ": [
+          {
+            "email": "akshay.as@netcorecloud.com",
+            "q": "Can you analyse the last 3 month performance. Draw a comparison between top 55 industries",
+            "panel": "Atom"
+          },
+          {
+            "email": "charvi.agarwal@netcorecloud.com",
+            "q": "can i make segments from cohort? / cant create segments from user path analysis right?",
+            "panel": "smartechai"
+          },
+          {
+            "email": "ninad.borkar@netcorecloud.com",
+            "q": "What is the difference between List and segment",
+            "panel": "smartechai"
+          },
+          {
+            "email": "prathamesh.borkar@netcorecloud.com",
+            "q": "What is the difference between lists and segments",
+            "panel": "smartechai"
+          },
+          {
+            "email": "charvi.agarwal@netcorecloud.com",
+            "q": "difference between a user path and a funnel",
+            "panel": "smartechai"
+          },
+          {
+            "email": "charvi.agarwal@netcorecloud.com",
+            "q": "suggest top cohort 5 use cases for ecom industry",
+            "panel": "smartechai"
+          },
+          {
+            "email": "charvi.agarwal@netcorecloud.com",
+            "q": "whats the difference between a cohort and a segement",
+            "panel": "smartechai"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "anuj.jamdegni@intoday.com",
+            "q": "Why use is not showing in ite_futurerenewal slide categories",
+            "panel": "businesstoday"
+          },
+          {
+            "email": "faris.m@2xlme.com",
+            "q": "user inactive",
+            "panel": "ochome_ce"
+          },
+          {
+            "email": "madhusha.bhati@gmail.com",
+            "q": "netcore co marketer, can it generate creatives? / what channels can it support? / for template design",
+            "panel": "NA"
+          }
+        ]
       }
     ]
   }
