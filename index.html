@@ -12653,7 +12653,7 @@ const FULL_ARCHIVE = {
   }
 }
 ;
-const DATES = Object.keys(ARCHIVE).sort().reverse();
+const DATES = Object.keys(FULL_ARCHIVE).sort().reverse();
 let theme = 'light';
 
 function fmtDate(d){
@@ -13002,7 +13002,7 @@ function computeMasterSummary(archive, dateSubset){
 // days and returns null otherwise (e.g. the very first day ever logged).
 function renderSidebar(){
   const m = computeMasterSummary(FULL_ARCHIVE);
-  const data = ARCHIVE[activeDate];
+  const data = FULL_ARCHIVE[activeDate];
   const dialPct = activeTab==='daily' ? data.resolutionRate : m.avgResolution;
   const dialCap = activeTab==='daily' ? "Bot-handled, today" : "Avg bot-handled / day";
   const splitInt = activeTab==='daily' ? data.internalTotal : m.totalInternal;
@@ -13669,7 +13669,7 @@ function render(){
   const sidebar = document.getElementById('sidebar');
   const main = document.getElementById('main');
   sidebar.innerHTML = renderSidebar();
-  main.innerHTML = activeTab==='daily' ? renderDailyMain(ARCHIVE[activeDate]) : renderHistoricalMain();
+  main.innerHTML = activeTab==='daily' ? renderDailyMain(FULL_ARCHIVE[activeDate]) : renderHistoricalMain();
   wireAccordionExclusivity(main);
 
   sidebar.querySelectorAll('.tab-btn').forEach(btn=>{
@@ -13681,7 +13681,7 @@ function render(){
   }
 
   if(activeTab==='daily'){
-    const data = ARCHIVE[activeDate];
+    const data = FULL_ARCHIVE[activeDate];
     const dailyQuestions = (data.areas||[]).flatMap(a=>[
       ...(a.internalQ||[]).map(x=>({area:a.area, q:x.q})),
       ...(a.externalQ||[]).map(x=>({area:a.area, q:x.q}))
