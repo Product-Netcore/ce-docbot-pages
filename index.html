@@ -2,7 +2,7 @@
 {
   "name": "Ce Docbot Summary 2026 06 17",
   "schemaVersion": 1,
-  "description": "CE Docbot 14-day rolling summary (Jul 7 – Jul 20, 2026) — latest day 2026-07-20"
+  "description": "CE Docbot 14-day rolling summary (Jul 10 – Jul 23, 2026) — latest day 2026-07-23"
 }
 </script>
 <html lang="en">
@@ -513,616 +513,6 @@ html[data-theme="dark"] .intro-banner .ib-lede{color:#c7cad1;}
 </div>
 <script>
 const ARCHIVE = {
-  "2026-07-08": {
-    "date": "2026-07-08",
-    "totalConversations": 14,
-    "resolutionRate": 100,
-    "internalTotal": 4,
-    "externalTotal": 10,
-    "docsTotal": 6,
-    "panelTotal": 8,
-    "queryType": {
-      "technical": 4,
-      "generic": 10
-    },
-    "ticketDeflection": null,
-    "headline": "14 conversations on July 8, 100% bot self-reported resolved -- but at least 2 of those (Alok Chakraborty's blank template gallery, Ujjwal's stuck whitelist) ended on an open troubleshooting thread, not a real fix. Freshdesk session was logged out this run, so ticket-deflection tracking is skipped for today.",
-    "actionableInsights": [
-      {
-        "owner": "calibration",
-        "title": "100% self-reported resolution doesn't hold up under a manual read",
-        "desc": "Every conversation shows botConversationState: 'resolved', but Alok Chakraborty's (synapsewave_cee) template gallery was still blank after 4 troubleshooting rounds (refresh, incognito, cache check) with no final fix confirmed, and Ujjwal's (successgyancee) whitelist action on a blocklisted contact 'not working' ended with the bot suggesting a workaround he hadn't yet tried. Same pattern flagged since June 25 -- don't read the resolvedRate field at face value."
-      },
-      {
-        "owner": "content",
-        "title": "Freshdesk session expired -- no ticket-deflection data for July 8",
-        "desc": "The browser's Freshdesk session showed a login page instead of the ticket dashboard, so Tier-1/Tier-2 escalation checks couldn't run this pass. ticketDeflection is null for today -- re-authenticate the Freshdesk browser session before the next run so this doesn't become a recurring gap."
-      },
-      {
-        "owner": "product",
-        "title": "Amit Dobhal re-asked the same contact-edit bug twice in 8 minutes",
-        "desc": "amit.dobhal@theprint.in first asked why manual contact edits weren't reflecting, then 8 minutes later asked why a first/last-name save was reflecting blank -- same underlying dashboard bug, described two ways. The bot's answers leaned on API-side explanations (setUserIdentity, primary key) for what looks like a pure dashboard UI issue. Worth a direct engineering check on theprint's account for a stuck-write bug."
-      },
-      {
-        "owner": "design",
-        "title": "Joseph Ocampo II found a real UX dead-end in template categorization",
-        "desc": "josephocampoii-ji.ocampo@aia.com (bpiphilamcee) tried three times to create a new template category -- the UI shows 'Choose Category or Add New' with no actual add button, and saving without one silently defaults to Uncategorized. This reads as a genuine missing UI control, not a doc gap -- worth a quick product check."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Débora Silva",
-      "email": "debora.silva@pixellabor.com.br",
-      "query": "Reported that background-image-with-overlaid-text blocks in an email template look fine in HTML editor but aren't responsive across mobile devices when built in the Advanced Drag & Drop editor -- asked in Portuguese, with the bot correctly diagnosing it as a fixed-width background-image rendering limitation specific to the D&D editor's email-client compatibility.",
-      "why": "A precise, editor-specific CSS/rendering root-cause question (not just 'how do I') from a real production template issue spanning multiple devices -- genuine technical depth, handled cross-language."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 1,
-        "external": 9
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 0,
-        "external": 1
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 2,
-        "external": 0
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 1,
-        "external": 0
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 0
-      }
-    ],
-    "topAskers": [
-      {
-        "email": "amit.dobhal@theprint.in",
-        "count": 2,
-        "friction": true,
-        "queries": [
-          {
-            "theme": "How do I do X",
-            "text": "while editing contact manually it's not reflecting"
-          },
-          {
-            "theme": "How do I do X",
-            "text": "Hi, while changing the user first name and last name, after save it's not reflecting, still showing blank"
-          }
-        ],
-        "panel": "theprint"
-      }
-    ],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 1,
-        "external": 5,
-        "internalQ": [
-          {
-            "email": "jibin.philip@netcorecloud.com",
-            "q": "can CE platform integrate with woocommerce customer site?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "amit.dobhal@theprint.in",
-            "q": "while editing contact manually it's not reflecting",
-            "panel": "theprint"
-          },
-          {
-            "email": "amit.dobhal@theprint.in",
-            "q": "while changing the user first name and last name, after save it's not reflecting, still showing blank",
-            "panel": "theprint"
-          },
-          {
-            "email": "jndsckjs@vkjsdv.co",
-            "q": "How can I create API keys? / is there a way to create api keys using an API",
-            "panel": "NA"
-          },
-          {
-            "email": "tester@netcoretester.com",
-            "q": "full API flow: create contact, add to list, create email campaign, send via API, sync vs async, list IDs",
-            "panel": "NA"
-          },
-          {
-            "email": "ujjwal@successgyan.com",
-            "q": "whitelisted contact still showing under blocklist, whitelist action not saving",
-            "panel": "successgyancee"
-          }
-        ]
-      },
-      {
-        "area": "Email",
-        "internal": 0,
-        "external": 5,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "debora.silva@pixellabor.com.br",
-            "q": "background image + text block not responsive on mobile in Advanced Drag & Drop editor",
-            "panel": "nicephotosce"
-          },
-          {
-            "email": "alok.chakraborty@synapsewave.com",
-            "q": "template gallery under Product (22) category showing completely blank",
-            "panel": "synapsewave_cee"
-          },
-          {
-            "email": "akanksha.mehta@yubimarkets.com",
-            "q": "why does my template CC 26 not show a 'use' button",
-            "panel": "goyubicee"
-          },
-          {
-            "email": "josephocampoii-ji.ocampo@aia.com",
-            "q": "how to create new template groups/categories -- no add-category button visible",
-            "panel": "bpiphilamcee"
-          },
-          {
-            "email": "anuradhachaudhari@kotak.com",
-            "q": "how to use template in email",
-            "panel": "kotakcustsmartidc"
-          }
-        ]
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 1,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "utpal.dutta@netcorecloud.com",
-            "q": "what is the max size of a PDF attachment in WhatsApp? can we send multiple PDFs?",
-            "panel": "shriramfl_cee"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 1,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "romit.pandit@netcorecloud.com",
-            "q": "How to do A/B testing in broadcast email campaigns",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 1,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "lokesh.sharma@netcorecloud.com",
-            "q": "if segment is exported from the panel and status is processed, what does it mean",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      }
-    ]
-  },
-  "2026-07-09": {
-    "date": "2026-07-09",
-    "totalConversations": 28,
-    "resolutionRate": 0,
-    "internalTotal": 8,
-    "externalTotal": 20,
-    "docsTotal": 10,
-    "panelTotal": 18,
-    "queryType": {
-      "technical": 8,
-      "generic": 20
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days (2026-07-09 00:00 IST to 2026-07-11 23:59 IST)",
-      "totalConversations": 28,
-      "sameUserEscalations": [
-        {
-          "email": "sanjay@navia.co.in",
-          "docbotQuery": "how to check active whatsApp template?",
-          "area": "CPaaS (WhatsApp/RCS/SMS)",
-          "theme": "Where do I set up/find X",
-          "ticketId": "5209624",
-          "ticketSubject": "Urgent: Unable to Create WhatsApp Templates & Existing Approved Templates Showing as Pending (Panels: naviacee & tradeplusonline_cee)",
-          "ticketCreatedAt": "2026-07-09T17:04:00+05:30"
-        }
-      ],
-      "deflectedCount": 27,
-      "deflectionRate": 96,
-      "patternRisk": [],
-      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit — treat as a directional signal. Freshdesk's own email-search tool returned 0 tickets for sanjay@navia.co.in (a false negative — same limitation seen June 26); the match was found instead via a 'whatsapp template' keyword search. All 25 unique external requesters across the July 9-12 backfill were checked by direct email search; this was the only same-user match, and it only surfaced via the keyword-search fallback — so a clean email search for the other 24 is not airtight proof they were fully deflected, just the best signal available."
-    },
-    "headline": "28 conversations on July 9 (deduped from 29), 96% Freshdesk-deflected — but Sanjay at Navia Markets asked the docbot how to check an active WhatsApp template, then filed an Urgent ticket 47 minutes later when approved templates across two panels turned out to be stuck in 'Pending.' Self-reported bot resolution reads 0%, which is the known CSAT-workflow flip, not a real outage.",
-    "actionableInsights": [
-      {
-        "owner": "calibration",
-        "title": "0% resolution is the known CSAT-workflow flip, not a real outage",
-        "desc": "All 28 conversations show botConversationState 'handed_off_to_human' — consistent with the artifact first flagged June 25 and again June 29, where the CSAT-rating workflow flips the state regardless of whether the bot actually helped. Given the volume (28 conversations), this run did not manually re-read every transcript to produce a corrected rate the way June 25 did — treat 0% as an artifact, not a quality signal, until someone re-verifies via transcript read."
-      },
-      {
-        "owner": "product",
-        "title": "Confirmed escalation: Navia Markets' WhatsApp template question was the tip of a real platform issue",
-        "desc": "sanjay@navia.co.in asked the docbot 'how to check active whatsApp template?' at 4:17 PM IST, then emailed an Urgent ticket (#5209624) at 5:04 PM the same day: approved WhatsApp templates across both his panels (naviacee and tradeplusonline_cee) had flipped to 'Pending' and new templates couldn't be created. The docbot answer clearly didn't surface this — worth checking whether the bot should be flagging bulk template-status anomalies as 'contact support now' rather than a normal lookup answer."
-      },
-      {
-        "owner": "content",
-        "title": "WhatsApp template/media errors hit 5 unrelated external orgs in one day",
-        "desc": "komal@ekke.co (template save error), sanjay@navia.co.in (escalated to ticket #5209624 above), test@1232.com (whitelist via API), devarajyk@sulekha.com (4 files not approved), and varsha.bakare@poonawallafincorp.com (media upload blocked mid-whitelisting) all hit WhatsApp template/media friction independently. Same failure family, 5 different accounts, one day — worth a dedicated WhatsApp template & media troubleshooting doc."
-      },
-      {
-        "owner": "design",
-        "title": "RBAC permissions wall correctly diagnosed but not resolvable by bot",
-        "desc": "agkouakou@ecobank.com hit a greyed-out 'Create New' button; the bot correctly explained it's an Analyst/view-only role issue and said to contact an Admin — accurate, but a dead end without one. A lightweight 'who is my panel's Admin' self-serve lookup would let users close this loop without a ticket."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Neeraj (World of Oud)",
-      "email": "neeraj.netcore@gmail.com",
-      "query": "Primary key is IC Number and multiple users can share an email — wants to ensure one email doesn't get multiple sends in a day across journeys and campaigns even when tied to different IC Numbers.",
-      "why": "A real architecture question about dedup logic across a shared identifier (email) when the primary key is something else entirely — shows genuine platform depth, not basic navigation help."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 2,
-        "external": 8
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 1,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 2,
-        "external": 4
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 1,
-        "external": 0
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 2,
-        "external": 1
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 7
-      }
-    ],
-    "topAskers": [
-      {
-        "email": "agkouakou@ecobank.com",
-        "count": 2,
-        "friction": true,
-        "queries": [
-          {
-            "theme": "Bare greeting, no context yet",
-            "text": "hello"
-          },
-          {
-            "theme": "How do I do X",
-            "text": "Create New button is greyed out (screenshot) — 4 minutes after the greeting, likely same session"
-          }
-        ],
-        "panel": "ecobanksmart"
-      },
-      {
-        "email": "khushi.chitkara@netcorecloud.com",
-        "count": 2,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "How do I do X",
-            "text": "invalid parameter error uploading content media for whatsapp"
-          },
-          {
-            "theme": "Where do I set up/find X",
-            "text": "how to check if events quota exceeded 100% capacity"
-          }
-        ],
-        "panel": "NA"
-      },
-      {
-        "email": "sumit.kakade@iresearchservices.com",
-        "count": 2,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "Bare greeting, no context yet",
-            "text": "Regarding the support ticket"
-          },
-          {
-            "theme": "Bare greeting, no context yet",
-            "text": "Hi"
-          }
-        ],
-        "panel": "iresearchservices"
-      },
-      {
-        "email": "lokesh.sharma@netcorecloud.com",
-        "count": 2,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "How do I do X",
-            "text": "how to give report download access to client id"
-          },
-          {
-            "theme": "Where do I set up/find X",
-            "text": "retry on campaign ID 2136 — where do I find Submitted customer data?"
-          }
-        ],
-        "panel": "NA"
-      },
-      {
-        "email": "devarajyk@sulekha.com",
-        "count": 2,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "Bare greeting, no context yet",
-            "text": "Hi"
-          },
-          {
-            "theme": "How do I do X",
-            "text": "uploaded 4 files, still not approved"
-          }
-        ],
-        "panel": "sulekhacee"
-      },
-      {
-        "email": "anmol.panesar@impactguru.com",
-        "count": 2,
-        "friction": true,
-        "queries": [
-          {
-            "theme": "Where do I set up/find X",
-            "text": "wanna check the spam rate for emails on netcore for Q4 FY26 and Q1 FY27"
-          },
-          {
-            "theme": "Where do I set up/find X",
-            "text": "want to check how many emails are going in the spam folder to the users"
-          }
-        ],
-        "panel": "impactguru_cee"
-      }
-    ],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 3,
-        "external": 2,
-        "internalQ": [
-          {
-            "email": "akash.gupta@netcorecloud.com",
-            "q": "Share documentation for scheduled reports to client S3 — how does Netcore upload data to S3?",
-            "panel": "NA"
-          },
-          {
-            "email": "khushi.chitkara@netcorecloud.com",
-            "q": "how to check if events quota on the netcore dashboard exceeded its 100% capacity",
-            "panel": "NA"
-          },
-          {
-            "email": "rubal.adwani@netcorecloud.com",
-            "q": "what do you mean by payloads?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "prasads@mfuindia.in",
-            "q": "campaign audience CSV list not getting updated even after 30+ minutes",
-            "panel": "mfuindiasmt"
-          },
-          {
-            "email": "pankajb@mfuindia.in",
-            "q": "uploaded csv sheet but user count option not updating",
-            "panel": "mfuindiasmt"
-          }
-        ]
-      },
-      {
-        "area": "Email",
-        "internal": 0,
-        "external": 4,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "tester@netcoretester.com",
-            "q": "create an email template, then campaign, send to multiple users — can I add a list of users?",
-            "panel": "NA"
-          },
-          {
-            "email": "neeraj.netcore@gmail.com",
-            "q": "primary key is IC Number, multiple users share email — ensure one email doesn't get multiple sends/day across journeys+campaigns",
-            "panel": "worldofoud_ce"
-          },
-          {
-            "email": "anmol.panesar@impactguru.com",
-            "q": "want to check how many emails are going in the spam folder to the users",
-            "panel": "impactguru_cee"
-          },
-          {
-            "email": "anmol.panesar@impactguru.com",
-            "q": "wanna check the spam rate for emails on netcore for Q4 FY26 and Q1 FY27",
-            "panel": "impactguru_cee"
-          }
-        ]
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 1,
-        "external": 5,
-        "internalQ": [
-          {
-            "email": "khushi.chitkara@netcorecloud.com",
-            "q": "invalid parameter error when uploading content media for whatsapp",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "komal@ekke.co",
-            "q": "getting an error when saving templates",
-            "panel": "ekke_cee"
-          },
-          {
-            "email": "sanjay@navia.co.in",
-            "q": "how to check active whatsApp template?",
-            "panel": "naviacee"
-          },
-          {
-            "email": "test@1232.com",
-            "q": "how can I whitelist a contact using API?",
-            "panel": "NA"
-          },
-          {
-            "email": "devarajyk@sulekha.com",
-            "q": "uploaded 4 files, still not got approved",
-            "panel": "sulekhacee"
-          },
-          {
-            "email": "varsha.bakare@poonawallafincorp.com",
-            "q": "uploading media file while whitelisting template, system still prompting to upload sample file",
-            "panel": "poonawalla_fincorpce"
-          }
-        ]
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 2,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "shipra.choudhary@netcorecloud.com",
-            "q": "Can we send campaign data for all channels through webhook?",
-            "panel": "NA"
-          },
-          {
-            "email": "ishika.a@netcorecloud.com",
-            "q": "web message with YouTube link — Watch Now/Maybe Later frequency-capping logic by IP/user, is this possible via our panel?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 2,
-        "external": 9,
-        "internalQ": [
-          {
-            "email": "lokesh.sharma@netcorecloud.com",
-            "q": "how to give report download access to client id",
-            "panel": "NA"
-          },
-          {
-            "email": "lokesh.sharma@netcorecloud.com",
-            "q": "retry on campaign ID 2136 — where do I find Submitted customer data?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "agkouakou@ecobank.com",
-            "q": "Create New button greyed out (screenshot) — RBAC/permissions",
-            "panel": "ecobanksmart"
-          },
-          {
-            "email": "agkouakou@ecobank.com",
-            "q": "hello",
-            "panel": "ecobanksmart"
-          },
-          {
-            "email": "sumit.kakade@iresearchservices.com",
-            "q": "Regarding the support ticket",
-            "panel": "iresearchservices"
-          },
-          {
-            "email": "ask@true-outreach.com",
-            "q": "hi",
-            "panel": "invetinglifestyle_ce"
-          },
-          {
-            "email": "v.saundalkar@licmf.com",
-            "q": "hi",
-            "panel": "licnomuramfcomcee"
-          },
-          {
-            "email": "sumit.kakade@iresearchservices.com",
-            "q": "Hi",
-            "panel": "iresearchservices"
-          },
-          {
-            "email": "rizkywulan.rahmadhanti@chubb.com",
-            "q": "HI / hi (same text asked twice same day, deduped)",
-            "panel": "cignacee"
-          },
-          {
-            "email": "devarajyk@sulekha.com",
-            "q": "Hi",
-            "panel": "sulekhacee"
-          },
-          {
-            "email": "malapati.preethi@adityabirlacapital.com",
-            "q": "how do I access insights? I need to get a report",
-            "panel": "absli_custpolcee"
-          }
-        ]
-      }
-    ]
-  },
   "2026-07-10": {
     "date": "2026-07-10",
     "totalConversations": 15,
@@ -3859,9 +3249,785 @@ const ARCHIVE = {
         ]
       }
     ]
+  },
+  "2026-07-22": {
+    "date": "2026-07-22",
+    "totalConversations": 33,
+    "resolutionRate": 15,
+    "internalTotal": 18,
+    "externalTotal": 15,
+    "docsTotal": 18,
+    "panelTotal": 15,
+    "queryType": {
+      "technical": 9,
+      "generic": 24
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 4,
+        "external": 11
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 3,
+        "external": 1
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 8,
+        "external": 0
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 2,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 3
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 3,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "romit.pandit@netcorecloud.com",
+            "q": "What is Time To Live in App Push Notifications?",
+            "panel": "NA"
+          },
+          {
+            "email": "komal.sharma@netcorecloud.com",
+            "q": "what are the supported product feed fomats?",
+            "panel": "NA"
+          },
+          {
+            "email": "gourab.dash@netcorecloud.com",
+            "q": "i want to know more about UDT consepts",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "mitch@communionme.com",
+            "q": "i added smoali@care.med.sa to my blocklist but it still did not appear.",
+            "panel": "communionme_ce"
+          },
+          {
+            "email": "mitch@communionme.com",
+            "q": "I want to add contacts to blocklist.",
+            "panel": "communionme_ce"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 2,
+        "external": 3,
+        "internalQ": [
+          {
+            "email": "dhruv.bakshi@netcorecloud.com",
+            "q": "what is HTML block in UCE",
+            "panel": "NA"
+          },
+          {
+            "email": "khushi.chitkara@netcorecloud.com",
+            "q": "whom to mail regardding mail scorring of a list",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "kulwinder.singh@way.com",
+            "q": "I want to send email to add to cart, please give me html version of ready to use template",
+            "panel": "globalairportparking"
+          },
+          {
+            "email": "krutika.mane@pluxeegroup.com",
+            "q": "how to attach pdf in email",
+            "panel": "sodexocee"
+          },
+          {
+            "email": "aman.singh@vayana.com",
+            "q": "How can I download HTML template of an emailer?",
+            "panel": "vayanacee"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 4,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "yogesh.kulkarni@netcorecloud.com",
+            "q": "RCS bounce details are needed",
+            "panel": "NA"
+          },
+          {
+            "email": "hiral.jhaveri@netcorecloud.com",
+            "q": "in whatsapp templates i can see my template paused and rejected. what could be the possible reason?",
+            "panel": "NA"
+          },
+          {
+            "email": "khushi.chitkara@netcorecloud.com",
+            "q": "what is whatsapp api",
+            "panel": "NA"
+          },
+          {
+            "email": "lokesh.sharma@netcorecloud.com",
+            "q": "Can we do image personalization in rcs in journey",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "gargi.mukherjee@netcorecloud.com",
+            "q": "where in ce panel can i check if my frequecy capping limit?",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "krutika.mane@pluxeegroup.com",
+            "q": "Where is broadcast in campaigns?",
+            "panel": "sodexocee"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "charvi.agarwal@netcorecloud.com",
+            "q": "can i personalise journeys based on what they have added in their cart? diff mail content for diff user based on cart items",
+            "panel": "smartechai"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 7,
+        "external": 4,
+        "internalQ": [
+          {
+            "email": "romit.pandit@netcorecloud.com",
+            "q": "How to see the aboslute number of Revenue in CEE Panel?",
+            "panel": "NA"
+          },
+          {
+            "email": "ninad.borkar@netcorecloud.com",
+            "q": "User Path analysis in CE",
+            "panel": "NA"
+          },
+          {
+            "email": "ninad.borkar@netcorecloud.com",
+            "q": "Trends in CE",
+            "panel": "NA"
+          },
+          {
+            "email": "ninad.borkar@netcorecloud.com",
+            "q": "What are cohorts in Ce",
+            "panel": "NA"
+          },
+          {
+            "email": "khushi.chitkara@netcorecloud.com",
+            "q": "how to check SLO%",
+            "panel": "NA"
+          },
+          {
+            "email": "khushi.chitkara@netcorecloud.com",
+            "q": "how to export historical data for campaigns",
+            "panel": "NA"
+          },
+          {
+            "email": "prathamesh.borkar@netcorecloud.com",
+            "q": "I want to build a 3-step funnel (Product View -> Add to Cart -> Purchase) for last 7 days, apply one drill-down (city or category affinity)",
+            "panel": "smartechai"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "grajoo@peermont.com",
+            "q": "Create a executive report on App Launch for the last month. Use graphs and explanations",
+            "panel": "peermont_cee"
+          },
+          {
+            "email": "ipo@cameoindia.com",
+            "q": "Campaign delivery stats (Published/Sent/Delivered) showing as grey placeholders / count not updating, across both old and recent campaigns",
+            "panel": "cameoindiacee"
+          },
+          {
+            "email": "gauransh.kumar@thesouledstore.com",
+            "q": "How to cancel generated reports that are inprogress",
+            "panel": "thesouledstorecee"
+          },
+          {
+            "email": "avinash.kumar@savesage.club",
+            "q": "breakdown of screenviewed event by screenName property for current month, hitting event quota, need highest-volume screens; same for buttonclicked",
+            "panel": "savesagecee"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 5,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "vivek@awfymedia.com",
+            "q": "hi",
+            "panel": "awfy_cee"
+          },
+          {
+            "email": "vivek@awfymedia.com",
+            "q": "unable to access the feature",
+            "panel": "awfy_cee"
+          },
+          {
+            "email": "deepchannel47@gmail.com",
+            "q": "Hlo",
+            "panel": "NA"
+          },
+          {
+            "email": "maneesh.pioneer@gmail.com",
+            "q": "Hi",
+            "panel": "NA"
+          },
+          {
+            "email": "gauransh.kumar@thesouledstore.com",
+            "q": "In want to raise a ticket",
+            "panel": "thesouledstorecee"
+          }
+        ]
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "vivek@awfymedia.com",
+        "count": 2,
+        "panel": "awfy_cee",
+        "queries": [
+          {
+            "theme": "Bare greeting, no context yet",
+            "text": "hi"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "unable to access the feature"
+          }
+        ],
+        "friction": true
+      },
+      {
+        "email": "romit.pandit@netcorecloud.com",
+        "count": 2,
+        "panel": "NA",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "How to see the aboslute number of Revenue in CEE Panel?"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "What is Time To Live in App Push Notifications?"
+          }
+        ],
+        "friction": false
+      },
+      {
+        "email": "mitch@communionme.com",
+        "count": 2,
+        "panel": "communionme_ce",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "i added smoali@care.med.sa to my blocklist but it still did not appear."
+          },
+          {
+            "theme": "How do I do X",
+            "text": "I want to add contacts to blocklist."
+          }
+        ],
+        "friction": true
+      },
+      {
+        "email": "gauransh.kumar@thesouledstore.com",
+        "count": 2,
+        "panel": "thesouledstorecee",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "In want to raise a ticket"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "How to cancel generated reports that are inprogress"
+          }
+        ],
+        "friction": false
+      },
+      {
+        "email": "ninad.borkar@netcorecloud.com",
+        "count": 3,
+        "panel": "NA",
+        "queries": [
+          {
+            "theme": "What does X mean/how it works",
+            "text": "User Path analysis in CE"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "Trends in CE"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "What are cohorts in Ce"
+          }
+        ],
+        "friction": true
+      },
+      {
+        "email": "krutika.mane@pluxeegroup.com",
+        "count": 2,
+        "panel": "sodexocee",
+        "queries": [
+          {
+            "theme": "Where do I set up/find X",
+            "text": "Where is broadcast in campaigns?"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "how to attach pdf in email"
+          }
+        ],
+        "friction": false
+      },
+      {
+        "email": "khushi.chitkara@netcorecloud.com",
+        "count": 4,
+        "panel": "NA",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "how to check SLO%"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "how to export historical data for campaigns"
+          },
+          {
+            "theme": "Where do I set up/find X",
+            "text": "whom to mail regardding mail scorring of a list"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "what is whatsapp api"
+          }
+        ],
+        "friction": false
+      }
+    ],
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-07-22 00:00 IST to 2026-07-24 23:59 IST); window still partially open as of this run (2026-07-24)",
+      "totalConversations": 33,
+      "sameUserEscalations": [],
+      "deflectedCount": 33,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit — treat as a directional signal. Tier 1: checked all 11 unique external requester emails via global search, zero ticket matches. Tier 2: keyword searches across all 7 areas (WhatsApp/RCS/template, slice-and-send, unsubscribe/yes bank, cart-abandonment journey, broadcast/frequency-capping, campaign-stats-not-updating, event-quota) returned no in-window matches for this day specifically — though the 'campaign stats not updating' pattern (ipo@cameoindia.com, conversation 1928) has generated several past Freshdesk tickets from other accounts historically, none fell in this window. Internal (@netcorecloud.com) requesters were not individually Tier-1 searched this run due to volume — scoped to external customer emails, which carry the stronger escalation signal."
+    },
+    "headline": "33 conversations on July 22, only 15% self-reported resolved (the known CSAT-workflow artifact, not a real quality drop) but 100% Freshdesk-deflected — Ninad Borkar browsed three analytics-dashboard concepts back to back (User Path, Trends, Cohorts), while mitch@communionme.com's blocklist addition silently failed to reflect.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "15% self-reported resolution is the known CSAT-workflow artifact, not real bot failure",
+        "desc": "28 of 33 conversations show botConversationState 'handed_off_to_human' — the same artifact flagged repeatedly since June 25 (CSAT-rating workflow flips state regardless of answer quality). The Freshdesk-checked 100% deflection rate is the more reliable signal for this day; several handed-off conversations (e.g. Umar Ahmed's inapp-banner HTML, Charvi Agarwal's cart-personalization journey) got complete, specific bot answers."
+      },
+      {
+        "owner": "product",
+        "title": "Campaign stats stuck as grey placeholders — a recurring failure pattern across accounts",
+        "desc": "ipo@cameoindia.com (YESH KUMAR) reported campaign delivery counts (Published/Sent/Delivered) stuck as grey placeholders on both old and newly-sent campaigns; the bot correctly diagnosed it as a stats-pipeline sync issue and routed to helpdesk@netcorecloud.com, but couldn't fix it live. A Tier-2 Freshdesk search for this exact failure signature turned up a long history of near-identical tickets from other accounts (Comsense/Athira K x3, SynapseWave/Alok Chakraborty, Umar Ahmed/shopcrocsmt x2) going back months — none landed in this specific window, but the recurrence across many unrelated accounts suggests a genuine backend reliability issue worth an engineering look, not a one-off."
+      },
+      {
+        "owner": "content",
+        "title": "Ninad Borkar explored three analytics-dashboard concepts in one sitting",
+        "desc": "ninad.borkar@netcorecloud.com (internal) asked about User Path analysis, Trends, and Cohorts back to back with no other topic in between — reads like dashboard onboarding/exploration rather than three unrelated needs. A single 'Analytics Dashboard Overview' doc covering all three concepts together would serve this pattern better than three separate lookups."
+      },
+      {
+        "owner": "design",
+        "title": "Blocklist add not reflecting is a real UX/data-sync gap",
+        "desc": "mitch@communionme.com added a contact to the blocklist and it \"still did not appear\" — then asked again a few minutes later how to add contacts to the blocklist, suggesting the first attempt genuinely didn't stick from the user's point of view. Worth a quick check on blocklist-write propagation delay or UI refresh behavior."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Avinash Kumar Sinha (SaveSage)",
+      "email": "avinash.kumar@savesage.club",
+      "query": "Asked for a breakdown of the screenviewed event by the screenName property for the current month (and the same for buttonclicked), specifically because the account is hitting its event quota and needs to identify the highest-volume screens.",
+      "why": "A precise, quota-aware analytics ask — naming the exact event, the exact breakdown property, and the business reason (quota pressure) — rather than a vague 'show me my data' request. Shows real operational use of the event model."
+    }
+  },
+  "2026-07-23": {
+    "date": "2026-07-23",
+    "totalConversations": 24,
+    "resolutionRate": 12,
+    "internalTotal": 16,
+    "externalTotal": 8,
+    "docsTotal": 10,
+    "panelTotal": 14,
+    "queryType": {
+      "technical": 9,
+      "generic": 15
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 4,
+        "external": 4
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 1,
+        "external": 1
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 6,
+        "external": 2
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 4,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 1,
+        "external": 0
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 2,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "harish.reddy@netcorecloud.com",
+            "q": "Help me share steps how to verify custom events and payload data types in the smartech panel",
+            "panel": "NA"
+          },
+          {
+            "email": "umar.ahmed@netcorecloud.com",
+            "q": "Hey, if I want to create an HTML (with video) through HTML which will be used in an inapp banner, how can I do that?",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "darshit.shah@sc.com",
+            "q": "how do i download Blacklisted contact",
+            "panel": "scbrb_custid"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 3,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "charvi.agarwal@netcorecloud.com",
+            "q": "what is slice and send in email scheduling",
+            "panel": "smartechai"
+          },
+          {
+            "email": "siddhant.bendkar@netcorecloud.com",
+            "q": "What is sto?",
+            "panel": "NA"
+          },
+          {
+            "email": "rajani.t@netcorecloud.com",
+            "q": "how is unified editor different from drag and drop editor",
+            "panel": "smartechai"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "raghunathr463@gmail.com",
+            "q": "I would like to stop email in yes bank side",
+            "panel": "NA"
+          },
+          {
+            "email": "support@indiaopd.com",
+            "q": "Shared an IVF suite flyer, wants to add CTA (book a demo button) so flyer looks appealing and drives opens",
+            "panel": "indiaopdce"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 3,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "jaishnitha.vs@netcorecloud.com",
+            "q": "can you use whatsapp templates in liquid tags",
+            "panel": "NA"
+          },
+          {
+            "email": "umar.ahmed@netcorecloud.com",
+            "q": "Payload personalisation in RCS. Possible or not?",
+            "panel": "NA"
+          },
+          {
+            "email": "gargi.mukherjee@netcorecloud.com",
+            "q": "how or where can i see the whatsapp campaign billing in panel?",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "mis_analyst@parinaam.org",
+            "q": "WhatsApp Business API details needed for Automation Integration",
+            "panel": "parinaam_ce"
+          }
+        ]
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "swapnil@metuzi.ai",
+            "q": "what is broadcast size",
+            "panel": "intnc_metuzi_panel"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 2,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "vani.ganasutrisna@netcorecloud.com",
+            "q": "mengapa tidak ada fitur abandon cart di journey untuk demo account? (why isn't there an abandon-cart feature in journey for the demo account?)",
+            "panel": "smartechai"
+          },
+          {
+            "email": "vani.ganasutrisna@netcorecloud.com",
+            "q": "rekomendasikan rancangan journey untuk cart abandonement yang melibatkan path optimizer dan preferred channel (recommend a journey design for cart abandonment involving path optimizer and preferred channel)",
+            "panel": "smartechai"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 5,
+        "external": 3,
+        "internalQ": [
+          {
+            "email": "jibran.dalvi@netcorecloud.com",
+            "q": "I want to create a segment of blocklisted customers",
+            "panel": "qa_manual1"
+          },
+          {
+            "email": "jibin.philip@netcorecloud.com",
+            "q": "can we export complete user-level time-series journey data to a client storage locations eg. AWS S3 bucket if needed",
+            "panel": "NA"
+          },
+          {
+            "email": "siddhant.bendkar@netcorecloud.com",
+            "q": "what is segment agent",
+            "panel": "NA"
+          },
+          {
+            "email": "deepesh.lakhera@netcorecloud.com",
+            "q": "Tell me about egress feature under which all events I can sync with my CRM and at what frequency",
+            "panel": "Atom"
+          },
+          {
+            "email": "utpal.dutta@netcorecloud.com",
+            "q": "can you help me understand RFM in Netcore when we add any event",
+            "panel": "muthootfincorpcee"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "seemantjay@aesl.in",
+            "q": "How can i create product analytics dashboard",
+            "panel": "aakashedce"
+          },
+          {
+            "email": "akshay.shetty@khelomore.com",
+            "q": "Where to find user time engagement",
+            "panel": "khelomorecee"
+          },
+          {
+            "email": "c.gokul05@shriramfinance.in",
+            "q": "I have created User paths and it shows Nudge branch Tracker, Entry and 66. What does this all means",
+            "panel": "shriramfl_cee"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "harish.reddy@netcorecloud.com",
+            "q": "Hello",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": []
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "harish.reddy@netcorecloud.com",
+        "count": 2,
+        "panel": "NA",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "Help me share steps how to verify custom events and payload data types in the smartech panel"
+          },
+          {
+            "theme": "Bare greeting, no context yet",
+            "text": "Hello"
+          }
+        ],
+        "friction": false
+      },
+      {
+        "email": "umar.ahmed@netcorecloud.com",
+        "count": 2,
+        "panel": "NA",
+        "queries": [
+          {
+            "theme": "Is X possible/supported",
+            "text": "Payload personalisation in RCS. Possible or not?"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "Hey, if I want to create an HTML (with video) through HTML which will be used in an inapp banner, how can I do that?"
+          }
+        ],
+        "friction": false
+      },
+      {
+        "email": "siddhant.bendkar@netcorecloud.com",
+        "count": 2,
+        "panel": "NA",
+        "queries": [
+          {
+            "theme": "What does X mean/how it works",
+            "text": "What is sto?"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "what is segment agent"
+          }
+        ],
+        "friction": false
+      },
+      {
+        "email": "vani.ganasutrisna@netcorecloud.com",
+        "count": 2,
+        "panel": "smartechai",
+        "queries": [
+          {
+            "theme": "Is X possible/supported",
+            "text": "mengapa tidak ada fitur abandon cart di journey untuk demo account? (why isn't there an abandon-cart feature in journey for the demo account?)"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "rekomendasikan rancangan journey untuk cart abandonement yang melibatkan path optimizer dan preferred channel (recommend a journey design for cart abandonment involving path optimizer and preferred channel)"
+          }
+        ],
+        "friction": true
+      }
+    ],
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-07-23 00:00 IST to 2026-07-25 23:59 IST); window still largely open as of this run (2026-07-24, D+1)",
+      "totalConversations": 24,
+      "sameUserEscalations": [
+        {
+          "email": "mis_analyst@parinaam.org",
+          "docbotQuery": "WhatsApp Business API details needed for Automation Integration",
+          "area": "CPaaS (WhatsApp/RCS/SMS)",
+          "theme": "Where's the doc/API for X",
+          "ticketId": "5217712 (near-duplicate: 5217713)",
+          "ticketSubject": "WhatsApp Business API details needed for Automation Integration",
+          "ticketCreatedAt": "2026-07-23T14:13:00+05:30"
+        }
+      ],
+      "deflectedCount": 23,
+      "deflectionRate": 96,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit — treat as a directional signal. Tier 1 direct email search for mis_analyst@parinaam.org returned 0 tickets (a false negative — same limitation seen in prior runs); the match was found instead via a Tier 2 'API integration' keyword search and confirmed by opening ticket #5217712 and checking the requester's Freshdesk contact record (email matched exactly). Tier 1 checked all 8 unique external requester emails; this was the only match. Tier 2 keyword searches (WhatsApp/RCS/template, slice-and-send, unsubscribe/yes-bank, cart-abandonment journey, broadcast/frequency-capping, campaign-stats-not-updating, event-quota) surfaced nothing else in-window. Internal requesters not individually Tier-1 searched due to volume — scoped to external customer emails plus area-wide keyword sweeps."
+    },
+    "headline": "24 conversations on July 23, 96% Freshdesk-deflected — Pallavi Sinha at Parinaam asked the docbot for WhatsApp Business API credentials, then filed two near-duplicate Freshdesk tickets within minutes asking support for the same API key and endpoint (a legitimate handoff, not a bot miss), while Vani Ganasutrisna ran a two-part Indonesian-language session designing a cart-abandonment journey with path optimizer and preferred-channel logic.",
+    "actionableInsights": [
+      {
+        "owner": "product",
+        "title": "Confirmed escalation: WhatsApp API credential request correctly routed to a human, but filed twice",
+        "desc": "mis_analyst@parinaam.org (Pallavi Sinha) asked the docbot for WhatsApp Business API access details (API key, base URL, sender ID) at 2:16 PM IST, then emailed support at 2:13 PM with the same request — filed as two near-identical tickets, #5217712 and #5217713, three minutes apart. The bot correctly can't hand over live credentials, so this isn't a bot failure, but the duplicate ticket filing is worth a quick merge/dedupe check so two agents don't work the same request."
+      },
+      {
+        "owner": "content",
+        "title": "Three separate internal 'what does X mean' jargon lookups in one day",
+        "desc": "utpal.dutta@netcorecloud.com asked about RFM, and siddhant.bendkar@netcorecloud.com asked separately about both 'segment agent' and 'STO' — three different internal staff needing quick definitions for platform jargon on the same day. A single searchable glossary page (RFM, STO, segment agent, and similar terms) would likely cut down repeat 'what is X' traffic from internal teams."
+      },
+      {
+        "owner": "product",
+        "title": "Vani's two-part journey build reads as a real config request, not a how-to",
+        "desc": "vani.ganasutrisna@netcorecloud.com (internal) first asked the bot to recommend a cart-abandonment journey design using path optimizer and preferred-channel logic, then 17 minutes later asked why the demo account has no abandon-cart feature at all — both in Indonesian. Worth confirming the demo account gap is expected (feature-gated) rather than a demo-environment bug, since this reads like prep for a live customer conversation."
+      },
+      {
+        "owner": "calibration",
+        "title": "12% self-reported resolution is the known CSAT-workflow artifact",
+        "desc": "21 of 24 conversations show 'handed_off_to_human', consistent with the CSAT-rating-workflow pattern documented since June 25 — not a real drop in answer quality (e.g. Harish Reddy's custom-events/payload walkthrough and Rajani T's editor-comparison both got complete answers before handoff). The 96% Freshdesk deflection rate is the more reliable signal for the day."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Jibin Philip",
+      "email": "jibin.philip@netcorecloud.com",
+      "query": "Asked whether complete user-level time-series journey data can be exported to a client-owned storage location, such as an AWS S3 bucket.",
+      "why": "A genuine data-engineering/architecture question — exporting granular, user-level time-series data to external client storage — rather than a basic navigation or how-to ask. Shows the docbot fielding real integration-planning questions, not just product tours."
+    }
   }
-}
-;
+};
 const FULL_ARCHIVE = {
   "2026-06-15": {
     "date": "2026-06-15",
@@ -12650,9 +12816,785 @@ const FULL_ARCHIVE = {
         ]
       }
     ]
+  },
+  "2026-07-22": {
+    "date": "2026-07-22",
+    "totalConversations": 33,
+    "resolutionRate": 15,
+    "internalTotal": 18,
+    "externalTotal": 15,
+    "docsTotal": 18,
+    "panelTotal": 15,
+    "queryType": {
+      "technical": 9,
+      "generic": 24
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 4,
+        "external": 11
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 3,
+        "external": 1
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 8,
+        "external": 0
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 2,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 3
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 3,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "romit.pandit@netcorecloud.com",
+            "q": "What is Time To Live in App Push Notifications?",
+            "panel": "NA"
+          },
+          {
+            "email": "komal.sharma@netcorecloud.com",
+            "q": "what are the supported product feed fomats?",
+            "panel": "NA"
+          },
+          {
+            "email": "gourab.dash@netcorecloud.com",
+            "q": "i want to know more about UDT consepts",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "mitch@communionme.com",
+            "q": "i added smoali@care.med.sa to my blocklist but it still did not appear.",
+            "panel": "communionme_ce"
+          },
+          {
+            "email": "mitch@communionme.com",
+            "q": "I want to add contacts to blocklist.",
+            "panel": "communionme_ce"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 2,
+        "external": 3,
+        "internalQ": [
+          {
+            "email": "dhruv.bakshi@netcorecloud.com",
+            "q": "what is HTML block in UCE",
+            "panel": "NA"
+          },
+          {
+            "email": "khushi.chitkara@netcorecloud.com",
+            "q": "whom to mail regardding mail scorring of a list",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "kulwinder.singh@way.com",
+            "q": "I want to send email to add to cart, please give me html version of ready to use template",
+            "panel": "globalairportparking"
+          },
+          {
+            "email": "krutika.mane@pluxeegroup.com",
+            "q": "how to attach pdf in email",
+            "panel": "sodexocee"
+          },
+          {
+            "email": "aman.singh@vayana.com",
+            "q": "How can I download HTML template of an emailer?",
+            "panel": "vayanacee"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 4,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "yogesh.kulkarni@netcorecloud.com",
+            "q": "RCS bounce details are needed",
+            "panel": "NA"
+          },
+          {
+            "email": "hiral.jhaveri@netcorecloud.com",
+            "q": "in whatsapp templates i can see my template paused and rejected. what could be the possible reason?",
+            "panel": "NA"
+          },
+          {
+            "email": "khushi.chitkara@netcorecloud.com",
+            "q": "what is whatsapp api",
+            "panel": "NA"
+          },
+          {
+            "email": "lokesh.sharma@netcorecloud.com",
+            "q": "Can we do image personalization in rcs in journey",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "gargi.mukherjee@netcorecloud.com",
+            "q": "where in ce panel can i check if my frequecy capping limit?",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "krutika.mane@pluxeegroup.com",
+            "q": "Where is broadcast in campaigns?",
+            "panel": "sodexocee"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "charvi.agarwal@netcorecloud.com",
+            "q": "can i personalise journeys based on what they have added in their cart? diff mail content for diff user based on cart items",
+            "panel": "smartechai"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 7,
+        "external": 4,
+        "internalQ": [
+          {
+            "email": "romit.pandit@netcorecloud.com",
+            "q": "How to see the aboslute number of Revenue in CEE Panel?",
+            "panel": "NA"
+          },
+          {
+            "email": "ninad.borkar@netcorecloud.com",
+            "q": "User Path analysis in CE",
+            "panel": "NA"
+          },
+          {
+            "email": "ninad.borkar@netcorecloud.com",
+            "q": "Trends in CE",
+            "panel": "NA"
+          },
+          {
+            "email": "ninad.borkar@netcorecloud.com",
+            "q": "What are cohorts in Ce",
+            "panel": "NA"
+          },
+          {
+            "email": "khushi.chitkara@netcorecloud.com",
+            "q": "how to check SLO%",
+            "panel": "NA"
+          },
+          {
+            "email": "khushi.chitkara@netcorecloud.com",
+            "q": "how to export historical data for campaigns",
+            "panel": "NA"
+          },
+          {
+            "email": "prathamesh.borkar@netcorecloud.com",
+            "q": "I want to build a 3-step funnel (Product View -> Add to Cart -> Purchase) for last 7 days, apply one drill-down (city or category affinity)",
+            "panel": "smartechai"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "grajoo@peermont.com",
+            "q": "Create a executive report on App Launch for the last month. Use graphs and explanations",
+            "panel": "peermont_cee"
+          },
+          {
+            "email": "ipo@cameoindia.com",
+            "q": "Campaign delivery stats (Published/Sent/Delivered) showing as grey placeholders / count not updating, across both old and recent campaigns",
+            "panel": "cameoindiacee"
+          },
+          {
+            "email": "gauransh.kumar@thesouledstore.com",
+            "q": "How to cancel generated reports that are inprogress",
+            "panel": "thesouledstorecee"
+          },
+          {
+            "email": "avinash.kumar@savesage.club",
+            "q": "breakdown of screenviewed event by screenName property for current month, hitting event quota, need highest-volume screens; same for buttonclicked",
+            "panel": "savesagecee"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 5,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "vivek@awfymedia.com",
+            "q": "hi",
+            "panel": "awfy_cee"
+          },
+          {
+            "email": "vivek@awfymedia.com",
+            "q": "unable to access the feature",
+            "panel": "awfy_cee"
+          },
+          {
+            "email": "deepchannel47@gmail.com",
+            "q": "Hlo",
+            "panel": "NA"
+          },
+          {
+            "email": "maneesh.pioneer@gmail.com",
+            "q": "Hi",
+            "panel": "NA"
+          },
+          {
+            "email": "gauransh.kumar@thesouledstore.com",
+            "q": "In want to raise a ticket",
+            "panel": "thesouledstorecee"
+          }
+        ]
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "vivek@awfymedia.com",
+        "count": 2,
+        "panel": "awfy_cee",
+        "queries": [
+          {
+            "theme": "Bare greeting, no context yet",
+            "text": "hi"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "unable to access the feature"
+          }
+        ],
+        "friction": true
+      },
+      {
+        "email": "romit.pandit@netcorecloud.com",
+        "count": 2,
+        "panel": "NA",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "How to see the aboslute number of Revenue in CEE Panel?"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "What is Time To Live in App Push Notifications?"
+          }
+        ],
+        "friction": false
+      },
+      {
+        "email": "mitch@communionme.com",
+        "count": 2,
+        "panel": "communionme_ce",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "i added smoali@care.med.sa to my blocklist but it still did not appear."
+          },
+          {
+            "theme": "How do I do X",
+            "text": "I want to add contacts to blocklist."
+          }
+        ],
+        "friction": true
+      },
+      {
+        "email": "gauransh.kumar@thesouledstore.com",
+        "count": 2,
+        "panel": "thesouledstorecee",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "In want to raise a ticket"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "How to cancel generated reports that are inprogress"
+          }
+        ],
+        "friction": false
+      },
+      {
+        "email": "ninad.borkar@netcorecloud.com",
+        "count": 3,
+        "panel": "NA",
+        "queries": [
+          {
+            "theme": "What does X mean/how it works",
+            "text": "User Path analysis in CE"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "Trends in CE"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "What are cohorts in Ce"
+          }
+        ],
+        "friction": true
+      },
+      {
+        "email": "krutika.mane@pluxeegroup.com",
+        "count": 2,
+        "panel": "sodexocee",
+        "queries": [
+          {
+            "theme": "Where do I set up/find X",
+            "text": "Where is broadcast in campaigns?"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "how to attach pdf in email"
+          }
+        ],
+        "friction": false
+      },
+      {
+        "email": "khushi.chitkara@netcorecloud.com",
+        "count": 4,
+        "panel": "NA",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "how to check SLO%"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "how to export historical data for campaigns"
+          },
+          {
+            "theme": "Where do I set up/find X",
+            "text": "whom to mail regardding mail scorring of a list"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "what is whatsapp api"
+          }
+        ],
+        "friction": false
+      }
+    ],
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-07-22 00:00 IST to 2026-07-24 23:59 IST); window still partially open as of this run (2026-07-24)",
+      "totalConversations": 33,
+      "sameUserEscalations": [],
+      "deflectedCount": 33,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit — treat as a directional signal. Tier 1: checked all 11 unique external requester emails via global search, zero ticket matches. Tier 2: keyword searches across all 7 areas (WhatsApp/RCS/template, slice-and-send, unsubscribe/yes bank, cart-abandonment journey, broadcast/frequency-capping, campaign-stats-not-updating, event-quota) returned no in-window matches for this day specifically — though the 'campaign stats not updating' pattern (ipo@cameoindia.com, conversation 1928) has generated several past Freshdesk tickets from other accounts historically, none fell in this window. Internal (@netcorecloud.com) requesters were not individually Tier-1 searched this run due to volume — scoped to external customer emails, which carry the stronger escalation signal."
+    },
+    "headline": "33 conversations on July 22, only 15% self-reported resolved (the known CSAT-workflow artifact, not a real quality drop) but 100% Freshdesk-deflected — Ninad Borkar browsed three analytics-dashboard concepts back to back (User Path, Trends, Cohorts), while mitch@communionme.com's blocklist addition silently failed to reflect.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "15% self-reported resolution is the known CSAT-workflow artifact, not real bot failure",
+        "desc": "28 of 33 conversations show botConversationState 'handed_off_to_human' — the same artifact flagged repeatedly since June 25 (CSAT-rating workflow flips state regardless of answer quality). The Freshdesk-checked 100% deflection rate is the more reliable signal for this day; several handed-off conversations (e.g. Umar Ahmed's inapp-banner HTML, Charvi Agarwal's cart-personalization journey) got complete, specific bot answers."
+      },
+      {
+        "owner": "product",
+        "title": "Campaign stats stuck as grey placeholders — a recurring failure pattern across accounts",
+        "desc": "ipo@cameoindia.com (YESH KUMAR) reported campaign delivery counts (Published/Sent/Delivered) stuck as grey placeholders on both old and newly-sent campaigns; the bot correctly diagnosed it as a stats-pipeline sync issue and routed to helpdesk@netcorecloud.com, but couldn't fix it live. A Tier-2 Freshdesk search for this exact failure signature turned up a long history of near-identical tickets from other accounts (Comsense/Athira K x3, SynapseWave/Alok Chakraborty, Umar Ahmed/shopcrocsmt x2) going back months — none landed in this specific window, but the recurrence across many unrelated accounts suggests a genuine backend reliability issue worth an engineering look, not a one-off."
+      },
+      {
+        "owner": "content",
+        "title": "Ninad Borkar explored three analytics-dashboard concepts in one sitting",
+        "desc": "ninad.borkar@netcorecloud.com (internal) asked about User Path analysis, Trends, and Cohorts back to back with no other topic in between — reads like dashboard onboarding/exploration rather than three unrelated needs. A single 'Analytics Dashboard Overview' doc covering all three concepts together would serve this pattern better than three separate lookups."
+      },
+      {
+        "owner": "design",
+        "title": "Blocklist add not reflecting is a real UX/data-sync gap",
+        "desc": "mitch@communionme.com added a contact to the blocklist and it \"still did not appear\" — then asked again a few minutes later how to add contacts to the blocklist, suggesting the first attempt genuinely didn't stick from the user's point of view. Worth a quick check on blocklist-write propagation delay or UI refresh behavior."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Avinash Kumar Sinha (SaveSage)",
+      "email": "avinash.kumar@savesage.club",
+      "query": "Asked for a breakdown of the screenviewed event by the screenName property for the current month (and the same for buttonclicked), specifically because the account is hitting its event quota and needs to identify the highest-volume screens.",
+      "why": "A precise, quota-aware analytics ask — naming the exact event, the exact breakdown property, and the business reason (quota pressure) — rather than a vague 'show me my data' request. Shows real operational use of the event model."
+    }
+  },
+  "2026-07-23": {
+    "date": "2026-07-23",
+    "totalConversations": 24,
+    "resolutionRate": 12,
+    "internalTotal": 16,
+    "externalTotal": 8,
+    "docsTotal": 10,
+    "panelTotal": 14,
+    "queryType": {
+      "technical": 9,
+      "generic": 15
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 4,
+        "external": 4
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 1,
+        "external": 1
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 6,
+        "external": 2
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 4,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 1,
+        "external": 0
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 2,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "harish.reddy@netcorecloud.com",
+            "q": "Help me share steps how to verify custom events and payload data types in the smartech panel",
+            "panel": "NA"
+          },
+          {
+            "email": "umar.ahmed@netcorecloud.com",
+            "q": "Hey, if I want to create an HTML (with video) through HTML which will be used in an inapp banner, how can I do that?",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "darshit.shah@sc.com",
+            "q": "how do i download Blacklisted contact",
+            "panel": "scbrb_custid"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 3,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "charvi.agarwal@netcorecloud.com",
+            "q": "what is slice and send in email scheduling",
+            "panel": "smartechai"
+          },
+          {
+            "email": "siddhant.bendkar@netcorecloud.com",
+            "q": "What is sto?",
+            "panel": "NA"
+          },
+          {
+            "email": "rajani.t@netcorecloud.com",
+            "q": "how is unified editor different from drag and drop editor",
+            "panel": "smartechai"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "raghunathr463@gmail.com",
+            "q": "I would like to stop email in yes bank side",
+            "panel": "NA"
+          },
+          {
+            "email": "support@indiaopd.com",
+            "q": "Shared an IVF suite flyer, wants to add CTA (book a demo button) so flyer looks appealing and drives opens",
+            "panel": "indiaopdce"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 3,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "jaishnitha.vs@netcorecloud.com",
+            "q": "can you use whatsapp templates in liquid tags",
+            "panel": "NA"
+          },
+          {
+            "email": "umar.ahmed@netcorecloud.com",
+            "q": "Payload personalisation in RCS. Possible or not?",
+            "panel": "NA"
+          },
+          {
+            "email": "gargi.mukherjee@netcorecloud.com",
+            "q": "how or where can i see the whatsapp campaign billing in panel?",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "mis_analyst@parinaam.org",
+            "q": "WhatsApp Business API details needed for Automation Integration",
+            "panel": "parinaam_ce"
+          }
+        ]
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "swapnil@metuzi.ai",
+            "q": "what is broadcast size",
+            "panel": "intnc_metuzi_panel"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 2,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "vani.ganasutrisna@netcorecloud.com",
+            "q": "mengapa tidak ada fitur abandon cart di journey untuk demo account? (why isn't there an abandon-cart feature in journey for the demo account?)",
+            "panel": "smartechai"
+          },
+          {
+            "email": "vani.ganasutrisna@netcorecloud.com",
+            "q": "rekomendasikan rancangan journey untuk cart abandonement yang melibatkan path optimizer dan preferred channel (recommend a journey design for cart abandonment involving path optimizer and preferred channel)",
+            "panel": "smartechai"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 5,
+        "external": 3,
+        "internalQ": [
+          {
+            "email": "jibran.dalvi@netcorecloud.com",
+            "q": "I want to create a segment of blocklisted customers",
+            "panel": "qa_manual1"
+          },
+          {
+            "email": "jibin.philip@netcorecloud.com",
+            "q": "can we export complete user-level time-series journey data to a client storage locations eg. AWS S3 bucket if needed",
+            "panel": "NA"
+          },
+          {
+            "email": "siddhant.bendkar@netcorecloud.com",
+            "q": "what is segment agent",
+            "panel": "NA"
+          },
+          {
+            "email": "deepesh.lakhera@netcorecloud.com",
+            "q": "Tell me about egress feature under which all events I can sync with my CRM and at what frequency",
+            "panel": "Atom"
+          },
+          {
+            "email": "utpal.dutta@netcorecloud.com",
+            "q": "can you help me understand RFM in Netcore when we add any event",
+            "panel": "muthootfincorpcee"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "seemantjay@aesl.in",
+            "q": "How can i create product analytics dashboard",
+            "panel": "aakashedce"
+          },
+          {
+            "email": "akshay.shetty@khelomore.com",
+            "q": "Where to find user time engagement",
+            "panel": "khelomorecee"
+          },
+          {
+            "email": "c.gokul05@shriramfinance.in",
+            "q": "I have created User paths and it shows Nudge branch Tracker, Entry and 66. What does this all means",
+            "panel": "shriramfl_cee"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "harish.reddy@netcorecloud.com",
+            "q": "Hello",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": []
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "harish.reddy@netcorecloud.com",
+        "count": 2,
+        "panel": "NA",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "Help me share steps how to verify custom events and payload data types in the smartech panel"
+          },
+          {
+            "theme": "Bare greeting, no context yet",
+            "text": "Hello"
+          }
+        ],
+        "friction": false
+      },
+      {
+        "email": "umar.ahmed@netcorecloud.com",
+        "count": 2,
+        "panel": "NA",
+        "queries": [
+          {
+            "theme": "Is X possible/supported",
+            "text": "Payload personalisation in RCS. Possible or not?"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "Hey, if I want to create an HTML (with video) through HTML which will be used in an inapp banner, how can I do that?"
+          }
+        ],
+        "friction": false
+      },
+      {
+        "email": "siddhant.bendkar@netcorecloud.com",
+        "count": 2,
+        "panel": "NA",
+        "queries": [
+          {
+            "theme": "What does X mean/how it works",
+            "text": "What is sto?"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "what is segment agent"
+          }
+        ],
+        "friction": false
+      },
+      {
+        "email": "vani.ganasutrisna@netcorecloud.com",
+        "count": 2,
+        "panel": "smartechai",
+        "queries": [
+          {
+            "theme": "Is X possible/supported",
+            "text": "mengapa tidak ada fitur abandon cart di journey untuk demo account? (why isn't there an abandon-cart feature in journey for the demo account?)"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "rekomendasikan rancangan journey untuk cart abandonement yang melibatkan path optimizer dan preferred channel (recommend a journey design for cart abandonment involving path optimizer and preferred channel)"
+          }
+        ],
+        "friction": true
+      }
+    ],
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-07-23 00:00 IST to 2026-07-25 23:59 IST); window still largely open as of this run (2026-07-24, D+1)",
+      "totalConversations": 24,
+      "sameUserEscalations": [
+        {
+          "email": "mis_analyst@parinaam.org",
+          "docbotQuery": "WhatsApp Business API details needed for Automation Integration",
+          "area": "CPaaS (WhatsApp/RCS/SMS)",
+          "theme": "Where's the doc/API for X",
+          "ticketId": "5217712 (near-duplicate: 5217713)",
+          "ticketSubject": "WhatsApp Business API details needed for Automation Integration",
+          "ticketCreatedAt": "2026-07-23T14:13:00+05:30"
+        }
+      ],
+      "deflectedCount": 23,
+      "deflectionRate": 96,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit — treat as a directional signal. Tier 1 direct email search for mis_analyst@parinaam.org returned 0 tickets (a false negative — same limitation seen in prior runs); the match was found instead via a Tier 2 'API integration' keyword search and confirmed by opening ticket #5217712 and checking the requester's Freshdesk contact record (email matched exactly). Tier 1 checked all 8 unique external requester emails; this was the only match. Tier 2 keyword searches (WhatsApp/RCS/template, slice-and-send, unsubscribe/yes-bank, cart-abandonment journey, broadcast/frequency-capping, campaign-stats-not-updating, event-quota) surfaced nothing else in-window. Internal requesters not individually Tier-1 searched due to volume — scoped to external customer emails plus area-wide keyword sweeps."
+    },
+    "headline": "24 conversations on July 23, 96% Freshdesk-deflected — Pallavi Sinha at Parinaam asked the docbot for WhatsApp Business API credentials, then filed two near-duplicate Freshdesk tickets within minutes asking support for the same API key and endpoint (a legitimate handoff, not a bot miss), while Vani Ganasutrisna ran a two-part Indonesian-language session designing a cart-abandonment journey with path optimizer and preferred-channel logic.",
+    "actionableInsights": [
+      {
+        "owner": "product",
+        "title": "Confirmed escalation: WhatsApp API credential request correctly routed to a human, but filed twice",
+        "desc": "mis_analyst@parinaam.org (Pallavi Sinha) asked the docbot for WhatsApp Business API access details (API key, base URL, sender ID) at 2:16 PM IST, then emailed support at 2:13 PM with the same request — filed as two near-identical tickets, #5217712 and #5217713, three minutes apart. The bot correctly can't hand over live credentials, so this isn't a bot failure, but the duplicate ticket filing is worth a quick merge/dedupe check so two agents don't work the same request."
+      },
+      {
+        "owner": "content",
+        "title": "Three separate internal 'what does X mean' jargon lookups in one day",
+        "desc": "utpal.dutta@netcorecloud.com asked about RFM, and siddhant.bendkar@netcorecloud.com asked separately about both 'segment agent' and 'STO' — three different internal staff needing quick definitions for platform jargon on the same day. A single searchable glossary page (RFM, STO, segment agent, and similar terms) would likely cut down repeat 'what is X' traffic from internal teams."
+      },
+      {
+        "owner": "product",
+        "title": "Vani's two-part journey build reads as a real config request, not a how-to",
+        "desc": "vani.ganasutrisna@netcorecloud.com (internal) first asked the bot to recommend a cart-abandonment journey design using path optimizer and preferred-channel logic, then 17 minutes later asked why the demo account has no abandon-cart feature at all — both in Indonesian. Worth confirming the demo account gap is expected (feature-gated) rather than a demo-environment bug, since this reads like prep for a live customer conversation."
+      },
+      {
+        "owner": "calibration",
+        "title": "12% self-reported resolution is the known CSAT-workflow artifact",
+        "desc": "21 of 24 conversations show 'handed_off_to_human', consistent with the CSAT-rating-workflow pattern documented since June 25 — not a real drop in answer quality (e.g. Harish Reddy's custom-events/payload walkthrough and Rajani T's editor-comparison both got complete answers before handoff). The 96% Freshdesk deflection rate is the more reliable signal for the day."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Jibin Philip",
+      "email": "jibin.philip@netcorecloud.com",
+      "query": "Asked whether complete user-level time-series journey data can be exported to a client-owned storage location, such as an AWS S3 bucket.",
+      "why": "A genuine data-engineering/architecture question — exporting granular, user-level time-series data to external client storage — rather than a basic navigation or how-to ask. Shows the docbot fielding real integration-planning questions, not just product tours."
+    }
   }
-}
-;
+};
 const DATES = Object.keys(FULL_ARCHIVE).sort().reverse();
 let theme = 'light';
 
