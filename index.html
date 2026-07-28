@@ -2,7 +2,7 @@
 {
   "name": "Ce Docbot Summary 2026 06 17",
   "schemaVersion": 1,
-  "description": "CE Docbot 14-day rolling summary (Jul 10 – Jul 23, 2026) — latest day 2026-07-23"
+  "description": "CE Docbot 14-day rolling summary (Jul 7 – Jul 20, 2026) — latest day 2026-07-20"
 }
 </script>
 <html lang="en">
@@ -512,762 +512,8 @@ html[data-theme="dark"] .intro-banner .ib-lede{color:#c7cad1;}
   </div>
 </div>
 <script>
+
 const ARCHIVE = {
-  "2026-07-10": {
-    "date": "2026-07-10",
-    "totalConversations": 15,
-    "resolutionRate": 47,
-    "internalTotal": 5,
-    "externalTotal": 10,
-    "docsTotal": 7,
-    "panelTotal": 8,
-    "queryType": {
-      "technical": 7,
-      "generic": 8
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days (2026-07-10 00:00 IST to 2026-07-12 23:59 IST)",
-      "totalConversations": 15,
-      "sameUserEscalations": [
-        {
-          "email": "prasad.aher@quant.in",
-          "docbotQuery": "Issue Uploading CSV File on Netcore Panel",
-          "area": "API/Integration",
-          "theme": "How do I do X",
-          "ticketId": "5210242",
-          "ticketSubject": "Issue Uploading CSV File on Netcore Panel",
-          "ticketCreatedAt": "2026-07-10T15:55:00+05:30"
-        }
-      ],
-      "deflectedCount": 14,
-      "deflectionRate": 93,
-      "patternRisk": [],
-      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit — treat as a directional signal. Freshdesk's own email-search tool returned 0 tickets for prasad.aher@quant.in (a false negative, same pattern as July 9's Sanjay match); the ticket was found via a 'csv upload' keyword search — near-identical subject line to his docbot query, same panel (quantsmt), filed within about a minute of his docbot session."
-    },
-    "headline": "15 conversations on July 10, 93% Freshdesk-deflected — Prasad Aher's CSV upload issue escalated to a ticket with an almost identical subject line within a minute of his docbot session, while Lokesh Sharma separately relayed a full client segment-creation spec that reads like a real build request, not a docs question.",
-    "actionableInsights": [
-      {
-        "owner": "calibration",
-        "title": "47% self-reported resolution, n=15 — partial CSAT-workflow overlap likely",
-        "desc": "8 of 15 conversations show 'handed_off_to_human' (same window as the June 25/29 CSAT-workflow-flip artifact); the other 7 self-report 'resolved'. Read 47% as directionally soft, not a precise quality score — the Freshdesk-checked 93% deflection rate above is the stronger signal for this day."
-      },
-      {
-        "owner": "product",
-        "title": "Confirmed escalation: CSV upload issue went straight to a ticket, not just the bot",
-        "desc": "prasad.aher@quant.in told the docbot 'Issue Uploading CSV File on Netcore Panel' and, within about a minute, emailed the same near-identical subject line to support — ticket #5210242 confirms the file upload progresses to 100% but the 'Next Step' button stays disabled. The docbot apparently couldn't resolve this live product bug; worth flagging to engineering directly rather than expecting a docs fix."
-      },
-      {
-        "owner": "content",
-        "title": "Same user, same field (smt_app_id), two tries in a row",
-        "desc": "lukman@tonewow.net asked 'where to get smt_app_id' then, 5 minutes later, 'what info is needed to generate smt_app_id' — the existing doc likely doesn't cover both the lookup and the generation flow on one page."
-      },
-      {
-        "owner": "product",
-        "title": "A forwarded client segment spec landed in the bot, not with a human",
-        "desc": "lokesh.sharma@netcorecloud.com pasted a detailed segment-logic request (unsubscribed users, soft/hard bounces, blocked users across Email/SMS/Notifications) that reads like a relayed client build ask, not a how-to question. Needs a human builder, not a bot answer — worth checking whether this got picked up."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Lokesh Sharma",
-      "email": "lokesh.sharma@netcorecloud.com",
-      "query": "Detailed segment spec for a client: Email segment for unsubscribed + soft/hard bounces; SMS/Notifications segment for unsubscribed/blocked users.",
-      "why": "A fully-specified, multi-channel segmentation build request rather than a basic question — shows the docbot is absorbing real work requests, not just navigation help."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 1,
-        "external": 5
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 1,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 0,
-        "external": 2
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 2,
-        "external": 0
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 1,
-        "external": 0
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 3
-      }
-    ],
-    "topAskers": [
-      {
-        "email": "lukman@tonewow.net",
-        "count": 2,
-        "friction": true,
-        "queries": [
-          {
-            "theme": "Where do I set up/find X",
-            "text": "hi, where to get smt_app_id"
-          },
-          {
-            "theme": "How do I do X",
-            "text": "i want to generate smt_app_id, what info i needed to give?"
-          }
-        ],
-        "panel": "tonewowce"
-      },
-      {
-        "email": "lokesh.sharma@netcorecloud.com",
-        "count": 2,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "What does X mean/how it works",
-            "text": "what is the nesting limit for the segment"
-          },
-          {
-            "theme": "How do I do X",
-            "text": "detailed segment spec for a client (unsub/bounce logic across Email, SMS, Notifications)"
-          }
-        ],
-        "panel": "NA"
-      },
-      {
-        "email": "hardeep.singh@netcorecloud.com",
-        "count": 2,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "Is X possible/supported",
-            "text": "Can admin of the panel change the datatype of an ATTRIBUTE?"
-          },
-          {
-            "theme": "Where's the doc/API for X",
-            "text": "What is the file size supported via S3 Import?"
-          }
-        ],
-        "panel": "NA"
-      },
-      {
-        "email": "prasad.aher@quant.in",
-        "count": 2,
-        "friction": false,
-        "queries": [
-          {
-            "theme": "Bare greeting, no context yet",
-            "text": "hi"
-          },
-          {
-            "theme": "How do I do X",
-            "text": "Issue Uploading CSV File on Netcore Panel"
-          }
-        ],
-        "panel": "quantsmt"
-      }
-    ],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 2,
-        "external": 3,
-        "internalQ": [
-          {
-            "email": "hardeep.singh@netcorecloud.com",
-            "q": "Can admin of the panel change the datatype of an ATTRIBUTE?",
-            "panel": "NA"
-          },
-          {
-            "email": "hardeep.singh@netcorecloud.com",
-            "q": "What is the file size supported via S3 Import?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "prasad.aher@quant.in",
-            "q": "Issue Uploading CSV File on Netcore Panel",
-            "panel": "quantsmt"
-          },
-          {
-            "email": "lukman@tonewow.net",
-            "q": "i want to generate smt_app_id, what info i needed to give?",
-            "panel": "tonewowce"
-          },
-          {
-            "email": "lukman@tonewow.net",
-            "q": "hi, where to get smt_app_id",
-            "panel": "tonewowce"
-          }
-        ]
-      },
-      {
-        "area": "Email",
-        "internal": 1,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "lokesh.sharma@netcorecloud.com",
-            "q": "detailed segment spec for a client (unsub/bounce logic across Email, SMS, Notifications)",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "daffyfknduck@duck.com",
-            "q": "unsubscribe link isn't available, error code — please unsubscribe me now",
-            "panel": "NA"
-          }
-        ]
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 0,
-        "external": 1,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "swapnil_bagul@helioscapital.in",
-            "q": "whatsapp channel verification",
-            "panel": "helioscapitalcee"
-          }
-        ]
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 2,
-        "external": 5,
-        "internalQ": [
-          {
-            "email": "sakshi.kothari@netcorecloud.com",
-            "q": "what is MTU and MAU",
-            "panel": "NA"
-          },
-          {
-            "email": "lokesh.sharma@netcorecloud.com",
-            "q": "what is the nesting limit for the segment",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "sathish.kumar@prudentbrokers.com",
-            "q": "Hi",
-            "panel": "prudentbrokers"
-          },
-          {
-            "email": "riya_pathak@icicipruamc.com",
-            "q": "how to change the super user",
-            "panel": "NA"
-          },
-          {
-            "email": "prasad.aher@quant.in",
-            "q": "hi",
-            "panel": "quantsmt"
-          },
-          {
-            "email": "sneha.chavan@india.messefrankfurt.com",
-            "q": "hi",
-            "panel": "consumergoods"
-          },
-          {
-            "email": "akanksha.juyal@spicemoney.com",
-            "q": "I want to check account billing",
-            "panel": "spicemoneysmart"
-          }
-        ]
-      }
-    ]
-  },
-  "2026-07-11": {
-    "date": "2026-07-11",
-    "totalConversations": 2,
-    "resolutionRate": 100,
-    "internalTotal": 2,
-    "externalTotal": 0,
-    "docsTotal": 1,
-    "panelTotal": 1,
-    "queryType": {
-      "technical": 1,
-      "generic": 1
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days (2026-07-11 00:00 IST to 2026-07-13 23:59 IST)",
-      "totalConversations": 2,
-      "sameUserEscalations": [],
-      "deflectedCount": 2,
-      "deflectionRate": 100,
-      "patternRisk": [],
-      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit — treat as a directional signal. Both askers this day were internal Netcore staff (khushi.chitkara@netcorecloud.com, vani.ganasutrisna@netcorecloud.com); no matching tickets found via email search for either, and a related keyword search ('whatsapp channel verification', segmentation terms) found no matches inside the window."
-    },
-    "headline": "Quiet Saturday — just 2 conversations, both from Netcore staff, both bot-resolved: AMP email template localization and a basic segments how-to.",
-    "actionableInsights": [
-      {
-        "owner": "calibration",
-        "title": "n=2, both internal — not a trend",
-        "desc": "Smallest weekend sample in the archive so far, and both askers are Netcore staff, not customers. Don't read anything into today's 100% resolution or theme split."
-      },
-      {
-        "owner": "content",
-        "title": "AMP email template + language-change is a fairly specific localization ask",
-        "desc": "khushi.chitkara@netcorecloud.com asked how to create an AMP email template with a language-change option — worth confirming the AMP + i18n doc coverage is solid, since this is a narrow, easy-to-miss combination."
-      },
-      {
-        "owner": "content",
-        "title": "Segmentation basics keep resurfacing",
-        "desc": "vani.ganasutrisna@netcorecloud.com asked 'how do we set segments?' — the same general topic (segment logic/limits) came up three times in the prior two days (July 9 nesting-limit question, July 10's detailed client segment spec). A single consolidated segments reference page would serve all three asks."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Khushi Chitkara",
-      "email": "khushi.chitkara@netcorecloud.com",
-      "query": "How to create an AMP email template with a language-change option.",
-      "why": "A specific, feature-combination question (AMP + localization toggle) rather than basic navigation — the more technical ask of a very quiet day."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 2,
-        "external": 0
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 0
-      }
-    ],
-    "topAskers": [],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Email",
-        "internal": 1,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "khushi.chitkara@netcorecloud.com",
-            "q": "how to create amp email template with language change option",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 1,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "vani.ganasutrisna@netcorecloud.com",
-            "q": "how do we set segments?",
-            "panel": "smartechai"
-          }
-        ],
-        "externalQ": []
-      }
-    ]
-  },
-  "2026-07-12": {
-    "date": "2026-07-12",
-    "totalConversations": 1,
-    "resolutionRate": 100,
-    "internalTotal": 0,
-    "externalTotal": 1,
-    "docsTotal": 0,
-    "panelTotal": 1,
-    "queryType": {
-      "technical": 1,
-      "generic": 0
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days (2026-07-12 00:00 IST to 2026-07-14 23:59 IST); window still open as of this check (2026-07-13)",
-      "totalConversations": 1,
-      "sameUserEscalations": [],
-      "deflectedCount": 1,
-      "deflectionRate": 100,
-      "patternRisk": [],
-      "caveat": "Browser-search based on Freshdesk's UI — checked ganesh.jorrigal@thesouledstore.co.in via email search (0 matches) and a 'bigquery' keyword search (4 old, unrelated internal-infra tickets, no match in window). Window extends through July 14 and is still partially open as of this check."
-    },
-    "headline": "Quietest day yet — 1 conversation on July 12, 100% bot-resolved: SouledStore's Ganesh Jorrigal asked about pulling Email/WhatsApp/APN performance data into Google Sheets and BigQuery via the Netcore API.",
-    "actionableInsights": [
-      {
-        "owner": "calibration",
-        "title": "n=1 — single data point, not a trend",
-        "desc": "Lowest volume day in the 14-day archive. Lean entirely on the rolling view rather than reading anything into today specifically."
-      },
-      {
-        "owner": "product",
-        "title": "Cross-channel BigQuery export is a real data-engineering ask",
-        "desc": "ganesh.jorrigal@thesouledstore.co.in wanted to pull performance data across Email, WhatsApp, and APN into Google Sheets and BigQuery via the Netcore API — a sophisticated, real use case. If there isn't already a dedicated 'Export to BigQuery' guide covering all three channels, this is a good candidate for one."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Ganesh Jorrigal (The Souled Store)",
-      "email": "ganesh.jorrigal@thesouledstore.co.in",
-      "query": "Want to pull performance data of campaigns run via Netcore (email, whatsapp and APN) onto a Google spreadsheet and Google BigQuery through the Netcore API — is that possible?",
-      "why": "The only conversation of the day, and a genuinely advanced ask: multi-channel analytics pipeline into BigQuery, not a basic navigation question."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 0,
-        "external": 1
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 0
-      }
-    ],
-    "topAskers": [],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 0,
-        "external": 1,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "ganesh.jorrigal@thesouledstore.co.in",
-            "q": "pull performance data (email, whatsapp, APN) into Google spreadsheet + BigQuery via Netcore API — is that possible?",
-            "panel": "thesouledstorecee"
-          }
-        ]
-      },
-      {
-        "area": "Email",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      }
-    ]
-  },
-  "2026-07-13": {
-    "date": "2026-07-13",
-    "totalConversations": 10,
-    "resolutionRate": 90,
-    "internalTotal": 2,
-    "externalTotal": 8,
-    "docsTotal": 3,
-    "panelTotal": 7,
-    "queryType": {
-      "technical": 1,
-      "generic": 9
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days (July 13 00:00 IST to July 15 23:59 IST — window still partially open as of this run)",
-      "totalConversations": 10,
-      "sameUserEscalations": [],
-      "deflectedCount": 10,
-      "deflectionRate": 100,
-      "patternRisk": [],
-      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit — treat as a directional signal. Checked all 10 unique requester emails via Tier 1 global search — zero ticket matches for any. Tier 2 keyword searches for WhatsApp template approval, CPaaS panel detailed reports, unique clicks per link, and download-open-email-IDs also returned zero matches inside the window. Note: Hiral Jhaveri (internal, asked about CPaaS report downloads today) has a near-identical Freshdesk ticket from 22 days ago (OTP issue on detailed report download) and HDFC Credila (Piyush's company) has an email API integration ticket from 8 days ago — both are recurring-topic signals, not window matches, so not counted as escalations. Matching window partially open (extends to July 15, which hasn't occurred yet as of this run on July 14)."
-    },
-    "headline": "10 real conversations on July 13 (1 excluded test account filtered out), 90% bot self-reported resolved and 100% Freshdesk-deflected so far — Email reporting dominated with 4 of 10 asks (open-ID export, bot-flagged opens, per-link click tracking), and darryl.chua@trycata.com asked the bot to enable the Email channel for them, a request only a human can actually act on.",
-    "actionableInsights": [
-      {
-        "owner": "product",
-        "title": "Customer asked the bot to enable a channel — it can't",
-        "desc": "darryl.chua@trycata.com (cata_goldies_cee panel) asked 'why is email not available as a channel for me? please enable it.' Bot self-reported resolved, but channel enablement is an account-config action, not something a docbot can do. Worth checking what the bot actually told them, and whether there's a clear routing path to CS/onboarding for entitlement requests like this."
-      },
-      {
-        "owner": "content",
-        "title": "Three separate customers asked Email-reporting questions in one day",
-        "desc": "ashish@aima.in (download open email IDs), anuj.jamdegni@intoday.com (what do 'bot' opens mean in campaign performance), and Kat/katherine.maebelle.aban@prulifeuk.com.ph (per-link unique click tracking, handed off) all hit different corners of the same Email analytics/reporting surface. A single 'Reading Your Campaign Performance Report' doc covering ID export, bot-traffic flagging, and per-link clicks would cover all three asks in one read."
-      },
-      {
-        "owner": "content",
-        "title": "Hiral's CPaaS report-download question echoes a ticket from 22 days ago",
-        "desc": "hiral.jhaveri@netcorecloud.com asked how to download detailed reports from the CPaaS panel today; Freshdesk shows she filed a ticket 22 days ago about an OTP blocker on the same report-download flow (hdfcfuncee panel). Not inside this run's matching window so not counted as a deflection miss, but worth a quick check on whether that OTP issue was ever actually fixed."
-      },
-      {
-        "owner": "calibration",
-        "title": "n=10 — small sample, treat the 90%/100% numbers as directional",
-        "desc": "Only Kat's per-link click question was handed off to a human; the other 9 self-reported resolved. With this few data points, one handoff swings the rate by 10 points — read the 14-day rolling trend, not any single day, for a stable signal."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Kat (PruLife UK)",
-      "email": "katherine.maebelle.aban@prulifeuk.com.ph",
-      "query": "is it possible to get the unique clicks for each link in this campaign?",
-      "why": "Asked for granular per-link unique click tracking on a live, named campaign (GIO Campaign July 2026, ID 5615) — a specific analytics ask that got handed off to a human, suggesting real reporting depth the bot couldn't self-serve, not just basic navigation help."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 1,
-        "external": 1
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 0,
-        "external": 1
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 0,
-        "external": 2
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 1,
-        "external": 3
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 1
-      }
-    ],
-    "topAskers": [],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 0,
-        "external": 1,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "timessportsnow@gmail.com",
-            "q": "what is required to send email via API",
-            "panel": "timesnownewscee"
-          }
-        ]
-      },
-      {
-        "area": "Email",
-        "internal": 0,
-        "external": 4,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "darryl.chua@trycata.com",
-            "q": "Hi, why is email not available as a channel for me? please enable it",
-            "panel": "cata_goldies_cee"
-          },
-          {
-            "email": "ashish@aima.in",
-            "q": "Hi..From which option i can downlaod the open email ids of a campaign",
-            "panel": "NA"
-          },
-          {
-            "email": "anuj.jamdegni@intoday.com",
-            "q": "in campaign performance of ite_advantage opens are showing bot what are these",
-            "panel": "businesstoday"
-          },
-          {
-            "email": "katherine.maebelle.aban@prulifeuk.com.ph",
-            "q": "is it possible to get the unique clicks for each link in this campaign?",
-            "panel": "prulifecee"
-          }
-        ]
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 2,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "khushi.chitkara@netcorecloud.com",
-            "q": "is it possible to track cta on call button in whatsapp templates",
-            "panel": "NA"
-          },
-          {
-            "email": "hiral.jhaveri@netcorecloud.com",
-            "q": "how to download detailed reports from the cpaas panel",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "piyush1@credila.com",
-            "q": "how much time it will take to approve WhatsApp templates",
-            "panel": "hdfccredilace"
-          }
-        ]
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 2,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "aanya_patil@aesl.in",
-            "q": "Is there any cheatcode to netcore to understand the functioning",
-            "panel": "aakashedu_ce"
-          },
-          {
-            "email": "amrit.neupane@sc.com",
-            "q": "Hi",
-            "panel": "scnepal"
-          }
-        ]
-      }
-    ]
-  },
   "2026-07-14": {
     "date": "2026-07-14",
     "totalConversations": 13,
@@ -4026,6 +3272,791 @@ const ARCHIVE = {
       "query": "Asked whether complete user-level time-series journey data can be exported to a client-owned storage location, such as an AWS S3 bucket.",
       "why": "A genuine data-engineering/architecture question — exporting granular, user-level time-series data to external client storage — rather than a basic navigation or how-to ask. Shows the docbot fielding real integration-planning questions, not just product tours."
     }
+  },
+  "2026-07-24": {
+    "date": "2026-07-24",
+    "totalConversations": 14,
+    "resolutionRate": 7,
+    "internalTotal": 7,
+    "externalTotal": 7,
+    "docsTotal": 5,
+    "panelTotal": 9,
+    "queryType": {
+      "technical": 4,
+      "generic": 10
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-07-24 00:00 IST to 2026-07-26 23:59 IST)",
+      "totalConversations": 14,
+      "sameUserEscalations": [
+        {
+          "email": "prasad.aher@quant.in",
+          "docbotQuery": "how to whitelist email in netcore cloud panel",
+          "area": "Email",
+          "theme": "How do I do X",
+          "ticketId": "5218614",
+          "ticketSubject": "Request to Whitelist Email Address",
+          "ticketCreatedAt": "2026-07-24T11:03:00+05:30"
+        }
+      ],
+      "deflectedCount": 13,
+      "deflectionRate": 93,
+      "patternRisk": [
+        {
+          "area": "Email",
+          "docbotCount": 6,
+          "ticketCount": 1,
+          "exampleTicketSubjects": [
+            "Support Required: Link Tracking CNAME DNS Record Showing Error"
+          ],
+          "note": "A different customer (Tejashree Desai) filed a link-tracking CNAME/DNS ticket the same day marketing@pragatisoftware.com asked the docbot about a link-tracking error -- same underlying theme (link tracking breakage), different account, not counted as a Tier 1 match."
+        }
+      ],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. Prasad Aher's escalation is a strong case of the known same-day indexing lag: a direct email search for prasad.aher@quant.in returned zero tickets, but a 'whitelist email' keyword search surfaced ticket #5218614 filed 24 Jul 11:03 AM IST with a near-identical subject to his docbot query -- treat any 'zero tickets' email-search result as unconfirmed rather than a clean deflection, especially for the most recent 1-2 days."
+    },
+    "headline": "14 conversations on July 24, only 7% bot self-resolved (13 of 14 handed off -- the recurring CSAT-workflow artifact) -- Prasad Aher's email-whitelisting question escalated to a same-day Freshdesk ticket with a near-identical subject line, and two unrelated customers (Adora at GYG, Sabrina at DataStory) both reported their dashboard/portal not loading.",
+    "actionableInsights": [
+      {
+        "owner": "content",
+        "title": "Prasad Aher's whitelist question escalated to a ticket same day",
+        "desc": "prasad.aher@quant.in asked the docbot 'how to whitelist email in netcore cloud panel' and filed Freshdesk ticket #5218614 'Request to Whitelist Email Address' a few hours later the same day. Direct email search missed it (indexing lag); only a keyword search found it. Worth checking whether the bot's whitelisting answer actually walks through the panel steps or just points at a doc that doesn't fully resolve it."
+      },
+      {
+        "owner": "product",
+        "title": "Two unrelated customers hit a portal/dashboard-not-loading wall the same window",
+        "desc": "adora@gyg.com.sg ('My dashboard doesn't show anything') and sabrina@datastory.nz ('Nothing in the portal is loading, I click button and nothing happens') both reported access/loading failures within about 5.5 hours of each other on July 23-24. Different accounts, same symptom -- worth a quick infra check for a shared root cause rather than treating these as two isolated complaints."
+      },
+      {
+        "owner": "content",
+        "title": "Link-tracking error theme showed up in both the docbot and a same-day ticket",
+        "desc": "marketing@pragatisoftware.com asked the docbot about a link-tracking error the same day a different customer (Tejashree Desai) filed a CNAME/DNS link-tracking ticket (#5218482, 24 Jul 10:04 AM IST). Not the same account, but the same underlying failure mode appeared twice in one day -- worth flagging to eng if link-tracking DNS issues are trending up."
+      },
+      {
+        "owner": "calibration",
+        "title": "n=14, 7% self-reported resolution -- known CSAT-workflow artifact, not real bot failure",
+        "desc": "13 of 14 conversations show 'handed_off_to_human', the same pattern documented on July 14 and July 16. The Freshdesk-checked 93% deflection rate is the more reliable resolution signal for this day."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Tirtha Kumar (Netcore)",
+      "email": "tirtha.kumar@netcorecloud.com",
+      "query": "Help me set up a Web Personalization campaign with at least 2 audiences (e.g., location-based: Mumbai vs. Delhi), each showing different content.",
+      "why": "A concrete, structured build request -- multi-audience, location-based personalization logic -- rather than basic navigation help, on the smartechai panel."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 2,
+        "external": 7
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 2,
+        "external": 0
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 1,
+        "external": 0
+      }
+    ],
+    "topAskers": [],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "amey.vaidya@netcorecloud.com",
+            "q": "what is bigcommerce ?",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "vikas_singh@indiainformatics.net",
+            "q": "shopify change his login sign up url to domain.com/account to shopify.com/account how it integrate",
+            "panel": "hrxfragrancescee"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 2,
+        "external": 4,
+        "internalQ": [
+          {
+            "email": "umar.ahmed@netcorecloud.com",
+            "q": "Do we allow attribute based personalisation in AMP editor",
+            "panel": "NA"
+          },
+          {
+            "email": "shipra.choudhary@netcorecloud.com",
+            "q": "How to customize an email HTML template with attribute",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "sumit.kakade@iresearchservices.com",
+            "q": "I need IP address which opend email.",
+            "panel": "iresearchservices"
+          },
+          {
+            "email": "diana@executiveprogramme.com",
+            "q": "HI..I am not able to create new campaign , its not working",
+            "panel": "iimmdpcee"
+          },
+          {
+            "email": "prasad.aher@quant.in",
+            "q": "how to whitelist email in netcore cloud panel",
+            "panel": "quantsmt"
+          },
+          {
+            "email": "marketing@pragatisoftware.com",
+            "q": "my required for link tracking is showing error please suggest me how can i be resolved",
+            "panel": "pragatismart"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 2,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "tirtha.kumar@netcorecloud.com",
+            "q": "help me Set up a Web Personalization campaign with at least 2 audiences (e.g., location-based: Mumbai vs. Delhi), each showing different content.",
+            "panel": "smartechai"
+          },
+          {
+            "email": "agin.sankar@netcorecloud.com",
+            "q": "what is trends feature used for",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "adora@gyg.com.sg",
+            "q": "My dashboard doesn't show antyhing",
+            "panel": "cata_gyg_cee"
+          },
+          {
+            "email": "sabrina@datastory.nz",
+            "q": "Nothing in the portal is loading, I click button and nothing happens",
+            "panel": "theluxenomadce"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 2,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "vani.ganasutrisna@netcorecloud.com",
+            "q": "[Image attached, no text question]",
+            "panel": "smartechai"
+          },
+          {
+            "email": "naveen.mechu@netcorecloud.com",
+            "q": "NEED PRODUCT RELEASE NEWSLETTER FOR JUNE MONTH",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": []
+      }
+    ]
+  },
+  "2026-07-25": {
+    "date": "2026-07-25",
+    "totalConversations": 5,
+    "resolutionRate": 100,
+    "internalTotal": 0,
+    "externalTotal": 5,
+    "docsTotal": 4,
+    "panelTotal": 1,
+    "queryType": {
+      "technical": 0,
+      "generic": 5
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-07-25 00:00 IST to 2026-07-27 23:59 IST; window still open as of this run on 2026-07-27)",
+      "totalConversations": 5,
+      "sameUserEscalations": [],
+      "deflectedCount": 5,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. All 5 unique requester emails checked via Tier 1 search, zero ticket matches. A 'shorten link' keyword search for the one real product question (prashant.dhole@bajajgeneral.com) found no matches inside the window either. Window is only partially elapsed (D+2 = July 27 is still in progress as of this run) and the same-day indexing lag documented on other days means a same-user escalation landing later today wouldn't yet be captured."
+    },
+    "headline": "5 conversations on July 25 (Saturday), but 4 of 5 were off-topic messages unrelated to the Netcore product -- not real support asks -- and the bot self-reported 100% resolved for all of them, which is misleading given the noise; only prashant.dhole@bajajgeneral.com's link-shortening question was a genuine query.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "Effective real-question volume was 1 of 5, not 5",
+        "desc": "4 of 5 conversations (hildanyanto2004@gmail.com, dp19980214@gmail.com, rohanmane201@gmail.com, alokshukla2690@gmail.com) were off-topic or unrelated to the Netcore CE product -- not genuine support questions -- yet the bot marked all of them 'resolved'. Treat today's 100% resolution rate as not meaningful; it reflects auto-closure of non-product messages, not real deflection."
+      },
+      {
+        "owner": "product",
+        "title": "Consider a lightweight off-topic detector",
+        "desc": "Messages unrelated to the Netcore product are landing in the docbot and getting silently marked resolved, which inflates the resolution metric and adds noise to the daily digest. A simple out-of-scope classifier (even just flagging, not blocking) would make the resolution rate trustworthy again."
+      },
+      {
+        "owner": "content",
+        "title": "The one real question of the day used unusual phrasing",
+        "desc": "prashant.dhole@bajajgeneral.com (bajajanewsmt panel) asked how to 'shorten the log URL' -- likely referring to link/click tracking. Worth confirming the feature's on-panel naming matches what customers are searching for, since 'log URL' isn't standard terminology."
+      },
+      {
+        "owner": "calibration",
+        "title": "n=5, Saturday -- smallest genuine sample in a while",
+        "desc": "With only 1 real product question in the whole day, don't read anything into today's theme or area distribution."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Prashant Dhole",
+      "email": "prashant.dhole@bajajgeneral.com",
+      "query": "hi want to know how to shorten the log URL.",
+      "why": "The only genuine product question of the day (bajajanewsmt panel) -- everything else was off-topic noise."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 4
+      }
+    ],
+    "topAskers": [],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "prashant.dhole@bajajgeneral.com",
+            "q": "hi want to know how to shorten the log URL.",
+            "panel": "bajajanewsmt"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 4,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "hildanyanto2004@gmail.com",
+            "q": "[off-topic message unrelated to Netcore product]",
+            "panel": "NA"
+          },
+          {
+            "email": "dp19980214@gmail.com",
+            "q": "My product return (off-topic, unrelated to Netcore product)",
+            "panel": "NA"
+          },
+          {
+            "email": "rohanmane201@gmail.com",
+            "q": "Hi",
+            "panel": "NA"
+          },
+          {
+            "email": "alokshukla2690@gmail.com",
+            "q": "Can u please extend this time I did apply this voucher (off-topic, unrelated to Netcore product)",
+            "panel": "NA"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-07-26": {
+    "date": "2026-07-26",
+    "totalConversations": 5,
+    "resolutionRate": 100,
+    "internalTotal": 1,
+    "externalTotal": 4,
+    "docsTotal": 3,
+    "panelTotal": 2,
+    "queryType": {
+      "technical": 0,
+      "generic": 5
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-07-26 00:00 IST to 2026-07-28 23:59 IST; window has barely started as of this run on 2026-07-27)",
+      "totalConversations": 5,
+      "sameUserEscalations": [],
+      "deflectedCount": 5,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. All 5 unique requester emails checked via Tier 1 search, zero matches; 'content agent' and 'custom fonts' keyword searches for Tier 2 also returned no in-window matches. This window has barely elapsed (yesterday) -- treat the 100% figure as a floor, not a confirmed result; a same-user escalation over the next 1-2 days wouldn't yet be reflected here."
+    },
+    "headline": "5 conversations on July 26 (Sunday), 100% bot self-reported resolved -- Lokesh Sharma (Netcore) asked what the new 'Content Agent' feature is, and 2 of 5 conversations were bare greetings with no follow-up.",
+    "actionableInsights": [
+      {
+        "owner": "content",
+        "title": "Internal staffer asked a basic feature-awareness question",
+        "desc": "lokesh.sharma@netcorecloud.com asked the docbot 'what is content agen[t]' -- if Content Agent is a newer AI feature, this suggests internal enablement/doc coverage may be thin even for Netcore's own team."
+      },
+      {
+        "owner": "content",
+        "title": "Email campaign font customization asked by a customer",
+        "desc": "mitch@communionme.com (communionme_ce panel) asked how to add custom fonts to email campaigns -- a common design ask; confirm the email editor's font-customization doc is easy to find (a Freshdesk keyword check found no related ticket, so this looks self-serve today, but it's a recurring type of design question worth a clear how-to)."
+      },
+      {
+        "owner": "design",
+        "title": "Campaign save-location is unclear to at least one customer",
+        "desc": "akhil.khanvilkar@mnclgroup.com (mnclgroupcee panel) asked 'where does my campaign gets saved?' -- suggests a findability gap for drafts/saved campaigns in the editor UI."
+      },
+      {
+        "owner": "calibration",
+        "title": "n=5, Sunday -- 2 of 5 were bare greetings (40% noise)",
+        "desc": "sumirajpurohit6@gmail.com and karmyogigram12@emil.com both opened with a bare greeting and never followed up. Effective real-question volume was 3 of 5 today; treat percentages as directional only."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Lokesh Sharma (Netcore)",
+      "email": "lokesh.sharma@netcorecloud.com",
+      "query": "what is content agen[t]",
+      "why": "Points at a newer AI-driven feature rather than a basic navigation question -- worth tracking as Content Agent awareness grows across both internal and external users."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 2
+      }
+    ],
+    "topAskers": [],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Email",
+        "internal": 1,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "lokesh.sharma@netcorecloud.com",
+            "q": "what is content agen",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "akhil.khanvilkar@mnclgroup.com",
+            "q": "where does my campaign gets saved?",
+            "panel": "mnclgroupcee"
+          },
+          {
+            "email": "mitch@communionme.com",
+            "q": "How can I add custom fonts to my email campaigns?",
+            "panel": "communionme_ce"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "sumirajpurohit6@gmail.com",
+            "q": "hi",
+            "panel": "NA"
+          },
+          {
+            "email": "karmyogigram12@emil.com",
+            "q": "Hlo",
+            "panel": "NA"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-07-27": {
+    "date": "2026-07-27",
+    "totalConversations": 10,
+    "resolutionRate": 100,
+    "internalTotal": 5,
+    "externalTotal": 5,
+    "docsTotal": 3,
+    "panelTotal": 7,
+    "queryType": {
+      "technical": 2,
+      "generic": 8
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (July 27 00:00 IST to July 29 23:59 IST); window only partially elapsed as of this run (D+2 = July 29 hasn't happened yet)",
+      "totalConversations": 10,
+      "sameUserEscalations": [],
+      "deflectedCount": 10,
+      "deflectionRate": 100,
+      "patternRisk": [
+        {
+          "area": "Journey Builder",
+          "docbotCount": 4,
+          "ticketCount": 1,
+          "exampleTicketSubjects": [
+            "Push notification not working in Journey"
+          ],
+          "note": "Georgia Hassolanidis (faithfultonature_cee) filed ticket #5220936 the same day (Mon 27 Jul, 7:43 PM IST) reporting an app-push template not appearing in a journey test -- same underlying theme as Jackson Abraham's docbot query about why the Test_Push_Notification_2 journey isn't working, different account."
+        },
+        {
+          "area": "Email",
+          "docbotCount": 1,
+          "ticketCount": 2,
+          "exampleTicketSubjects": [
+            "Urgent: Revenue Dashboard Showing incorrect value.",
+            "Urgent: Revenue Dashboard Showing incorrect value. (Dev Ops escalation, child ticket)"
+          ],
+          "note": "Sachneet Dhawan (twoxlhome_ce) filed a parent+child ticket pair the same day (Mon 27 Jul, 11:53 AM IST) reporting the revenue dashboard showing 0 instead of an expected total -- same underlying theme as Anusha Subburaj's docbot question about campaigns not reflecting revenue details, different account."
+        }
+      ],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. Checked all 9 unique requester emails via Tier 1 global search -- zero ticket matches for any. Tier 2 keyword searches (journey, webhook, contact api, revenue) surfaced two genuine cross-account pattern matches (Journey Builder push-notification issue, Email revenue-dashboard issue) but no matches for the webhook or contact-api conceptual questions -- those keyword searches returned only unrelated troubleshooting/config tickets, not conceptual 'why do we need X' or 'is X possible' asks, so excluded as false positives. Window only partially elapsed (D+2 = July 29 hasn't happened yet)."
+    },
+    "headline": "10 conversations on July 27, a rare 100% bot self-reported resolution day and 100% Freshdesk-deflected (zero same-user escalations) -- but two pattern-risk signals cut against the clean numbers: a different account filed a ticket the same day for the identical 'journey push notification not working' issue Jackson Abraham asked about, and another hit the same 'revenue dashboard' problem Anusha Subburaj raised, while Nurhanis Mohd Shukri's message was just 'I want to raise ticket for my issue' -- marked resolved with no issue ever actually captured.",
+    "actionableInsights": [
+      {
+        "owner": "product",
+        "title": "\"I want to raise ticket for my issue\" marked resolved -- with no issue ever captured",
+        "desc": "hanis.shukri@tm.com.my (unificee panel, on the unified campaign editor) opened with only 'i want to raise ticket for my issue' and the bot closed it as resolved. No actual issue was ever diagnosed or escalated. Worth checking whether the bot has a hard rule to route explicit ticket-raise requests straight to a human/Freshdesk instead of self-closing -- this is exactly the kind of case that inflates the resolution rate without reflecting real resolution."
+      },
+      {
+        "owner": "content",
+        "title": "Jackson's stalled journey mirrors a same-day ticket from a different account",
+        "desc": "jackson.abraham@kangaroocars.com (sureport_cee) asked why 'Test_Push_Notification_2' journey isn't working; the same day, Georgia Hassolanidis (faithfultonature_cee) filed Freshdesk ticket #5220936 because an app-push template wasn't showing up in a journey test. Two different accounts hitting push-notification-in-journey friction on the same day is worth a targeted troubleshooting doc (template visibility, journey test mode limitations)."
+      },
+      {
+        "owner": "content",
+        "title": "Charvi ran two Journey/CPaaS mechanics questions back to back",
+        "desc": "charvi.agarwal@netcorecloud.com (smartechai panel) asked 'why do we need a webhook' then, minutes later, how Path Optimiser differs from Preferred Channel and when to use each. Different topics (friction=false), but both are foundational mechanics questions -- a combined internal-facing 'Journey Builder routing concepts' cheat sheet (path optimiser, preferred channel, webhooks) would help staff answer these live instead of relaying through the bot."
+      },
+      {
+        "owner": "calibration",
+        "title": "n=10, 100% self-reported resolved -- unusually clean, worth watching",
+        "desc": "Every one of the 10 conversations shows botConversationState 'resolved', a sharp contrast to the handed_off_to_human pattern seen on multiple prior days (e.g. July 14-17). Freshdesk deflection is also 100% at the same-user level, but the two pattern-risk hits (Journey push notification, Email revenue dashboard) suggest the underlying topics are still generating real tickets elsewhere -- read this day's 100% as directional, not proof the bot is closing every real issue."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Meenakshi Kaul (Netcore)",
+      "email": "meenakshi.kaul@netcorecloud.com",
+      "query": "is prid mandatory for product picker",
+      "why": "A precise, parameter-level integration question (whether the PRID field is a required input for the product picker's dynamic content feed) rather than basic navigation help -- shows real feed/config depth."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 2,
+        "external": 2
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 3,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 3
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "charvi.agarwal@netcorecloud.com",
+        "count": 2,
+        "friction": false,
+        "panel": "smartechai",
+        "queries": [
+          {
+            "theme": "What does X mean/how it works",
+            "text": "why do we need a webhook"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "how is path optimiser diff from preferrd channel and when should i use the respective one"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "khushi.chitkara@netcorecloud.com",
+            "q": "does contact api helps in adding data to a specific list",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "anusha.subburaj@mydesignation.com",
+            "q": "Why our campaigns are not reflecting the revenue details",
+            "panel": "mydesignationcee"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "charvi.agarwal@netcorecloud.com",
+            "q": "why do we need a webhook",
+            "panel": "smartechai"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 3,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "meenakshi.kaul@netcorecloud.com",
+            "q": "is prid mandatory for product picker",
+            "panel": "NA"
+          },
+          {
+            "email": "charvi.agarwal@netcorecloud.com",
+            "q": "how is path optimiser diff from preferrd channel and when should i use the respective one",
+            "panel": "smartechai"
+          },
+          {
+            "email": "neeraj.pallathu@netcorecloud.com",
+            "q": "can i personal web push notification in journey like cart abadonement",
+            "panel": "piratesshop_ce"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "jackson.abraham@kangaroocars.com",
+            "q": "why is Test_Push_Notification_2 journey not working",
+            "panel": "sureport_cee"
+          }
+        ]
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 3,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "vp821653@gmail.com",
+            "q": "Hi",
+            "panel": "NA"
+          },
+          {
+            "email": "hanis.shukri@tm.com.my",
+            "q": "i want to raise ticket for my issue",
+            "panel": "unificee"
+          },
+          {
+            "email": "digital.marketing@riya.travel",
+            "q": "hi",
+            "panel": "riyatravelsmart"
+          }
+        ]
+      }
+    ]
   }
 };
 const FULL_ARCHIVE = {
@@ -13593,6 +13624,791 @@ const FULL_ARCHIVE = {
       "query": "Asked whether complete user-level time-series journey data can be exported to a client-owned storage location, such as an AWS S3 bucket.",
       "why": "A genuine data-engineering/architecture question — exporting granular, user-level time-series data to external client storage — rather than a basic navigation or how-to ask. Shows the docbot fielding real integration-planning questions, not just product tours."
     }
+  },
+  "2026-07-24": {
+    "date": "2026-07-24",
+    "totalConversations": 14,
+    "resolutionRate": 7,
+    "internalTotal": 7,
+    "externalTotal": 7,
+    "docsTotal": 5,
+    "panelTotal": 9,
+    "queryType": {
+      "technical": 4,
+      "generic": 10
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-07-24 00:00 IST to 2026-07-26 23:59 IST)",
+      "totalConversations": 14,
+      "sameUserEscalations": [
+        {
+          "email": "prasad.aher@quant.in",
+          "docbotQuery": "how to whitelist email in netcore cloud panel",
+          "area": "Email",
+          "theme": "How do I do X",
+          "ticketId": "5218614",
+          "ticketSubject": "Request to Whitelist Email Address",
+          "ticketCreatedAt": "2026-07-24T11:03:00+05:30"
+        }
+      ],
+      "deflectedCount": 13,
+      "deflectionRate": 93,
+      "patternRisk": [
+        {
+          "area": "Email",
+          "docbotCount": 6,
+          "ticketCount": 1,
+          "exampleTicketSubjects": [
+            "Support Required: Link Tracking CNAME DNS Record Showing Error"
+          ],
+          "note": "A different customer (Tejashree Desai) filed a link-tracking CNAME/DNS ticket the same day marketing@pragatisoftware.com asked the docbot about a link-tracking error -- same underlying theme (link tracking breakage), different account, not counted as a Tier 1 match."
+        }
+      ],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. Prasad Aher's escalation is a strong case of the known same-day indexing lag: a direct email search for prasad.aher@quant.in returned zero tickets, but a 'whitelist email' keyword search surfaced ticket #5218614 filed 24 Jul 11:03 AM IST with a near-identical subject to his docbot query -- treat any 'zero tickets' email-search result as unconfirmed rather than a clean deflection, especially for the most recent 1-2 days."
+    },
+    "headline": "14 conversations on July 24, only 7% bot self-resolved (13 of 14 handed off -- the recurring CSAT-workflow artifact) -- Prasad Aher's email-whitelisting question escalated to a same-day Freshdesk ticket with a near-identical subject line, and two unrelated customers (Adora at GYG, Sabrina at DataStory) both reported their dashboard/portal not loading.",
+    "actionableInsights": [
+      {
+        "owner": "content",
+        "title": "Prasad Aher's whitelist question escalated to a ticket same day",
+        "desc": "prasad.aher@quant.in asked the docbot 'how to whitelist email in netcore cloud panel' and filed Freshdesk ticket #5218614 'Request to Whitelist Email Address' a few hours later the same day. Direct email search missed it (indexing lag); only a keyword search found it. Worth checking whether the bot's whitelisting answer actually walks through the panel steps or just points at a doc that doesn't fully resolve it."
+      },
+      {
+        "owner": "product",
+        "title": "Two unrelated customers hit a portal/dashboard-not-loading wall the same window",
+        "desc": "adora@gyg.com.sg ('My dashboard doesn't show anything') and sabrina@datastory.nz ('Nothing in the portal is loading, I click button and nothing happens') both reported access/loading failures within about 5.5 hours of each other on July 23-24. Different accounts, same symptom -- worth a quick infra check for a shared root cause rather than treating these as two isolated complaints."
+      },
+      {
+        "owner": "content",
+        "title": "Link-tracking error theme showed up in both the docbot and a same-day ticket",
+        "desc": "marketing@pragatisoftware.com asked the docbot about a link-tracking error the same day a different customer (Tejashree Desai) filed a CNAME/DNS link-tracking ticket (#5218482, 24 Jul 10:04 AM IST). Not the same account, but the same underlying failure mode appeared twice in one day -- worth flagging to eng if link-tracking DNS issues are trending up."
+      },
+      {
+        "owner": "calibration",
+        "title": "n=14, 7% self-reported resolution -- known CSAT-workflow artifact, not real bot failure",
+        "desc": "13 of 14 conversations show 'handed_off_to_human', the same pattern documented on July 14 and July 16. The Freshdesk-checked 93% deflection rate is the more reliable resolution signal for this day."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Tirtha Kumar (Netcore)",
+      "email": "tirtha.kumar@netcorecloud.com",
+      "query": "Help me set up a Web Personalization campaign with at least 2 audiences (e.g., location-based: Mumbai vs. Delhi), each showing different content.",
+      "why": "A concrete, structured build request -- multi-audience, location-based personalization logic -- rather than basic navigation help, on the smartechai panel."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 2,
+        "external": 7
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 2,
+        "external": 0
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 1,
+        "external": 0
+      }
+    ],
+    "topAskers": [],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "amey.vaidya@netcorecloud.com",
+            "q": "what is bigcommerce ?",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "vikas_singh@indiainformatics.net",
+            "q": "shopify change his login sign up url to domain.com/account to shopify.com/account how it integrate",
+            "panel": "hrxfragrancescee"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 2,
+        "external": 4,
+        "internalQ": [
+          {
+            "email": "umar.ahmed@netcorecloud.com",
+            "q": "Do we allow attribute based personalisation in AMP editor",
+            "panel": "NA"
+          },
+          {
+            "email": "shipra.choudhary@netcorecloud.com",
+            "q": "How to customize an email HTML template with attribute",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "sumit.kakade@iresearchservices.com",
+            "q": "I need IP address which opend email.",
+            "panel": "iresearchservices"
+          },
+          {
+            "email": "diana@executiveprogramme.com",
+            "q": "HI..I am not able to create new campaign , its not working",
+            "panel": "iimmdpcee"
+          },
+          {
+            "email": "prasad.aher@quant.in",
+            "q": "how to whitelist email in netcore cloud panel",
+            "panel": "quantsmt"
+          },
+          {
+            "email": "marketing@pragatisoftware.com",
+            "q": "my required for link tracking is showing error please suggest me how can i be resolved",
+            "panel": "pragatismart"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 2,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "tirtha.kumar@netcorecloud.com",
+            "q": "help me Set up a Web Personalization campaign with at least 2 audiences (e.g., location-based: Mumbai vs. Delhi), each showing different content.",
+            "panel": "smartechai"
+          },
+          {
+            "email": "agin.sankar@netcorecloud.com",
+            "q": "what is trends feature used for",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "adora@gyg.com.sg",
+            "q": "My dashboard doesn't show antyhing",
+            "panel": "cata_gyg_cee"
+          },
+          {
+            "email": "sabrina@datastory.nz",
+            "q": "Nothing in the portal is loading, I click button and nothing happens",
+            "panel": "theluxenomadce"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 2,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "vani.ganasutrisna@netcorecloud.com",
+            "q": "[Image attached, no text question]",
+            "panel": "smartechai"
+          },
+          {
+            "email": "naveen.mechu@netcorecloud.com",
+            "q": "NEED PRODUCT RELEASE NEWSLETTER FOR JUNE MONTH",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": []
+      }
+    ]
+  },
+  "2026-07-25": {
+    "date": "2026-07-25",
+    "totalConversations": 5,
+    "resolutionRate": 100,
+    "internalTotal": 0,
+    "externalTotal": 5,
+    "docsTotal": 4,
+    "panelTotal": 1,
+    "queryType": {
+      "technical": 0,
+      "generic": 5
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-07-25 00:00 IST to 2026-07-27 23:59 IST; window still open as of this run on 2026-07-27)",
+      "totalConversations": 5,
+      "sameUserEscalations": [],
+      "deflectedCount": 5,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. All 5 unique requester emails checked via Tier 1 search, zero ticket matches. A 'shorten link' keyword search for the one real product question (prashant.dhole@bajajgeneral.com) found no matches inside the window either. Window is only partially elapsed (D+2 = July 27 is still in progress as of this run) and the same-day indexing lag documented on other days means a same-user escalation landing later today wouldn't yet be captured."
+    },
+    "headline": "5 conversations on July 25 (Saturday), but 4 of 5 were off-topic messages unrelated to the Netcore product -- not real support asks -- and the bot self-reported 100% resolved for all of them, which is misleading given the noise; only prashant.dhole@bajajgeneral.com's link-shortening question was a genuine query.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "Effective real-question volume was 1 of 5, not 5",
+        "desc": "4 of 5 conversations (hildanyanto2004@gmail.com, dp19980214@gmail.com, rohanmane201@gmail.com, alokshukla2690@gmail.com) were off-topic or unrelated to the Netcore CE product -- not genuine support questions -- yet the bot marked all of them 'resolved'. Treat today's 100% resolution rate as not meaningful; it reflects auto-closure of non-product messages, not real deflection."
+      },
+      {
+        "owner": "product",
+        "title": "Consider a lightweight off-topic detector",
+        "desc": "Messages unrelated to the Netcore product are landing in the docbot and getting silently marked resolved, which inflates the resolution metric and adds noise to the daily digest. A simple out-of-scope classifier (even just flagging, not blocking) would make the resolution rate trustworthy again."
+      },
+      {
+        "owner": "content",
+        "title": "The one real question of the day used unusual phrasing",
+        "desc": "prashant.dhole@bajajgeneral.com (bajajanewsmt panel) asked how to 'shorten the log URL' -- likely referring to link/click tracking. Worth confirming the feature's on-panel naming matches what customers are searching for, since 'log URL' isn't standard terminology."
+      },
+      {
+        "owner": "calibration",
+        "title": "n=5, Saturday -- smallest genuine sample in a while",
+        "desc": "With only 1 real product question in the whole day, don't read anything into today's theme or area distribution."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Prashant Dhole",
+      "email": "prashant.dhole@bajajgeneral.com",
+      "query": "hi want to know how to shorten the log URL.",
+      "why": "The only genuine product question of the day (bajajanewsmt panel) -- everything else was off-topic noise."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 4
+      }
+    ],
+    "topAskers": [],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "prashant.dhole@bajajgeneral.com",
+            "q": "hi want to know how to shorten the log URL.",
+            "panel": "bajajanewsmt"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 4,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "hildanyanto2004@gmail.com",
+            "q": "[off-topic message unrelated to Netcore product]",
+            "panel": "NA"
+          },
+          {
+            "email": "dp19980214@gmail.com",
+            "q": "My product return (off-topic, unrelated to Netcore product)",
+            "panel": "NA"
+          },
+          {
+            "email": "rohanmane201@gmail.com",
+            "q": "Hi",
+            "panel": "NA"
+          },
+          {
+            "email": "alokshukla2690@gmail.com",
+            "q": "Can u please extend this time I did apply this voucher (off-topic, unrelated to Netcore product)",
+            "panel": "NA"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-07-26": {
+    "date": "2026-07-26",
+    "totalConversations": 5,
+    "resolutionRate": 100,
+    "internalTotal": 1,
+    "externalTotal": 4,
+    "docsTotal": 3,
+    "panelTotal": 2,
+    "queryType": {
+      "technical": 0,
+      "generic": 5
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-07-26 00:00 IST to 2026-07-28 23:59 IST; window has barely started as of this run on 2026-07-27)",
+      "totalConversations": 5,
+      "sameUserEscalations": [],
+      "deflectedCount": 5,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. All 5 unique requester emails checked via Tier 1 search, zero matches; 'content agent' and 'custom fonts' keyword searches for Tier 2 also returned no in-window matches. This window has barely elapsed (yesterday) -- treat the 100% figure as a floor, not a confirmed result; a same-user escalation over the next 1-2 days wouldn't yet be reflected here."
+    },
+    "headline": "5 conversations on July 26 (Sunday), 100% bot self-reported resolved -- Lokesh Sharma (Netcore) asked what the new 'Content Agent' feature is, and 2 of 5 conversations were bare greetings with no follow-up.",
+    "actionableInsights": [
+      {
+        "owner": "content",
+        "title": "Internal staffer asked a basic feature-awareness question",
+        "desc": "lokesh.sharma@netcorecloud.com asked the docbot 'what is content agen[t]' -- if Content Agent is a newer AI feature, this suggests internal enablement/doc coverage may be thin even for Netcore's own team."
+      },
+      {
+        "owner": "content",
+        "title": "Email campaign font customization asked by a customer",
+        "desc": "mitch@communionme.com (communionme_ce panel) asked how to add custom fonts to email campaigns -- a common design ask; confirm the email editor's font-customization doc is easy to find (a Freshdesk keyword check found no related ticket, so this looks self-serve today, but it's a recurring type of design question worth a clear how-to)."
+      },
+      {
+        "owner": "design",
+        "title": "Campaign save-location is unclear to at least one customer",
+        "desc": "akhil.khanvilkar@mnclgroup.com (mnclgroupcee panel) asked 'where does my campaign gets saved?' -- suggests a findability gap for drafts/saved campaigns in the editor UI."
+      },
+      {
+        "owner": "calibration",
+        "title": "n=5, Sunday -- 2 of 5 were bare greetings (40% noise)",
+        "desc": "sumirajpurohit6@gmail.com and karmyogigram12@emil.com both opened with a bare greeting and never followed up. Effective real-question volume was 3 of 5 today; treat percentages as directional only."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Lokesh Sharma (Netcore)",
+      "email": "lokesh.sharma@netcorecloud.com",
+      "query": "what is content agen[t]",
+      "why": "Points at a newer AI-driven feature rather than a basic navigation question -- worth tracking as Content Agent awareness grows across both internal and external users."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 2
+      }
+    ],
+    "topAskers": [],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Email",
+        "internal": 1,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "lokesh.sharma@netcorecloud.com",
+            "q": "what is content agen",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "akhil.khanvilkar@mnclgroup.com",
+            "q": "where does my campaign gets saved?",
+            "panel": "mnclgroupcee"
+          },
+          {
+            "email": "mitch@communionme.com",
+            "q": "How can I add custom fonts to my email campaigns?",
+            "panel": "communionme_ce"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "sumirajpurohit6@gmail.com",
+            "q": "hi",
+            "panel": "NA"
+          },
+          {
+            "email": "karmyogigram12@emil.com",
+            "q": "Hlo",
+            "panel": "NA"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-07-27": {
+    "date": "2026-07-27",
+    "totalConversations": 10,
+    "resolutionRate": 100,
+    "internalTotal": 5,
+    "externalTotal": 5,
+    "docsTotal": 3,
+    "panelTotal": 7,
+    "queryType": {
+      "technical": 2,
+      "generic": 8
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (July 27 00:00 IST to July 29 23:59 IST); window only partially elapsed as of this run (D+2 = July 29 hasn't happened yet)",
+      "totalConversations": 10,
+      "sameUserEscalations": [],
+      "deflectedCount": 10,
+      "deflectionRate": 100,
+      "patternRisk": [
+        {
+          "area": "Journey Builder",
+          "docbotCount": 4,
+          "ticketCount": 1,
+          "exampleTicketSubjects": [
+            "Push notification not working in Journey"
+          ],
+          "note": "Georgia Hassolanidis (faithfultonature_cee) filed ticket #5220936 the same day (Mon 27 Jul, 7:43 PM IST) reporting an app-push template not appearing in a journey test -- same underlying theme as Jackson Abraham's docbot query about why the Test_Push_Notification_2 journey isn't working, different account."
+        },
+        {
+          "area": "Email",
+          "docbotCount": 1,
+          "ticketCount": 2,
+          "exampleTicketSubjects": [
+            "Urgent: Revenue Dashboard Showing incorrect value.",
+            "Urgent: Revenue Dashboard Showing incorrect value. (Dev Ops escalation, child ticket)"
+          ],
+          "note": "Sachneet Dhawan (twoxlhome_ce) filed a parent+child ticket pair the same day (Mon 27 Jul, 11:53 AM IST) reporting the revenue dashboard showing 0 instead of an expected total -- same underlying theme as Anusha Subburaj's docbot question about campaigns not reflecting revenue details, different account."
+        }
+      ],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. Checked all 9 unique requester emails via Tier 1 global search -- zero ticket matches for any. Tier 2 keyword searches (journey, webhook, contact api, revenue) surfaced two genuine cross-account pattern matches (Journey Builder push-notification issue, Email revenue-dashboard issue) but no matches for the webhook or contact-api conceptual questions -- those keyword searches returned only unrelated troubleshooting/config tickets, not conceptual 'why do we need X' or 'is X possible' asks, so excluded as false positives. Window only partially elapsed (D+2 = July 29 hasn't happened yet)."
+    },
+    "headline": "10 conversations on July 27, a rare 100% bot self-reported resolution day and 100% Freshdesk-deflected (zero same-user escalations) -- but two pattern-risk signals cut against the clean numbers: a different account filed a ticket the same day for the identical 'journey push notification not working' issue Jackson Abraham asked about, and another hit the same 'revenue dashboard' problem Anusha Subburaj raised, while Nurhanis Mohd Shukri's message was just 'I want to raise ticket for my issue' -- marked resolved with no issue ever actually captured.",
+    "actionableInsights": [
+      {
+        "owner": "product",
+        "title": "\"I want to raise ticket for my issue\" marked resolved -- with no issue ever captured",
+        "desc": "hanis.shukri@tm.com.my (unificee panel, on the unified campaign editor) opened with only 'i want to raise ticket for my issue' and the bot closed it as resolved. No actual issue was ever diagnosed or escalated. Worth checking whether the bot has a hard rule to route explicit ticket-raise requests straight to a human/Freshdesk instead of self-closing -- this is exactly the kind of case that inflates the resolution rate without reflecting real resolution."
+      },
+      {
+        "owner": "content",
+        "title": "Jackson's stalled journey mirrors a same-day ticket from a different account",
+        "desc": "jackson.abraham@kangaroocars.com (sureport_cee) asked why 'Test_Push_Notification_2' journey isn't working; the same day, Georgia Hassolanidis (faithfultonature_cee) filed Freshdesk ticket #5220936 because an app-push template wasn't showing up in a journey test. Two different accounts hitting push-notification-in-journey friction on the same day is worth a targeted troubleshooting doc (template visibility, journey test mode limitations)."
+      },
+      {
+        "owner": "content",
+        "title": "Charvi ran two Journey/CPaaS mechanics questions back to back",
+        "desc": "charvi.agarwal@netcorecloud.com (smartechai panel) asked 'why do we need a webhook' then, minutes later, how Path Optimiser differs from Preferred Channel and when to use each. Different topics (friction=false), but both are foundational mechanics questions -- a combined internal-facing 'Journey Builder routing concepts' cheat sheet (path optimiser, preferred channel, webhooks) would help staff answer these live instead of relaying through the bot."
+      },
+      {
+        "owner": "calibration",
+        "title": "n=10, 100% self-reported resolved -- unusually clean, worth watching",
+        "desc": "Every one of the 10 conversations shows botConversationState 'resolved', a sharp contrast to the handed_off_to_human pattern seen on multiple prior days (e.g. July 14-17). Freshdesk deflection is also 100% at the same-user level, but the two pattern-risk hits (Journey push notification, Email revenue dashboard) suggest the underlying topics are still generating real tickets elsewhere -- read this day's 100% as directional, not proof the bot is closing every real issue."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Meenakshi Kaul (Netcore)",
+      "email": "meenakshi.kaul@netcorecloud.com",
+      "query": "is prid mandatory for product picker",
+      "why": "A precise, parameter-level integration question (whether the PRID field is a required input for the product picker's dynamic content feed) rather than basic navigation help -- shows real feed/config depth."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 2,
+        "external": 2
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 3,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 3
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "charvi.agarwal@netcorecloud.com",
+        "count": 2,
+        "friction": false,
+        "panel": "smartechai",
+        "queries": [
+          {
+            "theme": "What does X mean/how it works",
+            "text": "why do we need a webhook"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "how is path optimiser diff from preferrd channel and when should i use the respective one"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "khushi.chitkara@netcorecloud.com",
+            "q": "does contact api helps in adding data to a specific list",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "anusha.subburaj@mydesignation.com",
+            "q": "Why our campaigns are not reflecting the revenue details",
+            "panel": "mydesignationcee"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "charvi.agarwal@netcorecloud.com",
+            "q": "why do we need a webhook",
+            "panel": "smartechai"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 3,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "meenakshi.kaul@netcorecloud.com",
+            "q": "is prid mandatory for product picker",
+            "panel": "NA"
+          },
+          {
+            "email": "charvi.agarwal@netcorecloud.com",
+            "q": "how is path optimiser diff from preferrd channel and when should i use the respective one",
+            "panel": "smartechai"
+          },
+          {
+            "email": "neeraj.pallathu@netcorecloud.com",
+            "q": "can i personal web push notification in journey like cart abadonement",
+            "panel": "piratesshop_ce"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "jackson.abraham@kangaroocars.com",
+            "q": "why is Test_Push_Notification_2 journey not working",
+            "panel": "sureport_cee"
+          }
+        ]
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 3,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "vp821653@gmail.com",
+            "q": "Hi",
+            "panel": "NA"
+          },
+          {
+            "email": "hanis.shukri@tm.com.my",
+            "q": "i want to raise ticket for my issue",
+            "panel": "unificee"
+          },
+          {
+            "email": "digital.marketing@riya.travel",
+            "q": "hi",
+            "panel": "riyatravelsmart"
+          }
+        ]
+      }
+    ]
   }
 };
 const DATES = Object.keys(FULL_ARCHIVE).sort().reverse();
