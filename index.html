@@ -513,234 +513,6 @@ html[data-theme="dark"] .intro-banner .ib-lede{color:#c7cad1;}
 </div>
 <script>
 const ARCHIVE = {
-  "2026-07-16": {
-    "date": "2026-07-16",
-    "totalConversations": 15,
-    "resolutionRate": 0,
-    "internalTotal": 10,
-    "externalTotal": 5,
-    "docsTotal": 10,
-    "panelTotal": 5,
-    "queryType": {
-      "technical": 6,
-      "generic": 9
-    },
-    "ticketDeflection": null,
-    "headline": "15 conversations on July 16, all handed off to human (0% self-reported resolution) -- Netcore staffer Utpal Dutta and customer Anandan (Muthoot) both hit the bot with Facebook Custom Audience setup questions on the same muthootfincorpcee panel three minutes apart, and Darryl Chua (Cata) needed a 2FA reset after losing his authenticator app.",
-    "actionableInsights": [
-      {
-        "owner": "product",
-        "title": "FB Custom Audience setup asked twice, 3 minutes apart, same panel",
-        "desc": "utpal.dutta@netcorecloud.com (internal, muthootfincorpcee panel) asked for step-by-step Facebook Custom Audience setup at 07:13 IST, then anandan.p@muthoot.com (external, same panel) asked to integrate FB audience at 07:16 IST. Reads like staff live-assisting the customer and both separately hitting the bot -- if this setup is a common friction point, a dedicated step-by-step doc would collapse duplicate sessions into one."
-      },
-      {
-        "owner": "content",
-        "title": "2FA reset request -- no clear self-serve path surfaced",
-        "desc": "darryl.chua@trycata.com (cata_goldies_cee) needed to reset a user's 2FA after losing the authenticator app. Bot correctly handed this off to a human (security-sensitive action), but worth checking whether a documented self-serve 2FA-reset flow exists to cut down on these handoffs."
-      },
-      {
-        "owner": "content",
-        "title": "Anjali Inani (Netcore) ran two unrelated Docs Portal searches same day",
-        "desc": "anjali.inani@netcorecloud.com asked about A/B testing vs split campaigns (12:10 IST) and WhatsApp video size limits (09:08 IST) -- different topics, not a re-ask (friction=false), but suggests she was researching across two unrelated areas, possibly prepping for a customer call."
-      },
-      {
-        "owner": "calibration",
-        "title": "n=15, 0% self-reported resolution -- every conversation handed off to human",
-        "desc": "All 15 conversations show botConversationState 'handed_off_to_human', echoing the pattern seen on July 6-7 (rate-limit outage) and other days. Freshdesk session was also logged out this run, so there's no ticket-deflection cross-check to confirm whether these handoffs reflect a genuine bot/outage issue or the routine CSAT-workflow state flip documented since June 25. Re-authenticate the Freshdesk browser session before the next run."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Mili Kanoo",
-      "email": "mili.kanoo@netcorecloud.com",
-      "query": "How many maximum number of payloads can be added in one event?",
-      "why": "A specific event-schema/API constraint question rather than a how-to or navigation ask -- shows engineering-level integration depth about event payload limits."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 1,
-        "external": 2
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 3,
-        "external": 2
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 2,
-        "external": 0
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 3,
-        "external": 1
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 1,
-        "external": 0
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 0
-      }
-    ],
-    "topAskers": [
-      {
-        "email": "anjali.inani@netcorecloud.com",
-        "count": 2,
-        "friction": false,
-        "panel": "NA",
-        "queries": [
-          {
-            "theme": "Where's the doc/API for X",
-            "text": "what is whatsapp video size"
-          },
-          {
-            "theme": "What does X mean/how it works",
-            "text": "A/B Testing vs Split Campaign"
-          }
-        ]
-      }
-    ],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 2,
-        "external": 2,
-        "internalQ": [
-          {
-            "email": "utpal.dutta@netcorecloud.com",
-            "q": "hey can you help me with the step by step facebook custom audiance setup",
-            "panel": "muthootfincorpcee"
-          },
-          {
-            "email": "mili.kanoo@netcorecloud.com",
-            "q": "How many maximum number of payloads can be added in one event?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "anandan.p@muthoot.com",
-            "q": "help me to integrate to fb audience",
-            "panel": "muthootfincorpcee"
-          },
-          {
-            "email": "aaronaudea@gmail.com",
-            "q": "email api",
-            "panel": "NA"
-          }
-        ]
-      },
-      {
-        "area": "Email",
-        "internal": 2,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "anjali.inani@netcorecloud.com",
-            "q": "A/B Testing vs Split Campaign",
-            "panel": "NA"
-          },
-          {
-            "email": "shipra.choudhary@netcorecloud.com",
-            "q": "do you have any video guide on how to create and email campaigns",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 3,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "hiral.jhaveri@netcorecloud.com",
-            "q": "how to get detailed email cpaas report from the cpaas panel",
-            "panel": "NA"
-          },
-          {
-            "email": "anjali.inani@netcorecloud.com",
-            "q": "what is whatsapp video size",
-            "panel": "NA"
-          },
-          {
-            "email": "jaishnitha.vs@netcorecloud.com",
-            "q": "can we set up a timeframe for an url in whatsapp",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "test@gmail.com",
-            "q": "tell me the dimesnion of image for whatsapp catalogue template",
-            "panel": "NA"
-          }
-        ]
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 2,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "gunjan.mahajan@netcorecloud.com",
-            "q": "custom orders",
-            "panel": "NA"
-          },
-          {
-            "email": "lokesh.sharma@netcorecloud.com",
-            "q": "what is the difference betwenn product picker and product collection.",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "pharameswara.pertiwi@dominos.co.id",
-            "q": "whats the meaning of predictive and propensity model?",
-            "panel": "dominoscee"
-          }
-        ]
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 1,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "vani.ganasutrisna@netcorecloud.com",
-            "q": "apa bedanya Boxx dan Unbxd? (what's the difference between Boxx and Unbxd?)",
-            "panel": "smartechai"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "darryl.chua@trycata.com",
-            "q": "how do I reset a 2fa for one of my users. the auth app is lost.",
-            "panel": "cata_goldies_cee"
-          }
-        ]
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      }
-    ]
-  },
   "2026-07-17": {
     "date": "2026-07-17",
     "totalConversations": 28,
@@ -4061,6 +3833,291 @@ const ARCHIVE = {
             "email": "am_abdul@camsonline.com",
             "q": "Hello",
             "panel": "cams_sbi"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-07-30": {
+    "date": "2026-07-30",
+    "totalConversations": 21,
+    "resolutionRate": 57,
+    "internalTotal": 8,
+    "externalTotal": 13,
+    "docsTotal": 9,
+    "panelTotal": 12,
+    "queryType": {
+      "technical": 6,
+      "generic": 15
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-07-30 00:00 IST to 2026-08-01 23:59 IST); window still open as of this run (2026-07-31)",
+      "totalConversations": 21,
+      "sameUserEscalations": [],
+      "deflectedCount": 21,
+      "deflectionRate": 100,
+      "patternRisk": [
+        {
+          "area": "API/Integration",
+          "docbotCount": 1,
+          "ticketCount": 1,
+          "exampleTicketSubjects": [
+            "webhook API not getting called (#5223430, created 31 Jul 2026)"
+          ],
+          "note": "Different requester (Cheerla Ranjith, Bennett Coleman & Co) than our Featurebase asker (nghiant3110@gmail.com, who asked whether an API/webhook exists to pull campaign metrics) -- a different specific issue (webhook not firing vs. wanting metrics API access), but same area, filed inside the matching window."
+        },
+        {
+          "area": "CPaaS (WhatsApp/RCS/SMS)",
+          "docbotCount": 3,
+          "ticketCount": 1,
+          "exampleTicketSubjects": [
+            "Enable WhatsApp flows (#5223085, created 30 Jul 2026)"
+          ],
+          "note": "Different requester (Manisha Kundnani) than our asker (vakil.parsram@ubagroup.com, who asked how to enable WhatsApp) but same underlying theme (WhatsApp enablement), filed the same day."
+        }
+      ],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. Checked all 12 unique external requester emails individually via Tier 1 global search -- zero ticket matches for any. Tier 2 keyword checks covered 'S3 export', 'data retention', 'mail score', 'URL shortener', and 'journey trigger' in addition to the two hits above -- no other in-window matches surfaced in the top relevance-sorted results (not exhaustively date-sorted, so a subtler pattern can't be fully ruled out)."
+    },
+    "headline": "21 conversations on July 30, 57% bot self-reported resolved and 100% Freshdesk-deflected (zero same-user escalations across all 12 unique external askers) -- Ha Nguyen (gggcomsmt) ran two related journey-trigger conversations asking genuinely advanced questions about event-param binding semantics, while 5 of 21 conversations were bare greetings with no follow-up.",
+    "actionableInsights": [
+      {
+        "owner": "product",
+        "title": "Ha Nguyen's journey trigger question exposes a real product-behavior ambiguity",
+        "desc": "hantt.mgc@gmail.com (gggcomsmt) asked whether the 'voucher_name' param in a delayed push notification reflects the nc_promotion_pickup event that originally triggered the journey node, or the customer's latest nc_promotion_pickup event overall -- then followed up 5 hours later asking the bot to check the flow on their screen. This is a legitimate, non-obvious journey execution semantics question that a bot answer alone likely can't fully resolve without inspecting the actual journey config -- worth a proactive check-in from CSM/Support given the follow-up signals the first answer didn't fully land."
+      },
+      {
+        "owner": "content",
+        "title": "\"EXPLICIT SMS TEMPLATE\" read as a bare keyword search, not a real question",
+        "desc": "ishika.a@netcorecloud.com (internal, docs portal, on the sms-template doc page) typed only 'EXPLICIT SMS TEMPLATE' with no question framing -- likely hunting for compliance/content-policy guidance on explicit-content SMS templates. If this doc page's on-page search doesn't surface the compliance section directly, that's a quick content fix."
+      },
+      {
+        "owner": "calibration",
+        "title": "n=21, 57% resolution rate, 5 of 21 (24%) were bare greetings with no follow-up",
+        "desc": "Standard weekday volume and the usual greeting-only tail (lavkush, ssunnyssing11 ['Hindi'], rahul18, amitkumar9675, albert). 100% Freshdesk deflection today, but two area-level pattern-risk tickets did appear in the +2-day window (API/Integration webhook issue, CPaaS WhatsApp-enable request) from different requesters than our askers -- soft signal, not a per-person failure."
+      },
+      {
+        "owner": "product",
+        "title": "Two internal staff independently hit Amazon S3 import/export topics same day",
+        "desc": "rubal.adwani@netcorecloud.com asked what data can transfer from AWS to Netcore, lokesh.sharma@netcorecloud.com asked how to export data from S3, and avadhoot.revankar@netcorecloud.com separately asked about event retention beyond 12 months -- three internal staff independently researching data-residency/retention topics on docs portal the same day. Possibly prepping for the same client conversation; worth a quick internal Slack check."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Ha Nguyen",
+      "email": "hantt.mgc@gmail.com",
+      "query": "Asked whether the 'voucher_name' parameter used in a delayed post-trigger push notification reflects the value of the nc_promotion_pickup event that originally triggered the journey node, or the customer's most recent nc_promotion_pickup event overall (event-snapshot-at-trigger vs. live re-evaluation).",
+      "why": "A precise, non-obvious question about journey execution semantics -- how param binding actually works under the hood -- rather than a basic how-to. Shows real engineering-level engagement with the platform, not just navigation help."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 1,
+        "external": 4
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 5,
+        "external": 1
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 1,
+        "external": 2
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 5
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "hantt.mgc@gmail.com",
+        "count": 2,
+        "friction": true,
+        "panel": "gggcomsmt",
+        "queries": [
+          {
+            "theme": "What does X mean/how it works",
+            "text": "confirm lai: trigger vao luong la event nc_promotion_pickup... voucher_name value question (does the delayed notif use the triggering event's value or the latest event's value?)"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "Ban co the kiem tra luong dang hien thi tren man hinh cua toi khong (asking the bot to check the flow currently displayed on their screen)"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "nghiant3110@gmail.com",
+            "q": "Hi there, Is Netcore have an API/Webhook that help me pull the metrics from campaigns? I need it for deeper analysis",
+            "panel": "gggcomsmt"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 3,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "sakshi.yadav@netcorecloud.com",
+            "q": "What is the mail score logic in list",
+            "panel": "NA"
+          },
+          {
+            "email": "shipra.choudhary@netcorecloud.com",
+            "q": "can I upload txt file as a list?",
+            "panel": "NA"
+          },
+          {
+            "email": "sera.fernandes@netcorecloud.com",
+            "q": "what is slice and send in email campaigns",
+            "panel": "marcom"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "amrit.neupane@sc.com",
+            "q": "Can we download the list of emails that has been uploaded but not published?",
+            "panel": "scnepal"
+          },
+          {
+            "email": "olanrewaju.peregrino@optimusbank.com",
+            "q": "how can i see the history of all emails sent and its content",
+            "panel": "optimusbankcee"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 2,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "ishika.a@netcorecloud.com",
+            "q": "EXPLICIT SMS TEMPLATE",
+            "panel": "NA"
+          },
+          {
+            "email": "ninad.borkar@netcorecloud.com",
+            "q": "what is WABA id",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "vakil.parsram@ubagroup.com",
+            "q": "Hi, how do i enable whatsapp",
+            "panel": "ubaghana"
+          }
+        ]
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "abhishek.arora@clix.capital",
+            "q": "Need help on URL shortner",
+            "panel": "clixcapitaloffersmt"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 3,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "hantt.mgc@gmail.com",
+            "q": "confirm lai: trigger vao luong la event nc_promotion_pickup... voucher_name value question",
+            "panel": "gggcomsmt"
+          },
+          {
+            "email": "prateek.dabas.ext@heromotocorp.com",
+            "q": "Can you help me with the analytics",
+            "panel": "heromotocorp_cee"
+          },
+          {
+            "email": "hantt.mgc@gmail.com",
+            "q": "Ban co the kiem tra luong dang hien thi tren man hinh cua toi khong (check the flow on my screen)",
+            "panel": "gggcomsmt"
+          }
+        ]
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 3,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "avadhoot.revankar@netcorecloud.com",
+            "q": "How many events do you store beyond 12 month retention period? or for lifetime?",
+            "panel": "NA"
+          },
+          {
+            "email": "rubal.adwani@netcorecloud.com",
+            "q": "what kind of data can be transferred from AWS to netcore",
+            "panel": "NA"
+          },
+          {
+            "email": "lokesh.sharma@netcorecloud.com",
+            "q": "how to export the data from s3",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 5,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "lavkush@systematixgroup.in",
+            "q": "hi",
+            "panel": "systematixsharescee"
+          },
+          {
+            "email": "ssunnyssing11@gmail.com",
+            "q": "Hindi",
+            "panel": "NA"
+          },
+          {
+            "email": "rahul18@pnbhousing.com",
+            "q": "hi",
+            "panel": "pnbhflcom"
+          },
+          {
+            "email": "amitkumar9675@gmail.com",
+            "q": "Hiii",
+            "panel": "NA"
+          },
+          {
+            "email": "albert@optikseis.com",
+            "q": "hi",
+            "panel": "optikseis_cee"
           }
         ]
       }
@@ -14933,6 +14990,291 @@ const FULL_ARCHIVE = {
             "email": "am_abdul@camsonline.com",
             "q": "Hello",
             "panel": "cams_sbi"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-07-30": {
+    "date": "2026-07-30",
+    "totalConversations": 21,
+    "resolutionRate": 57,
+    "internalTotal": 8,
+    "externalTotal": 13,
+    "docsTotal": 9,
+    "panelTotal": 12,
+    "queryType": {
+      "technical": 6,
+      "generic": 15
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-07-30 00:00 IST to 2026-08-01 23:59 IST); window still open as of this run (2026-07-31)",
+      "totalConversations": 21,
+      "sameUserEscalations": [],
+      "deflectedCount": 21,
+      "deflectionRate": 100,
+      "patternRisk": [
+        {
+          "area": "API/Integration",
+          "docbotCount": 1,
+          "ticketCount": 1,
+          "exampleTicketSubjects": [
+            "webhook API not getting called (#5223430, created 31 Jul 2026)"
+          ],
+          "note": "Different requester (Cheerla Ranjith, Bennett Coleman & Co) than our Featurebase asker (nghiant3110@gmail.com, who asked whether an API/webhook exists to pull campaign metrics) -- a different specific issue (webhook not firing vs. wanting metrics API access), but same area, filed inside the matching window."
+        },
+        {
+          "area": "CPaaS (WhatsApp/RCS/SMS)",
+          "docbotCount": 3,
+          "ticketCount": 1,
+          "exampleTicketSubjects": [
+            "Enable WhatsApp flows (#5223085, created 30 Jul 2026)"
+          ],
+          "note": "Different requester (Manisha Kundnani) than our asker (vakil.parsram@ubagroup.com, who asked how to enable WhatsApp) but same underlying theme (WhatsApp enablement), filed the same day."
+        }
+      ],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. Checked all 12 unique external requester emails individually via Tier 1 global search -- zero ticket matches for any. Tier 2 keyword checks covered 'S3 export', 'data retention', 'mail score', 'URL shortener', and 'journey trigger' in addition to the two hits above -- no other in-window matches surfaced in the top relevance-sorted results (not exhaustively date-sorted, so a subtler pattern can't be fully ruled out)."
+    },
+    "headline": "21 conversations on July 30, 57% bot self-reported resolved and 100% Freshdesk-deflected (zero same-user escalations across all 12 unique external askers) -- Ha Nguyen (gggcomsmt) ran two related journey-trigger conversations asking genuinely advanced questions about event-param binding semantics, while 5 of 21 conversations were bare greetings with no follow-up.",
+    "actionableInsights": [
+      {
+        "owner": "product",
+        "title": "Ha Nguyen's journey trigger question exposes a real product-behavior ambiguity",
+        "desc": "hantt.mgc@gmail.com (gggcomsmt) asked whether the 'voucher_name' param in a delayed push notification reflects the nc_promotion_pickup event that originally triggered the journey node, or the customer's latest nc_promotion_pickup event overall -- then followed up 5 hours later asking the bot to check the flow on their screen. This is a legitimate, non-obvious journey execution semantics question that a bot answer alone likely can't fully resolve without inspecting the actual journey config -- worth a proactive check-in from CSM/Support given the follow-up signals the first answer didn't fully land."
+      },
+      {
+        "owner": "content",
+        "title": "\"EXPLICIT SMS TEMPLATE\" read as a bare keyword search, not a real question",
+        "desc": "ishika.a@netcorecloud.com (internal, docs portal, on the sms-template doc page) typed only 'EXPLICIT SMS TEMPLATE' with no question framing -- likely hunting for compliance/content-policy guidance on explicit-content SMS templates. If this doc page's on-page search doesn't surface the compliance section directly, that's a quick content fix."
+      },
+      {
+        "owner": "calibration",
+        "title": "n=21, 57% resolution rate, 5 of 21 (24%) were bare greetings with no follow-up",
+        "desc": "Standard weekday volume and the usual greeting-only tail (lavkush, ssunnyssing11 ['Hindi'], rahul18, amitkumar9675, albert). 100% Freshdesk deflection today, but two area-level pattern-risk tickets did appear in the +2-day window (API/Integration webhook issue, CPaaS WhatsApp-enable request) from different requesters than our askers -- soft signal, not a per-person failure."
+      },
+      {
+        "owner": "product",
+        "title": "Two internal staff independently hit Amazon S3 import/export topics same day",
+        "desc": "rubal.adwani@netcorecloud.com asked what data can transfer from AWS to Netcore, lokesh.sharma@netcorecloud.com asked how to export data from S3, and avadhoot.revankar@netcorecloud.com separately asked about event retention beyond 12 months -- three internal staff independently researching data-residency/retention topics on docs portal the same day. Possibly prepping for the same client conversation; worth a quick internal Slack check."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Ha Nguyen",
+      "email": "hantt.mgc@gmail.com",
+      "query": "Asked whether the 'voucher_name' parameter used in a delayed post-trigger push notification reflects the value of the nc_promotion_pickup event that originally triggered the journey node, or the customer's most recent nc_promotion_pickup event overall (event-snapshot-at-trigger vs. live re-evaluation).",
+      "why": "A precise, non-obvious question about journey execution semantics -- how param binding actually works under the hood -- rather than a basic how-to. Shows real engineering-level engagement with the platform, not just navigation help."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 1,
+        "external": 4
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 5,
+        "external": 1
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 1,
+        "external": 2
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 5
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "hantt.mgc@gmail.com",
+        "count": 2,
+        "friction": true,
+        "panel": "gggcomsmt",
+        "queries": [
+          {
+            "theme": "What does X mean/how it works",
+            "text": "confirm lai: trigger vao luong la event nc_promotion_pickup... voucher_name value question (does the delayed notif use the triggering event's value or the latest event's value?)"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "Ban co the kiem tra luong dang hien thi tren man hinh cua toi khong (asking the bot to check the flow currently displayed on their screen)"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "nghiant3110@gmail.com",
+            "q": "Hi there, Is Netcore have an API/Webhook that help me pull the metrics from campaigns? I need it for deeper analysis",
+            "panel": "gggcomsmt"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 3,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "sakshi.yadav@netcorecloud.com",
+            "q": "What is the mail score logic in list",
+            "panel": "NA"
+          },
+          {
+            "email": "shipra.choudhary@netcorecloud.com",
+            "q": "can I upload txt file as a list?",
+            "panel": "NA"
+          },
+          {
+            "email": "sera.fernandes@netcorecloud.com",
+            "q": "what is slice and send in email campaigns",
+            "panel": "marcom"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "amrit.neupane@sc.com",
+            "q": "Can we download the list of emails that has been uploaded but not published?",
+            "panel": "scnepal"
+          },
+          {
+            "email": "olanrewaju.peregrino@optimusbank.com",
+            "q": "how can i see the history of all emails sent and its content",
+            "panel": "optimusbankcee"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 2,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "ishika.a@netcorecloud.com",
+            "q": "EXPLICIT SMS TEMPLATE",
+            "panel": "NA"
+          },
+          {
+            "email": "ninad.borkar@netcorecloud.com",
+            "q": "what is WABA id",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "vakil.parsram@ubagroup.com",
+            "q": "Hi, how do i enable whatsapp",
+            "panel": "ubaghana"
+          }
+        ]
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "abhishek.arora@clix.capital",
+            "q": "Need help on URL shortner",
+            "panel": "clixcapitaloffersmt"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 3,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "hantt.mgc@gmail.com",
+            "q": "confirm lai: trigger vao luong la event nc_promotion_pickup... voucher_name value question",
+            "panel": "gggcomsmt"
+          },
+          {
+            "email": "prateek.dabas.ext@heromotocorp.com",
+            "q": "Can you help me with the analytics",
+            "panel": "heromotocorp_cee"
+          },
+          {
+            "email": "hantt.mgc@gmail.com",
+            "q": "Ban co the kiem tra luong dang hien thi tren man hinh cua toi khong (check the flow on my screen)",
+            "panel": "gggcomsmt"
+          }
+        ]
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 3,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "avadhoot.revankar@netcorecloud.com",
+            "q": "How many events do you store beyond 12 month retention period? or for lifetime?",
+            "panel": "NA"
+          },
+          {
+            "email": "rubal.adwani@netcorecloud.com",
+            "q": "what kind of data can be transferred from AWS to netcore",
+            "panel": "NA"
+          },
+          {
+            "email": "lokesh.sharma@netcorecloud.com",
+            "q": "how to export the data from s3",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 5,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "lavkush@systematixgroup.in",
+            "q": "hi",
+            "panel": "systematixsharescee"
+          },
+          {
+            "email": "ssunnyssing11@gmail.com",
+            "q": "Hindi",
+            "panel": "NA"
+          },
+          {
+            "email": "rahul18@pnbhousing.com",
+            "q": "hi",
+            "panel": "pnbhflcom"
+          },
+          {
+            "email": "amitkumar9675@gmail.com",
+            "q": "Hiii",
+            "panel": "NA"
+          },
+          {
+            "email": "albert@optikseis.com",
+            "q": "hi",
+            "panel": "optikseis_cee"
           }
         ]
       }
