@@ -513,494 +513,6 @@ html[data-theme="dark"] .intro-banner .ib-lede{color:#c7cad1;}
 </div>
 <script>
 const ARCHIVE = {
-  "2026-07-17": {
-    "date": "2026-07-17",
-    "totalConversations": 28,
-    "resolutionRate": 25,
-    "internalTotal": 15,
-    "externalTotal": 13,
-    "docsTotal": 15,
-    "panelTotal": 13,
-    "queryType": {
-      "technical": 7,
-      "generic": 21
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days (July 17 00:00 IST to July 19 23:59 IST)",
-      "totalConversations": 28,
-      "sameUserEscalations": [],
-      "deflectedCount": 28,
-      "deflectionRate": 100,
-      "patternRisk": [],
-      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit — treat as a directional signal. Checked all 11 unique external requester emails individually (mrmukeshtiwari3@gmail.com, hasto@frontiertech.co.id, marketing@pragatisoftware.com, gkaur@globepub.com, anmol.panesar@impactguru.com, lourdumary@magzter.com, marketing@saksham.co.in, ishan.s@watermarkexperience.com, abhishek.arora@clix.capital, sushant.patil@asianpaints.com, gauransh.kumar@thesouledstore.com) — zero ticket matches. Also spot-checked company searches for the two 'campaign suspended' conversations (watermarkexperience, apcecarpenterce) and pragatismart (the repeat 3x visitor) — all returned only automated Opsgenie alert tickets 4-5 years old, none in-window. A broad 'campaign suspended' keyword search returned 38,946 results (too noisy to fully audit), so a subtler pattern outside the specific companies checked can't be fully ruled out."
-    },
-    "headline": "28 conversations on July 17 (Friday), the busiest weekday since the rate-limit outage — marketing@pragatisoftware.com (pragatismart) opened 3 separate threads in under an hour and Netcore's own Akash Sharma asked 4 different Trends/Analytics questions across the day. All 28 came back 100% Freshdesk-deflected, but the 25% self-reported resolution rate is likely a botConversationState timing artifact: every 'resolved' state clusters after 11:32 IST while every earlier conversation that day shows handed_off_to_human.",
-    "actionableInsights": [
-      {
-        "owner": "calibration",
-        "title": "25% resolution rate looks like a mid-day state-flip artifact, not real quality",
-        "desc": "21 of 28 conversations show handed_off_to_human, but all 7 'resolved' states cluster from 11:32 IST onward (IDs 1845, 1851-1856) while every conversation before that timestamp shows handed_off_to_human regardless of topic complexity — same batch-timing pattern flagged repeatedly since June 25. Freshdesk deflection came back 100%, so there's no evidence these were genuine unresolved queries."
-      },
-      {
-        "owner": "content",
-        "title": "pragatismart (marketing@pragatisoftware.com) opened 3 threads in 90 minutes",
-        "desc": "DNS configuration error (10:19 IST), request for Netcore's contact email (10:33 IST), and 'where do I find the panel name' (11:46 IST) — three different basic navigation/setup questions from what looks like a newer or newly onboarding account. A single getting-started checklist bundling domain/DNS setup, support contact info, and panel name location would likely collapse these into one self-serve read."
-      },
-      {
-        "owner": "product",
-        "title": "Akash Sharma (Netcore) ran 4 separate Trends/Analytics questions across the day",
-        "desc": "akash.sharma@netcorecloud.com asked about explaining Schedule Report Analysis to an AMC client (11:42), activating Trend analysis (12:31), what an anonymous user is (12:39), and sending a test campaign to himself (18:25) — reads like he was prepping for a client walkthrough. A single internal 'Trends & Analytics' cheat-sheet would save the repeat bot round-trips."
-      },
-      {
-        "owner": "content",
-        "title": "Attribute doc's 15-attribute limit flagged for verification",
-        "desc": "hardeep.singh@netcorecloud.com noted the Attributes doc caps usable attributes at 15 for segmentation + journeys — worth a quick check that this limit is still accurate and consistently stated across docs, since stale limits are a common source of repeat questions."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Sakshi Kothari (Netcore)",
-      "email": "sakshi.kothari@netcorecloud.com",
-      "query": "can i use html in the uce amp email?",
-      "why": "A specific, format-level technical question about whether raw HTML is permitted inside AMP email (a fairly advanced, less commonly used email format) rather than a basic how-to — shows real platform depth."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 2,
-        "external": 4
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 0,
-        "external": 3
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 8,
-        "external": 3
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 4,
-        "external": 1
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 1,
-        "external": 2
-      }
-    ],
-    "topAskers": [
-      {
-        "email": "marketing@pragatisoftware.com",
-        "count": 3,
-        "friction": false,
-        "panel": "pragatismart",
-        "queries": [
-          {
-            "theme": "How do I do X",
-            "text": "i am facing error of dns confrigruation"
-          },
-          {
-            "theme": "Where do I set up/find X",
-            "text": "can you please provide emailid of netcore"
-          },
-          {
-            "theme": "Where do I set up/find X",
-            "text": "from where can i find the panel name"
-          }
-        ]
-      },
-      {
-        "email": "akash.sharma@netcorecloud.com",
-        "count": 4,
-        "friction": false,
-        "panel": "NA",
-        "queries": [
-          {
-            "theme": "What does X mean/how it works",
-            "text": "I want to explain Schedule report Analysis to the AMC client"
-          },
-          {
-            "theme": "How do I do X",
-            "text": "how i can activate Trend analysis on the client platform"
-          },
-          {
-            "theme": "What does X mean/how it works",
-            "text": "What is anonymous user"
-          },
-          {
-            "theme": "Is X possible/supported",
-            "text": "Can i send and email campaign to myself i mean to just my email id to check how it is looking"
-          }
-        ]
-      },
-      {
-        "email": "anjali.inani@netcorecloud.com",
-        "count": 2,
-        "friction": false,
-        "panel": "NA",
-        "queries": [
-          {
-            "theme": "What does X mean/how it works",
-            "text": "Hosted video link size"
-          },
-          {
-            "theme": "Is X possible/supported",
-            "text": "Can we export campaigns data to sftp?"
-          }
-        ]
-      }
-    ],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 1,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "anjali.inani@netcorecloud.com",
-            "q": "Can we export campaigns data to sftp?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "marketing@pragatisoftware.com",
-            "q": "i am facing error of dns confrigruation",
-            "panel": "pragatismart"
-          }
-        ]
-      },
-      {
-        "area": "Email",
-        "internal": 4,
-        "external": 5,
-        "internalQ": [
-          {
-            "email": "rubal.adwani@netcorecloud.com",
-            "q": "what is the use of unified content editor?",
-            "panel": "NA"
-          },
-          {
-            "email": "anjali.inani@netcorecloud.com",
-            "q": "Hosted video link size",
-            "panel": "NA"
-          },
-          {
-            "email": "sakshi.kothari@netcorecloud.com",
-            "q": "can i use html in the uce amp email?",
-            "panel": "NA"
-          },
-          {
-            "email": "akash.sharma@netcorecloud.com",
-            "q": "Can i send and email campaign to myself i mean to just my email id to check how it is looking",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "mrmukeshtiwari3@gmail.com",
-            "q": "How to get an Excel report on particular audiences which I can delete from the sheet 'like Bounce' mail",
-            "panel": "ngauge_cee"
-          },
-          {
-            "email": "gkaur@globepub.com",
-            "q": "can we do mail merge in Netcore?",
-            "panel": "servicesintlsmart"
-          },
-          {
-            "email": "anmol.panesar@impactguru.com",
-            "q": "i want to know how many email opens i have for the month of july 2026 just note exclude bot opens",
-            "panel": "impactguru_cee"
-          },
-          {
-            "email": "lourdumary@magzter.com",
-            "q": "want to mailscore a list",
-            "panel": "magzter"
-          },
-          {
-            "email": "marketing@saksham.co.in",
-            "q": "While creating New List, there are two options - Default (Ungroup List) and Home. What is the difference between these two?",
-            "panel": "sakshamcee"
-          }
-        ]
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 1,
-        "external": 3,
-        "internalQ": [
-          {
-            "email": "mili.kanoo@netcorecloud.com",
-            "q": "How to diaable webhook retries?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "ishan.s@watermarkexperience.com",
-            "q": "Why my EOS Seminar 31st july is suspended Can you brief me",
-            "panel": "watermarkexperience"
-          },
-          {
-            "email": "sushant.patil@asianpaints.com",
-            "q": "ID - 174 - suspended why ?",
-            "panel": "apcecarpenterce"
-          },
-          {
-            "email": "gauransh.kumar@thesouledstore.com",
-            "q": "Where is send to bucket one option",
-            "panel": "thesouledstorecee"
-          }
-        ]
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 5,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "akash.sharma@netcorecloud.com",
-            "q": "I want to explain Schedule report Analysis to the AMC client",
-            "panel": "NA"
-          },
-          {
-            "email": "janhavi.kj@netcorecloud.com",
-            "q": "what can be the use cases for e-commerce that we can use in Trends",
-            "panel": "NA"
-          },
-          {
-            "email": "akash.sharma@netcorecloud.com",
-            "q": "how i can activate Trend analysis on the client platform",
-            "panel": "NA"
-          },
-          {
-            "email": "akash.sharma@netcorecloud.com",
-            "q": "What is anonymous user",
-            "panel": "NA"
-          },
-          {
-            "email": "amey.vaidya@netcorecloud.com",
-            "q": "Do we have global frequency capping for channels (at the panel level , i know we have in journey's) ?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 3,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "lokesh.sharma@netcorecloud.com",
-            "q": "on netcore sftp server data how may days data stores on ther server",
-            "panel": "NA"
-          },
-          {
-            "email": "siddhant.bendkar@netcorecloud.com",
-            "q": "what is UDT ?",
-            "panel": "NA"
-          },
-          {
-            "email": "hardeep.singh@netcorecloud.com",
-            "q": "The Attributes doc notes a max of 15 attributes usable for segmentation + journeys",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 1,
-        "external": 4,
-        "internalQ": [
-          {
-            "email": "yogesh.kulkarni@netcorecloud.com",
-            "q": "Hey",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "hasto@frontiertech.co.id",
-            "q": "(screenshot only, no text description)",
-            "panel": "permata_bank_ce"
-          },
-          {
-            "email": "marketing@pragatisoftware.com",
-            "q": "can you please provide emailid of netcore",
-            "panel": "pragatismart"
-          },
-          {
-            "email": "marketing@pragatisoftware.com",
-            "q": "from where can i find the panel name",
-            "panel": "pragatismart"
-          },
-          {
-            "email": "abhishek.arora@clix.capital",
-            "q": "Hi",
-            "panel": "clixcapitalservicest"
-          }
-        ]
-      }
-    ]
-  },
-  "2026-07-18": {
-    "date": "2026-07-18",
-    "totalConversations": 2,
-    "resolutionRate": 100,
-    "internalTotal": 0,
-    "externalTotal": 2,
-    "docsTotal": 1,
-    "panelTotal": 1,
-    "queryType": {
-      "technical": 1,
-      "generic": 1
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days (July 18 00:00 IST to July 20 23:59 IST); window only partially elapsed as of this run — D+2 (July 20) hasn't happened yet",
-      "totalConversations": 2,
-      "sameUserEscalations": [],
-      "deflectedCount": 2,
-      "deflectionRate": 100,
-      "patternRisk": [],
-      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit — doubly directional here since the window hasn't fully elapsed. Checked both unique external requester emails (akash.nigam@guardian.com, bharatsharmabs007@gmail.com) — zero ticket matches."
-    },
-    "headline": "Quietest day since July 5 — only 2 conversations on July 18 (Saturday), both self-reported resolved and both Freshdesk-clean so far, though the +2-day escalation window hasn't fully closed yet.",
-    "actionableInsights": [
-      {
-        "owner": "calibration",
-        "title": "n=2 — too small to read as a real signal",
-        "desc": "Only 2 conversations all day. No reliable resolution-rate or topic-distribution conclusion can be drawn from this sample; treat it as a normal quiet-Saturday data point, consistent with July 4, July 5, and the July 11-12 weekend."
-      },
-      {
-        "owner": "content",
-        "title": "Off-topic Hindi message — unclear if it's even a Netcore CE question",
-        "desc": "bharatsharmabs007@gmail.com sent a partial Hindi message about receiving something and an issue when opening it — reads more like an end-consumer complaint about a message they received (possibly WhatsApp/SMS-related) than a Netcore CE product question. Recurs the pattern seen with off-topic Hindi queries on June 28 and July 4 — a lightweight 'is this about Netcore CE?' clarifying prompt for ambiguous non-English messages would help route these correctly instead of consuming a bot session."
-      },
-      {
-        "owner": "content",
-        "title": "\"Pairing key\" question has no obvious self-serve doc anchor",
-        "desc": "akash.nigam@guardian.com (gujaratguardiancee) asked to find the 'pairing key' with no further context in the transcript. If this refers to a WhatsApp/RCS channel pairing credential, worth confirming there's a clearly named doc section for it, since a bare, undocumented-sounding term like this is easy to miss in search."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Akash Nigam (Gujarat Guardian)",
-      "email": "akash.nigam@guardian.com",
-      "query": "Hey i need to know the pairing key",
-      "why": "The more specific, actionable ask of a very quiet Saturday — a concrete credential/setup request rather than a vague or off-topic message."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 0,
-        "external": 1
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 1
-      }
-    ],
-    "topAskers": [],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 0,
-        "external": 1,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "akash.nigam@guardian.com",
-            "q": "Hey i need to know the pairing key",
-            "panel": "gujaratguardiancee"
-          }
-        ]
-      },
-      {
-        "area": "Email",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 1,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "bharatsharmabs007@gmail.com",
-            "q": "हेलो सर सर यह मैसेज आया है मैसेज जैसे ही ओपन करता हूं म (off-topic/unclear, possibly about a received message)",
-            "panel": "NA"
-          }
-        ]
-      }
-    ]
-  },
   "2026-07-19": {
     "date": "2026-07-19",
     "totalConversations": 2,
@@ -4120,6 +3632,396 @@ const ARCHIVE = {
             "panel": "optikseis_cee"
           }
         ]
+      }
+    ]
+  },
+  "2026-07-31": {
+    "date": "2026-07-31",
+    "totalConversations": 14,
+    "resolutionRate": 57,
+    "internalTotal": 7,
+    "externalTotal": 7,
+    "docsTotal": 8,
+    "panelTotal": 6,
+    "queryType": {
+      "technical": 7,
+      "generic": 7
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (July 31 00:00 IST to August 2 23:59 IST); window now fully elapsed as of this run",
+      "totalConversations": 14,
+      "sameUserEscalations": [
+        {
+          "email": "altamash@cxoxperts.com",
+          "docbotQuery": "we are unable to send any mail — clarified as an SPF error",
+          "area": "Email",
+          "theme": "How do I do X",
+          "ticketId": "5223432",
+          "ticketSubject": "Request for Resolution – SPF Error on Netcore Platform",
+          "ticketCreatedAt": "2026-07-31T11:38:00+05:30"
+        }
+      ],
+      "deflectedCount": 13,
+      "deflectionRate": 93,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit — treat as a directional signal. Checked all 13 unique requester emails individually via Tier 1 global search; the direct email search for altamash@cxoxperts.com actually returned 0 tickets on its own (Freshdesk rendered the ticket's From field as 'altamash@cxoxperts. com' with a stray space, breaking the exact-email match) — the escalation was only caught via a keyword sweep for 'SPF'. This means Tier 1 individual-email search can have false negatives; the keyword pass should stay a mandatory second check, not just a Tier 2 nicety. Also spot-checked 'audience data', 'llms.txt', and 'sandbox panel' keywords — no other in-window matches found."
+    },
+    "headline": "14 conversations on July 31 (Friday, backfilled — this date was missing from the archive), and one real escalation slipped through this time: altamash@cxoxperts.com's 'unable to send mail' SPF issue became Freshdesk ticket #5223432 just six minutes after the bot conversation closed. Also notable: three internal staff (darpan.amle x2, gargi.mukherjee) independently asked for a .txt/llms.txt export of the docs within a 4-minute window — looks coordinated, not organic confusion.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "SPF escalation shows Tier-1 email search can miss real matches",
+        "desc": "altamash@cxoxperts.com's docbot conversation ('we are unable to send any mail' → SPF issue, handed_off_to_human) turned into Freshdesk ticket #5223432 six minutes after the bot conversation ended — a genuine deflection failure. The direct email search initially returned zero results because Freshdesk indexed the sender as 'altamash@cxoxperts. com' (stray space); only a keyword sweep for 'SPF' surfaced it. Treat keyword sweeps as mandatory going forward, not optional."
+      },
+      {
+        "owner": "content",
+        "title": "Three internal staff asked for a .txt/llms.txt doc export within a 4-minute window",
+        "desc": "darpan.amle@netcorecloud.com (2 differently-worded asks) and gargi.mukherjee@netcorecloud.com (1 ask) all requested a machine-readable text version of the CE docs between 05:11–05:15 IST — tight enough clustering to look coordinated (e.g. a Slack thread pointing people at llms.txt) rather than organic. Bot correctly pointed to https://cedocs.netcorecloud.com/llms.txt each time. Worth a heads-up to whoever's testing LLM-readable docs internally so this doesn't get misread as five separate confused users."
+      },
+      {
+        "owner": "design",
+        "title": "Data Upload Logs dashboard reportedly not visible for a cameoindia user",
+        "desc": "ipo@cameoindia.com (Yesh Kumar) couldn't load audience data to share via mail; bot walked through Admin > Misc > Logs, but the user's own follow-up flagged the resulting dashboard as 'not visible.' Bot marked this resolved, but the thread actually ends on the user's negative signal, not a confirmation — worth a UI check for this account."
+      },
+      {
+        "owner": "calibration",
+        "title": "Small backfilled sample — read the 57% resolution rate directionally",
+        "desc": "n=14 after dedupe/exclusion is workable but still thin, especially with 6 of 14 ending in handed_off_to_human. Treat alongside the 14-day rolling trend rather than as a standalone signal."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Avadhoot Revankar (Netcore)",
+      "email": "avadhoot.revankar@netcorecloud.com",
+      "query": "Asked for channel attribution details, then chained follow-ups on last-click attribution, conversion window in campaigns, and campaign goal — all in one thread.",
+      "why": "A coherent, multi-part deep-dive into Netcore's attribution model rather than a single basic lookup — shows real analytics fluency, systematically working through attribution methodology."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 1,
+        "external": 3
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 3,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 3,
+        "external": 1
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 2
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "darpan.amle@netcorecloud.com",
+        "count": 2,
+        "friction": true,
+        "panel": "NA",
+        "queries": [
+          {
+            "theme": "Where's the doc/API for X",
+            "text": "Do I get a .txt file of the CE docs?"
+          },
+          {
+            "theme": "Where's the doc/API for X",
+            "text": "Can we get a .txt version documentation?"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 4,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "darpan.amle@netcorecloud.com",
+            "q": "Can we get a .txt version documentation?",
+            "panel": "NA"
+          },
+          {
+            "email": "darpan.amle@netcorecloud.com",
+            "q": "Do I get a .txt file of the CE docs?",
+            "panel": "NA"
+          },
+          {
+            "email": "gargi.mukherjee@netcorecloud.com",
+            "q": "can you get me .txt for documentation",
+            "panel": "NA"
+          },
+          {
+            "email": "arete.mequi@netcorecloud.com",
+            "q": "can you share details on requirements for smtp integration of ce and emails?",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Email",
+        "internal": 1,
+        "external": 4,
+        "internalQ": [
+          {
+            "email": "aishwarya.sinha@netcoreunbxd.com",
+            "q": "Can i get email creation steps for campaigns?",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "ipo@cameoindia.com",
+            "q": "Unable to load Audience Data to share mail",
+            "panel": "cameoindiacee"
+          },
+          {
+            "email": "test@gmail.com",
+            "q": "give me insites of campaign id 1466 / summarize email performance page",
+            "panel": "stg1_sms_pk"
+          },
+          {
+            "email": "priyanshuculturecircle@gmail.com",
+            "q": "hey i created a tamplate name mystery box 2 but i am not abke to find out",
+            "panel": "culturecircle_ce"
+          },
+          {
+            "email": "altamash@cxoxperts.com",
+            "q": "we are unable to send any mail — SPF issue",
+            "panel": "smeventure"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 2,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "mohan.chavan@netcorecloud.com",
+            "q": "Are we support logs on this path for test mode or sandbox panel?",
+            "panel": "NA"
+          },
+          {
+            "email": "avadhoot.revankar@netcorecloud.com",
+            "q": "channel attribution give me details and link to see details",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "ravi.raushan@timesgroup.com",
+            "q": "not able to login",
+            "panel": "timesnownewscee"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "asbatiya223698@gmail.com",
+            "q": "(Hindi, off-topic/unclear) क्या दीकत आ रही हे क्युं फिल नही हो रहा",
+            "panel": "NA"
+          },
+          {
+            "email": "nghiant3110@gmail.com",
+            "q": "I want to chat with your support team",
+            "panel": "gggcomsmt"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-08-01": {
+    "date": "2026-08-01",
+    "totalConversations": 2,
+    "resolutionRate": 100,
+    "internalTotal": 1,
+    "externalTotal": 1,
+    "docsTotal": 2,
+    "panelTotal": 0,
+    "queryType": {
+      "technical": 1,
+      "generic": 1
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (Aug 1 00:00 IST to Aug 3 23:59 IST); window still open as of this run (Aug 2)",
+      "totalConversations": 2,
+      "sameUserEscalations": [],
+      "deflectedCount": 2,
+      "deflectionRate": 100,
+      "patternRisk": [
+        {
+          "area": "Infra/Data residency",
+          "docbotCount": 1,
+          "ticketCount": 1,
+          "exampleTicketSubjects": [
+            "Urgent: Discrepancies in S3 Report File Naming - maxmailersmt / maxlifesmtech #5224374"
+          ],
+          "note": "Striking near-miss: same first name 'Meenakshi', same day (Aug 1), same specific topic (S3 report filename/naming nomenclature) as the docbot conversation — but the ticket's requester email is meenakshi.kaul@netcore.co.in vs the docbot contact's meenakshi.kaul@netcorecloud.com (different domain), so it doesn't clear the strict same-email Tier 1 bar. Very likely the same person on a different email alias; flagged as a pattern signal rather than a confirmed escalation."
+        }
+      ],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit — treat as a directional signal, doubly so with only 2 conversations and the +2-day window not yet closed (D+2 = Aug 3). Checked both unique requester emails (meenakshi.kaul@netcorecloud.com, kgyanendar34@gmail.com) directly — zero exact matches. Keyword spot-checks for 'S3 report' and 'WhatsApp billing' — see patternRisk for the one notable near-miss."
+    },
+    "headline": "Quietest day in weeks — just 2 conversations on August 1 (Saturday) — but one is worth a second look: Meenakshi asked the bot about S3 report filename nomenclature at 10:04 AM IST, and a same-day Freshdesk ticket titled 'Discrepancies in S3 Report File Naming' landed that afternoon from someone with the same first name — almost certainly the same person on a different email domain, so it falls just outside the strict escalation count.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "n=2 — treat today's rates as directional only",
+        "desc": "Only 2 conversations all day (Saturday). Not enough volume to read resolution/deflection rates as a real signal — consistent with the established weekend-low pattern seen repeatedly in this archive."
+      },
+      {
+        "owner": "product",
+        "title": "Likely S3-naming escalation missed by strict email matching",
+        "desc": "meenakshi.kaul@netcorecloud.com asked the bot about S3 report filename nomenclature; a ticket on the identical topic ('Discrepancies in S3 Report File Naming') was filed same-day by 'Meenakshi' at meenakshi.kaul@netcore.co.in. If this is the same person using two email domains, the underlying issue (unexpected filename encoding vs. the documented convention) is a real product/data-pipeline question, not just a docs gap — worth checking whether netcorecloud.com and netcore.co.in are meant to resolve to the same identity, since the mismatch is silently breaking escalation tracking."
+      },
+      {
+        "owner": "content",
+        "title": "Confused, likely off-topic conversation from a free Gmail user",
+        "desc": "kgyanendar34@gmail.com's conversation was fragmented and hard to parse ('Kabtak pel', 'Peyment kab tak ayega', then a WhatsApp number) — bot did its best to route to WhatsApp billing docs, but this reads more like a confused consumer who received a WhatsApp message than a genuine CE platform user. Recurring pattern flagged on prior quiet days (July 18, July 19) — a lightweight 'is this about the Netcore CE platform?' clarifying prompt would help route these without consuming a full bot session."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Meenakshi Kaul (Netcore)",
+      "email": "meenakshi.kaul@netcorecloud.com",
+      "query": "Asked for the exact filename nomenclature Netcore uses for S3-delivered email reports, then asked for the S3 report link directly.",
+      "why": "A precise, technical question about file-naming conventions for automated exports — and per the Freshdesk cross-check, likely tied to a same-day 'Discrepancies in S3 Report File Naming' ticket, meaning this wasn't idle curiosity but the first sign of a real data-pipeline issue."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 0
+      }
+    ],
+    "topAskers": [],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "kgyanendar34@gmail.com",
+            "q": "confused/fragmented messages ending in a WhatsApp number; bot routed to WhatsApp billing/usage tracking",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "meenakshi.kaul@netcorecloud.com",
+            "q": "For CustEmailReportdownload - what is the filename nomenclature downloaded from s3",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
       }
     ]
   }
@@ -15277,6 +15179,396 @@ const FULL_ARCHIVE = {
             "panel": "optikseis_cee"
           }
         ]
+      }
+    ]
+  },
+  "2026-07-31": {
+    "date": "2026-07-31",
+    "totalConversations": 14,
+    "resolutionRate": 57,
+    "internalTotal": 7,
+    "externalTotal": 7,
+    "docsTotal": 8,
+    "panelTotal": 6,
+    "queryType": {
+      "technical": 7,
+      "generic": 7
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (July 31 00:00 IST to August 2 23:59 IST); window now fully elapsed as of this run",
+      "totalConversations": 14,
+      "sameUserEscalations": [
+        {
+          "email": "altamash@cxoxperts.com",
+          "docbotQuery": "we are unable to send any mail — clarified as an SPF error",
+          "area": "Email",
+          "theme": "How do I do X",
+          "ticketId": "5223432",
+          "ticketSubject": "Request for Resolution – SPF Error on Netcore Platform",
+          "ticketCreatedAt": "2026-07-31T11:38:00+05:30"
+        }
+      ],
+      "deflectedCount": 13,
+      "deflectionRate": 93,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit — treat as a directional signal. Checked all 13 unique requester emails individually via Tier 1 global search; the direct email search for altamash@cxoxperts.com actually returned 0 tickets on its own (Freshdesk rendered the ticket's From field as 'altamash@cxoxperts. com' with a stray space, breaking the exact-email match) — the escalation was only caught via a keyword sweep for 'SPF'. This means Tier 1 individual-email search can have false negatives; the keyword pass should stay a mandatory second check, not just a Tier 2 nicety. Also spot-checked 'audience data', 'llms.txt', and 'sandbox panel' keywords — no other in-window matches found."
+    },
+    "headline": "14 conversations on July 31 (Friday, backfilled — this date was missing from the archive), and one real escalation slipped through this time: altamash@cxoxperts.com's 'unable to send mail' SPF issue became Freshdesk ticket #5223432 just six minutes after the bot conversation closed. Also notable: three internal staff (darpan.amle x2, gargi.mukherjee) independently asked for a .txt/llms.txt export of the docs within a 4-minute window — looks coordinated, not organic confusion.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "SPF escalation shows Tier-1 email search can miss real matches",
+        "desc": "altamash@cxoxperts.com's docbot conversation ('we are unable to send any mail' → SPF issue, handed_off_to_human) turned into Freshdesk ticket #5223432 six minutes after the bot conversation ended — a genuine deflection failure. The direct email search initially returned zero results because Freshdesk indexed the sender as 'altamash@cxoxperts. com' (stray space); only a keyword sweep for 'SPF' surfaced it. Treat keyword sweeps as mandatory going forward, not optional."
+      },
+      {
+        "owner": "content",
+        "title": "Three internal staff asked for a .txt/llms.txt doc export within a 4-minute window",
+        "desc": "darpan.amle@netcorecloud.com (2 differently-worded asks) and gargi.mukherjee@netcorecloud.com (1 ask) all requested a machine-readable text version of the CE docs between 05:11–05:15 IST — tight enough clustering to look coordinated (e.g. a Slack thread pointing people at llms.txt) rather than organic. Bot correctly pointed to https://cedocs.netcorecloud.com/llms.txt each time. Worth a heads-up to whoever's testing LLM-readable docs internally so this doesn't get misread as five separate confused users."
+      },
+      {
+        "owner": "design",
+        "title": "Data Upload Logs dashboard reportedly not visible for a cameoindia user",
+        "desc": "ipo@cameoindia.com (Yesh Kumar) couldn't load audience data to share via mail; bot walked through Admin > Misc > Logs, but the user's own follow-up flagged the resulting dashboard as 'not visible.' Bot marked this resolved, but the thread actually ends on the user's negative signal, not a confirmation — worth a UI check for this account."
+      },
+      {
+        "owner": "calibration",
+        "title": "Small backfilled sample — read the 57% resolution rate directionally",
+        "desc": "n=14 after dedupe/exclusion is workable but still thin, especially with 6 of 14 ending in handed_off_to_human. Treat alongside the 14-day rolling trend rather than as a standalone signal."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Avadhoot Revankar (Netcore)",
+      "email": "avadhoot.revankar@netcorecloud.com",
+      "query": "Asked for channel attribution details, then chained follow-ups on last-click attribution, conversion window in campaigns, and campaign goal — all in one thread.",
+      "why": "A coherent, multi-part deep-dive into Netcore's attribution model rather than a single basic lookup — shows real analytics fluency, systematically working through attribution methodology."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 1,
+        "external": 3
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 3,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 3,
+        "external": 1
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 2
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "darpan.amle@netcorecloud.com",
+        "count": 2,
+        "friction": true,
+        "panel": "NA",
+        "queries": [
+          {
+            "theme": "Where's the doc/API for X",
+            "text": "Do I get a .txt file of the CE docs?"
+          },
+          {
+            "theme": "Where's the doc/API for X",
+            "text": "Can we get a .txt version documentation?"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 4,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "darpan.amle@netcorecloud.com",
+            "q": "Can we get a .txt version documentation?",
+            "panel": "NA"
+          },
+          {
+            "email": "darpan.amle@netcorecloud.com",
+            "q": "Do I get a .txt file of the CE docs?",
+            "panel": "NA"
+          },
+          {
+            "email": "gargi.mukherjee@netcorecloud.com",
+            "q": "can you get me .txt for documentation",
+            "panel": "NA"
+          },
+          {
+            "email": "arete.mequi@netcorecloud.com",
+            "q": "can you share details on requirements for smtp integration of ce and emails?",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Email",
+        "internal": 1,
+        "external": 4,
+        "internalQ": [
+          {
+            "email": "aishwarya.sinha@netcoreunbxd.com",
+            "q": "Can i get email creation steps for campaigns?",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "ipo@cameoindia.com",
+            "q": "Unable to load Audience Data to share mail",
+            "panel": "cameoindiacee"
+          },
+          {
+            "email": "test@gmail.com",
+            "q": "give me insites of campaign id 1466 / summarize email performance page",
+            "panel": "stg1_sms_pk"
+          },
+          {
+            "email": "priyanshuculturecircle@gmail.com",
+            "q": "hey i created a tamplate name mystery box 2 but i am not abke to find out",
+            "panel": "culturecircle_ce"
+          },
+          {
+            "email": "altamash@cxoxperts.com",
+            "q": "we are unable to send any mail — SPF issue",
+            "panel": "smeventure"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 2,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "mohan.chavan@netcorecloud.com",
+            "q": "Are we support logs on this path for test mode or sandbox panel?",
+            "panel": "NA"
+          },
+          {
+            "email": "avadhoot.revankar@netcorecloud.com",
+            "q": "channel attribution give me details and link to see details",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "ravi.raushan@timesgroup.com",
+            "q": "not able to login",
+            "panel": "timesnownewscee"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "asbatiya223698@gmail.com",
+            "q": "(Hindi, off-topic/unclear) क्या दीकत आ रही हे क्युं फिल नही हो रहा",
+            "panel": "NA"
+          },
+          {
+            "email": "nghiant3110@gmail.com",
+            "q": "I want to chat with your support team",
+            "panel": "gggcomsmt"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-08-01": {
+    "date": "2026-08-01",
+    "totalConversations": 2,
+    "resolutionRate": 100,
+    "internalTotal": 1,
+    "externalTotal": 1,
+    "docsTotal": 2,
+    "panelTotal": 0,
+    "queryType": {
+      "technical": 1,
+      "generic": 1
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (Aug 1 00:00 IST to Aug 3 23:59 IST); window still open as of this run (Aug 2)",
+      "totalConversations": 2,
+      "sameUserEscalations": [],
+      "deflectedCount": 2,
+      "deflectionRate": 100,
+      "patternRisk": [
+        {
+          "area": "Infra/Data residency",
+          "docbotCount": 1,
+          "ticketCount": 1,
+          "exampleTicketSubjects": [
+            "Urgent: Discrepancies in S3 Report File Naming - maxmailersmt / maxlifesmtech #5224374"
+          ],
+          "note": "Striking near-miss: same first name 'Meenakshi', same day (Aug 1), same specific topic (S3 report filename/naming nomenclature) as the docbot conversation — but the ticket's requester email is meenakshi.kaul@netcore.co.in vs the docbot contact's meenakshi.kaul@netcorecloud.com (different domain), so it doesn't clear the strict same-email Tier 1 bar. Very likely the same person on a different email alias; flagged as a pattern signal rather than a confirmed escalation."
+        }
+      ],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit — treat as a directional signal, doubly so with only 2 conversations and the +2-day window not yet closed (D+2 = Aug 3). Checked both unique requester emails (meenakshi.kaul@netcorecloud.com, kgyanendar34@gmail.com) directly — zero exact matches. Keyword spot-checks for 'S3 report' and 'WhatsApp billing' — see patternRisk for the one notable near-miss."
+    },
+    "headline": "Quietest day in weeks — just 2 conversations on August 1 (Saturday) — but one is worth a second look: Meenakshi asked the bot about S3 report filename nomenclature at 10:04 AM IST, and a same-day Freshdesk ticket titled 'Discrepancies in S3 Report File Naming' landed that afternoon from someone with the same first name — almost certainly the same person on a different email domain, so it falls just outside the strict escalation count.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "n=2 — treat today's rates as directional only",
+        "desc": "Only 2 conversations all day (Saturday). Not enough volume to read resolution/deflection rates as a real signal — consistent with the established weekend-low pattern seen repeatedly in this archive."
+      },
+      {
+        "owner": "product",
+        "title": "Likely S3-naming escalation missed by strict email matching",
+        "desc": "meenakshi.kaul@netcorecloud.com asked the bot about S3 report filename nomenclature; a ticket on the identical topic ('Discrepancies in S3 Report File Naming') was filed same-day by 'Meenakshi' at meenakshi.kaul@netcore.co.in. If this is the same person using two email domains, the underlying issue (unexpected filename encoding vs. the documented convention) is a real product/data-pipeline question, not just a docs gap — worth checking whether netcorecloud.com and netcore.co.in are meant to resolve to the same identity, since the mismatch is silently breaking escalation tracking."
+      },
+      {
+        "owner": "content",
+        "title": "Confused, likely off-topic conversation from a free Gmail user",
+        "desc": "kgyanendar34@gmail.com's conversation was fragmented and hard to parse ('Kabtak pel', 'Peyment kab tak ayega', then a WhatsApp number) — bot did its best to route to WhatsApp billing docs, but this reads more like a confused consumer who received a WhatsApp message than a genuine CE platform user. Recurring pattern flagged on prior quiet days (July 18, July 19) — a lightweight 'is this about the Netcore CE platform?' clarifying prompt would help route these without consuming a full bot session."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Meenakshi Kaul (Netcore)",
+      "email": "meenakshi.kaul@netcorecloud.com",
+      "query": "Asked for the exact filename nomenclature Netcore uses for S3-delivered email reports, then asked for the S3 report link directly.",
+      "why": "A precise, technical question about file-naming conventions for automated exports — and per the Freshdesk cross-check, likely tied to a same-day 'Discrepancies in S3 Report File Naming' ticket, meaning this wasn't idle curiosity but the first sign of a real data-pipeline issue."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 0
+      }
+    ],
+    "topAskers": [],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "kgyanendar34@gmail.com",
+            "q": "confused/fragmented messages ending in a WhatsApp number; bot routed to WhatsApp billing/usage tracking",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "meenakshi.kaul@netcorecloud.com",
+            "q": "For CustEmailReportdownload - what is the filename nomenclature downloaded from s3",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
       }
     ]
   }
