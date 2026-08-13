@@ -524,234 +524,6 @@ html[data-theme="dark"] .intro-banner .ib-lede{color:#c7cad1;}
 </div>
 <script>
 const ARCHIVE = {
-  "2026-07-29": {
-    "date": "2026-07-29",
-    "totalConversations": 14,
-    "resolutionRate": 79,
-    "internalTotal": 4,
-    "externalTotal": 10,
-    "docsTotal": 4,
-    "panelTotal": 10,
-    "queryType": {
-      "technical": 0,
-      "generic": 14
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days (2026-07-29 00:00 IST to 2026-07-31 23:59 IST); window still open as of this run (2026-07-30, D+2 = Jul 31 hasn't happened yet)",
-      "totalConversations": 14,
-      "sameUserEscalations": [],
-      "deflectedCount": 14,
-      "deflectionRate": 100,
-      "patternRisk": [],
-      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit — treat as a directional signal. Checked all 13 unique requester emails individually via Tier 1 global search — zero ticket matches for any. Tier 2 keyword checks for the day's four hit areas also returned no in-window matches: Email ('email attachment pdf' → 1 hit, ticket #5218912, dated 24 Jul, outside window), CPaaS ('messaging limit' → 8 hits, all pre-existing tickets from 2025 or earlier 2026, none in-window), Broadcast/Webhooks ('broadcast size exceeded' → zero), Journey Builder ('AMP form segmentation' and 'geofence' → zero / only tickets from months prior). Window extends through July 31, still partially open as of this check."
-    },
-    "headline": "14 conversations on July 29, the quietest weekday in over a week — 43% (6 of 14) were bare greetings or off-topic noise (a 'My debit card' message, a personal-loan-offer spam ping, two bare 'Hello's, a screenshot with no text), leaving just 8 real product questions. Zero Freshdesk escalations found across all 13 unique askers, though the +2-day window is only half-elapsed.",
-    "actionableInsights": [
-      {
-        "owner": "calibration",
-        "title": "n=14, but 43% was greeting/off-topic noise — read today's splits as thin",
-        "desc": "6 of 14 conversations carried no real product question: 'My debit card' (ratikantabarik29aa@gmail.com), a personal-loan-offer spam message (vivek@awfymedia.com), two bare 'Hello's, and a screenshot-only ping with no text. Effective real-question volume was 8 of 14 — treat today's area/theme distribution as a small, noisy sample, not a trend."
-      },
-      {
-        "owner": "content",
-        "title": "Off-topic spam-like messages keep landing in the docbot inbox",
-        "desc": "'My debit card' and 'Your personal loan offer is pending for review' are clearly not Netcore CE questions — same personal-loan-spam pattern flagged before (July 15, July 18). These inflate the daily conversation count without reflecting real product friction; worth a lightweight off-topic filter so they stop skewing resolution-rate and theme metrics."
-      },
-      {
-        "owner": "product",
-        "title": "mis_analyst@parinaam.org asked two distinct real questions 10 minutes apart",
-        "desc": "Pallavi (parinaam_ce) asked about campaign visibility, then messaging limits, both resolved by the bot with no Freshdesk follow-up — a genuinely engaged user working through setup questions in one sitting. Good sign the bot handled a multi-topic session cleanly."
-      },
-      {
-        "owner": "content",
-        "title": "Netcore's own staffer asked the bot to just 'raise a ticket', no context",
-        "desc": "akhil.narayanan@netcorecloud.com (internal, nuvamasmtprdcee) opened a conversation with no product question — just a raw escalation request. Suggests the self-serve path to actually filing a Freshdesk ticket isn't obvious even to Netcore's own team; worth checking whether a direct 'contact support' action exists instead of routing through the docbot."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Avadhoot Revankar (Netcore)",
-      "email": "avadhoot.revankar@netcorecloud.com",
-      "query": "Do you support Geofence on IOS?",
-      "why": "A precise platform-capability question about iOS-specific geofencing support — a real feature-scope inquiry rather than a how-to or navigation ask, standing out in an otherwise quiet, greeting-heavy day."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 1,
-        "external": 2
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 0,
-        "external": 1
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 0,
-        "external": 1
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 2,
-        "external": 1
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 1,
-        "external": 5
-      }
-    ],
-    "topAskers": [
-      {
-        "email": "mis_analyst@parinaam.org",
-        "count": 2,
-        "friction": false,
-        "panel": "parinaam_ce",
-        "queries": [
-          {
-            "theme": "Where do I set up/find X",
-            "text": "I am not able to see my old campaign on panel"
-          },
-          {
-            "theme": "How do I do X",
-            "text": "how to check messaging limit"
-          }
-        ]
-      }
-    ],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Email",
-        "internal": 0,
-        "external": 2,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "r_jaiganesh@camsonline.com",
-            "q": "please edit this template with the image in the centre alignment",
-            "panel": "camsinsmartech"
-          },
-          {
-            "email": "neeraj.netcore@gmail.com",
-            "q": "in the emailer can i sent the pdf as attachemnet",
-            "panel": "NA"
-          }
-        ]
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 0,
-        "external": 1,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "mis_analyst@parinaam.org",
-            "q": "how to check messaging limit",
-            "panel": "parinaam_ce"
-          }
-        ]
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 2,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "mis_analyst@parinaam.org",
-            "q": "I am not able to see my old campaign on panel",
-            "panel": "parinaam_ce"
-          },
-          {
-            "email": "rohan.sethi@go-yubi.com",
-            "q": "broadcast size exceeded",
-            "panel": "goyubicee"
-          }
-        ]
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 3,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "kairavi.gupta@netcorecloud.com",
-            "q": "Segmentation based on AMP form results is not currently supported, though it is planned for the future.",
-            "panel": "NA"
-          },
-          {
-            "email": "avadhoot.revankar@netcorecloud.com",
-            "q": "Do you support Geofence on IOS?",
-            "panel": "NA"
-          },
-          {
-            "email": "sera.fernandes@netcorecloud.com",
-            "q": "how to get overview of northstar metrics in dashboard",
-            "panel": "marcom"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 1,
-        "external": 5,
-        "internalQ": [
-          {
-            "email": "akhil.narayanan@netcorecloud.com",
-            "q": "raise a ticket",
-            "panel": "nuvamasmtprdcee"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "ratikantabarik29aa@gmail.com",
-            "q": "My debit card",
-            "panel": "NA"
-          },
-          {
-            "email": "ketan.paralkar@rbl.bank.in",
-            "q": "Hello",
-            "panel": "rblbankcomsmt"
-          },
-          {
-            "email": "pranay@purvashare.com",
-            "q": "(screenshot only, no text description)",
-            "panel": "purvashare_cee"
-          },
-          {
-            "email": "vivek@awfymedia.com",
-            "q": "Your personal loan offer is pending for review",
-            "panel": "awfy_yahoo_cee"
-          },
-          {
-            "email": "am_abdul@camsonline.com",
-            "q": "Hello",
-            "panel": "cams_sbi"
-          }
-        ]
-      }
-    ]
-  },
   "2026-07-30": {
     "date": "2026-07-30",
     "totalConversations": 21,
@@ -3653,6 +3425,280 @@ const ARCHIVE = {
             "email": "hanis.shukri@tm.com.my",
             "q": "What is the helpdesk email?",
             "panel": "unificee"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-08-12": {
+    "date": "2026-08-12",
+    "totalConversations": 19,
+    "resolutionRate": 100,
+    "internalTotal": 5,
+    "externalTotal": 14,
+    "docsTotal": 8,
+    "panelTotal": 11,
+    "queryType": {
+      "technical": 4,
+      "generic": 15
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-08-12 00:00 IST to 2026-08-14 23:59 IST); window still open as of this run (2026-08-13, D+2 = Aug 14 hasn't happened yet)",
+      "totalConversations": 19,
+      "sameUserEscalations": [],
+      "deflectedCount": 19,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit — treat as a directional signal, doubly so with the +2-day window only half-elapsed. Checked all 16 unique requester emails individually via Tier 1 global search — zero ticket matches for any. Tier 2 keyword checks covered the day's five hit areas: API/Integration ('SDK size' 0 hits, 'AES 256 encryption' and 'email campaign API' 1 hit each, both months/year old), Email ('hyperlink' and 'magicbus' — nearest hit closed 19 hours ago but a different company and issue: tampered-link fraud report vs. can't-insert-hyperlink), Broadcast/Webhooks ('download report password' — 13 hits, nearest 10 days old), Journey Builder ('AI agent' — nearest ticket #5230061 created Aug 10, before the window, a long-running Clovia AI-Agent-activation thread unrelated to Ninad's how-to question), and Infra/Data residency ('attributes list' — hits are a separate Nuvama Wealth missing-attributes incident, different company/issue). No in-window matches found for any."
+    },
+    "headline": "19 conversations on Aug 12, 100% bot self-reported resolved and 100% Freshdesk-deflected across all 16 unique askers — Rohit Sudan (magicbuscee) needed three messages in 6 minutes to work through an email-hyperlink error, while Kush Paithane's question about array-type event payloads in the UCE product block was the sharpest technical ask of the day.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "n=19, 100% resolution/deflection — but the +2-day Freshdesk window is still half-elapsed",
+        "desc": "All 19 conversations were self-reported resolved and zero same-user Freshdesk matches surfaced across 16 unique askers, but the matching window runs through Aug 14 — a single late escalation could still land and change this rate. Read today's 100% as provisional, not final."
+      },
+      {
+        "owner": "content",
+        "title": "rohit_s@magicbusindia.org sent 3 messages in 6 minutes over one hyperlink error",
+        "desc": "'hi i am not able to hyperlink the email' → pasted a raw panel URL → 'i am getting error when i hyperlink the text', all between 08:51–08:57 IST (magicbuscee panel). Bot marked all three resolved, but the rapid re-asks suggest the first answer didn't land. Worth checking whether hyperlink-insertion troubleshooting in the email editor needs a clearer doc callout or in-editor tooltip."
+      },
+      {
+        "owner": "product",
+        "title": "Two Gulf News staff independently asked for the same daily-email-count metric",
+        "desc": "prajput@gulfnews.com asked for June's daily email send counts at 07:54 IST; rmohammed@gulfnews.com asked the same for July at 07:52 IST — two minutes apart, same panel (gulfnewssmt), same account. Suggests this reporting metric isn't easy to self-serve from their dashboard, so both are routing through the bot instead."
+      },
+      {
+        "owner": "content",
+        "title": "Kush Paithane's array-type event-payload question is a real capability check",
+        "desc": "kush.paithane@netcorecloud.com (internal) asked whether array-type event payloads are supported in the UCE email product block — a precise 'is X possible' technical question. If the bot's answer wasn't a confident yes/no backed by docs, flag to the UCE/email content owners so this doesn't need an escalation next time."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Kush Paithane (Netcore)",
+      "email": "kush.paithane@netcorecloud.com",
+      "query": "Asked whether array-type event payloads can be used in the UCE email template product block.",
+      "why": "A precise technical capability question about data-type support in the product block feature — real engineering-level engagement with the platform, not a basic how-to or navigation ask."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 1,
+        "external": 8
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 3
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 2,
+        "external": 0
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 2,
+        "external": 1
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 1
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "rohit_s@magicbusindia.org",
+        "count": 3,
+        "friction": true,
+        "panel": "magicbuscee",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "hi i am not able to hyperlink the email"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "panela.connect.magicbus.org"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "i am getting error when i hyperlink the text"
+          }
+        ]
+      },
+      {
+        "email": "sheetal.patil@icicipension.in",
+        "count": 2,
+        "friction": false,
+        "panel": "iciciprulifenps",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "I requested to download the details report of campgin but did not recieve the password for the file"
+          },
+          {
+            "theme": "Is X possible/supported",
+            "text": "WHILE UPLAING IMAGES IN HTML ZIP FILE CAN WE INCREASE THE FILE SIZE LIMIT"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 3,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "avadhoot.revankar@netcorecloud.com",
+            "q": "android and IOS sdk size?",
+            "panel": "NA"
+          },
+          {
+            "email": "harish.reddy@netcorecloud.com",
+            "q": "AES - 256 Encryption",
+            "panel": "NA"
+          },
+          {
+            "email": "anand.mishra@netcorecloud.com",
+            "q": "Simply make me understand how does Email campaign API works and benefits me",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Email",
+        "internal": 1,
+        "external": 11,
+        "internalQ": [
+          {
+            "email": "kush.paithane@netcorecloud.com",
+            "q": "can I add array type event payloads in the product block?",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "ankit.basediya@jyothy.com",
+            "q": "how to upload qr code in the template",
+            "panel": "jyothycom"
+          },
+          {
+            "email": "rohit_s@magicbusindia.org",
+            "q": "hi i am not able to hyperlink the email",
+            "panel": "magicbuscee"
+          },
+          {
+            "email": "rohit_s@magicbusindia.org",
+            "q": "panela.connect.magicbus.org",
+            "panel": "magicbuscee"
+          },
+          {
+            "email": "rohit_s@magicbusindia.org",
+            "q": "i am getting error when i hyperlink the text",
+            "panel": "magicbuscee"
+          },
+          {
+            "email": "mdmiranda@landbank.com",
+            "q": "HOW TO INSTALL FONTS",
+            "panel": "NA"
+          },
+          {
+            "email": "sheetal.patil@icicipension.in",
+            "q": "WHILE UPLAING IMAGES IN HTML ZIP FILE CAN WE INCREASE THE FILE SIZE LIMIT",
+            "panel": "iciciprulifenps"
+          },
+          {
+            "email": "prajput@gulfnews.com",
+            "q": "tell me how many emails were sent per day in the month of june",
+            "panel": "gulfnewssmt"
+          },
+          {
+            "email": "rmohammed@gulfnews.com",
+            "q": "In the month of July how many emails were sent per day",
+            "panel": "gulfnewssmt"
+          },
+          {
+            "email": "vikas@singhaitechnologies.com",
+            "q": "i want to use tags in my email templates",
+            "panel": "NA"
+          },
+          {
+            "email": "nivedita.b@softlinkglobal.com",
+            "q": "i am not able to find my created email",
+            "panel": "softlinkglobalcee"
+          },
+          {
+            "email": "justin.banez@greenteeinc.com.ph",
+            "q": "How do i make the font in brand assets into email safe?",
+            "panel": "greenteeinc_revcee"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "sheetal.patil@icicipension.in",
+            "q": "I requested to download the details report of campgin but did not recieve the password for the file",
+            "panel": "iciciprulifenps"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "ninad.borkar@netcorecloud.com",
+            "q": "How to use AI agents",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "nanijauneh@airasia.com",
+            "q": "please list down all the Attributes in Netcore",
+            "panel": "airasiabigmailsmt"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "vinesh.kumar@kirtilals.com",
+            "q": "Hi,",
+            "panel": "NA"
           }
         ]
       }
@@ -17431,6 +17477,280 @@ const FULL_ARCHIVE = {
             "email": "hanis.shukri@tm.com.my",
             "q": "What is the helpdesk email?",
             "panel": "unificee"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-08-12": {
+    "date": "2026-08-12",
+    "totalConversations": 19,
+    "resolutionRate": 100,
+    "internalTotal": 5,
+    "externalTotal": 14,
+    "docsTotal": 8,
+    "panelTotal": 11,
+    "queryType": {
+      "technical": 4,
+      "generic": 15
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-08-12 00:00 IST to 2026-08-14 23:59 IST); window still open as of this run (2026-08-13, D+2 = Aug 14 hasn't happened yet)",
+      "totalConversations": 19,
+      "sameUserEscalations": [],
+      "deflectedCount": 19,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit — treat as a directional signal, doubly so with the +2-day window only half-elapsed. Checked all 16 unique requester emails individually via Tier 1 global search — zero ticket matches for any. Tier 2 keyword checks covered the day's five hit areas: API/Integration ('SDK size' 0 hits, 'AES 256 encryption' and 'email campaign API' 1 hit each, both months/year old), Email ('hyperlink' and 'magicbus' — nearest hit closed 19 hours ago but a different company and issue: tampered-link fraud report vs. can't-insert-hyperlink), Broadcast/Webhooks ('download report password' — 13 hits, nearest 10 days old), Journey Builder ('AI agent' — nearest ticket #5230061 created Aug 10, before the window, a long-running Clovia AI-Agent-activation thread unrelated to Ninad's how-to question), and Infra/Data residency ('attributes list' — hits are a separate Nuvama Wealth missing-attributes incident, different company/issue). No in-window matches found for any."
+    },
+    "headline": "19 conversations on Aug 12, 100% bot self-reported resolved and 100% Freshdesk-deflected across all 16 unique askers — Rohit Sudan (magicbuscee) needed three messages in 6 minutes to work through an email-hyperlink error, while Kush Paithane's question about array-type event payloads in the UCE product block was the sharpest technical ask of the day.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "n=19, 100% resolution/deflection — but the +2-day Freshdesk window is still half-elapsed",
+        "desc": "All 19 conversations were self-reported resolved and zero same-user Freshdesk matches surfaced across 16 unique askers, but the matching window runs through Aug 14 — a single late escalation could still land and change this rate. Read today's 100% as provisional, not final."
+      },
+      {
+        "owner": "content",
+        "title": "rohit_s@magicbusindia.org sent 3 messages in 6 minutes over one hyperlink error",
+        "desc": "'hi i am not able to hyperlink the email' → pasted a raw panel URL → 'i am getting error when i hyperlink the text', all between 08:51–08:57 IST (magicbuscee panel). Bot marked all three resolved, but the rapid re-asks suggest the first answer didn't land. Worth checking whether hyperlink-insertion troubleshooting in the email editor needs a clearer doc callout or in-editor tooltip."
+      },
+      {
+        "owner": "product",
+        "title": "Two Gulf News staff independently asked for the same daily-email-count metric",
+        "desc": "prajput@gulfnews.com asked for June's daily email send counts at 07:54 IST; rmohammed@gulfnews.com asked the same for July at 07:52 IST — two minutes apart, same panel (gulfnewssmt), same account. Suggests this reporting metric isn't easy to self-serve from their dashboard, so both are routing through the bot instead."
+      },
+      {
+        "owner": "content",
+        "title": "Kush Paithane's array-type event-payload question is a real capability check",
+        "desc": "kush.paithane@netcorecloud.com (internal) asked whether array-type event payloads are supported in the UCE email product block — a precise 'is X possible' technical question. If the bot's answer wasn't a confident yes/no backed by docs, flag to the UCE/email content owners so this doesn't need an escalation next time."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Kush Paithane (Netcore)",
+      "email": "kush.paithane@netcorecloud.com",
+      "query": "Asked whether array-type event payloads can be used in the UCE email template product block.",
+      "why": "A precise technical capability question about data-type support in the product block feature — real engineering-level engagement with the platform, not a basic how-to or navigation ask."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 1,
+        "external": 8
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 3
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 2,
+        "external": 0
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 2,
+        "external": 1
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 1
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "rohit_s@magicbusindia.org",
+        "count": 3,
+        "friction": true,
+        "panel": "magicbuscee",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "hi i am not able to hyperlink the email"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "panela.connect.magicbus.org"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "i am getting error when i hyperlink the text"
+          }
+        ]
+      },
+      {
+        "email": "sheetal.patil@icicipension.in",
+        "count": 2,
+        "friction": false,
+        "panel": "iciciprulifenps",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "I requested to download the details report of campgin but did not recieve the password for the file"
+          },
+          {
+            "theme": "Is X possible/supported",
+            "text": "WHILE UPLAING IMAGES IN HTML ZIP FILE CAN WE INCREASE THE FILE SIZE LIMIT"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 3,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "avadhoot.revankar@netcorecloud.com",
+            "q": "android and IOS sdk size?",
+            "panel": "NA"
+          },
+          {
+            "email": "harish.reddy@netcorecloud.com",
+            "q": "AES - 256 Encryption",
+            "panel": "NA"
+          },
+          {
+            "email": "anand.mishra@netcorecloud.com",
+            "q": "Simply make me understand how does Email campaign API works and benefits me",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Email",
+        "internal": 1,
+        "external": 11,
+        "internalQ": [
+          {
+            "email": "kush.paithane@netcorecloud.com",
+            "q": "can I add array type event payloads in the product block?",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "ankit.basediya@jyothy.com",
+            "q": "how to upload qr code in the template",
+            "panel": "jyothycom"
+          },
+          {
+            "email": "rohit_s@magicbusindia.org",
+            "q": "hi i am not able to hyperlink the email",
+            "panel": "magicbuscee"
+          },
+          {
+            "email": "rohit_s@magicbusindia.org",
+            "q": "panela.connect.magicbus.org",
+            "panel": "magicbuscee"
+          },
+          {
+            "email": "rohit_s@magicbusindia.org",
+            "q": "i am getting error when i hyperlink the text",
+            "panel": "magicbuscee"
+          },
+          {
+            "email": "mdmiranda@landbank.com",
+            "q": "HOW TO INSTALL FONTS",
+            "panel": "NA"
+          },
+          {
+            "email": "sheetal.patil@icicipension.in",
+            "q": "WHILE UPLAING IMAGES IN HTML ZIP FILE CAN WE INCREASE THE FILE SIZE LIMIT",
+            "panel": "iciciprulifenps"
+          },
+          {
+            "email": "prajput@gulfnews.com",
+            "q": "tell me how many emails were sent per day in the month of june",
+            "panel": "gulfnewssmt"
+          },
+          {
+            "email": "rmohammed@gulfnews.com",
+            "q": "In the month of July how many emails were sent per day",
+            "panel": "gulfnewssmt"
+          },
+          {
+            "email": "vikas@singhaitechnologies.com",
+            "q": "i want to use tags in my email templates",
+            "panel": "NA"
+          },
+          {
+            "email": "nivedita.b@softlinkglobal.com",
+            "q": "i am not able to find my created email",
+            "panel": "softlinkglobalcee"
+          },
+          {
+            "email": "justin.banez@greenteeinc.com.ph",
+            "q": "How do i make the font in brand assets into email safe?",
+            "panel": "greenteeinc_revcee"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "sheetal.patil@icicipension.in",
+            "q": "I requested to download the details report of campgin but did not recieve the password for the file",
+            "panel": "iciciprulifenps"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "ninad.borkar@netcorecloud.com",
+            "q": "How to use AI agents",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "nanijauneh@airasia.com",
+            "q": "please list down all the Attributes in Netcore",
+            "panel": "airasiabigmailsmt"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "vinesh.kumar@kirtilals.com",
+            "q": "Hi,",
+            "panel": "NA"
           }
         ]
       }
