@@ -524,147 +524,6 @@ html[data-theme="dark"] .intro-banner .ib-lede{color:#c7cad1;}
 </div>
 <script>
 const ARCHIVE = {
-  "2026-08-02": {
-    "date": "2026-08-02",
-    "totalConversations": 2,
-    "resolutionRate": 100,
-    "internalTotal": 0,
-    "externalTotal": 2,
-    "docsTotal": 2,
-    "panelTotal": 0,
-    "queryType": {
-      "technical": 0,
-      "generic": 2
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days (2026-08-02 00:00 IST to 2026-08-04 23:59 IST); checked through current run (2026-08-05)",
-      "totalConversations": 2,
-      "sameUserEscalations": [],
-      "deflectedCount": 2,
-      "deflectionRate": 100,
-      "patternRisk": [],
-      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit \u2014 treat as a directional signal. Both askers checked via Tier 1 global email search, zero ticket matches. No Tier 2 area search run since neither conversation touched a real CE product area (both off-topic)."
-    },
-    "headline": "Just 2 conversations on Aug 2, and neither was a real CE product question \u2014 one off-topic loan request and one inappropriate image-editing request, both correctly declined by the bot and both cleanly deflected from Freshdesk. Zero genuine product signal today.",
-    "actionableInsights": [
-      {
-        "owner": "calibration",
-        "title": "n=2 \u2014 no real product signal today",
-        "desc": "Both of today's conversations were off-topic: badalmahapatra66@gmail.com asked for a bike loan, and suribhairaj@gmail.com made an inappropriate image-editing request unrelated to Netcore CE. Read Aug 2 as a null day for content/product insight, not a genuine resolution or deflection signal."
-      },
-      {
-        "owner": "product",
-        "title": "Off-topic misuse is a recurring pattern, not a one-off",
-        "desc": "Loan-related spam reached the bot again on Aug 4 (two more instances: 'Loan chahie loan chahie loan chahie' and 'Mera loan approval huya'). The bot is correctly declining these, but worth confirming there's a review process for the more concerning cases \u2014 today's second conversation asked the bot to help alter a photo of a real person into a bikini, which the bot appropriately did not engage with. Flagging for whoever owns the bot's abuse/scope-handling policy."
-      },
-      {
-        "owner": "calibration",
-        "title": "100% resolution/deflection rate is meaningless at n=2 with no real questions",
-        "desc": "Both conversations show self-reported 'resolved' and both are Freshdesk-clean, but that's expected when neither was a genuine support need \u2014 don't read today's rate as reflecting doc quality or bot performance."
-      }
-    ],
-    "mostInteresting": {
-      "who": "N/A",
-      "email": "N/A",
-      "query": "No genuine CE product question came through today \u2014 both conversations were off-topic (a loan request and an inappropriate image-editing request).",
-      "why": "Flagging the absence of real signal rather than forcing a pick from two off-topic messages."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 2
-      }
-    ],
-    "topAskers": [],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Email",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 2,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "badalmahapatra66@gmail.com",
-            "q": "I need a bike loan",
-            "panel": "NA"
-          },
-          {
-            "email": "suribhairaj@gmail.com",
-            "q": "[Off-topic message flagged as inappropriate by the bot \u2014 redacted from this public dashboard]",
-            "panel": "NA"
-          }
-        ]
-      }
-    ]
-  },
   "2026-08-03": {
     "date": "2026-08-03",
     "totalConversations": 11,
@@ -3709,6 +3568,147 @@ const ARCHIVE = {
         "external": 0,
         "internalQ": [],
         "externalQ": []
+      }
+    ]
+  },
+  "2026-08-16": {
+    "date": "2026-08-16",
+    "totalConversations": 2,
+    "resolutionRate": 100,
+    "internalTotal": 0,
+    "externalTotal": 2,
+    "docsTotal": 2,
+    "panelTotal": 0,
+    "queryType": {
+      "technical": 0,
+      "generic": 2
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (Aug 16 00:00 IST to Aug 18 23:59 IST); window still open as of this run (D+0/D+1)",
+      "totalConversations": 2,
+      "sameUserEscalations": [],
+      "deflectedCount": 2,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit \u2014 treat as a directional signal, doubly so at n=2 with the +2-day window barely open. Tier 1: direct email search for both unique requesters (nehakohli2611@gmail.com, boruahh270@gmail.com) returned zero tickets. No Tier 2 area search run since neither conversation touched a real CE product area (both off-topic)."
+    },
+    "headline": "Just 2 conversations on Aug 16 (Sunday), and neither was a real CE product question \u2014 one loan-spam message and one bank-account-unblock request, both off-topic to the Netcore CE platform and both correctly handled by the bot. Zero genuine product signal today, continuing the recurring off-topic-noise pattern seen on prior quiet weekend days (Aug 2, Aug 4).",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "n=2 \u2014 no real product signal today",
+        "desc": "Both of today's conversations were off-topic: nehakohli2611@gmail.com sent loan-spam ('U want two wheeler loan'), and boruahh270@gmail.com asked about unblocking a bank account \u2014 neither related to Netcore CE. Read Aug 16 as a null day for content/product insight."
+      },
+      {
+        "owner": "product",
+        "title": "Off-topic misuse (loan spam, banking requests) keeps reaching the bot on quiet days",
+        "desc": "This is now a recurring pattern (previously flagged Aug 2 and Aug 4) \u2014 loan-related and now banking-related spam messages land in the docbot despite having nothing to do with Netcore CE. The bot is declining/redirecting appropriately, but worth confirming there's a review process and no PII-handling risk, and whether a lightweight 'is this about the Netcore CE platform?' gate would reduce this noise."
+      },
+      {
+        "owner": "calibration",
+        "title": "Weekend-low volume pattern holds",
+        "desc": "2 conversations on a Sunday is consistent with the established weekend floor (~1-2/day) seen repeatedly across this archive."
+      }
+    ],
+    "mostInteresting": {
+      "who": "N/A",
+      "email": "N/A",
+      "query": "No genuine CE product question came through today \u2014 both conversations were off-topic (loan spam and an unrelated bank-account unblock request).",
+      "why": "Flagging the absence of real signal rather than forcing a pick from two off-topic messages."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 2
+      }
+    ],
+    "topAskers": [],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "nehakohli2611@gmail.com",
+            "q": "Hi / U want two wheeler loan (loan-spam, off-topic)",
+            "panel": "NA"
+          },
+          {
+            "email": "boruahh270@gmail.com",
+            "q": "My account block / My bank account unblock kijiye (off-topic, unrelated to Netcore CE)",
+            "panel": "NA"
+          }
+        ]
       }
     ]
   }
@@ -18444,6 +18444,147 @@ const FULL_ARCHIVE = {
         "external": 0,
         "internalQ": [],
         "externalQ": []
+      }
+    ]
+  },
+  "2026-08-16": {
+    "date": "2026-08-16",
+    "totalConversations": 2,
+    "resolutionRate": 100,
+    "internalTotal": 0,
+    "externalTotal": 2,
+    "docsTotal": 2,
+    "panelTotal": 0,
+    "queryType": {
+      "technical": 0,
+      "generic": 2
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (Aug 16 00:00 IST to Aug 18 23:59 IST); window still open as of this run (D+0/D+1)",
+      "totalConversations": 2,
+      "sameUserEscalations": [],
+      "deflectedCount": 2,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit \u2014 treat as a directional signal, doubly so at n=2 with the +2-day window barely open. Tier 1: direct email search for both unique requesters (nehakohli2611@gmail.com, boruahh270@gmail.com) returned zero tickets. No Tier 2 area search run since neither conversation touched a real CE product area (both off-topic)."
+    },
+    "headline": "Just 2 conversations on Aug 16 (Sunday), and neither was a real CE product question \u2014 one loan-spam message and one bank-account-unblock request, both off-topic to the Netcore CE platform and both correctly handled by the bot. Zero genuine product signal today, continuing the recurring off-topic-noise pattern seen on prior quiet weekend days (Aug 2, Aug 4).",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "n=2 \u2014 no real product signal today",
+        "desc": "Both of today's conversations were off-topic: nehakohli2611@gmail.com sent loan-spam ('U want two wheeler loan'), and boruahh270@gmail.com asked about unblocking a bank account \u2014 neither related to Netcore CE. Read Aug 16 as a null day for content/product insight."
+      },
+      {
+        "owner": "product",
+        "title": "Off-topic misuse (loan spam, banking requests) keeps reaching the bot on quiet days",
+        "desc": "This is now a recurring pattern (previously flagged Aug 2 and Aug 4) \u2014 loan-related and now banking-related spam messages land in the docbot despite having nothing to do with Netcore CE. The bot is declining/redirecting appropriately, but worth confirming there's a review process and no PII-handling risk, and whether a lightweight 'is this about the Netcore CE platform?' gate would reduce this noise."
+      },
+      {
+        "owner": "calibration",
+        "title": "Weekend-low volume pattern holds",
+        "desc": "2 conversations on a Sunday is consistent with the established weekend floor (~1-2/day) seen repeatedly across this archive."
+      }
+    ],
+    "mostInteresting": {
+      "who": "N/A",
+      "email": "N/A",
+      "query": "No genuine CE product question came through today \u2014 both conversations were off-topic (loan spam and an unrelated bank-account unblock request).",
+      "why": "Flagging the absence of real signal rather than forcing a pick from two off-topic messages."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 2
+      }
+    ],
+    "topAskers": [],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "nehakohli2611@gmail.com",
+            "q": "Hi / U want two wheeler loan (loan-spam, off-topic)",
+            "panel": "NA"
+          },
+          {
+            "email": "boruahh270@gmail.com",
+            "q": "My account block / My bank account unblock kijiye (off-topic, unrelated to Netcore CE)",
+            "panel": "NA"
+          }
+        ]
       }
     ]
   }
