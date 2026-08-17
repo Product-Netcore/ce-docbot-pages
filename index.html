@@ -2,7 +2,7 @@
 {
   "name": "Ce Docbot Summary 2026 06 17",
   "schemaVersion": 1,
-  "description": "CE Docbot 14-day rolling summary (Jul 31 – Aug 13, 2026) — latest day 2026-08-13"
+  "description": "CE Docbot 14-day rolling summary (Jul 30 – Aug 12, 2026) — latest day 2026-08-12"
 }
 </script>
 <html lang="en">
@@ -524,396 +524,6 @@ html[data-theme="dark"] .intro-banner .ib-lede{color:#c7cad1;}
 </div>
 <script>
 const ARCHIVE = {
-  "2026-07-31": {
-    "date": "2026-07-31",
-    "totalConversations": 14,
-    "resolutionRate": 57,
-    "internalTotal": 7,
-    "externalTotal": 7,
-    "docsTotal": 8,
-    "panelTotal": 6,
-    "queryType": {
-      "technical": 7,
-      "generic": 7
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days (July 31 00:00 IST to August 2 23:59 IST); window now fully elapsed as of this run",
-      "totalConversations": 14,
-      "sameUserEscalations": [
-        {
-          "email": "altamash@cxoxperts.com",
-          "docbotQuery": "we are unable to send any mail \u2014 clarified as an SPF error",
-          "area": "Email",
-          "theme": "How do I do X",
-          "ticketId": "5223432",
-          "ticketSubject": "Request for Resolution \u2013 SPF Error on Netcore Platform",
-          "ticketCreatedAt": "2026-07-31T11:38:00+05:30"
-        }
-      ],
-      "deflectedCount": 13,
-      "deflectionRate": 93,
-      "patternRisk": [],
-      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit \u2014 treat as a directional signal. Checked all 13 unique requester emails individually via Tier 1 global search; the direct email search for altamash@cxoxperts.com actually returned 0 tickets on its own (Freshdesk rendered the ticket's From field as 'altamash@cxoxperts. com' with a stray space, breaking the exact-email match) \u2014 the escalation was only caught via a keyword sweep for 'SPF'. This means Tier 1 individual-email search can have false negatives; the keyword pass should stay a mandatory second check, not just a Tier 2 nicety. Also spot-checked 'audience data', 'llms.txt', and 'sandbox panel' keywords \u2014 no other in-window matches found."
-    },
-    "headline": "14 conversations on July 31 (Friday, backfilled \u2014 this date was missing from the archive), and one real escalation slipped through this time: altamash@cxoxperts.com's 'unable to send mail' SPF issue became Freshdesk ticket #5223432 just six minutes after the bot conversation closed. Also notable: three internal staff (darpan.amle x2, gargi.mukherjee) independently asked for a .txt/llms.txt export of the docs within a 4-minute window \u2014 looks coordinated, not organic confusion.",
-    "actionableInsights": [
-      {
-        "owner": "calibration",
-        "title": "SPF escalation shows Tier-1 email search can miss real matches",
-        "desc": "altamash@cxoxperts.com's docbot conversation ('we are unable to send any mail' \u2192 SPF issue, handed_off_to_human) turned into Freshdesk ticket #5223432 six minutes after the bot conversation ended \u2014 a genuine deflection failure. The direct email search initially returned zero results because Freshdesk indexed the sender as 'altamash@cxoxperts. com' (stray space); only a keyword sweep for 'SPF' surfaced it. Treat keyword sweeps as mandatory going forward, not optional."
-      },
-      {
-        "owner": "content",
-        "title": "Three internal staff asked for a .txt/llms.txt doc export within a 4-minute window",
-        "desc": "darpan.amle@netcorecloud.com (2 differently-worded asks) and gargi.mukherjee@netcorecloud.com (1 ask) all requested a machine-readable text version of the CE docs between 05:11\u201305:15 IST \u2014 tight enough clustering to look coordinated (e.g. a Slack thread pointing people at llms.txt) rather than organic. Bot correctly pointed to https://cedocs.netcorecloud.com/llms.txt each time. Worth a heads-up to whoever's testing LLM-readable docs internally so this doesn't get misread as five separate confused users."
-      },
-      {
-        "owner": "design",
-        "title": "Data Upload Logs dashboard reportedly not visible for a cameoindia user",
-        "desc": "ipo@cameoindia.com (Yesh Kumar) couldn't load audience data to share via mail; bot walked through Admin > Misc > Logs, but the user's own follow-up flagged the resulting dashboard as 'not visible.' Bot marked this resolved, but the thread actually ends on the user's negative signal, not a confirmation \u2014 worth a UI check for this account."
-      },
-      {
-        "owner": "calibration",
-        "title": "Small backfilled sample \u2014 read the 57% resolution rate directionally",
-        "desc": "n=14 after dedupe/exclusion is workable but still thin, especially with 6 of 14 ending in handed_off_to_human. Treat alongside the 14-day rolling trend rather than as a standalone signal."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Avadhoot Revankar (Netcore)",
-      "email": "avadhoot.revankar@netcorecloud.com",
-      "query": "Asked for channel attribution details, then chained follow-ups on last-click attribution, conversion window in campaigns, and campaign goal \u2014 all in one thread.",
-      "why": "A coherent, multi-part deep-dive into Netcore's attribution model rather than a single basic lookup \u2014 shows real analytics fluency, systematically working through attribution methodology."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 1,
-        "external": 3
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 3,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 0,
-        "external": 1
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 3,
-        "external": 1
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 2
-      }
-    ],
-    "topAskers": [
-      {
-        "email": "darpan.amle@netcorecloud.com",
-        "count": 2,
-        "friction": true,
-        "panel": "NA",
-        "queries": [
-          {
-            "theme": "Where's the doc/API for X",
-            "text": "Do I get a .txt file of the CE docs?"
-          },
-          {
-            "theme": "Where's the doc/API for X",
-            "text": "Can we get a .txt version documentation?"
-          }
-        ]
-      }
-    ],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 4,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "darpan.amle@netcorecloud.com",
-            "q": "Can we get a .txt version documentation?",
-            "panel": "NA"
-          },
-          {
-            "email": "darpan.amle@netcorecloud.com",
-            "q": "Do I get a .txt file of the CE docs?",
-            "panel": "NA"
-          },
-          {
-            "email": "gargi.mukherjee@netcorecloud.com",
-            "q": "can you get me .txt for documentation",
-            "panel": "NA"
-          },
-          {
-            "email": "arete.mequi@netcorecloud.com",
-            "q": "can you share details on requirements for smtp integration of ce and emails?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Email",
-        "internal": 1,
-        "external": 4,
-        "internalQ": [
-          {
-            "email": "aishwarya.sinha@netcoreunbxd.com",
-            "q": "Can i get email creation steps for campaigns?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "ipo@cameoindia.com",
-            "q": "Unable to load Audience Data to share mail",
-            "panel": "cameoindiacee"
-          },
-          {
-            "email": "test@gmail.com",
-            "q": "give me insites of campaign id 1466 / summarize email performance page",
-            "panel": "stg1_sms_pk"
-          },
-          {
-            "email": "priyanshuculturecircle@gmail.com",
-            "q": "hey i created a tamplate name mystery box 2 but i am not abke to find out",
-            "panel": "culturecircle_ce"
-          },
-          {
-            "email": "altamash@cxoxperts.com",
-            "q": "we are unable to send any mail \u2014 SPF issue",
-            "panel": "smeventure"
-          }
-        ]
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 2,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "mohan.chavan@netcorecloud.com",
-            "q": "Are we support logs on this path for test mode or sandbox panel?",
-            "panel": "NA"
-          },
-          {
-            "email": "avadhoot.revankar@netcorecloud.com",
-            "q": "channel attribution give me details and link to see details",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "ravi.raushan@timesgroup.com",
-            "q": "not able to login",
-            "panel": "timesnownewscee"
-          }
-        ]
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 2,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "asbatiya223698@gmail.com",
-            "q": "(Hindi, off-topic/unclear) \u0915\u094d\u092f\u093e \u0926\u0940\u0915\u0924 \u0906 \u0930\u0939\u0940 \u0939\u0947 \u0915\u094d\u092f\u0941\u0902 \u092b\u093f\u0932 \u0928\u0939\u0940 \u0939\u094b \u0930\u0939\u093e",
-            "panel": "NA"
-          },
-          {
-            "email": "nghiant3110@gmail.com",
-            "q": "I want to chat with your support team",
-            "panel": "gggcomsmt"
-          }
-        ]
-      }
-    ]
-  },
-  "2026-08-01": {
-    "date": "2026-08-01",
-    "totalConversations": 2,
-    "resolutionRate": 100,
-    "internalTotal": 1,
-    "externalTotal": 1,
-    "docsTotal": 2,
-    "panelTotal": 0,
-    "queryType": {
-      "technical": 1,
-      "generic": 1
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days (Aug 1 00:00 IST to Aug 3 23:59 IST); window still open as of this run (Aug 2)",
-      "totalConversations": 2,
-      "sameUserEscalations": [],
-      "deflectedCount": 2,
-      "deflectionRate": 100,
-      "patternRisk": [
-        {
-          "area": "Infra/Data residency",
-          "docbotCount": 1,
-          "ticketCount": 1,
-          "exampleTicketSubjects": [
-            "Urgent: Discrepancies in S3 Report File Naming - maxmailersmt / maxlifesmtech #5224374"
-          ],
-          "note": "Striking near-miss: same first name 'Meenakshi', same day (Aug 1), same specific topic (S3 report filename/naming nomenclature) as the docbot conversation \u2014 but the ticket's requester email is meenakshi.kaul@netcore.co.in vs the docbot contact's meenakshi.kaul@netcorecloud.com (different domain), so it doesn't clear the strict same-email Tier 1 bar. Very likely the same person on a different email alias; flagged as a pattern signal rather than a confirmed escalation."
-        }
-      ],
-      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit \u2014 treat as a directional signal, doubly so with only 2 conversations and the +2-day window not yet closed (D+2 = Aug 3). Checked both unique requester emails (meenakshi.kaul@netcorecloud.com, kgyanendar34@gmail.com) directly \u2014 zero exact matches. Keyword spot-checks for 'S3 report' and 'WhatsApp billing' \u2014 see patternRisk for the one notable near-miss."
-    },
-    "headline": "Quietest day in weeks \u2014 just 2 conversations on August 1 (Saturday) \u2014 but one is worth a second look: Meenakshi asked the bot about S3 report filename nomenclature at 10:04 AM IST, and a same-day Freshdesk ticket titled 'Discrepancies in S3 Report File Naming' landed that afternoon from someone with the same first name \u2014 almost certainly the same person on a different email domain, so it falls just outside the strict escalation count.",
-    "actionableInsights": [
-      {
-        "owner": "calibration",
-        "title": "n=2 \u2014 treat today's rates as directional only",
-        "desc": "Only 2 conversations all day (Saturday). Not enough volume to read resolution/deflection rates as a real signal \u2014 consistent with the established weekend-low pattern seen repeatedly in this archive."
-      },
-      {
-        "owner": "product",
-        "title": "Likely S3-naming escalation missed by strict email matching",
-        "desc": "meenakshi.kaul@netcorecloud.com asked the bot about S3 report filename nomenclature; a ticket on the identical topic ('Discrepancies in S3 Report File Naming') was filed same-day by 'Meenakshi' at meenakshi.kaul@netcore.co.in. If this is the same person using two email domains, the underlying issue (unexpected filename encoding vs. the documented convention) is a real product/data-pipeline question, not just a docs gap \u2014 worth checking whether netcorecloud.com and netcore.co.in are meant to resolve to the same identity, since the mismatch is silently breaking escalation tracking."
-      },
-      {
-        "owner": "content",
-        "title": "Confused, likely off-topic conversation from a free Gmail user",
-        "desc": "kgyanendar34@gmail.com's conversation was fragmented and hard to parse ('Kabtak pel', 'Peyment kab tak ayega', then a WhatsApp number) \u2014 bot did its best to route to WhatsApp billing docs, but this reads more like a confused consumer who received a WhatsApp message than a genuine CE platform user. Recurring pattern flagged on prior quiet days (July 18, July 19) \u2014 a lightweight 'is this about the Netcore CE platform?' clarifying prompt would help route these without consuming a full bot session."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Meenakshi Kaul (Netcore)",
-      "email": "meenakshi.kaul@netcorecloud.com",
-      "query": "Asked for the exact filename nomenclature Netcore uses for S3-delivered email reports, then asked for the S3 report link directly.",
-      "why": "A precise, technical question about file-naming conventions for automated exports \u2014 and per the Freshdesk cross-check, likely tied to a same-day 'Discrepancies in S3 Report File Naming' ticket, meaning this wasn't idle curiosity but the first sign of a real data-pipeline issue."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 0,
-        "external": 1
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 1,
-        "external": 0
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 0
-      }
-    ],
-    "topAskers": [],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Email",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 0,
-        "external": 1,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "kgyanendar34@gmail.com",
-            "q": "confused/fragmented messages ending in a WhatsApp number; bot routed to WhatsApp billing/usage tracking",
-            "panel": "NA"
-          }
-        ]
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 1,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "meenakshi.kaul@netcorecloud.com",
-            "q": "For CustEmailReportdownload - what is the filename nomenclature downloaded from s3",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      }
-    ]
-  },
   "2026-08-02": {
     "date": "2026-08-02",
     "totalConversations": 2,
@@ -3728,6 +3338,377 @@ const ARCHIVE = {
             "panel": "NA"
           }
         ]
+      }
+    ]
+  },
+  "2026-08-14": {
+    "date": "2026-08-14",
+    "totalConversations": 15,
+    "resolutionRate": 100,
+    "internalTotal": 3,
+    "externalTotal": 12,
+    "docsTotal": 8,
+    "panelTotal": 7,
+    "queryType": {
+      "technical": 4,
+      "generic": 11
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (Aug 14 00:00 IST to Aug 16 23:59 IST); window nearly fully elapsed as of this run",
+      "totalConversations": 15,
+      "sameUserEscalations": [],
+      "deflectedCount": 15,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit \u2014 treat as a directional signal. Tier 1: checked all 14 unique requester emails via global search, zero ticket matches for any. Tier 2 keyword sweeps: 'campaign data discrepancy' (11 results, most recent closed a month ago \u2014 none in-window), 'two factor authentication' (31 results, most recent created 11 Aug \u2014 just before the window, none in-window), 'SMS undelivered' (34 results, most recent from ~3 days ago but a different theme \u2014 a real delivery outage for a bank sender ID, not a conceptual question about reason codes \u2014 excluded as a false positive), 'unsubscribe button' (13 results, most recent 24 days ago), 'in-app aspect ratio' (0 results). No genuine in-window matches found."
+    },
+    "headline": "15 conversations on Aug 14 (Friday, backfilled \u2014 this date was missing from the archive), 100% bot self-reported resolved and 100% Freshdesk-deflected across all 14 unique askers \u2014 though 20% of the volume (3 of 15) was near-content-free noise: a confused off-topic debit-card message and two bare ticket-ID pings from the same BFSL user. Preetam at Sapphire Healthcare flagged a real campaign-data-vs-dashboard discrepancy, and Romit Pandit asked the identical SMS-undelivered question from two different email domains 25 minutes apart.",
+    "actionableInsights": [
+      {
+        "owner": "product",
+        "title": "Campaign data discrepancy flagged by Sapphire Healthcare, no ticket filed yet",
+        "desc": "preetam.g@sapphirehc.in reported a discrepancy between the data shown in-panel and the campaign dashboard, with a screenshot attached. Freshdesk came back clean for this user, but a live data-mismatch claim shouldn't just close as bot-resolved \u2014 worth routing to the analytics/reporting team to confirm whether this is a real sync issue."
+      },
+      {
+        "owner": "calibration",
+        "title": "Same person, two email domains \u2014 Romit Pandit asked the identical SMS-undelivered question twice",
+        "desc": "romit.pandit@netcorecloud.com and romit.pandit@netcore.ai asked the literal same 'what do undelivered SMS reasons mean' question 25 minutes apart. Because they're different email addresses, the strict same-email dedupe/access rule counts them as two distinct users \u2014 one internal, one external \u2014 which is almost certainly one Netcore employee with two accounts. Worth checking whether netcore.ai is a legitimate internal alias so future runs classify it correctly."
+      },
+      {
+        "owner": "content",
+        "title": "BFSL user sent two bare ticket-ID references with no other context",
+        "desc": "aman.verma@bfsl.co.in sent 'Ticket ID-523303' and shortly after 'Ticket ID-5233030' (a corrected digit) with no accompanying question. Bot marked both resolved, but there's no way to tell if the underlying need was actually addressed. A clearer bot prompt \u2014 'what do you need help with regarding this ticket?' \u2014 would likely surface the real ask instead of a bare reference."
+      },
+      {
+        "owner": "calibration",
+        "title": "n=15, single backfilled Friday \u2014 read directionally",
+        "desc": "Typical Friday volume for this archive. No handoffs today (all bot self-reported resolved), which is on the high end \u2014 worth watching whether that holds or is itself a data quirk of this backfilled pull."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Preetam G",
+      "email": "preetam.g@sapphirehc.in",
+      "query": "Flagged a discrepancy between the data shown in a screenshot and what the campaign dashboard reports, attaching visual evidence.",
+      "why": "A precise, evidence-backed data-integrity report rather than a how-to or navigation ask \u2014 the kind of signal that deserves an actual data-team look, not just a bot answer."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 1,
+        "external": 3
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 1,
+        "external": 3
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 1,
+        "external": 1
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 3
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "aman.verma@bfsl.co.in",
+        "count": 2,
+        "friction": true,
+        "panel": "bfsl_cee",
+        "queries": [
+          {
+            "theme": "Bare greeting, no context yet",
+            "text": "Ticket ID-523303"
+          },
+          {
+            "theme": "Bare greeting, no context yet",
+            "text": "Ticket ID-5233030"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 1,
+        "external": 3,
+        "internalQ": [
+          {
+            "email": "prateek.singh@netcorecloud.com",
+            "q": "What are different ways to upload user data to CE Panel / Is there a way to push it via S3 also? / Can we use SMTP also?",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "test@gmail.com",
+            "q": "what is the exact aspect ratio that we should use for in-app when customer is using custom html",
+            "panel": "NA"
+          },
+          {
+            "email": "soumya.chaudhary@netcore.ai",
+            "q": "hi where can I see events on panel",
+            "panel": "NA"
+          },
+          {
+            "email": "tinh.nguyen@droppi.com",
+            "q": "how to test send event from react native app and view event in dashboard",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "ishika.a@netcorecloud.com",
+            "q": "how to add the unsubscribe button on email / document link",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "vashu.panchal@clix.capital",
+            "q": "can we send attachments in email communication / can we delete any duplicate email template",
+            "panel": "clixcapitaloffersmt"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "romit.pandit@netcorecloud.com",
+            "q": "I want to know when a SMS is not delivered what are the meanings of the reasons that are stated in the detailed report?",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "romit.pandit@netcore.ai",
+            "q": "i want to know when a SMS is undelivered then what are the meaning of the undelivered reasons",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 4,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "jatin.phalak@iprocess.in",
+            "q": "we have trying to login but two factor authentication page is open but otp is not recived in my email id",
+            "panel": "iprocesssmt"
+          },
+          {
+            "email": "preetam.g@sapphirehc.in",
+            "q": "there is a descripency in the data shown here and dashboard for the campaign",
+            "panel": "sapphirehsmt"
+          },
+          {
+            "email": "shubham.sharma@forestessentials.com",
+            "q": "Can you help me create segment?",
+            "panel": "forestessentialsce"
+          },
+          {
+            "email": "kapil@exoticindia.com",
+            "q": "Link to Usage Overview does not work / opens a blank page",
+            "panel": "exoticindiaartcee"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 3,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "payalade8788@gmail.com",
+            "q": "Hii my debit card (confused/off-topic message, unrelated to Netcore CE platform)",
+            "panel": "NA"
+          },
+          {
+            "email": "aman.verma@bfsl.co.in",
+            "q": "Ticket ID-523303",
+            "panel": "bfsl_cee"
+          },
+          {
+            "email": "aman.verma@bfsl.co.in",
+            "q": "Ticket ID-5233030",
+            "panel": "bfsl_cee"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-08-15": {
+    "date": "2026-08-15",
+    "totalConversations": 1,
+    "resolutionRate": 100,
+    "internalTotal": 0,
+    "externalTotal": 1,
+    "docsTotal": 0,
+    "panelTotal": 1,
+    "queryType": {
+      "technical": 1,
+      "generic": 0
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (Aug 15 00:00 IST to Aug 17 23:59 IST); window still open as of this run (D+1)",
+      "totalConversations": 1,
+      "sameUserEscalations": [],
+      "deflectedCount": 1,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit \u2014 treat as a directional signal, doubly so at n=1 with the +2-day window not yet closed. Tier 1: direct email search for tinh.nguyen@droppii.com returned zero tickets. Tier 2: keyword search for 'voucher_id' returned zero tickets."
+    },
+    "headline": "Just 1 conversation on Aug 15 (Saturday) \u2014 but a meaty one: Tinh Nguyen at Droppii ran a three-part deep-dive into Netcore's supported data types for custom event attributes, working through whether to omit, empty-string, or array a voucher_id field to avoid schema-inference conflicts. Freshdesk-clean so far, though the window is still open through Aug 17.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "n=1 \u2014 read nothing into the 100% rate",
+        "desc": "Single conversation on a Saturday, consistent with the established weekend-low pattern seen repeatedly in this archive. Not a meaningful sample for resolution or deflection rates."
+      },
+      {
+        "owner": "content",
+        "title": "Custom event attribute data-type edge case (voucher_id) deserves a doc callout",
+        "desc": "tinh.nguyen@droppii.com spent 3 back-to-back messages working through whether an optional voucher_id attribute should be omitted, sent as an empty string, or sent as an array when no voucher applies \u2014 specifically asking about schema/type-inference conflicts from mixing String and Array types on the same attribute. This is exactly the kind of edge case that belongs as a one-line note in the event-schema docs (e.g. 'omit optional attributes entirely rather than sending empty values') so future integrators don't need a multi-turn bot conversation to get there."
+      },
+      {
+        "owner": "product",
+        "title": "Empty-array payload triggers a validation error that may be worth reconsidering",
+        "desc": "The user reported that sending `\"voucher_id\": []` throws 'Invalid Payload [voucher_id] Data Type', while `[\"\"]` (an array containing an empty string) is silently accepted. If arrays are the intended representation for this field, an empty array arguably should be valid too (it semantically means 'no vouchers') \u2014 or at minimum the error message should explain the expected alternative. Worth a quick check with the schema/validation owners."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Tinh Nguyen (Droppii)",
+      "email": "tinh.nguyen@droppii.com",
+      "query": "Ran a structured, three-part investigation into the correct data type/representation for an optional voucher_id custom event attribute \u2014 omit vs. empty string vs. array \u2014 explicitly asking about schema-inference conflicts and downstream impact on segmentation and automation.",
+      "why": "A methodical, engineering-grade integration question that anticipates edge cases (multi-voucher orders, type conflicts) rather than a single basic lookup \u2014 shows real care about building a robust, forward-compatible integration."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 0
+      }
+    ],
+    "topAskers": [],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "tinh.nguyen@droppii.com",
+            "q": "Supported data types for custom event attributes \u2014 how to represent an optional voucher_id (omit / empty string / array) without causing schema-inference conflicts",
+            "panel": "sndt_droppiicee"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
       }
     ]
   }
@@ -18092,6 +18073,377 @@ const FULL_ARCHIVE = {
             "panel": "NA"
           }
         ]
+      }
+    ]
+  },
+  "2026-08-14": {
+    "date": "2026-08-14",
+    "totalConversations": 15,
+    "resolutionRate": 100,
+    "internalTotal": 3,
+    "externalTotal": 12,
+    "docsTotal": 8,
+    "panelTotal": 7,
+    "queryType": {
+      "technical": 4,
+      "generic": 11
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (Aug 14 00:00 IST to Aug 16 23:59 IST); window nearly fully elapsed as of this run",
+      "totalConversations": 15,
+      "sameUserEscalations": [],
+      "deflectedCount": 15,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit \u2014 treat as a directional signal. Tier 1: checked all 14 unique requester emails via global search, zero ticket matches for any. Tier 2 keyword sweeps: 'campaign data discrepancy' (11 results, most recent closed a month ago \u2014 none in-window), 'two factor authentication' (31 results, most recent created 11 Aug \u2014 just before the window, none in-window), 'SMS undelivered' (34 results, most recent from ~3 days ago but a different theme \u2014 a real delivery outage for a bank sender ID, not a conceptual question about reason codes \u2014 excluded as a false positive), 'unsubscribe button' (13 results, most recent 24 days ago), 'in-app aspect ratio' (0 results). No genuine in-window matches found."
+    },
+    "headline": "15 conversations on Aug 14 (Friday, backfilled \u2014 this date was missing from the archive), 100% bot self-reported resolved and 100% Freshdesk-deflected across all 14 unique askers \u2014 though 20% of the volume (3 of 15) was near-content-free noise: a confused off-topic debit-card message and two bare ticket-ID pings from the same BFSL user. Preetam at Sapphire Healthcare flagged a real campaign-data-vs-dashboard discrepancy, and Romit Pandit asked the identical SMS-undelivered question from two different email domains 25 minutes apart.",
+    "actionableInsights": [
+      {
+        "owner": "product",
+        "title": "Campaign data discrepancy flagged by Sapphire Healthcare, no ticket filed yet",
+        "desc": "preetam.g@sapphirehc.in reported a discrepancy between the data shown in-panel and the campaign dashboard, with a screenshot attached. Freshdesk came back clean for this user, but a live data-mismatch claim shouldn't just close as bot-resolved \u2014 worth routing to the analytics/reporting team to confirm whether this is a real sync issue."
+      },
+      {
+        "owner": "calibration",
+        "title": "Same person, two email domains \u2014 Romit Pandit asked the identical SMS-undelivered question twice",
+        "desc": "romit.pandit@netcorecloud.com and romit.pandit@netcore.ai asked the literal same 'what do undelivered SMS reasons mean' question 25 minutes apart. Because they're different email addresses, the strict same-email dedupe/access rule counts them as two distinct users \u2014 one internal, one external \u2014 which is almost certainly one Netcore employee with two accounts. Worth checking whether netcore.ai is a legitimate internal alias so future runs classify it correctly."
+      },
+      {
+        "owner": "content",
+        "title": "BFSL user sent two bare ticket-ID references with no other context",
+        "desc": "aman.verma@bfsl.co.in sent 'Ticket ID-523303' and shortly after 'Ticket ID-5233030' (a corrected digit) with no accompanying question. Bot marked both resolved, but there's no way to tell if the underlying need was actually addressed. A clearer bot prompt \u2014 'what do you need help with regarding this ticket?' \u2014 would likely surface the real ask instead of a bare reference."
+      },
+      {
+        "owner": "calibration",
+        "title": "n=15, single backfilled Friday \u2014 read directionally",
+        "desc": "Typical Friday volume for this archive. No handoffs today (all bot self-reported resolved), which is on the high end \u2014 worth watching whether that holds or is itself a data quirk of this backfilled pull."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Preetam G",
+      "email": "preetam.g@sapphirehc.in",
+      "query": "Flagged a discrepancy between the data shown in a screenshot and what the campaign dashboard reports, attaching visual evidence.",
+      "why": "A precise, evidence-backed data-integrity report rather than a how-to or navigation ask \u2014 the kind of signal that deserves an actual data-team look, not just a bot answer."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 1,
+        "external": 3
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 1,
+        "external": 3
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 1,
+        "external": 1
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 3
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "aman.verma@bfsl.co.in",
+        "count": 2,
+        "friction": true,
+        "panel": "bfsl_cee",
+        "queries": [
+          {
+            "theme": "Bare greeting, no context yet",
+            "text": "Ticket ID-523303"
+          },
+          {
+            "theme": "Bare greeting, no context yet",
+            "text": "Ticket ID-5233030"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 1,
+        "external": 3,
+        "internalQ": [
+          {
+            "email": "prateek.singh@netcorecloud.com",
+            "q": "What are different ways to upload user data to CE Panel / Is there a way to push it via S3 also? / Can we use SMTP also?",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "test@gmail.com",
+            "q": "what is the exact aspect ratio that we should use for in-app when customer is using custom html",
+            "panel": "NA"
+          },
+          {
+            "email": "soumya.chaudhary@netcore.ai",
+            "q": "hi where can I see events on panel",
+            "panel": "NA"
+          },
+          {
+            "email": "tinh.nguyen@droppi.com",
+            "q": "how to test send event from react native app and view event in dashboard",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "ishika.a@netcorecloud.com",
+            "q": "how to add the unsubscribe button on email / document link",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "vashu.panchal@clix.capital",
+            "q": "can we send attachments in email communication / can we delete any duplicate email template",
+            "panel": "clixcapitaloffersmt"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "romit.pandit@netcorecloud.com",
+            "q": "I want to know when a SMS is not delivered what are the meanings of the reasons that are stated in the detailed report?",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "romit.pandit@netcore.ai",
+            "q": "i want to know when a SMS is undelivered then what are the meaning of the undelivered reasons",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 4,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "jatin.phalak@iprocess.in",
+            "q": "we have trying to login but two factor authentication page is open but otp is not recived in my email id",
+            "panel": "iprocesssmt"
+          },
+          {
+            "email": "preetam.g@sapphirehc.in",
+            "q": "there is a descripency in the data shown here and dashboard for the campaign",
+            "panel": "sapphirehsmt"
+          },
+          {
+            "email": "shubham.sharma@forestessentials.com",
+            "q": "Can you help me create segment?",
+            "panel": "forestessentialsce"
+          },
+          {
+            "email": "kapil@exoticindia.com",
+            "q": "Link to Usage Overview does not work / opens a blank page",
+            "panel": "exoticindiaartcee"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 3,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "payalade8788@gmail.com",
+            "q": "Hii my debit card (confused/off-topic message, unrelated to Netcore CE platform)",
+            "panel": "NA"
+          },
+          {
+            "email": "aman.verma@bfsl.co.in",
+            "q": "Ticket ID-523303",
+            "panel": "bfsl_cee"
+          },
+          {
+            "email": "aman.verma@bfsl.co.in",
+            "q": "Ticket ID-5233030",
+            "panel": "bfsl_cee"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-08-15": {
+    "date": "2026-08-15",
+    "totalConversations": 1,
+    "resolutionRate": 100,
+    "internalTotal": 0,
+    "externalTotal": 1,
+    "docsTotal": 0,
+    "panelTotal": 1,
+    "queryType": {
+      "technical": 1,
+      "generic": 0
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (Aug 15 00:00 IST to Aug 17 23:59 IST); window still open as of this run (D+1)",
+      "totalConversations": 1,
+      "sameUserEscalations": [],
+      "deflectedCount": 1,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit \u2014 treat as a directional signal, doubly so at n=1 with the +2-day window not yet closed. Tier 1: direct email search for tinh.nguyen@droppii.com returned zero tickets. Tier 2: keyword search for 'voucher_id' returned zero tickets."
+    },
+    "headline": "Just 1 conversation on Aug 15 (Saturday) \u2014 but a meaty one: Tinh Nguyen at Droppii ran a three-part deep-dive into Netcore's supported data types for custom event attributes, working through whether to omit, empty-string, or array a voucher_id field to avoid schema-inference conflicts. Freshdesk-clean so far, though the window is still open through Aug 17.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "n=1 \u2014 read nothing into the 100% rate",
+        "desc": "Single conversation on a Saturday, consistent with the established weekend-low pattern seen repeatedly in this archive. Not a meaningful sample for resolution or deflection rates."
+      },
+      {
+        "owner": "content",
+        "title": "Custom event attribute data-type edge case (voucher_id) deserves a doc callout",
+        "desc": "tinh.nguyen@droppii.com spent 3 back-to-back messages working through whether an optional voucher_id attribute should be omitted, sent as an empty string, or sent as an array when no voucher applies \u2014 specifically asking about schema/type-inference conflicts from mixing String and Array types on the same attribute. This is exactly the kind of edge case that belongs as a one-line note in the event-schema docs (e.g. 'omit optional attributes entirely rather than sending empty values') so future integrators don't need a multi-turn bot conversation to get there."
+      },
+      {
+        "owner": "product",
+        "title": "Empty-array payload triggers a validation error that may be worth reconsidering",
+        "desc": "The user reported that sending `\"voucher_id\": []` throws 'Invalid Payload [voucher_id] Data Type', while `[\"\"]` (an array containing an empty string) is silently accepted. If arrays are the intended representation for this field, an empty array arguably should be valid too (it semantically means 'no vouchers') \u2014 or at minimum the error message should explain the expected alternative. Worth a quick check with the schema/validation owners."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Tinh Nguyen (Droppii)",
+      "email": "tinh.nguyen@droppii.com",
+      "query": "Ran a structured, three-part investigation into the correct data type/representation for an optional voucher_id custom event attribute \u2014 omit vs. empty string vs. array \u2014 explicitly asking about schema-inference conflicts and downstream impact on segmentation and automation.",
+      "why": "A methodical, engineering-grade integration question that anticipates edge cases (multi-voucher orders, type conflicts) rather than a single basic lookup \u2014 shows real care about building a robust, forward-compatible integration."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 0
+      }
+    ],
+    "topAskers": [],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "tinh.nguyen@droppii.com",
+            "q": "Supported data types for custom event attributes \u2014 how to represent an optional voucher_id (omit / empty string / array) without causing schema-inference conflicts",
+            "panel": "sndt_droppiicee"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
       }
     ]
   }
