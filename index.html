@@ -2,7 +2,7 @@
 {
   "name": "Ce Docbot Summary 2026 06 17",
   "schemaVersion": 1,
-  "description": "CE Docbot 14-day rolling summary (Jul 30 – Aug 12, 2026) — latest day 2026-08-12"
+  "description": "CE Docbot 14-day rolling summary (Jul 7 – Jul 20, 2026) — latest day 2026-07-20"
 }
 </script>
 <html lang="en">
@@ -524,203 +524,6 @@ html[data-theme="dark"] .intro-banner .ib-lede{color:#c7cad1;}
 </div>
 <script>
 const ARCHIVE = {
-  "2026-08-03": {
-    "date": "2026-08-03",
-    "totalConversations": 11,
-    "resolutionRate": 100,
-    "internalTotal": 7,
-    "externalTotal": 4,
-    "docsTotal": 9,
-    "panelTotal": 2,
-    "queryType": {
-      "technical": 4,
-      "generic": 7
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days (2026-08-03 00:00 IST to 2026-08-05 23:59 IST); window partially open as of this run (2026-08-05)",
-      "totalConversations": 11,
-      "sameUserEscalations": [],
-      "deflectedCount": 11,
-      "deflectionRate": 100,
-      "patternRisk": [],
-      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit \u2014 treat as a directional signal. Tier 1: checked all 11 unique requester emails via global search, zero ticket matches for any. Tier 2: keyword searches for 'webhook attribute' (2 old tickets, both closed 20+ days ago), 'Shopflo' (0 tickets), and 'AMP sender whitelist' (13 tickets, all closed 14 days to 3 months ago) \u2014 none fell inside the Aug 3-5 matching window, so no in-window pattern match today despite AMP whitelisting being a heavily recurring historical ticket topic."
-    },
-    "headline": "11 conversations on Aug 3, 100% bot self-reported resolved and 100% Freshdesk-deflected (zero escalations across all 11 askers) \u2014 a staff-heavy day (7 of 11 internal) with two different Netcore employees independently hunting for Nitro/Shopflo integration docs within 15 minutes of each other.",
-    "actionableInsights": [
-      {
-        "owner": "calibration",
-        "title": "Internal-heavy day \u2014 7 of 11 conversations were Netcore staff",
-        "desc": "Most of today's volume (avadhoot.revankar, yogesh.kulkarni, shipra.choudhary, darpan.amle, dhruv.bakshi, akash.gupta, jaishnitha.vs) came from internal staff exploring docs, not live customer friction. Treat today's theme/area mix as skewed toward internal usage, not a clean external-customer read."
-      },
-      {
-        "owner": "product",
-        "title": "Two staff independently asked about Nitro/Shopflo integration minutes apart",
-        "desc": "avadhoot.revankar@netcorecloud.com asked for 'Shopflo documents' at 06:09 IST, and yogesh.kulkarni@netcorecloud.com asked 'How do we integrate with platforms such as Nitro and Shopflo?' at 06:22 IST \u2014 13 minutes later. Likely the same live customer conversation or deal being worked by two people; worth a quick internal sync so both aren't independently hunting the same doc."
-      },
-      {
-        "owner": "content",
-        "title": "4-way randomized template split (20k users) is a good self-serve doc stress-test",
-        "desc": "jaishnitha.vs@netcorecloud.com asked how to send 4 template variants split randomly across 20,000 users \u2014 a genuine A/B-style broadcast-split design question. If this needed back-and-forth with the bot rather than a single clear doc hit, it's worth checking whether the randomized-split flow is fully documented."
-      },
-      {
-        "owner": "product",
-        "title": "External client-ID lookup for API integration, no escalation",
-        "desc": "ameesha.dev@katyayaniorganics.com (katyayaniorganics_ce) asked for a client ID for API integration \u2014 resolved cleanly with no Freshdesk follow-up. Routine today, but worth keeping client-ID lookup well-documented if this type of ask grows in volume."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Jaishnitha VS",
-      "email": "jaishnitha.vs@netcorecloud.com",
-      "query": "Wanted to send 4 different template variants to 20,000 users, split randomly across the audience, and asked how to set that up.",
-      "why": "A genuine A/B-style broadcast-split design question showing real campaign-strategy thinking, not a basic navigation ask \u2014 the most product-savvy request of the day."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 5,
-        "external": 0
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 1,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 0,
-        "external": 1
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 1,
-        "external": 1
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 2
-      }
-    ],
-    "topAskers": [],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 2,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "avadhoot.revankar@netcorecloud.com",
-            "q": "Shopflo documents",
-            "panel": "NA"
-          },
-          {
-            "email": "yogesh.kulkarni@netcorecloud.com",
-            "q": "How do we integrate with platforms such as Nitro and Shopflo?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "ameesha.dev@katyayaniorganics.com",
-            "q": "hello i need to client id for the api integration",
-            "panel": "katyayaniorganics_ce"
-          }
-        ]
-      },
-      {
-        "area": "Email",
-        "internal": 2,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "dhruv.bakshi@netcorecloud.com",
-            "q": "What is UCE usecases and advantages",
-            "panel": "NA"
-          },
-          {
-            "email": "akash.gupta@netcorecloud.com",
-            "q": "Help with process to get a email sender id whitelisted for AMP",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 2,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "jaishnitha.vs@netcorecloud.com",
-            "q": "i want to send 4 kinds of templates to 20000 users that is spilt randomly how to do it",
-            "panel": "NA"
-          },
-          {
-            "email": "shipra.choudhary@netcorecloud.com",
-            "q": "while sending channel result data through webhook, how to send the attribute values?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 1,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "darpan.amle@netcorecloud.com",
-            "q": "WhatsApp Node \u2013 Create, Edit, and Test in Journey",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 0,
-        "external": 1,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "sandipsharma@anveshan.farm",
-            "q": "What is the meaning on Likely to churn ?",
-            "panel": "NA"
-          }
-        ]
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 2,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "khahs486928@gmail.com",
-            "q": "Hlo",
-            "panel": "NA"
-          },
-          {
-            "email": "anand@gdata.in",
-            "q": "Hi",
-            "panel": "gdatacee"
-          }
-        ]
-      }
-    ]
-  },
   "2026-08-04": {
     "date": "2026-08-04",
     "totalConversations": 18,
@@ -3706,6 +3509,265 @@ const ARCHIVE = {
           {
             "email": "boruahh270@gmail.com",
             "q": "My account block / My bank account unblock kijiye (off-topic, unrelated to Netcore CE)",
+            "panel": "NA"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-08-17": {
+    "date": "2026-08-17",
+    "totalConversations": 20,
+    "resolutionRate": 100,
+    "internalTotal": 1,
+    "externalTotal": 19,
+    "docsTotal": 14,
+    "panelTotal": 6,
+    "queryType": {
+      "technical": 7,
+      "generic": 13
+    },
+    "ticketDeflection": null,
+    "headline": "20 conversations on Aug 17, a clean 100% bot self-reported resolution -- but the 1-internal-to-19-external split is misleading, since at least 9 of today's 'external' askers (Ninad, Amey Vaidya, Lokesh Sharma, Sonal Kumari, Sumit Agarwal, Mandovi Joseph, Ishika, Sakshi Yadav) are recognizable Netcore staff now messaging from @netcore.ai/@netcorecloud.ai instead of @netcorecloud.com. Freshdesk ticket-deflection couldn't be checked this run -- the Chrome browser connector was unreachable, a different blocker than the usual session-expiry case.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "Internal/external split is skewed by a Netcore staff email-domain shift",
+        "desc": "19 of 20 conversations classified 'external' under the strict @netcorecloud.com/@netcoreunbxd.com rule, but at least 9 are recognizable Netcore staff (ninad.karangutkar, amey.vaidya, lokesh.sharma, sonal.kumari, sumit.agarwal, mandovi.joseph, ishika.a, sakshi.yadav) using @netcore.ai or @netcorecloud.ai addresses instead. Today's 1/19 internal/external split should be read with this caveat -- it likely reflects a company email-domain change, not a real shift in who's asking. Worth flagging to whoever owns the classification rule in case @netcore.ai and @netcorecloud.ai should be added to the internal domain list going forward."
+      },
+      {
+        "owner": "content",
+        "title": "WhatsApp/Meta template rejection needed a multi-turn troubleshoot",
+        "desc": "pooja.patil@adityabirlacapital.com (absli_hosales_ce) hit a Meta template rejection and needed two full bot explanations covering consecutive-newline limits, variable placement, emoji caps, and prohibited special characters before resolving it. A pre-submission template checklist surfaced in the panel (not just after rejection) would likely cut this kind of back-and-forth."
+      },
+      {
+        "owner": "product",
+        "title": "Conversion tracking not showing despite goal configured -- real bug, not a how-to",
+        "desc": "sakshi.yadav@netcorecloud.ai (iprulifece panel) reported conversions missing on the campaigns page even with a conversion goal added. The bot can't diagnose backend tracking gaps -- worth routing to product/eng for a data-pipeline check rather than treating as resolved."
+      },
+      {
+        "owner": "content",
+        "title": "15% of today's volume (3 of 20) was pure off-topic spam",
+        "desc": "amit.dwivedi184@gmail.com ('I ordered a xl size shirt'), chahalyug207@gmail.com ('I want to buy a new bike'), and kk3914588@gmail.com (bike finance/loan query) had zero connection to the CE product -- consistent with the recurring shopping/loan spam pattern seen on prior days. Today's 100% self-reported resolution figure should be read net of this noise."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Rubal Adwani (Netcore)",
+      "email": "rubal.adwani@netcorecloud.com",
+      "query": "What are the use cases of using a UDT (user data table)?",
+      "why": "A precise feature-strategy question about the data model rather than a basic navigation ask -- Rubal has previously shown up as a repeat product-savvy asker (3 questions on Aug 5 about control groups, behavioral event sources, and data export categories), and this continues that pattern."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 6
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 1,
+        "external": 2
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 5
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "ninad.karangutkar@netcore.ai",
+        "count": 4,
+        "friction": false,
+        "panel": "NA",
+        "queries": [
+          {
+            "theme": "Where's the doc/API for X",
+            "text": "SDK integration"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "liquid tags"
+          },
+          {
+            "theme": "Bare greeting, no context yet",
+            "text": "max pricing"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "how to create an event"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 4,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "ishika.a@netcore.ai",
+            "q": "i need the web personalization doxument for reference",
+            "panel": "NA"
+          },
+          {
+            "email": "ninad.karangutkar@netcore.ai",
+            "q": "SDK integration",
+            "panel": "NA"
+          },
+          {
+            "email": "ninad.karangutkar@netcore.ai",
+            "q": "how to create an event",
+            "panel": "NA"
+          },
+          {
+            "email": "amey.vaidya@netcore.ai",
+            "q": "can you tell me how we integrate catalog with our ce ?",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "ninad.karangutkar@netcore.ai",
+            "q": "liquid tags",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 4,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "bhavya.k@fnp.com",
+            "q": "where can i findthe qr code to land on this whatsapp account",
+            "panel": "fnpcee_gcp"
+          },
+          {
+            "email": "sumit.agarwal@netcore.ai",
+            "q": "how does netcore CE help in increasing whatsapp delivery",
+            "panel": "NA"
+          },
+          {
+            "email": "pooja.patil@adityabirlacapital.com",
+            "q": "[Screenshot] WhatsApp/Meta template rejected -- asked bot to check the formatting error",
+            "panel": "absli_hosales_ce"
+          },
+          {
+            "email": "lokesh.sharma@netcore.ai",
+            "q": "how to check if number is bloacklisted due to whatsapp subscribe",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "yashasvee.dwivedi@haystackanalytics.in",
+            "q": "Hi please give me the total number of campaigns sent by yashasvee.dwivedi@haystackanalytics.in and services@haystackanalytics.in",
+            "panel": "haystackanalyticscee"
+          },
+          {
+            "email": "dikshasupperb@gmail.com",
+            "q": "Where i can chck my replies?",
+            "panel": "craftedcotton_ce"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 1,
+        "external": 3,
+        "internalQ": [
+          {
+            "email": "rubal.adwani@netcorecloud.com",
+            "q": "what are the use cases of using a UDT- user data table",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "sakshi.yadav@netcorecloud.ai",
+            "q": "I am unable to see the conversions on the campaigns page there is conversion goal added as well",
+            "panel": "iprulifece"
+          },
+          {
+            "email": "mandovi.joseph@netcore.ai",
+            "q": "Can we delete anonymous users on panel?",
+            "panel": "NA"
+          },
+          {
+            "email": "sonal.kumari@netcore.ai",
+            "q": "Hi, how to create new user",
+            "panel": "smartechai"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 5,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "amit.dwivedi184@gmail.com",
+            "q": "I ordered a xl size shirt",
+            "panel": "NA"
+          },
+          {
+            "email": "chahalyug207@gmail.com",
+            "q": "I want to buy a new bike",
+            "panel": "NA"
+          },
+          {
+            "email": "tijugeorge82@gmail.com",
+            "q": "Video call done",
+            "panel": "NA"
+          },
+          {
+            "email": "ninad.karangutkar@netcore.ai",
+            "q": "max pricing",
+            "panel": "NA"
+          },
+          {
+            "email": "kk3914588@gmail.com",
+            "q": "Mujhe bike finance karana Hai Kitna down payment aaega kaise janu",
             "panel": "NA"
           }
         ]
@@ -18582,6 +18644,265 @@ const FULL_ARCHIVE = {
           {
             "email": "boruahh270@gmail.com",
             "q": "My account block / My bank account unblock kijiye (off-topic, unrelated to Netcore CE)",
+            "panel": "NA"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-08-17": {
+    "date": "2026-08-17",
+    "totalConversations": 20,
+    "resolutionRate": 100,
+    "internalTotal": 1,
+    "externalTotal": 19,
+    "docsTotal": 14,
+    "panelTotal": 6,
+    "queryType": {
+      "technical": 7,
+      "generic": 13
+    },
+    "ticketDeflection": null,
+    "headline": "20 conversations on Aug 17, a clean 100% bot self-reported resolution -- but the 1-internal-to-19-external split is misleading, since at least 9 of today's 'external' askers (Ninad, Amey Vaidya, Lokesh Sharma, Sonal Kumari, Sumit Agarwal, Mandovi Joseph, Ishika, Sakshi Yadav) are recognizable Netcore staff now messaging from @netcore.ai/@netcorecloud.ai instead of @netcorecloud.com. Freshdesk ticket-deflection couldn't be checked this run -- the Chrome browser connector was unreachable, a different blocker than the usual session-expiry case.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "Internal/external split is skewed by a Netcore staff email-domain shift",
+        "desc": "19 of 20 conversations classified 'external' under the strict @netcorecloud.com/@netcoreunbxd.com rule, but at least 9 are recognizable Netcore staff (ninad.karangutkar, amey.vaidya, lokesh.sharma, sonal.kumari, sumit.agarwal, mandovi.joseph, ishika.a, sakshi.yadav) using @netcore.ai or @netcorecloud.ai addresses instead. Today's 1/19 internal/external split should be read with this caveat -- it likely reflects a company email-domain change, not a real shift in who's asking. Worth flagging to whoever owns the classification rule in case @netcore.ai and @netcorecloud.ai should be added to the internal domain list going forward."
+      },
+      {
+        "owner": "content",
+        "title": "WhatsApp/Meta template rejection needed a multi-turn troubleshoot",
+        "desc": "pooja.patil@adityabirlacapital.com (absli_hosales_ce) hit a Meta template rejection and needed two full bot explanations covering consecutive-newline limits, variable placement, emoji caps, and prohibited special characters before resolving it. A pre-submission template checklist surfaced in the panel (not just after rejection) would likely cut this kind of back-and-forth."
+      },
+      {
+        "owner": "product",
+        "title": "Conversion tracking not showing despite goal configured -- real bug, not a how-to",
+        "desc": "sakshi.yadav@netcorecloud.ai (iprulifece panel) reported conversions missing on the campaigns page even with a conversion goal added. The bot can't diagnose backend tracking gaps -- worth routing to product/eng for a data-pipeline check rather than treating as resolved."
+      },
+      {
+        "owner": "content",
+        "title": "15% of today's volume (3 of 20) was pure off-topic spam",
+        "desc": "amit.dwivedi184@gmail.com ('I ordered a xl size shirt'), chahalyug207@gmail.com ('I want to buy a new bike'), and kk3914588@gmail.com (bike finance/loan query) had zero connection to the CE product -- consistent with the recurring shopping/loan spam pattern seen on prior days. Today's 100% self-reported resolution figure should be read net of this noise."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Rubal Adwani (Netcore)",
+      "email": "rubal.adwani@netcorecloud.com",
+      "query": "What are the use cases of using a UDT (user data table)?",
+      "why": "A precise feature-strategy question about the data model rather than a basic navigation ask -- Rubal has previously shown up as a repeat product-savvy asker (3 questions on Aug 5 about control groups, behavioral event sources, and data export categories), and this continues that pattern."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 6
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 1,
+        "external": 2
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 5
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "ninad.karangutkar@netcore.ai",
+        "count": 4,
+        "friction": false,
+        "panel": "NA",
+        "queries": [
+          {
+            "theme": "Where's the doc/API for X",
+            "text": "SDK integration"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "liquid tags"
+          },
+          {
+            "theme": "Bare greeting, no context yet",
+            "text": "max pricing"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "how to create an event"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 4,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "ishika.a@netcore.ai",
+            "q": "i need the web personalization doxument for reference",
+            "panel": "NA"
+          },
+          {
+            "email": "ninad.karangutkar@netcore.ai",
+            "q": "SDK integration",
+            "panel": "NA"
+          },
+          {
+            "email": "ninad.karangutkar@netcore.ai",
+            "q": "how to create an event",
+            "panel": "NA"
+          },
+          {
+            "email": "amey.vaidya@netcore.ai",
+            "q": "can you tell me how we integrate catalog with our ce ?",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "ninad.karangutkar@netcore.ai",
+            "q": "liquid tags",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 4,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "bhavya.k@fnp.com",
+            "q": "where can i findthe qr code to land on this whatsapp account",
+            "panel": "fnpcee_gcp"
+          },
+          {
+            "email": "sumit.agarwal@netcore.ai",
+            "q": "how does netcore CE help in increasing whatsapp delivery",
+            "panel": "NA"
+          },
+          {
+            "email": "pooja.patil@adityabirlacapital.com",
+            "q": "[Screenshot] WhatsApp/Meta template rejected -- asked bot to check the formatting error",
+            "panel": "absli_hosales_ce"
+          },
+          {
+            "email": "lokesh.sharma@netcore.ai",
+            "q": "how to check if number is bloacklisted due to whatsapp subscribe",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "yashasvee.dwivedi@haystackanalytics.in",
+            "q": "Hi please give me the total number of campaigns sent by yashasvee.dwivedi@haystackanalytics.in and services@haystackanalytics.in",
+            "panel": "haystackanalyticscee"
+          },
+          {
+            "email": "dikshasupperb@gmail.com",
+            "q": "Where i can chck my replies?",
+            "panel": "craftedcotton_ce"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 1,
+        "external": 3,
+        "internalQ": [
+          {
+            "email": "rubal.adwani@netcorecloud.com",
+            "q": "what are the use cases of using a UDT- user data table",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "sakshi.yadav@netcorecloud.ai",
+            "q": "I am unable to see the conversions on the campaigns page there is conversion goal added as well",
+            "panel": "iprulifece"
+          },
+          {
+            "email": "mandovi.joseph@netcore.ai",
+            "q": "Can we delete anonymous users on panel?",
+            "panel": "NA"
+          },
+          {
+            "email": "sonal.kumari@netcore.ai",
+            "q": "Hi, how to create new user",
+            "panel": "smartechai"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 5,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "amit.dwivedi184@gmail.com",
+            "q": "I ordered a xl size shirt",
+            "panel": "NA"
+          },
+          {
+            "email": "chahalyug207@gmail.com",
+            "q": "I want to buy a new bike",
+            "panel": "NA"
+          },
+          {
+            "email": "tijugeorge82@gmail.com",
+            "q": "Video call done",
+            "panel": "NA"
+          },
+          {
+            "email": "ninad.karangutkar@netcore.ai",
+            "q": "max pricing",
+            "panel": "NA"
+          },
+          {
+            "email": "kk3914588@gmail.com",
+            "q": "Mujhe bike finance karana Hai Kitna down payment aaega kaise janu",
             "panel": "NA"
           }
         ]
