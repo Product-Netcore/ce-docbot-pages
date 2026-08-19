@@ -524,280 +524,6 @@ html[data-theme="dark"] .intro-banner .ib-lede{color:#c7cad1;}
 </div>
 <script>
 const ARCHIVE = {
-  "2026-08-04": {
-    "date": "2026-08-04",
-    "totalConversations": 18,
-    "resolutionRate": 100,
-    "internalTotal": 9,
-    "externalTotal": 9,
-    "docsTotal": 12,
-    "panelTotal": 6,
-    "queryType": {
-      "technical": 6,
-      "generic": 12
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days (2026-08-04 00:00 IST to 2026-08-06 23:59 IST); window still open as of this run (2026-08-05)",
-      "totalConversations": 18,
-      "sameUserEscalations": [],
-      "deflectedCount": 18,
-      "deflectionRate": 100,
-      "patternRisk": [
-        {
-          "area": "API/Integration",
-          "docbotCount": 2,
-          "ticketCount": 1,
-          "exampleTicketSubjects": [
-            "Support Required: Unable to Integrate Meta Ads Manager via Custom Audience"
-          ],
-          "note": "Same-day Freshdesk ticket #5225523 from a different requester (Jignesh Boricha), created 10:27 AM IST \u2014 about 90 minutes before anand.mishra@netcorecloud.com asked the bot why a Meta account wasn't showing in custom audience config. Same underlying Meta Ads Custom Audience integration area, different specific asks \u2014 a pattern-level signal that this integration is generating friction, not proof either individual case went unresolved."
-        }
-      ],
-      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit \u2014 treat as a directional signal. Tier 1: checked all 16 unique requester emails via global search, zero ticket matches for any. Tier 2: keyword searches across the day's areas ('S3 export zip' 0 tickets, 'mail scoring' 120 historical tickets none in-window, 'merchandising triggers' 6 tickets with the most recent an enable-request from a different requester/theme so not counted, 'google annotation' 1 old ticket, 'gmail domain' checked, 'custom audience Meta' surfaced the in-window match above, 'nudge SwiftUI' 0 tickets, 'likely to churn' 0 tickets)."
-    },
-    "headline": "18 conversations on Aug 4, 100% bot self-reported resolved and 100% Freshdesk-deflected on a same-user basis \u2014 but a same-day ticket from a different requester hit the identical Meta Ads Custom Audience integration issue anand.mishra asked the bot about, and 7 of 18 conversations were bare greetings or off-topic noise (two more loan-spam messages included).",
-    "actionableInsights": [
-      {
-        "owner": "product",
-        "title": "Meta Custom Audience integration \u2014 same-day pattern risk",
-        "desc": "anand.mishra@netcorecloud.com asked the bot why a Meta account wasn't showing in custom audience configuration. The same day, a different requester (Jignesh Boricha) filed Freshdesk ticket #5225523, 'Unable to Integrate Meta Ads Manager via Custom Audience,' created about 90 minutes earlier. Not proof either specific case was unresolved, but two independent Meta-integration failures on the same day is worth an engineering look at that integration's reliability."
-      },
-      {
-        "owner": "calibration",
-        "title": "39% of today's volume (7 of 18) was bare greetings or off-topic noise",
-        "desc": "Five conversations were bare 'Hi'/'Hello'/'Details' with no follow-up, plus two more loan-spam messages ('Loan chahie loan chahie loan chahie' and 'Mera loan approval huya') \u2014 a repeat of the Aug 2 pattern. Real CE-product signal today comes from the other 11 conversations; the 100% self-reported resolution rate shouldn't be read as reflecting genuine product support quality."
-      },
-      {
-        "owner": "content",
-        "title": "siddhant.bendkar re-asked about 'Google annotation' 15 seconds apart",
-        "desc": "First message was the bare term 'google annotation,' then 'what is google annotation?' 15 seconds later \u2014 likely the bot's first response to the bare keyword wasn't immediately satisfying, prompting the near-instant follow-up. Worth checking whether short/keyword-only queries reliably route to the right doc article on the first try."
-      },
-      {
-        "owner": "design",
-        "title": "SwiftUI nudge-rendering is a real native-SDK edge case",
-        "desc": "amey.vaidya@netcorecloud.com asked whether nudges can render on pages built with SwiftUI (iOS native UI, as opposed to WebView-based pages) \u2014 a legitimate SDK-compatibility question with real product implications for iOS-native app teams. Worth flagging to the mobile SDK owners if the bot's answer wasn't a clear, confident yes/no."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Amey Vaidya",
-      "email": "amey.vaidya@netcorecloud.com",
-      "query": "Asked whether nudges can be rendered on pages built with SwiftUI (Apple's native iOS UI framework), rather than the usual WebView-based rendering.",
-      "why": "A specific native-mobile SDK compatibility question showing real platform-architecture awareness \u2014 not a basic how-to ask, and the most technically advanced query of the day."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 2,
-        "external": 1
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 2,
-        "external": 0
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 4,
-        "external": 0
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 1,
-        "external": 1
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 7
-      }
-    ],
-    "topAskers": [
-      {
-        "email": "anand.mishra@netcorecloud.com",
-        "count": 2,
-        "friction": false,
-        "panel": "NA",
-        "queries": [
-          {
-            "theme": "Where do I set up/find X",
-            "text": "I am unable to see one of my Meta account configured in custom audience,"
-          },
-          {
-            "theme": "How do I do X",
-            "text": "how to personalize activity in html"
-          }
-        ]
-      },
-      {
-        "email": "siddhant.bendkar@netcorecloud.com",
-        "count": 2,
-        "friction": true,
-        "panel": "NA",
-        "queries": [
-          {
-            "theme": "What does X mean/how it works",
-            "text": "google annotation"
-          },
-          {
-            "theme": "What does X mean/how it works",
-            "text": "what is google annotation?"
-          }
-        ]
-      }
-    ],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 2,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "amey.vaidya@netcorecloud.com",
-            "q": "can we render nudges on pages where swiftui is used?",
-            "panel": "NA"
-          },
-          {
-            "email": "anand.mishra@netcorecloud.com",
-            "q": "I am unable to see one of my Meta account configured in custom audience,",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Email",
-        "internal": 2,
-        "external": 2,
-        "internalQ": [
-          {
-            "email": "anand.mishra@netcorecloud.com",
-            "q": "how to personalize activity in html",
-            "panel": "NA"
-          },
-          {
-            "email": "prathamesh.borkar@netcorecloud.com",
-            "q": "How to add user name custom field while creating an AMP email template in the header",
-            "panel": "smartechai"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "altamash@cxoxperts.com",
-            "q": "i am unable to Use one of my gmail domains ?",
-            "panel": "smeventure"
-          },
-          {
-            "email": "tapesh.dangi@yatra.com",
-            "q": "ID - 99 / do the mail scoring of the list",
-            "panel": "yatra_cee"
-          }
-        ]
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 1,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "gargi.sethia@netcorecloud.com",
-            "q": "what is the difference between product picker and merch triggers",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 4,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "dhruv.bakshi@netcorecloud.com",
-            "q": "how to get MAU & DAU",
-            "panel": "NA"
-          },
-          {
-            "email": "meenakshi.kaul@netcorecloud.com",
-            "q": "in s3 - export file when file is placed in s3 so zip file will be generated and inside zip will there be extension as .csv as well",
-            "panel": "NA"
-          },
-          {
-            "email": "siddhant.bendkar@netcorecloud.com",
-            "q": "google annotation",
-            "panel": "NA"
-          },
-          {
-            "email": "siddhant.bendkar@netcorecloud.com",
-            "q": "what is google annotation?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 7,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "developer@loob.com.my",
-            "q": "how's engagement today?",
-            "panel": "tealive_cee"
-          },
-          {
-            "email": "nirmalmukesh714@gmail.com",
-            "q": "Loan chahie loan chahie loan chahie",
-            "panel": "NA"
-          },
-          {
-            "email": "rajender.manche@nuvama.com",
-            "q": "Hi",
-            "panel": "nuvamasmtprdcee"
-          },
-          {
-            "email": "vermarahul3003@gmail.com",
-            "q": "Hello",
-            "panel": "NA"
-          },
-          {
-            "email": "shaikh29119@gmail.com",
-            "q": "Details",
-            "panel": "NA"
-          },
-          {
-            "email": "surya.prakash@aajtak.com",
-            "q": "hi",
-            "panel": "intodaycocee"
-          },
-          {
-            "email": "oyeahirsantoshbabu@gmail.com",
-            "q": "Mera loan approval huya",
-            "panel": "NA"
-          }
-        ]
-      }
-    ]
-  },
   "2026-08-05": {
     "date": "2026-08-05",
     "totalConversations": 26,
@@ -3769,6 +3495,362 @@ const ARCHIVE = {
             "email": "kk3914588@gmail.com",
             "q": "Mujhe bike finance karana Hai Kitna down payment aaega kaise janu",
             "panel": "NA"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-08-18": {
+    "date": "2026-08-18",
+    "totalConversations": 27,
+    "resolutionRate": 100,
+    "internalTotal": 4,
+    "externalTotal": 23,
+    "docsTotal": 15,
+    "panelTotal": 12,
+    "queryType": {
+      "technical": 15,
+      "generic": 12
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days",
+      "totalConversations": 27,
+      "sameUserEscalations": [],
+      "deflectedCount": 27,
+      "deflectionRate": 100,
+      "patternRisk": [
+        {
+          "area": "API/Integration",
+          "docbotCount": 9,
+          "ticketCount": 2,
+          "exampleTicketSubjects": [
+            "New Onboarding \u2013 Malaysia | Email API Integration Documentation & Walkthrough",
+            "Re: Need API Key"
+          ],
+          "note": "Soft pattern only -- different requesters than docbot askers, but same underlying need (API docs/keys/integration walkthroughs), echoing the day's heaviest docbot bucket (9 of 27 conversations)."
+        }
+      ],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal."
+    },
+    "headline": "27 conversations, 100% bot-resolved and zero same-user Freshdesk escalations in the +2-day window -- but 10 of the 23 'external' askers are Netcore staff on @netcore.ai/@netcorecloud.ai addresses, so real customer volume is closer to 13.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "Internal/external split still skewed by the Netcore staff email-domain shift",
+        "desc": "10 of 27 conversations (sakshi.yadav, sandeep.shetty, ninad.karangutkar, ishika.a, tony.jose, akash.gupta, drashtant.pambhar, swati.jangir, saloni.shinde, vani.ganasutrisna) are recognizable Netcore staff using @netcore.ai or @netcorecloud.ai instead of @netcorecloud.com. Under the strict classification rule they land as 'external', pushing today's split to 4 internal / 23 external. This is now the 2nd consecutive run flagging this pattern (see 2026-08-17) -- worth raising with whoever owns the classification rule about adding these two domains to the internal list."
+      },
+      {
+        "owner": "content",
+        "title": "Two people asked about the Google/Meta Ads connector 9 minutes apart",
+        "desc": "drashtant.pambhar@netcore.ai (06:23 IST) and apekshit.babaria@netcorecloud.com (06:14 IST) both asked essentially the same question -- what Netcore's Google Ads/Meta Ads partnership means and whether there's a connector -- independently, minutes apart. A dedicated FAQ or short explainer doc on the ads integration would likely head off repeat asks like this."
+      },
+      {
+        "owner": "product",
+        "title": "404::NOT_FOUND::NotRegistered push error marked 'resolved' but is a real device-token bug",
+        "desc": "tinh.nguyen@droppii.com hit a push notification delivery error (looks like a stale/unregistered FCM or APNs token) and the bot marked the conversation resolved after explaining the error. No Freshdesk ticket followed, but the bot can't actually fix a token registration issue -- worth a product/eng check on whether 'explained' is being counted as 'resolved' for hard technical errors like this."
+      },
+      {
+        "owner": "design",
+        "title": "amit.kumar14@trustline.in used the bot for non-product asks (phone number, broken link)",
+        "desc": "Both of amit.kumar14's conversations were off-product: a request for a support phone number and a vague 'HTML link' access issue that reads more like a general support request than a CE product question. The bot doesn't seem to route non-product asks to a proper contact channel -- worth checking if a fallback/escalation prompt would serve this kind of user better than a bot answer."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Tinh Nguyen",
+      "email": "tinh.nguyen@droppii.com",
+      "query": "How to handle marketing consent withdrawal for Email and SMS when one shared consent field currently covers Push, Email, and SMS -- already using optPushNotification for Push, asking how to replicate that pattern for the other two channels.",
+      "why": "A precise, compliance-aware, multi-channel consent-architecture question referencing an actual field name (optPushNotification) -- shows real platform familiarity and a legitimate integration design question, not a how-to lookup."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 1,
+        "external": 5
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 1,
+        "external": 4
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 3
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 0,
+        "external": 5
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 2,
+        "external": 2
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 4
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "amit.kumar14@trustline.in",
+        "count": 2,
+        "friction": false,
+        "panel": "NA",
+        "queries": [
+          {
+            "theme": "Where do I set up/find X",
+            "text": "please give me your agent phone no or office agent no."
+          },
+          {
+            "theme": "How do I do X",
+            "text": "I am a user, and I am facing an issue while trying to fetch an HTML link through your website."
+          }
+        ]
+      },
+      {
+        "email": "prateek.singh@netcorecloud.com",
+        "count": 2,
+        "friction": false,
+        "panel": "NA",
+        "queries": [
+          {
+            "theme": "Where's the doc/API for X",
+            "text": "give me the image size for the in-app message templates"
+          },
+          {
+            "theme": "Is X possible/supported",
+            "text": "Customer wants to push the user level data to CE panel but they don't want to do manual upload due to data security concerns. What other options are available to do this?"
+          }
+        ]
+      },
+      {
+        "email": "tinh.nguyen@droppii.com",
+        "count": 2,
+        "friction": false,
+        "panel": "sndt_droppiicee",
+        "queries": [
+          {
+            "theme": "What does X mean/how it works",
+            "text": "404 :: NOT_FOUND :: NotRegistered netcore please help me check error when push notification"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "Hi Netcore Support Team, I have a question regarding how to handle marketing consent withdrawal for Email and SMS. Currently our app has one marketing consent that applies to three channels: App Push, Email, SMS. We already handle Push consent using optPushNotification..."
+          }
+        ]
+      },
+      {
+        "email": "sigit.wibowo@cimbniaga.co.id",
+        "count": 2,
+        "friction": false,
+        "panel": "cimbniagaid",
+        "queries": [
+          {
+            "theme": "What does X mean/how it works",
+            "text": "in blocklisted contacts reason is N/A why"
+          },
+          {
+            "theme": "Bare greeting, no context yet",
+            "text": "hi"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 2,
+        "external": 7,
+        "internalQ": [
+          {
+            "email": "prateek.singh@netcorecloud.com",
+            "q": "Customer wants to push the user level data to CE panel but they don't want to do manual upload due to data security concerns. What other options are available to do this?",
+            "panel": "NA"
+          },
+          {
+            "email": "apekshit.babaria@netcorecloud.com",
+            "q": "How does Netcore work with Google ads and Meta ads? Is there a connector? What are the capabilities?",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "amit.kumar14@trustline.in",
+            "q": "I am a user, and I am facing an issue while trying to fetch an HTML link through your website.",
+            "panel": "NA"
+          },
+          {
+            "email": "ishika.a@netcore.ai",
+            "q": "can i get a web personalization coupon drawer video tutorial",
+            "panel": "NA"
+          },
+          {
+            "email": "tinh.nguyen@droppii.com",
+            "q": "404 :: NOT_FOUND :: NotRegistered netcore please help me check error when push notification",
+            "panel": "sndt_droppiicee"
+          },
+          {
+            "email": "test@gmail.com",
+            "q": "give me the GDPR api",
+            "panel": "NA"
+          },
+          {
+            "email": "akash.gupta@netcore.ai",
+            "q": "Help me with the document to integrate our base JS for web pz in clients website",
+            "panel": "NA"
+          },
+          {
+            "email": "drashtant.pambhar@netcore.ai",
+            "q": "What does Netcore exactly mean when it says it partners with Google Ads and Meta ads? How is Netcore connected with them and how do they work together?",
+            "panel": "NA"
+          },
+          {
+            "email": "swati.jangir@netcore.ai",
+            "q": "can we export netcore data in snowflake?",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "kadobli@ecobank.com",
+            "q": "How can I spool the report mail sent on the platform",
+            "panel": "ecobanksmart"
+          },
+          {
+            "email": "tinh.nguyen@droppii.com",
+            "q": "Hi Netcore Support Team, I have a question regarding how to handle marketing consent withdrawal for Email and SMS. Currently our app has one marketing consent that applies to three channels: App Push, Email, SMS. We already handle Push consent using optPushNotification...",
+            "panel": "sndt_droppiicee"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 1,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "anand.mishra@netcorecloud.com",
+            "q": "what is the correct number format for a US mobile number to send sms",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "sandeep.shetty@netcore.ai",
+            "q": "how much payload character support",
+            "panel": "NA"
+          },
+          {
+            "email": "saloni.shinde@netcore.ai",
+            "q": "what all data types are allowed when I am uploading image while creating a WhatsApp template",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "dikshasupperb@gmail.com",
+            "q": "when will be my Diana op campaign will be sent?",
+            "panel": "craftedcotton_ce"
+          },
+          {
+            "email": "vani.ganasutrisna@netcore.ai",
+            "q": "what is utm content?",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 1,
+        "external": 3,
+        "internalQ": [
+          {
+            "email": "prateek.singh@netcorecloud.com",
+            "q": "give me the image size for the in-app message templates",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "akshatar.sangle@edelweissarc.in",
+            "q": "can you help how does the PersonalizedContent work for Campaigns",
+            "panel": "edelweissarc_cee"
+          },
+          {
+            "email": "ninad.karangutkar@netcore.ai",
+            "q": "what should be revenue parameter if the goal is product purchase",
+            "panel": "smartechai"
+          },
+          {
+            "email": "tony.jose@netcore.ai",
+            "q": "How do I check if I have frequency capping enabled?",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "sakshi.yadav@netcorecloud.ai",
+            "q": "how to download segment data",
+            "panel": "iprulifece"
+          },
+          {
+            "email": "sigit.wibowo@cimbniaga.co.id",
+            "q": "in blocklisted contacts reason is N/A why",
+            "panel": "cimbniagaid"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 5,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "amit.kumar14@trustline.in",
+            "q": "please give me your agent phone no or office agent no.",
+            "panel": "NA"
+          },
+          {
+            "email": "misbah@wakelet.com",
+            "q": "Speak to human",
+            "panel": "wakeletceusnew"
+          },
+          {
+            "email": "sigit.wibowo@cimbniaga.co.id",
+            "q": "hi",
+            "panel": "cimbniagaid"
+          },
+          {
+            "email": "anshikagarg@satyasupport.co.in",
+            "q": "Hi",
+            "panel": "satyasupport_ce"
+          },
+          {
+            "email": "srinath.r@ifheindia.org",
+            "q": "Hi",
+            "panel": "ifheindiacee"
           }
         ]
       }
@@ -18904,6 +18986,362 @@ const FULL_ARCHIVE = {
             "email": "kk3914588@gmail.com",
             "q": "Mujhe bike finance karana Hai Kitna down payment aaega kaise janu",
             "panel": "NA"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-08-18": {
+    "date": "2026-08-18",
+    "totalConversations": 27,
+    "resolutionRate": 100,
+    "internalTotal": 4,
+    "externalTotal": 23,
+    "docsTotal": 15,
+    "panelTotal": 12,
+    "queryType": {
+      "technical": 15,
+      "generic": 12
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days",
+      "totalConversations": 27,
+      "sameUserEscalations": [],
+      "deflectedCount": 27,
+      "deflectionRate": 100,
+      "patternRisk": [
+        {
+          "area": "API/Integration",
+          "docbotCount": 9,
+          "ticketCount": 2,
+          "exampleTicketSubjects": [
+            "New Onboarding \u2013 Malaysia | Email API Integration Documentation & Walkthrough",
+            "Re: Need API Key"
+          ],
+          "note": "Soft pattern only -- different requesters than docbot askers, but same underlying need (API docs/keys/integration walkthroughs), echoing the day's heaviest docbot bucket (9 of 27 conversations)."
+        }
+      ],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal."
+    },
+    "headline": "27 conversations, 100% bot-resolved and zero same-user Freshdesk escalations in the +2-day window -- but 10 of the 23 'external' askers are Netcore staff on @netcore.ai/@netcorecloud.ai addresses, so real customer volume is closer to 13.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "Internal/external split still skewed by the Netcore staff email-domain shift",
+        "desc": "10 of 27 conversations (sakshi.yadav, sandeep.shetty, ninad.karangutkar, ishika.a, tony.jose, akash.gupta, drashtant.pambhar, swati.jangir, saloni.shinde, vani.ganasutrisna) are recognizable Netcore staff using @netcore.ai or @netcorecloud.ai instead of @netcorecloud.com. Under the strict classification rule they land as 'external', pushing today's split to 4 internal / 23 external. This is now the 2nd consecutive run flagging this pattern (see 2026-08-17) -- worth raising with whoever owns the classification rule about adding these two domains to the internal list."
+      },
+      {
+        "owner": "content",
+        "title": "Two people asked about the Google/Meta Ads connector 9 minutes apart",
+        "desc": "drashtant.pambhar@netcore.ai (06:23 IST) and apekshit.babaria@netcorecloud.com (06:14 IST) both asked essentially the same question -- what Netcore's Google Ads/Meta Ads partnership means and whether there's a connector -- independently, minutes apart. A dedicated FAQ or short explainer doc on the ads integration would likely head off repeat asks like this."
+      },
+      {
+        "owner": "product",
+        "title": "404::NOT_FOUND::NotRegistered push error marked 'resolved' but is a real device-token bug",
+        "desc": "tinh.nguyen@droppii.com hit a push notification delivery error (looks like a stale/unregistered FCM or APNs token) and the bot marked the conversation resolved after explaining the error. No Freshdesk ticket followed, but the bot can't actually fix a token registration issue -- worth a product/eng check on whether 'explained' is being counted as 'resolved' for hard technical errors like this."
+      },
+      {
+        "owner": "design",
+        "title": "amit.kumar14@trustline.in used the bot for non-product asks (phone number, broken link)",
+        "desc": "Both of amit.kumar14's conversations were off-product: a request for a support phone number and a vague 'HTML link' access issue that reads more like a general support request than a CE product question. The bot doesn't seem to route non-product asks to a proper contact channel -- worth checking if a fallback/escalation prompt would serve this kind of user better than a bot answer."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Tinh Nguyen",
+      "email": "tinh.nguyen@droppii.com",
+      "query": "How to handle marketing consent withdrawal for Email and SMS when one shared consent field currently covers Push, Email, and SMS -- already using optPushNotification for Push, asking how to replicate that pattern for the other two channels.",
+      "why": "A precise, compliance-aware, multi-channel consent-architecture question referencing an actual field name (optPushNotification) -- shows real platform familiarity and a legitimate integration design question, not a how-to lookup."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 1,
+        "external": 5
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 1,
+        "external": 4
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 3
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 0,
+        "external": 5
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 2,
+        "external": 2
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 4
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "amit.kumar14@trustline.in",
+        "count": 2,
+        "friction": false,
+        "panel": "NA",
+        "queries": [
+          {
+            "theme": "Where do I set up/find X",
+            "text": "please give me your agent phone no or office agent no."
+          },
+          {
+            "theme": "How do I do X",
+            "text": "I am a user, and I am facing an issue while trying to fetch an HTML link through your website."
+          }
+        ]
+      },
+      {
+        "email": "prateek.singh@netcorecloud.com",
+        "count": 2,
+        "friction": false,
+        "panel": "NA",
+        "queries": [
+          {
+            "theme": "Where's the doc/API for X",
+            "text": "give me the image size for the in-app message templates"
+          },
+          {
+            "theme": "Is X possible/supported",
+            "text": "Customer wants to push the user level data to CE panel but they don't want to do manual upload due to data security concerns. What other options are available to do this?"
+          }
+        ]
+      },
+      {
+        "email": "tinh.nguyen@droppii.com",
+        "count": 2,
+        "friction": false,
+        "panel": "sndt_droppiicee",
+        "queries": [
+          {
+            "theme": "What does X mean/how it works",
+            "text": "404 :: NOT_FOUND :: NotRegistered netcore please help me check error when push notification"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "Hi Netcore Support Team, I have a question regarding how to handle marketing consent withdrawal for Email and SMS. Currently our app has one marketing consent that applies to three channels: App Push, Email, SMS. We already handle Push consent using optPushNotification..."
+          }
+        ]
+      },
+      {
+        "email": "sigit.wibowo@cimbniaga.co.id",
+        "count": 2,
+        "friction": false,
+        "panel": "cimbniagaid",
+        "queries": [
+          {
+            "theme": "What does X mean/how it works",
+            "text": "in blocklisted contacts reason is N/A why"
+          },
+          {
+            "theme": "Bare greeting, no context yet",
+            "text": "hi"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 2,
+        "external": 7,
+        "internalQ": [
+          {
+            "email": "prateek.singh@netcorecloud.com",
+            "q": "Customer wants to push the user level data to CE panel but they don't want to do manual upload due to data security concerns. What other options are available to do this?",
+            "panel": "NA"
+          },
+          {
+            "email": "apekshit.babaria@netcorecloud.com",
+            "q": "How does Netcore work with Google ads and Meta ads? Is there a connector? What are the capabilities?",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "amit.kumar14@trustline.in",
+            "q": "I am a user, and I am facing an issue while trying to fetch an HTML link through your website.",
+            "panel": "NA"
+          },
+          {
+            "email": "ishika.a@netcore.ai",
+            "q": "can i get a web personalization coupon drawer video tutorial",
+            "panel": "NA"
+          },
+          {
+            "email": "tinh.nguyen@droppii.com",
+            "q": "404 :: NOT_FOUND :: NotRegistered netcore please help me check error when push notification",
+            "panel": "sndt_droppiicee"
+          },
+          {
+            "email": "test@gmail.com",
+            "q": "give me the GDPR api",
+            "panel": "NA"
+          },
+          {
+            "email": "akash.gupta@netcore.ai",
+            "q": "Help me with the document to integrate our base JS for web pz in clients website",
+            "panel": "NA"
+          },
+          {
+            "email": "drashtant.pambhar@netcore.ai",
+            "q": "What does Netcore exactly mean when it says it partners with Google Ads and Meta ads? How is Netcore connected with them and how do they work together?",
+            "panel": "NA"
+          },
+          {
+            "email": "swati.jangir@netcore.ai",
+            "q": "can we export netcore data in snowflake?",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "kadobli@ecobank.com",
+            "q": "How can I spool the report mail sent on the platform",
+            "panel": "ecobanksmart"
+          },
+          {
+            "email": "tinh.nguyen@droppii.com",
+            "q": "Hi Netcore Support Team, I have a question regarding how to handle marketing consent withdrawal for Email and SMS. Currently our app has one marketing consent that applies to three channels: App Push, Email, SMS. We already handle Push consent using optPushNotification...",
+            "panel": "sndt_droppiicee"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 1,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "anand.mishra@netcorecloud.com",
+            "q": "what is the correct number format for a US mobile number to send sms",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "sandeep.shetty@netcore.ai",
+            "q": "how much payload character support",
+            "panel": "NA"
+          },
+          {
+            "email": "saloni.shinde@netcore.ai",
+            "q": "what all data types are allowed when I am uploading image while creating a WhatsApp template",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "dikshasupperb@gmail.com",
+            "q": "when will be my Diana op campaign will be sent?",
+            "panel": "craftedcotton_ce"
+          },
+          {
+            "email": "vani.ganasutrisna@netcore.ai",
+            "q": "what is utm content?",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 1,
+        "external": 3,
+        "internalQ": [
+          {
+            "email": "prateek.singh@netcorecloud.com",
+            "q": "give me the image size for the in-app message templates",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "akshatar.sangle@edelweissarc.in",
+            "q": "can you help how does the PersonalizedContent work for Campaigns",
+            "panel": "edelweissarc_cee"
+          },
+          {
+            "email": "ninad.karangutkar@netcore.ai",
+            "q": "what should be revenue parameter if the goal is product purchase",
+            "panel": "smartechai"
+          },
+          {
+            "email": "tony.jose@netcore.ai",
+            "q": "How do I check if I have frequency capping enabled?",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "sakshi.yadav@netcorecloud.ai",
+            "q": "how to download segment data",
+            "panel": "iprulifece"
+          },
+          {
+            "email": "sigit.wibowo@cimbniaga.co.id",
+            "q": "in blocklisted contacts reason is N/A why",
+            "panel": "cimbniagaid"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 5,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "amit.kumar14@trustline.in",
+            "q": "please give me your agent phone no or office agent no.",
+            "panel": "NA"
+          },
+          {
+            "email": "misbah@wakelet.com",
+            "q": "Speak to human",
+            "panel": "wakeletceusnew"
+          },
+          {
+            "email": "sigit.wibowo@cimbniaga.co.id",
+            "q": "hi",
+            "panel": "cimbniagaid"
+          },
+          {
+            "email": "anshikagarg@satyasupport.co.in",
+            "q": "Hi",
+            "panel": "satyasupport_ce"
+          },
+          {
+            "email": "srinath.r@ifheindia.org",
+            "q": "Hi",
+            "panel": "ifheindiacee"
           }
         ]
       }
