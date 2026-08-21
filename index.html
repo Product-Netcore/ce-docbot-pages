@@ -20245,11 +20245,11 @@ function renderAllAskersFallback(data){
 
 // Static "what is this page" primer — same markup on both Daily and Historical tabs,
 // lives inside #main (not #sidebar) so its own open/closed state survives whatever the
-// user is doing, but gets reset to open on every render() since we don't use browser
-// storage here. First-time visitors read top-to-bottom, so it goes above the hero.
+// user is doing, but gets reset to closed on every render() since we don't use browser
+// storage here. Collapsed by default -- click to expand -- on both Daily and Historical tabs.
 function renderIntroBanner(){
   return `
-    <details class="intro-banner anim" open>
+    <details class="intro-banner anim">
       <summary>
         <span class="ib-icon">i</span>
         <span class="ib-title">About this dashboard — what it is, what's in it, where it comes from</span>
