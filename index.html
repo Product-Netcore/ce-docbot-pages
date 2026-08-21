@@ -1108,8 +1108,8 @@ const ARCHIVE = {
     "date": "2026-08-10",
     "totalConversations": 16,
     "resolutionRate": 100,
-    "internalTotal": 6,
-    "externalTotal": 10,
+    "internalTotal": 7,
+    "externalTotal": 9,
     "docsTotal": 7,
     "panelTotal": 9,
     "queryType": {
@@ -1167,8 +1167,8 @@ const ARCHIVE = {
       },
       {
         "theme": "Where do I set up/find X",
-        "internal": 0,
-        "external": 2
+        "internal": 1,
+        "external": 1
       },
       {
         "theme": "What does X mean/how it works",
@@ -1285,22 +1285,21 @@ const ARCHIVE = {
       },
       {
         "area": "Infra/Data residency",
-        "internal": 1,
-        "external": 1,
+        "internal": 2,
+        "external": 0,
         "internalQ": [
           {
             "email": "anjali.inani@netcorecloud.com",
             "q": "how can i switch to dark mode",
             "panel": "thesouledstorecee"
-          }
-        ],
-        "externalQ": [
+          },
           {
             "email": "romit.pandit@netcore.ai",
             "q": "How to switch to dark mode in new UI?",
             "panel": "bajajlifeceenew"
           }
-        ]
+        ],
+        "externalQ": []
       },
       {
         "area": "General/Unclear (greeting only)",
@@ -2120,8 +2119,8 @@ const ARCHIVE = {
     "date": "2026-08-14",
     "totalConversations": 15,
     "resolutionRate": 100,
-    "internalTotal": 3,
-    "externalTotal": 12,
+    "internalTotal": 5,
+    "externalTotal": 10,
     "docsTotal": 8,
     "panelTotal": 7,
     "queryType": {
@@ -2146,8 +2145,8 @@ const ARCHIVE = {
       },
       {
         "owner": "calibration",
-        "title": "Same person, two email domains — Romit Pandit asked the identical SMS-undelivered question twice",
-        "desc": "romit.pandit@netcorecloud.com and romit.pandit@netcore.ai asked the literal same 'what do undelivered SMS reasons mean' question 25 minutes apart. Because they're different email addresses, the strict same-email dedupe/access rule counts them as two distinct users — one internal, one external — which is almost certainly one Netcore employee with two accounts. Worth checking whether netcore.ai is a legitimate internal alias so future runs classify it correctly."
+        "title": "Domain-skew fixed retroactively — netcore.ai confirmed as a legitimate internal alias",
+        "desc": "romit.pandit@netcorecloud.com and romit.pandit@netcore.ai asked the literal same 'what do undelivered SMS reasons mean' question 25 minutes apart -- the same Netcore employee with two accounts. On 2026-08-21 the user confirmed @netcore.ai (and @netcorecloud.ai) are legitimate internal domains following a company email migration off @netcorecloud.com, and this day's data was corrected accordingly -- both are now counted internal."
       },
       {
         "owner": "content",
@@ -2179,13 +2178,13 @@ const ARCHIVE = {
       },
       {
         "theme": "Where do I set up/find X",
-        "internal": 0,
-        "external": 2
+        "internal": 1,
+        "external": 1
       },
       {
         "theme": "What does X mean/how it works",
-        "internal": 1,
-        "external": 3
+        "internal": 2,
+        "external": 2
       },
       {
         "theme": "Is X possible/supported",
@@ -2219,12 +2218,17 @@ const ARCHIVE = {
     "areas": [
       {
         "area": "API/Integration",
-        "internal": 1,
-        "external": 3,
+        "internal": 2,
+        "external": 2,
         "internalQ": [
           {
             "email": "prateek.singh@netcorecloud.com",
             "q": "What are different ways to upload user data to CE Panel / Is there a way to push it via S3 also? / Can we use SMTP also?",
+            "panel": "NA"
+          },
+          {
+            "email": "soumya.chaudhary@netcore.ai",
+            "q": "hi where can I see events on panel",
             "panel": "NA"
           }
         ],
@@ -2232,11 +2236,6 @@ const ARCHIVE = {
           {
             "email": "test@gmail.com",
             "q": "what is the exact aspect ratio that we should use for in-app when customer is using custom html",
-            "panel": "NA"
-          },
-          {
-            "email": "soumya.chaudhary@netcore.ai",
-            "q": "hi where can I see events on panel",
             "panel": "NA"
           },
           {
@@ -2267,22 +2266,21 @@ const ARCHIVE = {
       },
       {
         "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 1,
-        "external": 1,
+        "internal": 2,
+        "external": 0,
         "internalQ": [
           {
             "email": "romit.pandit@netcorecloud.com",
             "q": "I want to know when a SMS is not delivered what are the meanings of the reasons that are stated in the detailed report?",
             "panel": "NA"
-          }
-        ],
-        "externalQ": [
+          },
           {
             "email": "romit.pandit@netcore.ai",
             "q": "i want to know when a SMS is undelivered then what are the meaning of the undelivered reasons",
             "panel": "NA"
           }
-        ]
+        ],
+        "externalQ": []
       },
       {
         "area": "Broadcast/Webhooks",
@@ -2632,8 +2630,8 @@ const ARCHIVE = {
     "date": "2026-08-17",
     "totalConversations": 20,
     "resolutionRate": 100,
-    "internalTotal": 1,
-    "externalTotal": 19,
+    "internalTotal": 12,
+    "externalTotal": 8,
     "docsTotal": 14,
     "panelTotal": 6,
     "queryType": {
@@ -2641,12 +2639,12 @@ const ARCHIVE = {
       "generic": 13
     },
     "ticketDeflection": null,
-    "headline": "20 conversations on Aug 17, a clean 100% bot self-reported resolution -- but the 1-internal-to-19-external split is misleading, since at least 9 of today's 'external' askers (Ninad, Amey Vaidya, Lokesh Sharma, Sonal Kumari, Sumit Agarwal, Mandovi Joseph, Ishika, Sakshi Yadav) are recognizable Netcore staff now messaging from @netcore.ai/@netcorecloud.ai instead of @netcorecloud.com. Freshdesk ticket-deflection couldn't be checked this run -- the Chrome browser connector was unreachable, a different blocker than the usual session-expiry case.",
+    "headline": "20 conversations on Aug 17, a clean 100% bot self-reported resolution, and a corrected 12:8 Netcore:Customer split (fixed 2026-08-21) now that @netcore.ai/@netcorecloud.ai are recognized as internal staff domains -- Ninad, Amey Vaidya, Lokesh Sharma, Sonal Kumari, Sumit Agarwal, Mandovi Joseph, Ishika, and Sakshi Yadav were previously miscounted as customers. Freshdesk ticket-deflection couldn't be checked this run -- the Chrome browser connector was unreachable, a different blocker than the usual session-expiry case.",
     "actionableInsights": [
       {
         "owner": "calibration",
-        "title": "Internal/external split is skewed by a Netcore staff email-domain shift",
-        "desc": "19 of 20 conversations classified 'external' under the strict @netcorecloud.com/@netcoreunbxd.com rule, but at least 9 are recognizable Netcore staff (ninad.karangutkar, amey.vaidya, lokesh.sharma, sonal.kumari, sumit.agarwal, mandovi.joseph, ishika.a, sakshi.yadav) using @netcore.ai or @netcorecloud.ai addresses instead. Today's 1/19 internal/external split should be read with this caveat -- it likely reflects a company email-domain change, not a real shift in who's asking. Worth flagging to whoever owns the classification rule in case @netcore.ai and @netcorecloud.ai should be added to the internal domain list going forward."
+        "title": "Internal/external split corrected retroactively (fixed 2026-08-21)",
+        "desc": "19 of 20 conversations were originally misclassified 'external' under the old @netcorecloud.com/@netcoreunbxd.com-only rule. 12 of the 20 are Netcore staff (ninad.karangutkar, amey.vaidya, lokesh.sharma, sonal.kumari, sumit.agarwal, mandovi.joseph, ishika.a, sakshi.yadav, and others) now correctly counted internal after the domain allowlist was expanded to include @netcore.ai and @netcorecloud.ai. Corrected split: 12 internal : 8 customer."
       },
       {
         "owner": "content",
@@ -2673,13 +2671,13 @@ const ARCHIVE = {
     "themesBySource": [
       {
         "theme": "How do I do X",
-        "internal": 0,
-        "external": 6
+        "internal": 4,
+        "external": 2
       },
       {
         "theme": "Where's the doc/API for X",
-        "internal": 0,
-        "external": 2
+        "internal": 2,
+        "external": 0
       },
       {
         "theme": "Where do I set up/find X",
@@ -2688,18 +2686,18 @@ const ARCHIVE = {
       },
       {
         "theme": "What does X mean/how it works",
-        "internal": 1,
-        "external": 2
+        "internal": 4,
+        "external": -1
       },
       {
         "theme": "Is X possible/supported",
-        "internal": 0,
-        "external": 2
+        "internal": 1,
+        "external": 1
       },
       {
         "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 5
+        "internal": 1,
+        "external": 4
       }
     ],
     "topAskers": [
@@ -2731,10 +2729,9 @@ const ARCHIVE = {
     "areas": [
       {
         "area": "API/Integration",
-        "internal": 0,
-        "external": 4,
-        "internalQ": [],
-        "externalQ": [
+        "internal": 4,
+        "external": 0,
+        "internalQ": [
           {
             "email": "ishika.a@netcore.ai",
             "q": "i need the web personalization doxument for reference",
@@ -2755,26 +2752,38 @@ const ARCHIVE = {
             "q": "can you tell me how we integrate catalog with our ce ?",
             "panel": "NA"
           }
-        ]
+        ],
+        "externalQ": []
       },
       {
         "area": "Email",
-        "internal": 0,
-        "external": 1,
-        "internalQ": [],
-        "externalQ": [
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
           {
             "email": "ninad.karangutkar@netcore.ai",
             "q": "liquid tags",
             "panel": "NA"
           }
-        ]
+        ],
+        "externalQ": []
       },
       {
         "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 0,
-        "external": 4,
-        "internalQ": [],
+        "internal": 2,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "sumit.agarwal@netcore.ai",
+            "q": "how does netcore CE help in increasing whatsapp delivery",
+            "panel": "NA"
+          },
+          {
+            "email": "lokesh.sharma@netcore.ai",
+            "q": "how to check if number is bloacklisted due to whatsapp subscribe",
+            "panel": "NA"
+          }
+        ],
         "externalQ": [
           {
             "email": "bhavya.k@fnp.com",
@@ -2782,19 +2791,9 @@ const ARCHIVE = {
             "panel": "fnpcee_gcp"
           },
           {
-            "email": "sumit.agarwal@netcore.ai",
-            "q": "how does netcore CE help in increasing whatsapp delivery",
-            "panel": "NA"
-          },
-          {
             "email": "pooja.patil@adityabirlacapital.com",
             "q": "[Screenshot] WhatsApp/Meta template rejected -- asked bot to check the formatting error",
             "panel": "absli_hosales_ce"
-          },
-          {
-            "email": "lokesh.sharma@netcore.ai",
-            "q": "how to check if number is bloacklisted due to whatsapp subscribe",
-            "panel": "NA"
           }
         ]
       },
@@ -2825,16 +2824,14 @@ const ARCHIVE = {
       },
       {
         "area": "Infra/Data residency",
-        "internal": 1,
-        "external": 3,
+        "internal": 4,
+        "external": 0,
         "internalQ": [
           {
             "email": "rubal.adwani@netcorecloud.com",
             "q": "what are the use cases of using a UDT- user data table",
             "panel": "NA"
-          }
-        ],
-        "externalQ": [
+          },
           {
             "email": "sakshi.yadav@netcorecloud.ai",
             "q": "I am unable to see the conversions on the campaigns page there is conversion goal added as well",
@@ -2850,13 +2847,20 @@ const ARCHIVE = {
             "q": "Hi, how to create new user",
             "panel": "smartechai"
           }
-        ]
+        ],
+        "externalQ": []
       },
       {
         "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 5,
-        "internalQ": [],
+        "internal": 1,
+        "external": 4,
+        "internalQ": [
+          {
+            "email": "ninad.karangutkar@netcore.ai",
+            "q": "max pricing",
+            "panel": "NA"
+          }
+        ],
         "externalQ": [
           {
             "email": "amit.dwivedi184@gmail.com",
@@ -2874,11 +2878,6 @@ const ARCHIVE = {
             "panel": "NA"
           },
           {
-            "email": "ninad.karangutkar@netcore.ai",
-            "q": "max pricing",
-            "panel": "NA"
-          },
-          {
             "email": "kk3914588@gmail.com",
             "q": "Mujhe bike finance karana Hai Kitna down payment aaega kaise janu",
             "panel": "NA"
@@ -2891,8 +2890,8 @@ const ARCHIVE = {
     "date": "2026-08-18",
     "totalConversations": 27,
     "resolutionRate": 100,
-    "internalTotal": 4,
-    "externalTotal": 23,
+    "internalTotal": 14,
+    "externalTotal": 13,
     "docsTotal": 15,
     "panelTotal": 12,
     "queryType": {
@@ -2919,12 +2918,12 @@ const ARCHIVE = {
       ],
       "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal."
     },
-    "headline": "27 conversations, 100% bot-resolved and zero same-user Freshdesk escalations in the +2-day window -- but 10 of the 23 'external' askers are Netcore staff on @netcore.ai/@netcorecloud.ai addresses, so real customer volume is closer to 13.",
+    "headline": "27 conversations, 100% bot-resolved and zero same-user Freshdesk escalations in the +2-day window -- corrected split (fixed 2026-08-21) is 14 internal : 13 customer, now that @netcore.ai/@netcorecloud.ai staff (sakshi.yadav, sandeep.shetty, ninad.karangutkar, ishika.a, tony.jose, akash.gupta, drashtant.pambhar, swati.jangir, saloni.shinde, vani.ganasutrisna) are correctly counted internal.",
     "actionableInsights": [
       {
         "owner": "calibration",
-        "title": "Internal/external split still skewed by the Netcore staff email-domain shift",
-        "desc": "10 of 27 conversations (sakshi.yadav, sandeep.shetty, ninad.karangutkar, ishika.a, tony.jose, akash.gupta, drashtant.pambhar, swati.jangir, saloni.shinde, vani.ganasutrisna) are recognizable Netcore staff using @netcore.ai or @netcorecloud.ai instead of @netcorecloud.com. Under the strict classification rule they land as 'external', pushing today's split to 4 internal / 23 external. This is now the 2nd consecutive run flagging this pattern (see 2026-08-17) -- worth raising with whoever owns the classification rule about adding these two domains to the internal list."
+        "title": "Internal/external split corrected retroactively (fixed 2026-08-21)",
+        "desc": "10 of 27 conversations (sakshi.yadav, sandeep.shetty, ninad.karangutkar, ishika.a, tony.jose, akash.gupta, drashtant.pambhar, swati.jangir, saloni.shinde, vani.ganasutrisna) were originally misclassified 'external' under the old domain rule. The internal-domain allowlist was expanded to include @netcore.ai and @netcorecloud.ai, and this day's data was reclassified accordingly. Corrected split: 14 internal : 13 customer."
       },
       {
         "owner": "content",
@@ -2951,28 +2950,28 @@ const ARCHIVE = {
     "themesBySource": [
       {
         "theme": "How do I do X",
-        "internal": 1,
-        "external": 5
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 1,
-        "external": 4
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 0,
+        "internal": 2,
         "external": 3
       },
       {
+        "theme": "Where's the doc/API for X",
+        "internal": 3,
+        "external": 2
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 1,
+        "external": 2
+      },
+      {
         "theme": "What does X mean/how it works",
-        "internal": 0,
-        "external": 5
+        "internal": 5,
+        "external": 1
       },
       {
         "theme": "Is X possible/supported",
-        "internal": 2,
-        "external": 2
+        "internal": 3,
+        "external": 1
       },
       {
         "theme": "Bare greeting, no context yet",
@@ -3049,8 +3048,8 @@ const ARCHIVE = {
     "areas": [
       {
         "area": "API/Integration",
-        "internal": 2,
-        "external": 7,
+        "internal": 6,
+        "external": 3,
         "internalQ": [
           {
             "email": "prateek.singh@netcorecloud.com",
@@ -3061,27 +3060,10 @@ const ARCHIVE = {
             "email": "apekshit.babaria@netcorecloud.com",
             "q": "How does Netcore work with Google ads and Meta ads? Is there a connector? What are the capabilities?",
             "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "amit.kumar14@trustline.in",
-            "q": "I am a user, and I am facing an issue while trying to fetch an HTML link through your website.",
-            "panel": "NA"
           },
           {
             "email": "ishika.a@netcore.ai",
             "q": "can i get a web personalization coupon drawer video tutorial",
-            "panel": "NA"
-          },
-          {
-            "email": "tinh.nguyen@droppii.com",
-            "q": "404 :: NOT_FOUND :: NotRegistered netcore please help me check error when push notification",
-            "panel": "sndt_droppiicee"
-          },
-          {
-            "email": "test@gmail.com",
-            "q": "give me the GDPR api",
             "panel": "NA"
           },
           {
@@ -3097,6 +3079,23 @@ const ARCHIVE = {
           {
             "email": "swati.jangir@netcore.ai",
             "q": "can we export netcore data in snowflake?",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "amit.kumar14@trustline.in",
+            "q": "I am a user, and I am facing an issue while trying to fetch an HTML link through your website.",
+            "panel": "NA"
+          },
+          {
+            "email": "tinh.nguyen@droppii.com",
+            "q": "404 :: NOT_FOUND :: NotRegistered netcore please help me check error when push notification",
+            "panel": "sndt_droppiicee"
+          },
+          {
+            "email": "test@gmail.com",
+            "q": "give me the GDPR api",
             "panel": "NA"
           }
         ]
@@ -3121,16 +3120,14 @@ const ARCHIVE = {
       },
       {
         "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 1,
-        "external": 2,
+        "internal": 3,
+        "external": 0,
         "internalQ": [
           {
             "email": "anand.mishra@netcorecloud.com",
             "q": "what is the correct number format for a US mobile number to send sms",
             "panel": "NA"
-          }
-        ],
-        "externalQ": [
+          },
           {
             "email": "sandeep.shetty@netcore.ai",
             "q": "how much payload character support",
@@ -3141,42 +3138,37 @@ const ARCHIVE = {
             "q": "what all data types are allowed when I am uploading image while creating a WhatsApp template",
             "panel": "NA"
           }
-        ]
+        ],
+        "externalQ": []
       },
       {
         "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 2,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "dikshasupperb@gmail.com",
-            "q": "when will be my Diana op campaign will be sent?",
-            "panel": "craftedcotton_ce"
-          },
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
           {
             "email": "vani.ganasutrisna@netcore.ai",
             "q": "what is utm content?",
             "panel": "NA"
           }
+        ],
+        "externalQ": [
+          {
+            "email": "dikshasupperb@gmail.com",
+            "q": "when will be my Diana op campaign will be sent?",
+            "panel": "craftedcotton_ce"
+          }
         ]
       },
       {
         "area": "Journey Builder",
-        "internal": 1,
-        "external": 3,
+        "internal": 3,
+        "external": 1,
         "internalQ": [
           {
             "email": "prateek.singh@netcorecloud.com",
             "q": "give me the image size for the in-app message templates",
             "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "akshatar.sangle@edelweissarc.in",
-            "q": "can you help how does the PersonalizedContent work for Campaigns",
-            "panel": "edelweissarc_cee"
           },
           {
             "email": "ninad.karangutkar@netcore.ai",
@@ -3188,19 +3180,27 @@ const ARCHIVE = {
             "q": "How do I check if I have frequency capping enabled?",
             "panel": "NA"
           }
+        ],
+        "externalQ": [
+          {
+            "email": "akshatar.sangle@edelweissarc.in",
+            "q": "can you help how does the PersonalizedContent work for Campaigns",
+            "panel": "edelweissarc_cee"
+          }
         ]
       },
       {
         "area": "Infra/Data residency",
-        "internal": 0,
-        "external": 2,
-        "internalQ": [],
-        "externalQ": [
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
           {
             "email": "sakshi.yadav@netcorecloud.ai",
             "q": "how to download segment data",
             "panel": "iprulifece"
-          },
+          }
+        ],
+        "externalQ": [
           {
             "email": "sigit.wibowo@cimbniaga.co.id",
             "q": "in blocklisted contacts reason is N/A why",
@@ -3247,8 +3247,8 @@ const ARCHIVE = {
     "date": "2026-08-19",
     "totalConversations": 24,
     "resolutionRate": 100,
-    "internalTotal": 1,
-    "externalTotal": 23,
+    "internalTotal": 9,
+    "externalTotal": 15,
     "docsTotal": 15,
     "panelTotal": 9,
     "queryType": {
@@ -3264,7 +3264,7 @@ const ARCHIVE = {
       "patternRisk": [],
       "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. Checked all 23 unique requester emails via Tier 1 global search -- zero ticket matches for any. Tier 2 keyword checks (maven sdk, conversion goal, RCS URL, brand kit, gamification, 404 page not found) found no genuine in-window matches -- the closest hit (an RCS callback-URL integration ticket from ~a day ago) was excluded as a different underlying need (vendor callback URL setup vs. today's docs-lookup question). Window has barely started (D+1 of D+2) -- treat 100% as a floor, not a confirmed final result."
     },
-    "headline": "24 conversations on Aug 19, 100% bot self-reported resolved and (provisionally) 100% Freshdesk-deflected -- three separate Netcore staff independently asked near-identical 'what is the revenue parameter in conversion goal' within 2 minutes of each other, two more asked 'maven sdk' almost verbatim 4 minutes apart, and Julie Bolger (wealthmintr) reported a live incident: today's email campaign links all redirecting to 404s.",
+    "headline": "24 conversations on Aug 19, 100% bot self-reported resolved and (provisionally) 100% Freshdesk-deflected -- three separate Netcore staff independently asked near-identical 'what is the revenue parameter in conversion goal' within 2 minutes of each other, two more asked 'maven sdk' almost verbatim 4 minutes apart, and Julie Bolger (wealthmintr) reported a live incident: today's email campaign links all redirecting to 404s. Split corrected (fixed 2026-08-21) to 9 internal : 15 customer now that @netcore.ai/@netcorecloud.ai staff are recognized as internal.",
     "actionableInsights": [
       {
         "owner": "content",
@@ -3283,8 +3283,8 @@ const ARCHIVE = {
       },
       {
         "owner": "calibration",
-        "title": "Internal/external split still skewed by the @netcore.ai / @netcorecloud.ai domain shift",
-        "desc": "internalTotal shows just 1 of 24 (rubal.adwani@netcorecloud.com), but at least 8 more askers are visibly Netcore/CE staff using @netcore.ai or @netcorecloud.ai addresses, which don't match the strict @netcorecloud.com/@netcoreunbxd.com internal rule. This is the 3rd consecutive run flagging this (see 08-18 and 08-19 prior run notes) -- worth deciding whether to broaden the internal-domain rule so the split reflects reality."
+        "title": "Internal/external split corrected retroactively (fixed 2026-08-21)",
+        "desc": "internalTotal originally showed just 1 of 24 (rubal.adwani@netcorecloud.com); at least 8 more askers were visibly Netcore/CE staff using @netcore.ai or @netcorecloud.ai addresses that the strict domain rule didn't recognize. The internal-domain allowlist was expanded to include both, and this day's data was reclassified accordingly. Corrected split: 9 internal : 15 customer."
       }
     ],
     "mostInteresting": {
@@ -3296,23 +3296,23 @@ const ARCHIVE = {
     "themesBySource": [
       {
         "theme": "How do I do X",
-        "internal": 0,
-        "external": 2
+        "internal": 1,
+        "external": 1
       },
       {
         "theme": "Where's the doc/API for X",
-        "internal": 0,
-        "external": 5
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 0,
+        "internal": 3,
         "external": 2
       },
       {
-        "theme": "What does X mean/how it works",
+        "theme": "Where do I set up/find X",
         "internal": 1,
-        "external": 3
+        "external": 1
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 4,
+        "external": 0
       },
       {
         "theme": "Is X possible/supported",
@@ -3346,15 +3346,9 @@ const ARCHIVE = {
     "areas": [
       {
         "area": "API/Integration",
-        "internal": 0,
-        "external": 7,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "arjun@truva.in",
-            "q": "Is there a character limit on parameters for netcore events?",
-            "panel": "NA"
-          },
+        "internal": 4,
+        "external": 3,
+        "internalQ": [
           {
             "email": "siddhant.bendkar@netcore.ai",
             "q": "What's the upper limit on creating attirbutes?",
@@ -3366,16 +3360,6 @@ const ARCHIVE = {
             "panel": "smartechai"
           },
           {
-            "email": "adeolap@cornerstone.ac.za",
-            "q": "what is or where do i find Netcore Account ID, Netcore Passcode (API passcode, not your login password), Confirm your Netcore domain -- is it pr1r.netcoresmartech.com?",
-            "panel": "cornerstone_ce"
-          },
-          {
-            "email": "tinh.nguyen@droppi.com",
-            "q": "How is optPushNotification handled across different apps/environments sharing the same userId -- is opt-in/opt-out scoped per app or does the latest value override across apps?",
-            "panel": "sndt_droppiicee"
-          },
-          {
             "email": "gargi.sethia@netcore.ai",
             "q": "maven SDK",
             "panel": "NA"
@@ -3385,13 +3369,36 @@ const ARCHIVE = {
             "q": "maven sdk",
             "panel": "NA"
           }
+        ],
+        "externalQ": [
+          {
+            "email": "arjun@truva.in",
+            "q": "Is there a character limit on parameters for netcore events?",
+            "panel": "NA"
+          },
+          {
+            "email": "adeolap@cornerstone.ac.za",
+            "q": "what is or where do i find Netcore Account ID, Netcore Passcode (API passcode, not your login password), Confirm your Netcore domain -- is it pr1r.netcoresmartech.com?",
+            "panel": "cornerstone_ce"
+          },
+          {
+            "email": "tinh.nguyen@droppi.com",
+            "q": "How is optPushNotification handled across different apps/environments sharing the same userId -- is opt-in/opt-out scoped per app or does the latest value override across apps?",
+            "panel": "sndt_droppiicee"
+          }
         ]
       },
       {
         "area": "Email",
-        "internal": 0,
-        "external": 3,
-        "internalQ": [],
+        "internal": 1,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "khushi.chitkara@netcore.ai",
+            "q": "where we can see brand kit in templates",
+            "panel": "NA"
+          }
+        ],
         "externalQ": [
           {
             "email": "julie@wealthmintr.com",
@@ -3402,26 +3409,21 @@ const ARCHIVE = {
             "email": "devashen@hirschs.co.za",
             "q": "how do i include gamification in a mailer",
             "panel": "hirschs_ce"
-          },
-          {
-            "email": "khushi.chitkara@netcore.ai",
-            "q": "where we can see brand kit in templates",
-            "panel": "NA"
           }
         ]
       },
       {
         "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 0,
-        "external": 1,
-        "internalQ": [],
-        "externalQ": [
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
           {
             "email": "ishika.a@netcore.ai",
             "q": "hey need the rcs specific url document",
             "panel": "NA"
           }
-        ]
+        ],
+        "externalQ": []
       },
       {
         "area": "Broadcast/Webhooks",
@@ -3432,16 +3434,14 @@ const ARCHIVE = {
       },
       {
         "area": "Journey Builder",
-        "internal": 1,
-        "external": 2,
+        "internal": 3,
+        "external": 0,
         "internalQ": [
           {
             "email": "rubal.adwani@netcorecloud.com",
             "q": "what is revenue parameter in set conversion goal for campaign",
             "panel": "NA"
-          }
-        ],
-        "externalQ": [
+          },
           {
             "email": "harshit.puranik@netcorecloud.ai",
             "q": "revenue parameter for conversion goals",
@@ -3452,7 +3452,8 @@ const ARCHIVE = {
             "q": "What is the revenue parameter in conversion goal ?",
             "panel": "NA"
           }
-        ]
+        ],
+        "externalQ": []
       },
       {
         "area": "Infra/Data residency",
@@ -3526,8 +3527,8 @@ const ARCHIVE = {
     "date": "2026-08-20",
     "totalConversations": 13,
     "resolutionRate": 100,
-    "internalTotal": 0,
-    "externalTotal": 13,
+    "internalTotal": 5,
+    "externalTotal": 8,
     "docsTotal": 4,
     "panelTotal": 9,
     "queryType": {
@@ -3553,12 +3554,12 @@ const ARCHIVE = {
       ],
       "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as directional, doubly so with the +2-day window barely open. Checked all 12 unique requester emails individually via Tier 1 global search -- zero ticket matches for any. Tier 2 keyword sweeps covered all 6 substantive areas: 'INVALID_DATATYPE' (1 hit, closed 5 days ago, different failure type -- primary key vs email validation), 'liquid tags' (44 hits, all 'enable liquid tags' feature-activation requests -- different theme than the conceptual 'where are liquid tags applicable' question), 'Limechat' (58 hits, closest 3 days old, outside window), 'custom activity' (8 hits, all weeks-to-years old), 'app push' (249 hits, several in-window but all delivery/reach performance issues, not the copy-generation/campaign-setup asks from today), 'WhatsApp AI Agent' (0 hits). No genuine in-window pattern match found for any area."
     },
-    "headline": "13 conversations on Aug 20, 100% bot self-reported resolved and 100% Freshdesk-deflected across all 12 unique askers -- but the internal/external split is almost certainly skewed: at least 5 of the 13 conversations came from Netcore staff on @netcore.ai addresses (Saloni Shinde, Ninad Karangutkar x2, Akash Sharma, Rajeev Pillai), which the classification rule reads as 100% external -- 3rd day running this domain-shift issue has appeared.",
+    "headline": "13 conversations on Aug 20, 100% bot self-reported resolved and 100% Freshdesk-deflected across all 12 unique askers -- corrected split (fixed 2026-08-21) is 5 internal : 8 customer, now that @netcore.ai is recognized as an internal Netcore domain (Saloni Shinde, Ninad Karangutkar x2, Akash Sharma, Rajeev Pillai were previously miscounted as customers).",
     "actionableInsights": [
       {
         "owner": "calibration",
-        "title": "@netcore.ai staff are being counted as external customers -- 3rd consecutive day",
-        "desc": "5 of 13 conversations today (Saloni Shinde, Ninad Karangutkar x2, Akash Sharma, Rajeev Pillai) came from @netcore.ai addresses -- clearly Netcore staff by name and by docs-portal/panel usage pattern, but the classification rule only treats @netcorecloud.com/@netcoreunbxd.com as internal. Today's reported 0% internal / 100% external is materially wrong (real split is closer to 8 external / 5 internal). This was also flagged on 2026-08-18 and 2026-08-19 -- worth adding @netcore.ai to the internal-domain allowlist so the split stops silently degrading."
+        "title": "Domain-skew issue fixed retroactively across the archive (2026-08-21)",
+        "desc": "After 3 consecutive flagged runs (Aug 17-20), the user confirmed @netcore.ai and @netcorecloud.ai are legitimate internal Netcore domains following a recent migration off @netcorecloud.com. The internal-domain allowlist was expanded and every affected historical day (Aug 10, 14, 17, 18, 19, 20 -- 37 conversations total) was reclassified with aggregates recomputed. New runs going forward should use the corrected 4-domain allowlist (@netcorecloud.com, @netcoreunbxd.com, @netcore.ai, @netcorecloud.ai)."
       },
       {
         "owner": "product",
@@ -3586,12 +3587,12 @@ const ARCHIVE = {
       {
         "theme": "How do I do X",
         "internal": 0,
-        "external": 3
+        "external": 2
       },
       {
         "theme": "Where's the doc/API for X",
-        "internal": 0,
-        "external": 2
+        "internal": 1,
+        "external": 1
       },
       {
         "theme": "Where do I set up/find X",
@@ -3600,13 +3601,13 @@ const ARCHIVE = {
       },
       {
         "theme": "What does X mean/how it works",
-        "internal": 0,
-        "external": 3
+        "internal": 2,
+        "external": 1
       },
       {
         "theme": "Is X possible/supported",
-        "internal": 0,
-        "external": 3
+        "internal": 2,
+        "external": 2
       },
       {
         "theme": "Bare greeting, no context yet",
@@ -3635,15 +3636,16 @@ const ARCHIVE = {
     "areas": [
       {
         "area": "API/Integration",
-        "internal": 0,
-        "external": 3,
-        "internalQ": [],
-        "externalQ": [
+        "internal": 1,
+        "external": 2,
+        "internalQ": [
           {
             "email": "rajeev.pillai@netcore.ai",
             "q": "My client wants to start sending personalized emails to customers when specific new products arrive, filtered on existing product-API data -- is there an API on the platform we can use for this?",
             "panel": "NA"
-          },
+          }
+        ],
+        "externalQ": [
           {
             "email": "ishim878@gmail.com",
             "q": "Hey if a brand wants to start merch triggers and they want to implement the product catalogue and product feed, so they are asking what all information comes in that, can you pls help",
@@ -3658,28 +3660,29 @@ const ARCHIVE = {
       },
       {
         "area": "Email",
-        "internal": 0,
-        "external": 1,
-        "internalQ": [],
-        "externalQ": [
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
           {
             "email": "akash.sharma@netcore.ai",
             "q": "Liquid tags are applicable on",
             "panel": "NA"
           }
-        ]
+        ],
+        "externalQ": []
       },
       {
         "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 0,
-        "external": 2,
-        "internalQ": [],
-        "externalQ": [
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
           {
             "email": "saloni.shinde@netcore.ai",
             "q": "can you share the link for Limechat documentation",
             "panel": "NA"
-          },
+          }
+        ],
+        "externalQ": [
           {
             "email": "nivieza.iqriyyana@oona-insurance.co.id",
             "q": "Does Netcore have a Conversational AI solution or an AI Agent partner that can be integrated with our WhatsApp channel? If yes, could you also share how the architecture works and how it integrates with Netcore and WhatsApp?",
@@ -3707,10 +3710,9 @@ const ARCHIVE = {
       },
       {
         "area": "Journey Builder",
-        "internal": 0,
-        "external": 2,
-        "internalQ": [],
-        "externalQ": [
+        "internal": 2,
+        "external": 0,
+        "internalQ": [
           {
             "email": "ninad.karangutkar@netcore.ai",
             "q": "What is the difference between events and activity",
@@ -3721,7 +3723,8 @@ const ARCHIVE = {
             "q": "can we create custom activity ?",
             "panel": "smartechai"
           }
-        ]
+        ],
+        "externalQ": []
       },
       {
         "area": "Infra/Data residency",
@@ -17112,8 +17115,8 @@ const FULL_ARCHIVE = {
     "date": "2026-08-10",
     "totalConversations": 16,
     "resolutionRate": 100,
-    "internalTotal": 6,
-    "externalTotal": 10,
+    "internalTotal": 7,
+    "externalTotal": 9,
     "docsTotal": 7,
     "panelTotal": 9,
     "queryType": {
@@ -17171,8 +17174,8 @@ const FULL_ARCHIVE = {
       },
       {
         "theme": "Where do I set up/find X",
-        "internal": 0,
-        "external": 2
+        "internal": 1,
+        "external": 1
       },
       {
         "theme": "What does X mean/how it works",
@@ -17289,22 +17292,21 @@ const FULL_ARCHIVE = {
       },
       {
         "area": "Infra/Data residency",
-        "internal": 1,
-        "external": 1,
+        "internal": 2,
+        "external": 0,
         "internalQ": [
           {
             "email": "anjali.inani@netcorecloud.com",
             "q": "how can i switch to dark mode",
             "panel": "thesouledstorecee"
-          }
-        ],
-        "externalQ": [
+          },
           {
             "email": "romit.pandit@netcore.ai",
             "q": "How to switch to dark mode in new UI?",
             "panel": "bajajlifeceenew"
           }
-        ]
+        ],
+        "externalQ": []
       },
       {
         "area": "General/Unclear (greeting only)",
@@ -18124,8 +18126,8 @@ const FULL_ARCHIVE = {
     "date": "2026-08-14",
     "totalConversations": 15,
     "resolutionRate": 100,
-    "internalTotal": 3,
-    "externalTotal": 12,
+    "internalTotal": 5,
+    "externalTotal": 10,
     "docsTotal": 8,
     "panelTotal": 7,
     "queryType": {
@@ -18150,8 +18152,8 @@ const FULL_ARCHIVE = {
       },
       {
         "owner": "calibration",
-        "title": "Same person, two email domains — Romit Pandit asked the identical SMS-undelivered question twice",
-        "desc": "romit.pandit@netcorecloud.com and romit.pandit@netcore.ai asked the literal same 'what do undelivered SMS reasons mean' question 25 minutes apart. Because they're different email addresses, the strict same-email dedupe/access rule counts them as two distinct users — one internal, one external — which is almost certainly one Netcore employee with two accounts. Worth checking whether netcore.ai is a legitimate internal alias so future runs classify it correctly."
+        "title": "Domain-skew fixed retroactively — netcore.ai confirmed as a legitimate internal alias",
+        "desc": "romit.pandit@netcorecloud.com and romit.pandit@netcore.ai asked the literal same 'what do undelivered SMS reasons mean' question 25 minutes apart -- the same Netcore employee with two accounts. On 2026-08-21 the user confirmed @netcore.ai (and @netcorecloud.ai) are legitimate internal domains following a company email migration off @netcorecloud.com, and this day's data was corrected accordingly -- both are now counted internal."
       },
       {
         "owner": "content",
@@ -18183,13 +18185,13 @@ const FULL_ARCHIVE = {
       },
       {
         "theme": "Where do I set up/find X",
-        "internal": 0,
-        "external": 2
+        "internal": 1,
+        "external": 1
       },
       {
         "theme": "What does X mean/how it works",
-        "internal": 1,
-        "external": 3
+        "internal": 2,
+        "external": 2
       },
       {
         "theme": "Is X possible/supported",
@@ -18223,12 +18225,17 @@ const FULL_ARCHIVE = {
     "areas": [
       {
         "area": "API/Integration",
-        "internal": 1,
-        "external": 3,
+        "internal": 2,
+        "external": 2,
         "internalQ": [
           {
             "email": "prateek.singh@netcorecloud.com",
             "q": "What are different ways to upload user data to CE Panel / Is there a way to push it via S3 also? / Can we use SMTP also?",
+            "panel": "NA"
+          },
+          {
+            "email": "soumya.chaudhary@netcore.ai",
+            "q": "hi where can I see events on panel",
             "panel": "NA"
           }
         ],
@@ -18236,11 +18243,6 @@ const FULL_ARCHIVE = {
           {
             "email": "test@gmail.com",
             "q": "what is the exact aspect ratio that we should use for in-app when customer is using custom html",
-            "panel": "NA"
-          },
-          {
-            "email": "soumya.chaudhary@netcore.ai",
-            "q": "hi where can I see events on panel",
             "panel": "NA"
           },
           {
@@ -18271,22 +18273,21 @@ const FULL_ARCHIVE = {
       },
       {
         "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 1,
-        "external": 1,
+        "internal": 2,
+        "external": 0,
         "internalQ": [
           {
             "email": "romit.pandit@netcorecloud.com",
             "q": "I want to know when a SMS is not delivered what are the meanings of the reasons that are stated in the detailed report?",
             "panel": "NA"
-          }
-        ],
-        "externalQ": [
+          },
           {
             "email": "romit.pandit@netcore.ai",
             "q": "i want to know when a SMS is undelivered then what are the meaning of the undelivered reasons",
             "panel": "NA"
           }
-        ]
+        ],
+        "externalQ": []
       },
       {
         "area": "Broadcast/Webhooks",
@@ -18636,8 +18637,8 @@ const FULL_ARCHIVE = {
     "date": "2026-08-17",
     "totalConversations": 20,
     "resolutionRate": 100,
-    "internalTotal": 1,
-    "externalTotal": 19,
+    "internalTotal": 12,
+    "externalTotal": 8,
     "docsTotal": 14,
     "panelTotal": 6,
     "queryType": {
@@ -18645,12 +18646,12 @@ const FULL_ARCHIVE = {
       "generic": 13
     },
     "ticketDeflection": null,
-    "headline": "20 conversations on Aug 17, a clean 100% bot self-reported resolution -- but the 1-internal-to-19-external split is misleading, since at least 9 of today's 'external' askers (Ninad, Amey Vaidya, Lokesh Sharma, Sonal Kumari, Sumit Agarwal, Mandovi Joseph, Ishika, Sakshi Yadav) are recognizable Netcore staff now messaging from @netcore.ai/@netcorecloud.ai instead of @netcorecloud.com. Freshdesk ticket-deflection couldn't be checked this run -- the Chrome browser connector was unreachable, a different blocker than the usual session-expiry case.",
+    "headline": "20 conversations on Aug 17, a clean 100% bot self-reported resolution, and a corrected 12:8 Netcore:Customer split (fixed 2026-08-21) now that @netcore.ai/@netcorecloud.ai are recognized as internal staff domains -- Ninad, Amey Vaidya, Lokesh Sharma, Sonal Kumari, Sumit Agarwal, Mandovi Joseph, Ishika, and Sakshi Yadav were previously miscounted as customers. Freshdesk ticket-deflection couldn't be checked this run -- the Chrome browser connector was unreachable, a different blocker than the usual session-expiry case.",
     "actionableInsights": [
       {
         "owner": "calibration",
-        "title": "Internal/external split is skewed by a Netcore staff email-domain shift",
-        "desc": "19 of 20 conversations classified 'external' under the strict @netcorecloud.com/@netcoreunbxd.com rule, but at least 9 are recognizable Netcore staff (ninad.karangutkar, amey.vaidya, lokesh.sharma, sonal.kumari, sumit.agarwal, mandovi.joseph, ishika.a, sakshi.yadav) using @netcore.ai or @netcorecloud.ai addresses instead. Today's 1/19 internal/external split should be read with this caveat -- it likely reflects a company email-domain change, not a real shift in who's asking. Worth flagging to whoever owns the classification rule in case @netcore.ai and @netcorecloud.ai should be added to the internal domain list going forward."
+        "title": "Internal/external split corrected retroactively (fixed 2026-08-21)",
+        "desc": "19 of 20 conversations were originally misclassified 'external' under the old @netcorecloud.com/@netcoreunbxd.com-only rule. 12 of the 20 are Netcore staff (ninad.karangutkar, amey.vaidya, lokesh.sharma, sonal.kumari, sumit.agarwal, mandovi.joseph, ishika.a, sakshi.yadav, and others) now correctly counted internal after the domain allowlist was expanded to include @netcore.ai and @netcorecloud.ai. Corrected split: 12 internal : 8 customer."
       },
       {
         "owner": "content",
@@ -18677,13 +18678,13 @@ const FULL_ARCHIVE = {
     "themesBySource": [
       {
         "theme": "How do I do X",
-        "internal": 0,
-        "external": 6
+        "internal": 4,
+        "external": 2
       },
       {
         "theme": "Where's the doc/API for X",
-        "internal": 0,
-        "external": 2
+        "internal": 2,
+        "external": 0
       },
       {
         "theme": "Where do I set up/find X",
@@ -18692,18 +18693,18 @@ const FULL_ARCHIVE = {
       },
       {
         "theme": "What does X mean/how it works",
-        "internal": 1,
-        "external": 2
+        "internal": 4,
+        "external": -1
       },
       {
         "theme": "Is X possible/supported",
-        "internal": 0,
-        "external": 2
+        "internal": 1,
+        "external": 1
       },
       {
         "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 5
+        "internal": 1,
+        "external": 4
       }
     ],
     "topAskers": [
@@ -18735,10 +18736,9 @@ const FULL_ARCHIVE = {
     "areas": [
       {
         "area": "API/Integration",
-        "internal": 0,
-        "external": 4,
-        "internalQ": [],
-        "externalQ": [
+        "internal": 4,
+        "external": 0,
+        "internalQ": [
           {
             "email": "ishika.a@netcore.ai",
             "q": "i need the web personalization doxument for reference",
@@ -18759,26 +18759,38 @@ const FULL_ARCHIVE = {
             "q": "can you tell me how we integrate catalog with our ce ?",
             "panel": "NA"
           }
-        ]
+        ],
+        "externalQ": []
       },
       {
         "area": "Email",
-        "internal": 0,
-        "external": 1,
-        "internalQ": [],
-        "externalQ": [
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
           {
             "email": "ninad.karangutkar@netcore.ai",
             "q": "liquid tags",
             "panel": "NA"
           }
-        ]
+        ],
+        "externalQ": []
       },
       {
         "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 0,
-        "external": 4,
-        "internalQ": [],
+        "internal": 2,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "sumit.agarwal@netcore.ai",
+            "q": "how does netcore CE help in increasing whatsapp delivery",
+            "panel": "NA"
+          },
+          {
+            "email": "lokesh.sharma@netcore.ai",
+            "q": "how to check if number is bloacklisted due to whatsapp subscribe",
+            "panel": "NA"
+          }
+        ],
         "externalQ": [
           {
             "email": "bhavya.k@fnp.com",
@@ -18786,19 +18798,9 @@ const FULL_ARCHIVE = {
             "panel": "fnpcee_gcp"
           },
           {
-            "email": "sumit.agarwal@netcore.ai",
-            "q": "how does netcore CE help in increasing whatsapp delivery",
-            "panel": "NA"
-          },
-          {
             "email": "pooja.patil@adityabirlacapital.com",
             "q": "[Screenshot] WhatsApp/Meta template rejected -- asked bot to check the formatting error",
             "panel": "absli_hosales_ce"
-          },
-          {
-            "email": "lokesh.sharma@netcore.ai",
-            "q": "how to check if number is bloacklisted due to whatsapp subscribe",
-            "panel": "NA"
           }
         ]
       },
@@ -18829,16 +18831,14 @@ const FULL_ARCHIVE = {
       },
       {
         "area": "Infra/Data residency",
-        "internal": 1,
-        "external": 3,
+        "internal": 4,
+        "external": 0,
         "internalQ": [
           {
             "email": "rubal.adwani@netcorecloud.com",
             "q": "what are the use cases of using a UDT- user data table",
             "panel": "NA"
-          }
-        ],
-        "externalQ": [
+          },
           {
             "email": "sakshi.yadav@netcorecloud.ai",
             "q": "I am unable to see the conversions on the campaigns page there is conversion goal added as well",
@@ -18854,13 +18854,20 @@ const FULL_ARCHIVE = {
             "q": "Hi, how to create new user",
             "panel": "smartechai"
           }
-        ]
+        ],
+        "externalQ": []
       },
       {
         "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 5,
-        "internalQ": [],
+        "internal": 1,
+        "external": 4,
+        "internalQ": [
+          {
+            "email": "ninad.karangutkar@netcore.ai",
+            "q": "max pricing",
+            "panel": "NA"
+          }
+        ],
         "externalQ": [
           {
             "email": "amit.dwivedi184@gmail.com",
@@ -18878,11 +18885,6 @@ const FULL_ARCHIVE = {
             "panel": "NA"
           },
           {
-            "email": "ninad.karangutkar@netcore.ai",
-            "q": "max pricing",
-            "panel": "NA"
-          },
-          {
             "email": "kk3914588@gmail.com",
             "q": "Mujhe bike finance karana Hai Kitna down payment aaega kaise janu",
             "panel": "NA"
@@ -18895,8 +18897,8 @@ const FULL_ARCHIVE = {
     "date": "2026-08-18",
     "totalConversations": 27,
     "resolutionRate": 100,
-    "internalTotal": 4,
-    "externalTotal": 23,
+    "internalTotal": 14,
+    "externalTotal": 13,
     "docsTotal": 15,
     "panelTotal": 12,
     "queryType": {
@@ -18923,12 +18925,12 @@ const FULL_ARCHIVE = {
       ],
       "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal."
     },
-    "headline": "27 conversations, 100% bot-resolved and zero same-user Freshdesk escalations in the +2-day window -- but 10 of the 23 'external' askers are Netcore staff on @netcore.ai/@netcorecloud.ai addresses, so real customer volume is closer to 13.",
+    "headline": "27 conversations, 100% bot-resolved and zero same-user Freshdesk escalations in the +2-day window -- corrected split (fixed 2026-08-21) is 14 internal : 13 customer, now that @netcore.ai/@netcorecloud.ai staff (sakshi.yadav, sandeep.shetty, ninad.karangutkar, ishika.a, tony.jose, akash.gupta, drashtant.pambhar, swati.jangir, saloni.shinde, vani.ganasutrisna) are correctly counted internal.",
     "actionableInsights": [
       {
         "owner": "calibration",
-        "title": "Internal/external split still skewed by the Netcore staff email-domain shift",
-        "desc": "10 of 27 conversations (sakshi.yadav, sandeep.shetty, ninad.karangutkar, ishika.a, tony.jose, akash.gupta, drashtant.pambhar, swati.jangir, saloni.shinde, vani.ganasutrisna) are recognizable Netcore staff using @netcore.ai or @netcorecloud.ai instead of @netcorecloud.com. Under the strict classification rule they land as 'external', pushing today's split to 4 internal / 23 external. This is now the 2nd consecutive run flagging this pattern (see 2026-08-17) -- worth raising with whoever owns the classification rule about adding these two domains to the internal list."
+        "title": "Internal/external split corrected retroactively (fixed 2026-08-21)",
+        "desc": "10 of 27 conversations (sakshi.yadav, sandeep.shetty, ninad.karangutkar, ishika.a, tony.jose, akash.gupta, drashtant.pambhar, swati.jangir, saloni.shinde, vani.ganasutrisna) were originally misclassified 'external' under the old domain rule. The internal-domain allowlist was expanded to include @netcore.ai and @netcorecloud.ai, and this day's data was reclassified accordingly. Corrected split: 14 internal : 13 customer."
       },
       {
         "owner": "content",
@@ -18955,28 +18957,28 @@ const FULL_ARCHIVE = {
     "themesBySource": [
       {
         "theme": "How do I do X",
-        "internal": 1,
-        "external": 5
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 1,
-        "external": 4
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 0,
+        "internal": 2,
         "external": 3
       },
       {
+        "theme": "Where's the doc/API for X",
+        "internal": 3,
+        "external": 2
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 1,
+        "external": 2
+      },
+      {
         "theme": "What does X mean/how it works",
-        "internal": 0,
-        "external": 5
+        "internal": 5,
+        "external": 1
       },
       {
         "theme": "Is X possible/supported",
-        "internal": 2,
-        "external": 2
+        "internal": 3,
+        "external": 1
       },
       {
         "theme": "Bare greeting, no context yet",
@@ -19053,8 +19055,8 @@ const FULL_ARCHIVE = {
     "areas": [
       {
         "area": "API/Integration",
-        "internal": 2,
-        "external": 7,
+        "internal": 6,
+        "external": 3,
         "internalQ": [
           {
             "email": "prateek.singh@netcorecloud.com",
@@ -19065,27 +19067,10 @@ const FULL_ARCHIVE = {
             "email": "apekshit.babaria@netcorecloud.com",
             "q": "How does Netcore work with Google ads and Meta ads? Is there a connector? What are the capabilities?",
             "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "amit.kumar14@trustline.in",
-            "q": "I am a user, and I am facing an issue while trying to fetch an HTML link through your website.",
-            "panel": "NA"
           },
           {
             "email": "ishika.a@netcore.ai",
             "q": "can i get a web personalization coupon drawer video tutorial",
-            "panel": "NA"
-          },
-          {
-            "email": "tinh.nguyen@droppii.com",
-            "q": "404 :: NOT_FOUND :: NotRegistered netcore please help me check error when push notification",
-            "panel": "sndt_droppiicee"
-          },
-          {
-            "email": "test@gmail.com",
-            "q": "give me the GDPR api",
             "panel": "NA"
           },
           {
@@ -19101,6 +19086,23 @@ const FULL_ARCHIVE = {
           {
             "email": "swati.jangir@netcore.ai",
             "q": "can we export netcore data in snowflake?",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "amit.kumar14@trustline.in",
+            "q": "I am a user, and I am facing an issue while trying to fetch an HTML link through your website.",
+            "panel": "NA"
+          },
+          {
+            "email": "tinh.nguyen@droppii.com",
+            "q": "404 :: NOT_FOUND :: NotRegistered netcore please help me check error when push notification",
+            "panel": "sndt_droppiicee"
+          },
+          {
+            "email": "test@gmail.com",
+            "q": "give me the GDPR api",
             "panel": "NA"
           }
         ]
@@ -19125,16 +19127,14 @@ const FULL_ARCHIVE = {
       },
       {
         "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 1,
-        "external": 2,
+        "internal": 3,
+        "external": 0,
         "internalQ": [
           {
             "email": "anand.mishra@netcorecloud.com",
             "q": "what is the correct number format for a US mobile number to send sms",
             "panel": "NA"
-          }
-        ],
-        "externalQ": [
+          },
           {
             "email": "sandeep.shetty@netcore.ai",
             "q": "how much payload character support",
@@ -19145,42 +19145,37 @@ const FULL_ARCHIVE = {
             "q": "what all data types are allowed when I am uploading image while creating a WhatsApp template",
             "panel": "NA"
           }
-        ]
+        ],
+        "externalQ": []
       },
       {
         "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 2,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "dikshasupperb@gmail.com",
-            "q": "when will be my Diana op campaign will be sent?",
-            "panel": "craftedcotton_ce"
-          },
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
           {
             "email": "vani.ganasutrisna@netcore.ai",
             "q": "what is utm content?",
             "panel": "NA"
           }
+        ],
+        "externalQ": [
+          {
+            "email": "dikshasupperb@gmail.com",
+            "q": "when will be my Diana op campaign will be sent?",
+            "panel": "craftedcotton_ce"
+          }
         ]
       },
       {
         "area": "Journey Builder",
-        "internal": 1,
-        "external": 3,
+        "internal": 3,
+        "external": 1,
         "internalQ": [
           {
             "email": "prateek.singh@netcorecloud.com",
             "q": "give me the image size for the in-app message templates",
             "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "akshatar.sangle@edelweissarc.in",
-            "q": "can you help how does the PersonalizedContent work for Campaigns",
-            "panel": "edelweissarc_cee"
           },
           {
             "email": "ninad.karangutkar@netcore.ai",
@@ -19192,19 +19187,27 @@ const FULL_ARCHIVE = {
             "q": "How do I check if I have frequency capping enabled?",
             "panel": "NA"
           }
+        ],
+        "externalQ": [
+          {
+            "email": "akshatar.sangle@edelweissarc.in",
+            "q": "can you help how does the PersonalizedContent work for Campaigns",
+            "panel": "edelweissarc_cee"
+          }
         ]
       },
       {
         "area": "Infra/Data residency",
-        "internal": 0,
-        "external": 2,
-        "internalQ": [],
-        "externalQ": [
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
           {
             "email": "sakshi.yadav@netcorecloud.ai",
             "q": "how to download segment data",
             "panel": "iprulifece"
-          },
+          }
+        ],
+        "externalQ": [
           {
             "email": "sigit.wibowo@cimbniaga.co.id",
             "q": "in blocklisted contacts reason is N/A why",
@@ -19251,8 +19254,8 @@ const FULL_ARCHIVE = {
     "date": "2026-08-19",
     "totalConversations": 24,
     "resolutionRate": 100,
-    "internalTotal": 1,
-    "externalTotal": 23,
+    "internalTotal": 9,
+    "externalTotal": 15,
     "docsTotal": 15,
     "panelTotal": 9,
     "queryType": {
@@ -19268,7 +19271,7 @@ const FULL_ARCHIVE = {
       "patternRisk": [],
       "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. Checked all 23 unique requester emails via Tier 1 global search -- zero ticket matches for any. Tier 2 keyword checks (maven sdk, conversion goal, RCS URL, brand kit, gamification, 404 page not found) found no genuine in-window matches -- the closest hit (an RCS callback-URL integration ticket from ~a day ago) was excluded as a different underlying need (vendor callback URL setup vs. today's docs-lookup question). Window has barely started (D+1 of D+2) -- treat 100% as a floor, not a confirmed final result."
     },
-    "headline": "24 conversations on Aug 19, 100% bot self-reported resolved and (provisionally) 100% Freshdesk-deflected -- three separate Netcore staff independently asked near-identical 'what is the revenue parameter in conversion goal' within 2 minutes of each other, two more asked 'maven sdk' almost verbatim 4 minutes apart, and Julie Bolger (wealthmintr) reported a live incident: today's email campaign links all redirecting to 404s.",
+    "headline": "24 conversations on Aug 19, 100% bot self-reported resolved and (provisionally) 100% Freshdesk-deflected -- three separate Netcore staff independently asked near-identical 'what is the revenue parameter in conversion goal' within 2 minutes of each other, two more asked 'maven sdk' almost verbatim 4 minutes apart, and Julie Bolger (wealthmintr) reported a live incident: today's email campaign links all redirecting to 404s. Split corrected (fixed 2026-08-21) to 9 internal : 15 customer now that @netcore.ai/@netcorecloud.ai staff are recognized as internal.",
     "actionableInsights": [
       {
         "owner": "content",
@@ -19287,8 +19290,8 @@ const FULL_ARCHIVE = {
       },
       {
         "owner": "calibration",
-        "title": "Internal/external split still skewed by the @netcore.ai / @netcorecloud.ai domain shift",
-        "desc": "internalTotal shows just 1 of 24 (rubal.adwani@netcorecloud.com), but at least 8 more askers are visibly Netcore/CE staff using @netcore.ai or @netcorecloud.ai addresses, which don't match the strict @netcorecloud.com/@netcoreunbxd.com internal rule. This is the 3rd consecutive run flagging this (see 08-18 and 08-19 prior run notes) -- worth deciding whether to broaden the internal-domain rule so the split reflects reality."
+        "title": "Internal/external split corrected retroactively (fixed 2026-08-21)",
+        "desc": "internalTotal originally showed just 1 of 24 (rubal.adwani@netcorecloud.com); at least 8 more askers were visibly Netcore/CE staff using @netcore.ai or @netcorecloud.ai addresses that the strict domain rule didn't recognize. The internal-domain allowlist was expanded to include both, and this day's data was reclassified accordingly. Corrected split: 9 internal : 15 customer."
       }
     ],
     "mostInteresting": {
@@ -19300,23 +19303,23 @@ const FULL_ARCHIVE = {
     "themesBySource": [
       {
         "theme": "How do I do X",
-        "internal": 0,
-        "external": 2
+        "internal": 1,
+        "external": 1
       },
       {
         "theme": "Where's the doc/API for X",
-        "internal": 0,
-        "external": 5
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 0,
+        "internal": 3,
         "external": 2
       },
       {
-        "theme": "What does X mean/how it works",
+        "theme": "Where do I set up/find X",
         "internal": 1,
-        "external": 3
+        "external": 1
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 4,
+        "external": 0
       },
       {
         "theme": "Is X possible/supported",
@@ -19350,15 +19353,9 @@ const FULL_ARCHIVE = {
     "areas": [
       {
         "area": "API/Integration",
-        "internal": 0,
-        "external": 7,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "arjun@truva.in",
-            "q": "Is there a character limit on parameters for netcore events?",
-            "panel": "NA"
-          },
+        "internal": 4,
+        "external": 3,
+        "internalQ": [
           {
             "email": "siddhant.bendkar@netcore.ai",
             "q": "What's the upper limit on creating attirbutes?",
@@ -19370,16 +19367,6 @@ const FULL_ARCHIVE = {
             "panel": "smartechai"
           },
           {
-            "email": "adeolap@cornerstone.ac.za",
-            "q": "what is or where do i find Netcore Account ID, Netcore Passcode (API passcode, not your login password), Confirm your Netcore domain -- is it pr1r.netcoresmartech.com?",
-            "panel": "cornerstone_ce"
-          },
-          {
-            "email": "tinh.nguyen@droppi.com",
-            "q": "How is optPushNotification handled across different apps/environments sharing the same userId -- is opt-in/opt-out scoped per app or does the latest value override across apps?",
-            "panel": "sndt_droppiicee"
-          },
-          {
             "email": "gargi.sethia@netcore.ai",
             "q": "maven SDK",
             "panel": "NA"
@@ -19389,13 +19376,36 @@ const FULL_ARCHIVE = {
             "q": "maven sdk",
             "panel": "NA"
           }
+        ],
+        "externalQ": [
+          {
+            "email": "arjun@truva.in",
+            "q": "Is there a character limit on parameters for netcore events?",
+            "panel": "NA"
+          },
+          {
+            "email": "adeolap@cornerstone.ac.za",
+            "q": "what is or where do i find Netcore Account ID, Netcore Passcode (API passcode, not your login password), Confirm your Netcore domain -- is it pr1r.netcoresmartech.com?",
+            "panel": "cornerstone_ce"
+          },
+          {
+            "email": "tinh.nguyen@droppi.com",
+            "q": "How is optPushNotification handled across different apps/environments sharing the same userId -- is opt-in/opt-out scoped per app or does the latest value override across apps?",
+            "panel": "sndt_droppiicee"
+          }
         ]
       },
       {
         "area": "Email",
-        "internal": 0,
-        "external": 3,
-        "internalQ": [],
+        "internal": 1,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "khushi.chitkara@netcore.ai",
+            "q": "where we can see brand kit in templates",
+            "panel": "NA"
+          }
+        ],
         "externalQ": [
           {
             "email": "julie@wealthmintr.com",
@@ -19406,26 +19416,21 @@ const FULL_ARCHIVE = {
             "email": "devashen@hirschs.co.za",
             "q": "how do i include gamification in a mailer",
             "panel": "hirschs_ce"
-          },
-          {
-            "email": "khushi.chitkara@netcore.ai",
-            "q": "where we can see brand kit in templates",
-            "panel": "NA"
           }
         ]
       },
       {
         "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 0,
-        "external": 1,
-        "internalQ": [],
-        "externalQ": [
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
           {
             "email": "ishika.a@netcore.ai",
             "q": "hey need the rcs specific url document",
             "panel": "NA"
           }
-        ]
+        ],
+        "externalQ": []
       },
       {
         "area": "Broadcast/Webhooks",
@@ -19436,16 +19441,14 @@ const FULL_ARCHIVE = {
       },
       {
         "area": "Journey Builder",
-        "internal": 1,
-        "external": 2,
+        "internal": 3,
+        "external": 0,
         "internalQ": [
           {
             "email": "rubal.adwani@netcorecloud.com",
             "q": "what is revenue parameter in set conversion goal for campaign",
             "panel": "NA"
-          }
-        ],
-        "externalQ": [
+          },
           {
             "email": "harshit.puranik@netcorecloud.ai",
             "q": "revenue parameter for conversion goals",
@@ -19456,7 +19459,8 @@ const FULL_ARCHIVE = {
             "q": "What is the revenue parameter in conversion goal ?",
             "panel": "NA"
           }
-        ]
+        ],
+        "externalQ": []
       },
       {
         "area": "Infra/Data residency",
@@ -19530,8 +19534,8 @@ const FULL_ARCHIVE = {
     "date": "2026-08-20",
     "totalConversations": 13,
     "resolutionRate": 100,
-    "internalTotal": 0,
-    "externalTotal": 13,
+    "internalTotal": 5,
+    "externalTotal": 8,
     "docsTotal": 4,
     "panelTotal": 9,
     "queryType": {
@@ -19557,12 +19561,12 @@ const FULL_ARCHIVE = {
       ],
       "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as directional, doubly so with the +2-day window barely open. Checked all 12 unique requester emails individually via Tier 1 global search -- zero ticket matches for any. Tier 2 keyword sweeps covered all 6 substantive areas: 'INVALID_DATATYPE' (1 hit, closed 5 days ago, different failure type -- primary key vs email validation), 'liquid tags' (44 hits, all 'enable liquid tags' feature-activation requests -- different theme than the conceptual 'where are liquid tags applicable' question), 'Limechat' (58 hits, closest 3 days old, outside window), 'custom activity' (8 hits, all weeks-to-years old), 'app push' (249 hits, several in-window but all delivery/reach performance issues, not the copy-generation/campaign-setup asks from today), 'WhatsApp AI Agent' (0 hits). No genuine in-window pattern match found for any area."
     },
-    "headline": "13 conversations on Aug 20, 100% bot self-reported resolved and 100% Freshdesk-deflected across all 12 unique askers -- but the internal/external split is almost certainly skewed: at least 5 of the 13 conversations came from Netcore staff on @netcore.ai addresses (Saloni Shinde, Ninad Karangutkar x2, Akash Sharma, Rajeev Pillai), which the classification rule reads as 100% external -- 3rd day running this domain-shift issue has appeared.",
+    "headline": "13 conversations on Aug 20, 100% bot self-reported resolved and 100% Freshdesk-deflected across all 12 unique askers -- corrected split (fixed 2026-08-21) is 5 internal : 8 customer, now that @netcore.ai is recognized as an internal Netcore domain (Saloni Shinde, Ninad Karangutkar x2, Akash Sharma, Rajeev Pillai were previously miscounted as customers).",
     "actionableInsights": [
       {
         "owner": "calibration",
-        "title": "@netcore.ai staff are being counted as external customers -- 3rd consecutive day",
-        "desc": "5 of 13 conversations today (Saloni Shinde, Ninad Karangutkar x2, Akash Sharma, Rajeev Pillai) came from @netcore.ai addresses -- clearly Netcore staff by name and by docs-portal/panel usage pattern, but the classification rule only treats @netcorecloud.com/@netcoreunbxd.com as internal. Today's reported 0% internal / 100% external is materially wrong (real split is closer to 8 external / 5 internal). This was also flagged on 2026-08-18 and 2026-08-19 -- worth adding @netcore.ai to the internal-domain allowlist so the split stops silently degrading."
+        "title": "Domain-skew issue fixed retroactively across the archive (2026-08-21)",
+        "desc": "After 3 consecutive flagged runs (Aug 17-20), the user confirmed @netcore.ai and @netcorecloud.ai are legitimate internal Netcore domains following a recent migration off @netcorecloud.com. The internal-domain allowlist was expanded and every affected historical day (Aug 10, 14, 17, 18, 19, 20 -- 37 conversations total) was reclassified with aggregates recomputed. New runs going forward should use the corrected 4-domain allowlist (@netcorecloud.com, @netcoreunbxd.com, @netcore.ai, @netcorecloud.ai)."
       },
       {
         "owner": "product",
@@ -19590,12 +19594,12 @@ const FULL_ARCHIVE = {
       {
         "theme": "How do I do X",
         "internal": 0,
-        "external": 3
+        "external": 2
       },
       {
         "theme": "Where's the doc/API for X",
-        "internal": 0,
-        "external": 2
+        "internal": 1,
+        "external": 1
       },
       {
         "theme": "Where do I set up/find X",
@@ -19604,13 +19608,13 @@ const FULL_ARCHIVE = {
       },
       {
         "theme": "What does X mean/how it works",
-        "internal": 0,
-        "external": 3
+        "internal": 2,
+        "external": 1
       },
       {
         "theme": "Is X possible/supported",
-        "internal": 0,
-        "external": 3
+        "internal": 2,
+        "external": 2
       },
       {
         "theme": "Bare greeting, no context yet",
@@ -19639,15 +19643,16 @@ const FULL_ARCHIVE = {
     "areas": [
       {
         "area": "API/Integration",
-        "internal": 0,
-        "external": 3,
-        "internalQ": [],
-        "externalQ": [
+        "internal": 1,
+        "external": 2,
+        "internalQ": [
           {
             "email": "rajeev.pillai@netcore.ai",
             "q": "My client wants to start sending personalized emails to customers when specific new products arrive, filtered on existing product-API data -- is there an API on the platform we can use for this?",
             "panel": "NA"
-          },
+          }
+        ],
+        "externalQ": [
           {
             "email": "ishim878@gmail.com",
             "q": "Hey if a brand wants to start merch triggers and they want to implement the product catalogue and product feed, so they are asking what all information comes in that, can you pls help",
@@ -19662,28 +19667,29 @@ const FULL_ARCHIVE = {
       },
       {
         "area": "Email",
-        "internal": 0,
-        "external": 1,
-        "internalQ": [],
-        "externalQ": [
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
           {
             "email": "akash.sharma@netcore.ai",
             "q": "Liquid tags are applicable on",
             "panel": "NA"
           }
-        ]
+        ],
+        "externalQ": []
       },
       {
         "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 0,
-        "external": 2,
-        "internalQ": [],
-        "externalQ": [
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
           {
             "email": "saloni.shinde@netcore.ai",
             "q": "can you share the link for Limechat documentation",
             "panel": "NA"
-          },
+          }
+        ],
+        "externalQ": [
           {
             "email": "nivieza.iqriyyana@oona-insurance.co.id",
             "q": "Does Netcore have a Conversational AI solution or an AI Agent partner that can be integrated with our WhatsApp channel? If yes, could you also share how the architecture works and how it integrates with Netcore and WhatsApp?",
@@ -19711,10 +19717,9 @@ const FULL_ARCHIVE = {
       },
       {
         "area": "Journey Builder",
-        "internal": 0,
-        "external": 2,
-        "internalQ": [],
-        "externalQ": [
+        "internal": 2,
+        "external": 0,
+        "internalQ": [
           {
             "email": "ninad.karangutkar@netcore.ai",
             "q": "What is the difference between events and activity",
@@ -19725,7 +19730,8 @@ const FULL_ARCHIVE = {
             "q": "can we create custom activity ?",
             "panel": "smartechai"
           }
-        ]
+        ],
+        "externalQ": []
       },
       {
         "area": "Infra/Data residency",
