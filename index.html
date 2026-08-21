@@ -2,7 +2,7 @@
 {
   "name": "Ce Docbot Summary 2026 06 17",
   "schemaVersion": 1,
-  "description": "CE Docbot 14-day rolling summary (Jul 7 – Jul 20, 2026) — latest day 2026-07-20"
+  "description": "CE Docbot 14-day rolling summary (Aug 7 – Aug 20, 2026) — latest day 2026-08-20"
 }
 </script>
 <html lang="en">
@@ -524,619 +524,6 @@ html[data-theme="dark"] .intro-banner .ib-lede{color:#c7cad1;}
 </div>
 <script>
 const ARCHIVE = {
-  "2026-08-05": {
-    "date": "2026-08-05",
-    "totalConversations": 26,
-    "resolutionRate": 77,
-    "internalTotal": 16,
-    "externalTotal": 10,
-    "docsTotal": 11,
-    "panelTotal": 15,
-    "queryType": {
-      "technical": 13,
-      "generic": 13
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days (2026-08-05 00:00 IST to 2026-08-07 23:59 IST); window only partially elapsed as of this run (2026-08-06, D+1)",
-      "totalConversations": 26,
-      "sameUserEscalations": [],
-      "deflectedCount": 26,
-      "deflectionRate": 100,
-      "patternRisk": [
-        {
-          "area": "CPaaS (WhatsApp/RCS/SMS)",
-          "docbotCount": 1,
-          "ticketCount": 2,
-          "exampleTicketSubjects": [
-            "Request to provide Waba ID, Phon number ID and BISUAT token"
-          ],
-          "note": "Tejas Charaniya (kevit) filed two near-duplicate Freshdesk tickets the same day (5 Aug, 1:05 PM IST) asking Netcore to provide a WABA ID, phone number ID and BISUAT token -- same underlying need (locating/obtaining a WABA ID) as Alistair's docbot question 'what is my WABA ID', different account."
-        }
-      ],
-      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. Tier 1: checked all 10 unique external requester emails via global search, zero ticket matches for any (sumit.kakade@iresearchservices.com has one closed ticket #5214235 from ~3 weeks ago, well outside the matching window, so not counted). Tier 2: keyword searches across areas (WABA, liquid tags, Primary Inboxing, delete template, control group, test identifier, reachability, Appsflyer, Zapier, GDPR, PII tokenization, portal/panel not opening, edit contact email) found one genuine in-window cross-account match (WABA ID request, CPaaS). Window only partially elapsed (D+2 = Aug 7 hasn't happened yet), so today's 100% deflection figure is a floor, not a confirmed final result."
-    },
-    "headline": "26 conversations on Aug 5, the busiest day in two weeks, 77% bot self-reported resolved and 100% Freshdesk-deflected so far -- Rimjhim Tiwari flagged a real reachability-vs-delivery gap (8k reachable but only 5.6k emails sent off List ID 94), Julie Bolger hit a genuine UI bug unable to edit a contact's email address, and a different account (kevit) filed a same-day ticket for the exact WABA-ID lookup Alistair asked the bot about.",
-    "actionableInsights": [
-      {
-        "owner": "product",
-        "title": "Reachability-vs-actual-send discrepancy is a real data question, not a how-to",
-        "desc": "rimjhim.tiwari@netcorecloud.com (tablespace_ce) reported List ID 94 showing ~8k email-reachable users but only 5.6k actually received the journey send, and asked what happened to the rest. The bot can't reconcile per-account send logs, so this needs an actual pipeline/suppression-list check -- worth routing to the data/delivery team rather than leaving as a closed bot conversation."
-      },
-      {
-        "owner": "design",
-        "title": "Contact email address field appears un-editable via the Edit button",
-        "desc": "julie@wealthmintr.com (wealthmintrce) tried to update a customer's email address on an existing contact record and found the Edit flow doesn't allow changing the email field. This reads like a genuine UX gap (or a deliberate restriction that isn't explained anywhere) -- worth a quick check on whether email should be editable and, if not, why the UI doesn't say so."
-      },
-      {
-        "owner": "content",
-        "title": "Same-day WABA-ID ticket at a different account mirrors today's docbot question",
-        "desc": "alistairc@hdfcfund.com (hdfcfundsmartech) asked the bot 'what is my WABA ID'; the same day, Tejas Charaniya at kevit filed two Freshdesk tickets (#5226471, #5226470) asking Netcore to provide their WABA ID, phone number ID and BISUAT token. Different accounts, same root friction -- finding your own WABA ID isn't self-serve. A clear 'where to find your WABA ID' doc/panel callout would likely cut both the bot traffic and the ticket volume."
-      },
-      {
-        "owner": "calibration",
-        "title": "26 conversations is the highest volume in the current 14-day window -- read the 77% resolution rate with that in mind",
-        "desc": "This is roughly double a typical recent day (most of the last two weeks ran 5-14 conversations). 6 of 26 conversations were handed off to a human (mostly early-morning queries: control group, test-identifier error, file formats, WABA ID, GDPR API), all before 07:00 IST -- worth checking if there's a coverage or confidence gap on the bot during that early window specifically."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Rimjhim Tiwari (Netcore)",
-      "email": "rimjhim.tiwari@netcorecloud.com",
-      "query": "List ID 94 shows an email reachability count of around 8k, but the same list used in a journey only sent to 5.6k users -- asked what happened to the remaining users.",
-      "why": "A precise, quantified diagnostic question (specific list ID, exact counts, reachability vs. actual send) rather than a navigation or definition ask -- shows real engagement with delivery mechanics and campaign math."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 1,
-        "external": 5
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 0,
-        "external": 2
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 8,
-        "external": 1
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 6,
-        "external": 0
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 1,
-        "external": 2
-      }
-    ],
-    "topAskers": [
-      {
-        "email": "vani.ganasutrisna@netcorecloud.com",
-        "count": 3,
-        "panel": "smartechai",
-        "queries": [
-          {
-            "theme": "What does X mean/how it works",
-            "text": "apa gunanya control group? (what's the use of control group?)"
-          },
-          {
-            "theme": "What does X mean/how it works",
-            "text": "what is the difference between segment and list?"
-          },
-          {
-            "theme": "What does X mean/how it works",
-            "text": "what is the spec for Netcore Primary Inboxing, for pricing proposal?"
-          }
-        ],
-        "friction": false
-      },
-      {
-        "email": "rubal.adwani@netcorecloud.com",
-        "count": 3,
-        "panel": "smartechai",
-        "queries": [
-          {
-            "theme": "Is X possible/supported",
-            "text": "can the app speed slow down because of JS integration"
-          },
-          {
-            "theme": "What does X mean/how it works",
-            "text": "what all sources can give us behavioural events"
-          },
-          {
-            "theme": "Is X possible/supported",
-            "text": "what kind of categories of data export supported by our platform"
-          }
-        ],
-        "friction": false
-      }
-    ],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 5,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "akhil.narayanan@netcorecloud.com",
-            "q": "is there an api for gdpr?",
-            "panel": "NA"
-          },
-          {
-            "email": "rubal.adwani@netcorecloud.com",
-            "q": "can the app speed slow down because of JS integration",
-            "panel": "smartechai"
-          },
-          {
-            "email": "avadhoot.revankar@netcorecloud.com",
-            "q": "Appsflyer how do u integrate?",
-            "panel": "NA"
-          },
-          {
-            "email": "rubal.adwani@netcorecloud.com",
-            "q": "what all sources can give us behavioural events",
-            "panel": "smartechai"
-          },
-          {
-            "email": "gargi.mukherjee@netcorecloud.com",
-            "q": "Do we have zapier in Inapp",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Email",
-        "internal": 2,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "vani.ganasutrisna@netcorecloud.com",
-            "q": "what is the spec for Netcore Primary Inboxing, for pricing proposal?",
-            "panel": "smartechai"
-          },
-          {
-            "email": "soumya.chaudhary@netcorecloud.com",
-            "q": "what is the use of media url in liquid tags",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "deva.ahaguru@gmail.com",
-            "q": "how to delete mail template",
-            "panel": "ahaguru_ce"
-          }
-        ]
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 0,
-        "external": 1,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "alistairc@hdfcfund.com",
-            "q": "what is my WABA ID",
-            "panel": "hdfcfundsmartech"
-          }
-        ]
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 1,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "neeraj.pallathu@netcorecloud.com",
-            "q": "is there any size limit of image in web message",
-            "panel": "worldofoud_ce"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 3,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "vani.ganasutrisna@netcorecloud.com",
-            "q": "apa gunanya control group? (what's the use of control group?)",
-            "panel": "smartechai"
-          },
-          {
-            "email": "meenakshi.kaul@netcorecloud.com",
-            "q": "Test identifier could not be found in the contacts list. - what does this error mean when we test from journey",
-            "panel": "NA"
-          },
-          {
-            "email": "rimjhim.tiwari@netcorecloud.com",
-            "q": "list ID 94, i see email reachability count aroun 8k, but when i use the same list in journey i see email sent only to 5.6k users. what happened to the rest of the users?",
-            "panel": "tablespace_ce"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 4,
-        "external": 5,
-        "internalQ": [
-          {
-            "email": "tony.josee@netcorecloud.com",
-            "q": "What are the accepted file formats for image uploads as assets for my campaigns",
-            "panel": "NA"
-          },
-          {
-            "email": "vani.ganasutrisna@netcorecloud.com",
-            "q": "what is the difference between segment and list?",
-            "panel": "smartechai"
-          },
-          {
-            "email": "rubal.adwani@netcorecloud.com",
-            "q": "what kind of categories of data export supported by our platform",
-            "panel": "smartechai"
-          },
-          {
-            "email": "siddhant.bendkar@netcorecloud.com",
-            "q": "what is PII tokenization",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "hrithik.gupta@emeritus.org",
-            "q": "Hi, how to add more attributes in profile section",
-            "panel": "bennettonline_cee"
-          },
-          {
-            "email": "sandipsharma@anveshan.farm",
-            "q": "What is the PII Hashing",
-            "panel": "NA"
-          },
-          {
-            "email": "rahul18@pnbhousing.com",
-            "q": "Where to find subdomain",
-            "panel": "pnbhfl_cee"
-          },
-          {
-            "email": "julie@wealthmintr.com",
-            "q": "Hello - I'd like to edit a contact record in Netcore... how can I change his email to the address he wants us to use?",
-            "panel": "wealthmintrce"
-          },
-          {
-            "email": "pakhale.sumedh2018@gmail.com",
-            "q": "The webpage not open",
-            "panel": "NA"
-          }
-        ]
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 1,
-        "external": 3,
-        "internalQ": [
-          {
-            "email": "akash.gupta@netcorecloud.com",
-            "q": "Email",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "mdevi70690@gmail.com",
-            "q": "[Image attached, no text question]",
-            "panel": "NA"
-          },
-          {
-            "email": "sudhanshu.vyas@freightsystems.com",
-            "q": "hello",
-            "panel": "freightsystemscee"
-          },
-          {
-            "email": "sumit.kakade@iresearchservices.com",
-            "q": "Need urgent support on one support ticket we raised",
-            "panel": "iresearchservices"
-          }
-        ]
-      }
-    ]
-  },
-  "2026-08-06": {
-    "date": "2026-08-06",
-    "totalConversations": 15,
-    "resolutionRate": 0,
-    "internalTotal": 6,
-    "externalTotal": 9,
-    "docsTotal": 7,
-    "panelTotal": 8,
-    "queryType": {
-      "technical": 5,
-      "generic": 10
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days (2026-08-06 00:00 IST to 2026-08-08 23:59 IST); window only partially elapsed as of this run (D+2 = Aug 8 hasn't happened yet)",
-      "totalConversations": 15,
-      "sameUserEscalations": [
-        {
-          "email": "spgupta@beetalfinancial.com",
-          "docbotQuery": "I hava a harvest error",
-          "area": "Journey Builder",
-          "theme": "How do I do X",
-          "ticketId": "5227623",
-          "ticketSubject": "Harvest error not resolved request id - 6708265",
-          "ticketCreatedAt": "2026-08-06T17:18:00+05:30"
-        }
-      ],
-      "deflectedCount": 14,
-      "deflectionRate": 93,
-      "patternRisk": [
-        {
-          "area": "Infra/Data residency",
-          "docbotCount": 6,
-          "ticketCount": 2,
-          "exampleTicketSubjects": [
-            "UI Bug: Operator Dropdown Not Available for Primary Key Search - payupayments_cee",
-            "UI Bug: Whitelisted Users Continue to Appear in Blocklist - maxlifesmtech"
-          ],
-          "note": "Umar Ahmed (Netcore) filed two same-day bug reports touching this area's exact topics: a Primary Key search UI bug (6 Aug, 2:10 PM IST) mirroring meenakshi.kaul's question about filtering by primary keys beyond email/mobile, and a blocklist UI bug (filed the same window) mirroring amey.vaidya's auto-blocklist question -- different person, same underlying feature friction points, not counted as Tier 1."
-        }
-      ],
-      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. Checked all 12 unique requester emails via Tier 1 direct email search -- all 12 returned zero tickets. However, a 'harvest' keyword search surfaced ticket #5227623 filed by 'S P GUPTA' from a personal Gmail address (spgupta123@gmail.com) rather than the docbot contact email (spgupta@beetalfinancial.com) -- matched via name and Panel Name (beetal_financialcee) shown in the ticket body, confirming the same real person used a different email for the support ticket than for the docbot chat. This is a variant of the known same-day indexing/matching lag: an exact-email Tier 1 search alone would have missed this entirely. Treat the other 11 zero-match Tier 1 results as unconfirmed, not proven absence, especially since D+2 (Aug 8) hasn't happened yet. Supplementary keyword searches (WhatsApp approval, Feed ID, primary key, blocklist, test email journey, brand kit, push notification restriction, duo security) found two additional area-level pattern matches (see patternRisk) and ruled out several false positives (WhatsApp approval and Feed ID tickets were for unrelated companies; the 'test email journey' thread was a different symptom -- broken links, not a send failure)."
-    },
-    "headline": "15 conversations on Aug 6, 0% bot self-reported resolved (all handed off -- the known CSAT-workflow artifact) but 93% Freshdesk-deflected -- S P Gupta at Beetal Financial hit a harvest error with the docbot, then filed a Freshdesk ticket for the identical unresolved error 21 minutes later under a different email, while Jake Ragustin at 7-Eleven Philippines ran two back-to-back 2FA setup questions (Duo Security, then Google Authenticator) just 6 minutes apart.",
-    "actionableInsights": [
-      {
-        "owner": "product",
-        "title": "Harvest error escalated to a ticket 21 minutes after the bot, filed under a different email",
-        "desc": "spgupta@beetalfinancial.com asked the docbot 'I hava a harvest error' at 4:56 PM IST; by 5:18 PM he'd filed Freshdesk ticket #5227623 ('Harvest error not resolved request id - 6708265') -- but under his personal Gmail (spgupta123@gmail.com), not the work email the docbot saw him from. Confirmed same person via matching Panel Name (beetal_financialcee) in the ticket body. The bot clearly couldn't diagnose a bare 'harvest error' report with no detail -- worth prompting for the request ID or a screenshot before handing off, since he already had a request ID (6708265) available."
-      },
-      {
-        "owner": "content",
-        "title": "Jake Ragustin re-asked the same 2FA setup question twice in 6 minutes",
-        "desc": "jragustin@7-eleven.com.ph first asked how to set up Duo Security for platform login, then 6 minutes later asked where to generate a QR code for Google Authenticator instead -- suggests the first answer didn't map to what he was actually trying to configure, or he's unsure which 2FA method Netcore supports. A single doc covering both supported 2FA paths (Duo vs Google Authenticator) would likely resolve this in one pass."
-      },
-      {
-        "owner": "product",
-        "title": "Primary-key and blocklist friction surfaced twice today -- once via the bot, once as a real bug",
-        "desc": "Umar Ahmed (Netcore) filed two same-day Freshdesk bugs touching areas docbot users asked about: a Primary Key search UI bug (Operator dropdown missing) that echoes meenakshi.kaul's question about filtering by primary keys beyond email/mobile, and a Blocklist UI bug (whitelisted users still showing as blocklisted) that echoes amey.vaidya's 'when is a customer auto-blocklisted' question. Different people, same feature areas showing real friction the same day -- worth a quick eng sync on both dropdowns."
-      },
-      {
-        "owner": "calibration",
-        "title": "0% self-reported resolution -- known CSAT-workflow artifact, not a real quality drop",
-        "desc": "All 15 conversations show 'handed_off_to_human', consistent with the pattern documented across prior runs (July 14, 16, 24). The Freshdesk-checked 93% deflection rate is the more reliable signal for the day -- only 1 of 15 conversations led to a same-user ticket."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Meenakshi Kaul (Netcore)",
-      "email": "meenakshi.kaul@netcorecloud.com",
-      "query": "Apart from email and mobile primary key; can we filter for other primary key in listing page",
-      "why": "A precise data-model question about multi-primary-key filtering in the contact listing page -- and notably, a different Netcore staffer (Umar Ahmed) filed a real Freshdesk bug the same day about the Primary Key search UI's Operator dropdown going missing, suggesting this isn't idle curiosity but a live friction point in the same feature."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 0,
-        "external": 4
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 1,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 0,
-        "external": 3
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 1,
-        "external": 2
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 4,
-        "external": 0
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 0
-      }
-    ],
-    "topAskers": [
-      {
-        "email": "kyc@abhyudayabank.net",
-        "count": 2,
-        "friction": false,
-        "panel": "abhyudayabankcee",
-        "queries": [
-          {
-            "theme": "Where do I set up/find X",
-            "text": "Where can i find my SMS Channel name or Feed ID"
-          },
-          {
-            "theme": "Where do I set up/find X",
-            "text": "I had broadcasted email on 31/07/2026. Where can I find the logs? Some mails have not been delivered."
-          }
-        ]
-      },
-      {
-        "email": "lokesh.sharma@netcorecloud.com",
-        "count": 2,
-        "friction": false,
-        "panel": "NA",
-        "queries": [
-          {
-            "theme": "Is X possible/supported",
-            "text": "can brand kit be use in email templated"
-          },
-          {
-            "theme": "Where's the doc/API for X",
-            "text": "sftp document for the data sent to netcore panel"
-          }
-        ]
-      },
-      {
-        "email": "jragustin@7-eleven.com.ph",
-        "count": 2,
-        "friction": true,
-        "panel": "pscloyaltyapp_cee",
-        "queries": [
-          {
-            "theme": "How do I do X",
-            "text": "how to use duo security in Netcore? where should I see how to set up the duo security app in Netcore platform login"
-          },
-          {
-            "theme": "Where do I set up/find X",
-            "text": "where can I generate qr or code to be encoded in google authenticator for 2FA"
-          }
-        ]
-      }
-    ],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Email",
-        "internal": 2,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "lokesh.sharma@netcorecloud.com",
-            "q": "can brand kit be use in email templated",
-            "panel": "NA"
-          },
-          {
-            "email": "darpan.amle@netcorecloud.com",
-            "q": "can i use html in the uce amp email?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "kyc@abhyudayabank.net",
-            "q": "I had broadcasted email on 31/07/2026. Where can I find the logs? Some mails have not been delivered.",
-            "panel": "abhyudayabankcee"
-          }
-        ]
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 0,
-        "external": 2,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "raaghav@truva.in",
-            "q": "Timeline in which Whatsapp message for Campaign gets approved",
-            "panel": "truva_one_ce"
-          },
-          {
-            "email": "kyc@abhyudayabank.net",
-            "q": "Where can i find my SMS Channel name or Feed ID",
-            "panel": "abhyudayabankcee"
-          }
-        ]
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 1,
-        "external": 3,
-        "internalQ": [
-          {
-            "email": "gargi.mukherjee@netcorecloud.com",
-            "q": "can we personalize in PX campaigns?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "spgupta@beetalfinancial.com",
-            "q": "I hava a harvest error",
-            "panel": "beetal_financialcee"
-          },
-          {
-            "email": "malvina.bhatt@allcargo.global",
-            "q": "I am trying to send test mail through journey it says \"we cannot send test email\"",
-            "panel": "NA"
-          },
-          {
-            "email": "akanksha.juyal@spicemoney.com",
-            "q": "Hi. I want to ser user level restriction for Push notification",
-            "panel": "spicemoneysmart"
-          }
-        ]
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 3,
-        "external": 3,
-        "internalQ": [
-          {
-            "email": "meenakshi.kaul@netcorecloud.com",
-            "q": "Apart from email and mobile primary key; can we filter for other primary key in listing page",
-            "panel": "NA"
-          },
-          {
-            "email": "amey.vaidya@netcorecloud.com",
-            "q": "when is the customer auto blocklisted?",
-            "panel": "NA"
-          },
-          {
-            "email": "lokesh.sharma@netcorecloud.com",
-            "q": "sftp document for the data sent to netcore panel",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "harshal.mahajan@bfdlbizsupport.in",
-            "q": "what is segment",
-            "panel": "bajajfinservmarket"
-          },
-          {
-            "email": "jragustin@7-eleven.com.ph",
-            "q": "where can I generate qr or code to be encoded in google authenticator for 2FA",
-            "panel": "pscloyaltyapp_cee"
-          },
-          {
-            "email": "jragustin@7-eleven.com.ph",
-            "q": "how to use duo security in Netcore? where should I see how to set up the duo security app in Netcore platform login",
-            "panel": "pscloyaltyapp_cee"
-          }
-        ]
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      }
-    ]
-  },
   "2026-08-07": {
     "date": "2026-08-07",
     "totalConversations": 19,
@@ -3851,6 +3238,519 @@ const ARCHIVE = {
             "email": "srinath.r@ifheindia.org",
             "q": "Hi",
             "panel": "ifheindiacee"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-08-19": {
+    "date": "2026-08-19",
+    "totalConversations": 24,
+    "resolutionRate": 100,
+    "internalTotal": 1,
+    "externalTotal": 23,
+    "docsTotal": 15,
+    "panelTotal": 9,
+    "queryType": {
+      "technical": 9,
+      "generic": 15
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-08-19 00:00 IST to 2026-08-21 23:59 IST); window not yet elapsed as of this run (2026-08-20, D+1 in progress)",
+      "totalConversations": 24,
+      "sameUserEscalations": [],
+      "deflectedCount": 24,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. Checked all 23 unique requester emails via Tier 1 global search -- zero ticket matches for any. Tier 2 keyword checks (maven sdk, conversion goal, RCS URL, brand kit, gamification, 404 page not found) found no genuine in-window matches -- the closest hit (an RCS callback-URL integration ticket from ~a day ago) was excluded as a different underlying need (vendor callback URL setup vs. today's docs-lookup question). Window has barely started (D+1 of D+2) -- treat 100% as a floor, not a confirmed final result."
+    },
+    "headline": "24 conversations on Aug 19, 100% bot self-reported resolved and (provisionally) 100% Freshdesk-deflected -- three separate Netcore staff independently asked near-identical 'what is the revenue parameter in conversion goal' within 2 minutes of each other, two more asked 'maven sdk' almost verbatim 4 minutes apart, and Julie Bolger (wealthmintr) reported a live incident: today's email campaign links all redirecting to 404s.",
+    "actionableInsights": [
+      {
+        "owner": "content",
+        "title": "Three staff asked the identical 'revenue parameter in conversion goal' question within 2 minutes",
+        "desc": "harshit.puranik@netcorecloud.ai (10:36 IST), drashtant.pambhar@netcore.ai (10:34:31 IST), and rubal.adwani@netcorecloud.com (10:34:13 IST) all asked what the revenue parameter means when setting a conversion goal, almost simultaneously -- looks like a live training/onboarding session hit the same undocumented term at once. A clear glossary entry or tooltip for 'revenue parameter' in conversion goal setup would resolve all three in one shot."
+      },
+      {
+        "owner": "content",
+        "title": "Two staff asked 'maven sdk' almost verbatim 4 minutes apart",
+        "desc": "gargi.sethia@netcore.ai (08:10 IST) and amey.vaidya@netcore.ai (08:06 IST) both typed just 'maven sdk' with no further context -- same pattern as the conversion-goal cluster, likely a shared session. A direct link to the Maven SDK integration doc as a suggested reply would save both a back-and-forth."
+      },
+      {
+        "owner": "product",
+        "title": "Julie Bolger flagged a live incident, not a docs question",
+        "desc": "julie@wealthmintr.com asked 'Is there an issue today in Netcore? All the emails we've sent out today that include links, the links all go to a 404 Page Not Found error' -- this reads as a real production issue (broken links in sent campaigns), not a how-to question. Worth a quick check with delivery/infra on whether this affected other accounts today, since Julie also raised a UI bug on 2026-08-05 (couldn't edit a contact's email) -- two real, distinct issues from the same account in two weeks."
+      },
+      {
+        "owner": "calibration",
+        "title": "Internal/external split still skewed by the @netcore.ai / @netcorecloud.ai domain shift",
+        "desc": "internalTotal shows just 1 of 24 (rubal.adwani@netcorecloud.com), but at least 8 more askers are visibly Netcore/CE staff using @netcore.ai or @netcorecloud.ai addresses, which don't match the strict @netcorecloud.com/@netcoreunbxd.com internal rule. This is the 3rd consecutive run flagging this (see 08-18 and 08-19 prior run notes) -- worth deciding whether to broaden the internal-domain rule so the split reflects reality."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Tinh Nguyen",
+      "email": "tinh.nguyen@droppi.com",
+      "query": "Asked how Netcore's optPushNotification consent is scoped when the same userId is shared across two different apps (Mall and Biz) -- specifically whether opt-in/opt-out is tracked per app/installation, or whether the latest value from one app overrides the other for the shared userId.",
+      "why": "A precise, structured question about consent-state scoping across multi-app installations sharing a userId -- real architectural depth about how the platform resolves conflicting opt-in signals, not a navigation or definition ask."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 5
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 1,
+        "external": 3
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 3
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 8
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "02sujata@gmail.com",
+        "count": 2,
+        "friction": true,
+        "panel": "NA",
+        "queries": [
+          {
+            "theme": "Where's the doc/API for X",
+            "text": "Page is doesn't exist"
+          },
+          {
+            "theme": "Where's the doc/API for X",
+            "text": "404 page doesn't exist"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 7,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "arjun@truva.in",
+            "q": "Is there a character limit on parameters for netcore events?",
+            "panel": "NA"
+          },
+          {
+            "email": "siddhant.bendkar@netcore.ai",
+            "q": "What's the upper limit on creating attirbutes?",
+            "panel": "NA"
+          },
+          {
+            "email": "ninad.karangutkar@netcore.ai",
+            "q": "how to create attributes",
+            "panel": "smartechai"
+          },
+          {
+            "email": "adeolap@cornerstone.ac.za",
+            "q": "what is or where do i find Netcore Account ID, Netcore Passcode (API passcode, not your login password), Confirm your Netcore domain -- is it pr1r.netcoresmartech.com?",
+            "panel": "cornerstone_ce"
+          },
+          {
+            "email": "tinh.nguyen@droppi.com",
+            "q": "How is optPushNotification handled across different apps/environments sharing the same userId -- is opt-in/opt-out scoped per app or does the latest value override across apps?",
+            "panel": "sndt_droppiicee"
+          },
+          {
+            "email": "gargi.sethia@netcore.ai",
+            "q": "maven SDK",
+            "panel": "NA"
+          },
+          {
+            "email": "amey.vaidya@netcore.ai",
+            "q": "maven sdk",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 3,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "julie@wealthmintr.com",
+            "q": "Is there an issue today in Netcore? All the emails we've sent out today that include links, the links all go to a 404 Page Not Found error.",
+            "panel": "wealthmintrce"
+          },
+          {
+            "email": "devashen@hirschs.co.za",
+            "q": "how do i include gamification in a mailer",
+            "panel": "hirschs_ce"
+          },
+          {
+            "email": "khushi.chitkara@netcore.ai",
+            "q": "where we can see brand kit in templates",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "ishika.a@netcore.ai",
+            "q": "hey need the rcs specific url document",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 1,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "rubal.adwani@netcorecloud.com",
+            "q": "what is revenue parameter in set conversion goal for campaign",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "harshit.puranik@netcorecloud.ai",
+            "q": "revenue parameter for conversion goals",
+            "panel": "smartechai"
+          },
+          {
+            "email": "drashtant.pambhar@netcore.ai",
+            "q": "What is the revenue parameter in conversion goal ?",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "02sujata@gmail.com",
+            "q": "404 page doesn't exist",
+            "panel": "NA"
+          },
+          {
+            "email": "02sujata@gmail.com",
+            "q": "Page is doesn't exist",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 8,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "akwueijeoma6@gmail.com",
+            "q": "Hi i am a customer of uba bank and I just got an email to update my account (off-topic, unrelated to Netcore product)",
+            "panel": "NA"
+          },
+          {
+            "email": "preetpalshishodia@gmail.com",
+            "q": "Can my loan is approved (off-topic, unrelated to Netcore product)",
+            "panel": "NA"
+          },
+          {
+            "email": "laurengermiquet@gmail.com",
+            "q": "I got a message saying my payment has not gone through but it has come off my account (off-topic, unrelated to Netcore product)",
+            "panel": "NA"
+          },
+          {
+            "email": "sandeep@saranyu.in",
+            "q": "hi",
+            "panel": "sanskritilive_ce"
+          },
+          {
+            "email": "abhishekyadav02298@gmail.com",
+            "q": "Loan Application (off-topic, unrelated to Netcore product)",
+            "panel": "NA"
+          },
+          {
+            "email": "rmule@nal.co.in",
+            "q": "hello",
+            "panel": "nseacademyce"
+          },
+          {
+            "email": "jaraeamol@gmail.com",
+            "q": "Two wheeler interest rate (off-topic, unrelated to Netcore product)",
+            "panel": "NA"
+          },
+          {
+            "email": "chiewhsien.ong@nandos.com.my",
+            "q": "halo",
+            "panel": "nandoscee"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-08-20": {
+    "date": "2026-08-20",
+    "totalConversations": 13,
+    "resolutionRate": 100,
+    "internalTotal": 0,
+    "externalTotal": 13,
+    "docsTotal": 4,
+    "panelTotal": 9,
+    "queryType": {
+      "technical": 6,
+      "generic": 7
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-08-20 00:00 IST to 2026-08-22 23:59 IST); window still open as of this run (2026-08-21, today) -- D+2 = Aug 22 hasn't happened yet",
+      "totalConversations": 13,
+      "sameUserEscalations": [],
+      "deflectedCount": 13,
+      "deflectionRate": 100,
+      "patternRisk": [
+        {
+          "area": "API/Integration",
+          "docbotCount": 3,
+          "ticketCount": 1,
+          "exampleTicketSubjects": [
+            "Currency being fetched from product feed || 2XL"
+          ],
+          "note": "One in-window product-feed ticket surfaced (2XL account, currency-value bug, created ~12h before this run) but it's a data-accuracy bug, not the catalogue/feed-structure question ishim878@gmail.com asked the bot -- different symptom, same general feature area, not counted as Tier 1."
+        }
+      ],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as directional, doubly so with the +2-day window barely open. Checked all 12 unique requester emails individually via Tier 1 global search -- zero ticket matches for any. Tier 2 keyword sweeps covered all 6 substantive areas: 'INVALID_DATATYPE' (1 hit, closed 5 days ago, different failure type -- primary key vs email validation), 'liquid tags' (44 hits, all 'enable liquid tags' feature-activation requests -- different theme than the conceptual 'where are liquid tags applicable' question), 'Limechat' (58 hits, closest 3 days old, outside window), 'custom activity' (8 hits, all weeks-to-years old), 'app push' (249 hits, several in-window but all delivery/reach performance issues, not the copy-generation/campaign-setup asks from today), 'WhatsApp AI Agent' (0 hits). No genuine in-window pattern match found for any area."
+    },
+    "headline": "13 conversations on Aug 20, 100% bot self-reported resolved and 100% Freshdesk-deflected across all 12 unique askers -- but the internal/external split is almost certainly skewed: at least 5 of the 13 conversations came from Netcore staff on @netcore.ai addresses (Saloni Shinde, Ninad Karangutkar x2, Akash Sharma, Rajeev Pillai), which the classification rule reads as 100% external -- 3rd day running this domain-shift issue has appeared.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "@netcore.ai staff are being counted as external customers -- 3rd consecutive day",
+        "desc": "5 of 13 conversations today (Saloni Shinde, Ninad Karangutkar x2, Akash Sharma, Rajeev Pillai) came from @netcore.ai addresses -- clearly Netcore staff by name and by docs-portal/panel usage pattern, but the classification rule only treats @netcorecloud.com/@netcoreunbxd.com as internal. Today's reported 0% internal / 100% external is materially wrong (real split is closer to 8 external / 5 internal). This was also flagged on 2026-08-18 and 2026-08-19 -- worth adding @netcore.ai to the internal-domain allowlist so the split stops silently degrading."
+      },
+      {
+        "owner": "product",
+        "title": "Rajeev Pillai (@netcore.ai) asked whether product-arrival-triggered personalized emails are possible via API",
+        "desc": "Asked on a client's behalf whether Netcore has an API to trigger personalized emails when specific new products arrive, filterable off product data from an existing external API. A real product-arrival-trigger + personalization API question -- worth confirming the exact API/webhook path so this doesn't need a second escalation from the actual client later."
+      },
+      {
+        "owner": "content",
+        "title": "Saloni Shinde asked the bot for a Limechat documentation link instead of finding it herself",
+        "desc": "'can you share the link for Limechat documentation' -- Limechat is a very active integration topic (58 Freshdesk tickets on file, several in-window), so a discoverable doc link in the partner-integrations index would likely resolve this class of ask without a bot round-trip."
+      },
+      {
+        "owner": "content",
+        "title": "Ninad Karangutkar needed two follow-on questions to get from 'what's an activity' to 'can I create one'",
+        "desc": "Asked 'what is the difference between events and activity' then, 2 minutes later, 'can we create custom activity?' while sitting in Journey Builder's create-journey screen -- a natural progression, not re-asking, but suggests the events-vs-activity distinction isn't obvious enough from the create-journey screen alone. A contextual tooltip or inline doc link there could shortcut both questions."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Niviez Iqriyyana (Oona Insurance)",
+      "email": "nivieza.iqriyyana@oona-insurance.co.id",
+      "query": "Does Netcore have a Conversational AI solution or an AI Agent partner that can be integrated with our WhatsApp channel? If yes, could you also share how the architecture works and how it integrates with Netcore and WhatsApp?",
+      "why": "A forward-looking, architecture-level question about AI-agent/WhatsApp integration rather than basic navigation help -- shows real evaluation-stage product interest, not just troubleshooting."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 3
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 0,
+        "external": 3
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 3
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 2
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "ninad.karangutkar@netcore.ai",
+        "count": 2,
+        "friction": false,
+        "panel": "smartechai",
+        "queries": [
+          {
+            "theme": "What does X mean/how it works",
+            "text": "What is the difference between events and activity"
+          },
+          {
+            "theme": "Is X possible/supported",
+            "text": "can we create custom activity ?"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 3,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "rajeev.pillai@netcore.ai",
+            "q": "My client wants to start sending personalized emails to customers when specific new products arrive, filtered on existing product-API data -- is there an API on the platform we can use for this?",
+            "panel": "NA"
+          },
+          {
+            "email": "ishim878@gmail.com",
+            "q": "Hey if a brand wants to start merch triggers and they want to implement the product catalogue and product feed, so they are asking what all information comes in that, can you pls help",
+            "panel": "NA"
+          },
+          {
+            "email": "tarun@truva.in",
+            "q": "Give me. the documentation of netcore events",
+            "panel": "truva_three_ce"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "akash.sharma@netcore.ai",
+            "q": "Liquid tags are applicable on",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "saloni.shinde@netcore.ai",
+            "q": "can you share the link for Limechat documentation",
+            "panel": "NA"
+          },
+          {
+            "email": "nivieza.iqriyyana@oona-insurance.co.id",
+            "q": "Does Netcore have a Conversational AI solution or an AI Agent partner that can be integrated with our WhatsApp channel? If yes, could you also share how the architecture works and how it integrates with Netcore and WhatsApp?",
+            "panel": "oonamobile_cee"
+          }
+        ]
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "courtneyloveoraa@gmail.com",
+            "q": "try to make a subject and preview for an app push for the rain in espana series. something like Subject: Let's go back to where it all started! Preview:",
+            "panel": "vivaonecee"
+          },
+          {
+            "email": "amangilaya@viva.com.ph",
+            "q": "Hi. I heard you can help us set up a campaign?",
+            "panel": "vivaonecee"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "ninad.karangutkar@netcore.ai",
+            "q": "What is the difference between events and activity",
+            "panel": "smartechai"
+          },
+          {
+            "email": "ninad.karangutkar@netcore.ai",
+            "q": "can we create custom activity ?",
+            "panel": "smartechai"
+          }
+        ]
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "saravanan.karuppasamy@nidohomefin.com",
+            "q": "When i uploading the CSV file i am getting an error of INVALID_DATATYPE(NAME(Not a valid email))",
+            "panel": "nidohomefinmarketing"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "venkat@rareads.net",
+            "q": "Hi",
+            "panel": "rareads_cee"
+          },
+          {
+            "email": "anshikagarg@satyasupport.co.in",
+            "q": "connect me with an agent",
+            "panel": "satyasupport_ce"
           }
         ]
       }
@@ -19342,6 +19242,519 @@ const FULL_ARCHIVE = {
             "email": "srinath.r@ifheindia.org",
             "q": "Hi",
             "panel": "ifheindiacee"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-08-19": {
+    "date": "2026-08-19",
+    "totalConversations": 24,
+    "resolutionRate": 100,
+    "internalTotal": 1,
+    "externalTotal": 23,
+    "docsTotal": 15,
+    "panelTotal": 9,
+    "queryType": {
+      "technical": 9,
+      "generic": 15
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-08-19 00:00 IST to 2026-08-21 23:59 IST); window not yet elapsed as of this run (2026-08-20, D+1 in progress)",
+      "totalConversations": 24,
+      "sameUserEscalations": [],
+      "deflectedCount": 24,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. Checked all 23 unique requester emails via Tier 1 global search -- zero ticket matches for any. Tier 2 keyword checks (maven sdk, conversion goal, RCS URL, brand kit, gamification, 404 page not found) found no genuine in-window matches -- the closest hit (an RCS callback-URL integration ticket from ~a day ago) was excluded as a different underlying need (vendor callback URL setup vs. today's docs-lookup question). Window has barely started (D+1 of D+2) -- treat 100% as a floor, not a confirmed final result."
+    },
+    "headline": "24 conversations on Aug 19, 100% bot self-reported resolved and (provisionally) 100% Freshdesk-deflected -- three separate Netcore staff independently asked near-identical 'what is the revenue parameter in conversion goal' within 2 minutes of each other, two more asked 'maven sdk' almost verbatim 4 minutes apart, and Julie Bolger (wealthmintr) reported a live incident: today's email campaign links all redirecting to 404s.",
+    "actionableInsights": [
+      {
+        "owner": "content",
+        "title": "Three staff asked the identical 'revenue parameter in conversion goal' question within 2 minutes",
+        "desc": "harshit.puranik@netcorecloud.ai (10:36 IST), drashtant.pambhar@netcore.ai (10:34:31 IST), and rubal.adwani@netcorecloud.com (10:34:13 IST) all asked what the revenue parameter means when setting a conversion goal, almost simultaneously -- looks like a live training/onboarding session hit the same undocumented term at once. A clear glossary entry or tooltip for 'revenue parameter' in conversion goal setup would resolve all three in one shot."
+      },
+      {
+        "owner": "content",
+        "title": "Two staff asked 'maven sdk' almost verbatim 4 minutes apart",
+        "desc": "gargi.sethia@netcore.ai (08:10 IST) and amey.vaidya@netcore.ai (08:06 IST) both typed just 'maven sdk' with no further context -- same pattern as the conversion-goal cluster, likely a shared session. A direct link to the Maven SDK integration doc as a suggested reply would save both a back-and-forth."
+      },
+      {
+        "owner": "product",
+        "title": "Julie Bolger flagged a live incident, not a docs question",
+        "desc": "julie@wealthmintr.com asked 'Is there an issue today in Netcore? All the emails we've sent out today that include links, the links all go to a 404 Page Not Found error' -- this reads as a real production issue (broken links in sent campaigns), not a how-to question. Worth a quick check with delivery/infra on whether this affected other accounts today, since Julie also raised a UI bug on 2026-08-05 (couldn't edit a contact's email) -- two real, distinct issues from the same account in two weeks."
+      },
+      {
+        "owner": "calibration",
+        "title": "Internal/external split still skewed by the @netcore.ai / @netcorecloud.ai domain shift",
+        "desc": "internalTotal shows just 1 of 24 (rubal.adwani@netcorecloud.com), but at least 8 more askers are visibly Netcore/CE staff using @netcore.ai or @netcorecloud.ai addresses, which don't match the strict @netcorecloud.com/@netcoreunbxd.com internal rule. This is the 3rd consecutive run flagging this (see 08-18 and 08-19 prior run notes) -- worth deciding whether to broaden the internal-domain rule so the split reflects reality."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Tinh Nguyen",
+      "email": "tinh.nguyen@droppi.com",
+      "query": "Asked how Netcore's optPushNotification consent is scoped when the same userId is shared across two different apps (Mall and Biz) -- specifically whether opt-in/opt-out is tracked per app/installation, or whether the latest value from one app overrides the other for the shared userId.",
+      "why": "A precise, structured question about consent-state scoping across multi-app installations sharing a userId -- real architectural depth about how the platform resolves conflicting opt-in signals, not a navigation or definition ask."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 5
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 1,
+        "external": 3
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 3
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 8
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "02sujata@gmail.com",
+        "count": 2,
+        "friction": true,
+        "panel": "NA",
+        "queries": [
+          {
+            "theme": "Where's the doc/API for X",
+            "text": "Page is doesn't exist"
+          },
+          {
+            "theme": "Where's the doc/API for X",
+            "text": "404 page doesn't exist"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 7,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "arjun@truva.in",
+            "q": "Is there a character limit on parameters for netcore events?",
+            "panel": "NA"
+          },
+          {
+            "email": "siddhant.bendkar@netcore.ai",
+            "q": "What's the upper limit on creating attirbutes?",
+            "panel": "NA"
+          },
+          {
+            "email": "ninad.karangutkar@netcore.ai",
+            "q": "how to create attributes",
+            "panel": "smartechai"
+          },
+          {
+            "email": "adeolap@cornerstone.ac.za",
+            "q": "what is or where do i find Netcore Account ID, Netcore Passcode (API passcode, not your login password), Confirm your Netcore domain -- is it pr1r.netcoresmartech.com?",
+            "panel": "cornerstone_ce"
+          },
+          {
+            "email": "tinh.nguyen@droppi.com",
+            "q": "How is optPushNotification handled across different apps/environments sharing the same userId -- is opt-in/opt-out scoped per app or does the latest value override across apps?",
+            "panel": "sndt_droppiicee"
+          },
+          {
+            "email": "gargi.sethia@netcore.ai",
+            "q": "maven SDK",
+            "panel": "NA"
+          },
+          {
+            "email": "amey.vaidya@netcore.ai",
+            "q": "maven sdk",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 3,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "julie@wealthmintr.com",
+            "q": "Is there an issue today in Netcore? All the emails we've sent out today that include links, the links all go to a 404 Page Not Found error.",
+            "panel": "wealthmintrce"
+          },
+          {
+            "email": "devashen@hirschs.co.za",
+            "q": "how do i include gamification in a mailer",
+            "panel": "hirschs_ce"
+          },
+          {
+            "email": "khushi.chitkara@netcore.ai",
+            "q": "where we can see brand kit in templates",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "ishika.a@netcore.ai",
+            "q": "hey need the rcs specific url document",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 1,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "rubal.adwani@netcorecloud.com",
+            "q": "what is revenue parameter in set conversion goal for campaign",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "harshit.puranik@netcorecloud.ai",
+            "q": "revenue parameter for conversion goals",
+            "panel": "smartechai"
+          },
+          {
+            "email": "drashtant.pambhar@netcore.ai",
+            "q": "What is the revenue parameter in conversion goal ?",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "02sujata@gmail.com",
+            "q": "404 page doesn't exist",
+            "panel": "NA"
+          },
+          {
+            "email": "02sujata@gmail.com",
+            "q": "Page is doesn't exist",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 8,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "akwueijeoma6@gmail.com",
+            "q": "Hi i am a customer of uba bank and I just got an email to update my account (off-topic, unrelated to Netcore product)",
+            "panel": "NA"
+          },
+          {
+            "email": "preetpalshishodia@gmail.com",
+            "q": "Can my loan is approved (off-topic, unrelated to Netcore product)",
+            "panel": "NA"
+          },
+          {
+            "email": "laurengermiquet@gmail.com",
+            "q": "I got a message saying my payment has not gone through but it has come off my account (off-topic, unrelated to Netcore product)",
+            "panel": "NA"
+          },
+          {
+            "email": "sandeep@saranyu.in",
+            "q": "hi",
+            "panel": "sanskritilive_ce"
+          },
+          {
+            "email": "abhishekyadav02298@gmail.com",
+            "q": "Loan Application (off-topic, unrelated to Netcore product)",
+            "panel": "NA"
+          },
+          {
+            "email": "rmule@nal.co.in",
+            "q": "hello",
+            "panel": "nseacademyce"
+          },
+          {
+            "email": "jaraeamol@gmail.com",
+            "q": "Two wheeler interest rate (off-topic, unrelated to Netcore product)",
+            "panel": "NA"
+          },
+          {
+            "email": "chiewhsien.ong@nandos.com.my",
+            "q": "halo",
+            "panel": "nandoscee"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-08-20": {
+    "date": "2026-08-20",
+    "totalConversations": 13,
+    "resolutionRate": 100,
+    "internalTotal": 0,
+    "externalTotal": 13,
+    "docsTotal": 4,
+    "panelTotal": 9,
+    "queryType": {
+      "technical": 6,
+      "generic": 7
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-08-20 00:00 IST to 2026-08-22 23:59 IST); window still open as of this run (2026-08-21, today) -- D+2 = Aug 22 hasn't happened yet",
+      "totalConversations": 13,
+      "sameUserEscalations": [],
+      "deflectedCount": 13,
+      "deflectionRate": 100,
+      "patternRisk": [
+        {
+          "area": "API/Integration",
+          "docbotCount": 3,
+          "ticketCount": 1,
+          "exampleTicketSubjects": [
+            "Currency being fetched from product feed || 2XL"
+          ],
+          "note": "One in-window product-feed ticket surfaced (2XL account, currency-value bug, created ~12h before this run) but it's a data-accuracy bug, not the catalogue/feed-structure question ishim878@gmail.com asked the bot -- different symptom, same general feature area, not counted as Tier 1."
+        }
+      ],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as directional, doubly so with the +2-day window barely open. Checked all 12 unique requester emails individually via Tier 1 global search -- zero ticket matches for any. Tier 2 keyword sweeps covered all 6 substantive areas: 'INVALID_DATATYPE' (1 hit, closed 5 days ago, different failure type -- primary key vs email validation), 'liquid tags' (44 hits, all 'enable liquid tags' feature-activation requests -- different theme than the conceptual 'where are liquid tags applicable' question), 'Limechat' (58 hits, closest 3 days old, outside window), 'custom activity' (8 hits, all weeks-to-years old), 'app push' (249 hits, several in-window but all delivery/reach performance issues, not the copy-generation/campaign-setup asks from today), 'WhatsApp AI Agent' (0 hits). No genuine in-window pattern match found for any area."
+    },
+    "headline": "13 conversations on Aug 20, 100% bot self-reported resolved and 100% Freshdesk-deflected across all 12 unique askers -- but the internal/external split is almost certainly skewed: at least 5 of the 13 conversations came from Netcore staff on @netcore.ai addresses (Saloni Shinde, Ninad Karangutkar x2, Akash Sharma, Rajeev Pillai), which the classification rule reads as 100% external -- 3rd day running this domain-shift issue has appeared.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "@netcore.ai staff are being counted as external customers -- 3rd consecutive day",
+        "desc": "5 of 13 conversations today (Saloni Shinde, Ninad Karangutkar x2, Akash Sharma, Rajeev Pillai) came from @netcore.ai addresses -- clearly Netcore staff by name and by docs-portal/panel usage pattern, but the classification rule only treats @netcorecloud.com/@netcoreunbxd.com as internal. Today's reported 0% internal / 100% external is materially wrong (real split is closer to 8 external / 5 internal). This was also flagged on 2026-08-18 and 2026-08-19 -- worth adding @netcore.ai to the internal-domain allowlist so the split stops silently degrading."
+      },
+      {
+        "owner": "product",
+        "title": "Rajeev Pillai (@netcore.ai) asked whether product-arrival-triggered personalized emails are possible via API",
+        "desc": "Asked on a client's behalf whether Netcore has an API to trigger personalized emails when specific new products arrive, filterable off product data from an existing external API. A real product-arrival-trigger + personalization API question -- worth confirming the exact API/webhook path so this doesn't need a second escalation from the actual client later."
+      },
+      {
+        "owner": "content",
+        "title": "Saloni Shinde asked the bot for a Limechat documentation link instead of finding it herself",
+        "desc": "'can you share the link for Limechat documentation' -- Limechat is a very active integration topic (58 Freshdesk tickets on file, several in-window), so a discoverable doc link in the partner-integrations index would likely resolve this class of ask without a bot round-trip."
+      },
+      {
+        "owner": "content",
+        "title": "Ninad Karangutkar needed two follow-on questions to get from 'what's an activity' to 'can I create one'",
+        "desc": "Asked 'what is the difference between events and activity' then, 2 minutes later, 'can we create custom activity?' while sitting in Journey Builder's create-journey screen -- a natural progression, not re-asking, but suggests the events-vs-activity distinction isn't obvious enough from the create-journey screen alone. A contextual tooltip or inline doc link there could shortcut both questions."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Niviez Iqriyyana (Oona Insurance)",
+      "email": "nivieza.iqriyyana@oona-insurance.co.id",
+      "query": "Does Netcore have a Conversational AI solution or an AI Agent partner that can be integrated with our WhatsApp channel? If yes, could you also share how the architecture works and how it integrates with Netcore and WhatsApp?",
+      "why": "A forward-looking, architecture-level question about AI-agent/WhatsApp integration rather than basic navigation help -- shows real evaluation-stage product interest, not just troubleshooting."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 3
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 0,
+        "external": 3
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 3
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 2
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "ninad.karangutkar@netcore.ai",
+        "count": 2,
+        "friction": false,
+        "panel": "smartechai",
+        "queries": [
+          {
+            "theme": "What does X mean/how it works",
+            "text": "What is the difference between events and activity"
+          },
+          {
+            "theme": "Is X possible/supported",
+            "text": "can we create custom activity ?"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 3,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "rajeev.pillai@netcore.ai",
+            "q": "My client wants to start sending personalized emails to customers when specific new products arrive, filtered on existing product-API data -- is there an API on the platform we can use for this?",
+            "panel": "NA"
+          },
+          {
+            "email": "ishim878@gmail.com",
+            "q": "Hey if a brand wants to start merch triggers and they want to implement the product catalogue and product feed, so they are asking what all information comes in that, can you pls help",
+            "panel": "NA"
+          },
+          {
+            "email": "tarun@truva.in",
+            "q": "Give me. the documentation of netcore events",
+            "panel": "truva_three_ce"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "akash.sharma@netcore.ai",
+            "q": "Liquid tags are applicable on",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "saloni.shinde@netcore.ai",
+            "q": "can you share the link for Limechat documentation",
+            "panel": "NA"
+          },
+          {
+            "email": "nivieza.iqriyyana@oona-insurance.co.id",
+            "q": "Does Netcore have a Conversational AI solution or an AI Agent partner that can be integrated with our WhatsApp channel? If yes, could you also share how the architecture works and how it integrates with Netcore and WhatsApp?",
+            "panel": "oonamobile_cee"
+          }
+        ]
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "courtneyloveoraa@gmail.com",
+            "q": "try to make a subject and preview for an app push for the rain in espana series. something like Subject: Let's go back to where it all started! Preview:",
+            "panel": "vivaonecee"
+          },
+          {
+            "email": "amangilaya@viva.com.ph",
+            "q": "Hi. I heard you can help us set up a campaign?",
+            "panel": "vivaonecee"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "ninad.karangutkar@netcore.ai",
+            "q": "What is the difference between events and activity",
+            "panel": "smartechai"
+          },
+          {
+            "email": "ninad.karangutkar@netcore.ai",
+            "q": "can we create custom activity ?",
+            "panel": "smartechai"
+          }
+        ]
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "saravanan.karuppasamy@nidohomefin.com",
+            "q": "When i uploading the CSV file i am getting an error of INVALID_DATATYPE(NAME(Not a valid email))",
+            "panel": "nidohomefinmarketing"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "venkat@rareads.net",
+            "q": "Hi",
+            "panel": "rareads_cee"
+          },
+          {
+            "email": "anshikagarg@satyasupport.co.in",
+            "q": "connect me with an agent",
+            "panel": "satyasupport_ce"
           }
         ]
       }
