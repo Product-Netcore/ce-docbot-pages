@@ -492,6 +492,28 @@ html[data-theme="dark"] .intro-banner .ib-lede{color:#c7cad1;}
 .intro-banner .ib-item .ib-val{font-size:13px; line-height:1.5; color:var(--dimtext);}
 .intro-banner .ib-foot{font-size:12px; color:#a4a097; margin-top:16px; padding-top:12px; border-top:1px dashed var(--paperline); font-style:italic;}
 
+/* conversation volume trend chart (Overall Historical Summary Analysis hero) */
+.trend-acc{margin-top:16px;}
+.trend-controls{display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin-bottom:16px;}
+.trend-tabs, .trend-style-toggle{display:flex; gap:4px; background:var(--paper); border:1px solid var(--paperline); border-radius:8px; padding:3px;}
+.trend-tab-btn, .trend-style-btn{
+  appearance:none; border:none; background:transparent; color:var(--dimtext);
+  font-family:'JetBrains Mono',monospace; font-size:11px; padding:6px 12px; border-radius:6px; cursor:pointer;
+  transition:background .15s ease, color .15s ease;
+}
+.trend-tab-btn.active, .trend-style-btn.active{background:var(--ink); color:#fff;}
+.trend-tab-btn:hover:not(.active), .trend-style-btn:hover:not(.active){color:var(--text);}
+.trend-change{font-size:12.5px; color:var(--dimtext); display:flex; align-items:center; gap:6px;}
+.trend-badge{font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:700; padding:2px 8px; border-radius:6px; background:rgba(227,162,60,.15); color:var(--signal);}
+.trend-svg{width:100%; height:auto; display:block;}
+.trend-line{fill:none; stroke:var(--signal); stroke-width:2.5;}
+.trend-area{fill:rgba(227,162,60,.12); stroke:none;}
+.trend-dot{fill:var(--signal); stroke:var(--paper2); stroke-width:1.5;}
+.trend-axis-line{stroke:var(--paperline); stroke-width:1;}
+.trend-axis-label{font-family:'JetBrains Mono',monospace; font-size:9.5px; fill:var(--dimtext);}
+.trend-bar{fill:var(--signal); opacity:.85; transition:opacity .12s ease;}
+.trend-bar:hover{opacity:1;}
+
 </style>
 </head>
 <body>
@@ -19782,6 +19804,9 @@ let histRangeMode = 'all';
 let histRangeFrom = null;
 let histRangeTo = null;
 let currentHistArchive = FULL_ARCHIVE;
+let trendGranularity = 'daily';
+let trendChartStyle = 'line';
+let trendPanelOpen = false;
 
 function ringSVG(pct, idSuffix){
   const size=104, stroke=10, r=(size-stroke)/2, c=2*Math.PI*r;
@@ -20472,6 +20497,160 @@ function renderSinceStrip(since){
   return '<div class="since-strip"><span class="since-label">Since last report ('+fmtDate(since.latestDate)+' added)</span>'+items.join('')+'</div>';
 }
 
+// ===== Conversation volume trend chart (Overall Historical Summary Analysis tab only) =====
+// Hand-rolled inline SVG rather than a chart library, to stay consistent with the rest of this
+// self-contained dashboard (no CDN dependency, no CSP risk). Responds to whatever histArchive
+// the Analysis window selector has already filtered down to -- this function never re-filters
+// on its own, it just groups whatever it's handed.
+function buildTrendSeries(histArchive, granularity){
+  const dates = Object.keys(histArchive).sort();
+  if(granularity === 'weekly'){
+    const map = {};
+    dates.forEach(d=>{
+      const dt = new Date(d+'T00:00:00Z');
+      const dow = dt.getUTCDay(); // 0=Sun..6=Sat
+      const diffToMonday = dow===0 ? -6 : 1-dow;
+      const monday = new Date(dt);
+      monday.setUTCDate(dt.getUTCDate()+diffToMonday);
+      const key = monday.toISOString().slice(0,10);
+      map[key] = (map[key]||0) + histArchive[d].totalConversations;
+    });
+    return Object.keys(map).sort().map(k=>({key:k, value:map[k]}));
+  }
+  if(granularity === 'monthly'){
+    const map = {};
+    dates.forEach(d=>{
+      const key = d.slice(0,7); // YYYY-MM
+      map[key] = (map[key]||0) + histArchive[d].totalConversations;
+    });
+    return Object.keys(map).sort().map(k=>({key:k, value:map[k]}));
+  }
+  // daily (default)
+  return dates.map(d => ({key:d, value: histArchive[d].totalConversations}));
+}
+
+function fmtTrendLabel(key, granularity){
+  if(granularity === 'monthly'){
+    const parts = key.split('-');
+    const d = new Date(parseInt(parts[0],10), parseInt(parts[1],10)-1, 1);
+    return d.toLocaleDateString('en-IN',{month:'short', year:'2-digit'});
+  }
+  const d = new Date(key+'T00:00:00');
+  return d.toLocaleDateString('en-IN',{day:'numeric', month:'short'});
+}
+
+// First-half-vs-second-half comparison of whatever series is currently shown -- same technique
+// as computeAreaTrend, applied to the trend chart's own points instead of per-area counts.
+function computeTrendChange(points){
+  if(points.length < 2) return null;
+  const mid = Math.ceil(points.length/2);
+  const firstSum = points.slice(0, mid).reduce((s,p)=>s+p.value,0);
+  const secondSum = points.slice(mid).reduce((s,p)=>s+p.value,0);
+  if(firstSum === 0) return secondSum > 0 ? null : 0;
+  return Math.round((secondSum-firstSum)/firstSum*100);
+}
+
+function trendAxisLabelsHTML(points, granularity, coordX, h){
+  const maxLabels = 8;
+  const step = Math.max(1, Math.ceil(points.length / maxLabels));
+  return points.map((p,i)=>{
+    if(i % step !== 0 && i !== points.length-1) return '';
+    return '<text x="'+coordX(i).toFixed(1)+'" y="'+(h-6)+'" text-anchor="middle" class="trend-axis-label">'+fmtTrendLabel(p.key, granularity)+'</text>';
+  }).join('');
+}
+
+function renderTrendLineSVG(points, granularity){
+  const w = 720, h = 220, pad = 30, labelSpace = 16;
+  const innerW = w - pad*2, innerH = h - pad*2 - labelSpace;
+  const maxV = Math.max(...points.map(p=>p.value), 1);
+  const stepX = points.length > 1 ? innerW/(points.length-1) : 0;
+  const coordX = i => pad + i*stepX;
+  const coordY = v => pad + innerH - (v/maxV)*innerH;
+  const coords = points.map((p,i)=>[coordX(i), coordY(p.value)]);
+  const pathD = coords.map((c,i)=>(i===0?'M':'L')+c[0].toFixed(1)+','+c[1].toFixed(1)).join(' ');
+  const areaD = coords.length
+    ? pathD + ' L'+coords[coords.length-1][0].toFixed(1)+','+(pad+innerH)+' L'+coords[0][0].toFixed(1)+','+(pad+innerH)+' Z'
+    : '';
+  const dots = coords.map((c,i)=>'<circle cx="'+c[0].toFixed(1)+'" cy="'+c[1].toFixed(1)+'" r="3.5" class="trend-dot"><title>'+fmtTrendLabel(points[i].key,granularity)+': '+points[i].value+' conversations</title></circle>').join('');
+  const labels = trendAxisLabelsHTML(points, granularity, coordX, h);
+  return '<svg viewBox="0 0 '+w+' '+h+'" class="trend-svg" preserveAspectRatio="xMidYMid meet">'
+    + '<line x1="'+pad+'" y1="'+(pad+innerH)+'" x2="'+(w-pad)+'" y2="'+(pad+innerH)+'" class="trend-axis-line"/>'
+    + (coords.length>1 ? '<path d="'+areaD+'" class="trend-area"/><path d="'+pathD+'" class="trend-line"/>' : '')
+    + dots
+    + labels
+    + '</svg>';
+}
+
+function renderTrendBarSVG(points, granularity){
+  const w = 720, h = 220, pad = 30, labelSpace = 16;
+  const innerW = w - pad*2, innerH = h - pad*2 - labelSpace;
+  const maxV = Math.max(...points.map(p=>p.value), 1);
+  const n = points.length;
+  const slot = innerW/n;
+  const barW = Math.max(2, slot*0.62);
+  const coordX = i => pad + i*slot + (slot-barW)/2;
+  const bars = points.map((p,i)=>{
+    const barH = (p.value/maxV)*innerH;
+    const x = coordX(i), y = pad + innerH - barH;
+    return '<rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+barW.toFixed(1)+'" height="'+barH.toFixed(1)+'" rx="2" class="trend-bar"><title>'+fmtTrendLabel(p.key,granularity)+': '+p.value+' conversations</title></rect>';
+  }).join('');
+  const centerX = i => coordX(i) + barW/2;
+  const labels = trendAxisLabelsHTML(points, granularity, centerX, h);
+  return '<svg viewBox="0 0 '+w+' '+h+'" class="trend-svg" preserveAspectRatio="xMidYMid meet">'
+    + '<line x1="'+pad+'" y1="'+(pad+innerH)+'" x2="'+(w-pad)+'" y2="'+(pad+innerH)+'" class="trend-axis-line"/>'
+    + bars
+    + labels
+    + '</svg>';
+}
+
+function renderTrendPanel(histArchive){
+  const points = buildTrendSeries(histArchive, trendGranularity);
+  const change = computeTrendChange(points);
+  const changeHTML = change === null
+    ? '<span class="dim">Not enough data yet</span>'
+    : (change > 0 ? '<span class="trend-badge up">▲ +'+change+'%</span>'
+      : (change < 0 ? '<span class="trend-badge down">▼ '+change+'%</span>'
+      : '<span class="trend-badge flat">flat</span>'));
+  const chartHTML = points.length
+    ? (trendChartStyle === 'line' ? renderTrendLineSVG(points, trendGranularity) : renderTrendBarSVG(points, trendGranularity))
+    : '<div class="modal-empty">No conversation data in this window yet.</div>';
+
+  return `
+    <details class="acc trend-acc" id="sec-h-trend" ${trendPanelOpen ? 'open' : ''}>
+      <summary><span>Conversation volume trend</span><span class="vm"><span class="vm-more">View more ↓</span><span class="vm-less">View less ↑</span></span></summary>
+      <div class="acc-body">
+        <div class="acc-sub">Conversation counts across the selected analysis window, grouped by day, week, or month -- switch granularity to see whether volume is trending up or down. Follows whatever window is picked above (All time / Last 7 / 14 / 30 / 90 days / custom range).</div>
+        <div class="trend-controls">
+          <div class="trend-tabs">
+            <button class="trend-tab-btn ${trendGranularity==='daily'?'active':''}" data-trend-gran="daily">Daily</button>
+            <button class="trend-tab-btn ${trendGranularity==='weekly'?'active':''}" data-trend-gran="weekly">Weekly</button>
+            <button class="trend-tab-btn ${trendGranularity==='monthly'?'active':''}" data-trend-gran="monthly">Monthly</button>
+          </div>
+          <div class="trend-style-toggle">
+            <button class="trend-style-btn ${trendChartStyle==='line'?'active':''}" data-trend-style="line">Line</button>
+            <button class="trend-style-btn ${trendChartStyle==='bar'?'active':''}" data-trend-style="bar">Bar</button>
+          </div>
+          <div class="trend-change">${changeHTML}<span class="dim" style="font-size:11px">vs earlier half of this window</span></div>
+        </div>
+        ${chartHTML}
+      </div>
+    </details>
+  `;
+}
+
+function wireTrendPanel(){
+  document.querySelectorAll('[data-trend-gran]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ trendGranularity = btn.dataset.trendGran; render(); });
+  });
+  document.querySelectorAll('[data-trend-style]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ trendChartStyle = btn.dataset.trendStyle; render(); });
+  });
+  const trendDetails = document.getElementById('sec-h-trend');
+  if(trendDetails){
+    trendDetails.addEventListener('toggle', ()=>{ trendPanelOpen = trendDetails.open; });
+  }
+}
+
 function renderHistoricalMain(){
   const histArchive = computeFilteredArchive(FULL_ARCHIVE, histRangeMode, histRangeFrom, histRangeTo);
   currentHistArchive = histArchive;
@@ -20524,6 +20703,7 @@ function renderHistoricalMain(){
       <div class="qtype-panel" id="qtypePanelH"></div>
       ${renderSinceStrip(since)}
       <div class="footnote-mark">* self-reported by the bot's own session state. The deflection figure is the stronger, Freshdesk-checked signal — ${m.deflChecked} conversations checked so far, ${m.deflDeflected} with no matching ticket from that user (${m.deflEscalations.length} confirmed same-user escalation${m.deflEscalations.length===1?'':'s'}). Coverage widens as deflection tracking rolls back across earlier days.</div>
+      ${renderTrendPanel(histArchive)}
     </div>
 
     <details class="acc anim" id="sec-h-takeaways" open>
@@ -20861,6 +21041,7 @@ function render(){
     const m = computeMasterSummary(FULL_ARCHIVE);
     const histQuestions = m.allQuestions.map(x=>Object.assign({}, x, {type: classifyQueryType(x.q)}));
     wireQtypeStat('qtypePanelH','statQtypeH', histQuestions);
+    wireTrendPanel();
   }
 }
 
