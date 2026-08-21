@@ -508,11 +508,23 @@ html[data-theme="dark"] .intro-banner .ib-lede{color:#c7cad1;}
 .trend-svg{width:100%; height:auto; display:block;}
 .trend-line{fill:none; stroke:var(--signal); stroke-width:2.5;}
 .trend-area{fill:rgba(227,162,60,.12); stroke:none;}
-.trend-dot{fill:var(--signal); stroke:var(--paper2); stroke-width:1.5;}
+.trend-dot{fill:var(--signal); stroke:var(--paper2); stroke-width:1.5; cursor:pointer; transition:r .1s ease;}
+.trend-dot:hover{r:6.5;}
 .trend-axis-line{stroke:var(--paperline); stroke-width:1;}
 .trend-axis-label{font-family:'JetBrains Mono',monospace; font-size:9.5px; fill:var(--dimtext);}
-.trend-bar{fill:var(--signal); opacity:.85; transition:opacity .12s ease;}
+.trend-bar{fill:var(--signal); opacity:.85; cursor:pointer; transition:opacity .12s ease;}
 .trend-bar:hover{opacity:1;}
+
+.trend-chart-wrap{position:relative;}
+.trend-tooltip{
+  position:absolute; pointer-events:none; z-index:5; left:0; top:0;
+  background:var(--ink); color:#fff; font-family:'JetBrains Mono',monospace; font-size:11.5px;
+  padding:6px 10px; border-radius:6px; white-space:nowrap; opacity:0;
+  transform:translate(-50%,-100%) translateY(-10px);
+  transition:opacity .1s ease; box-shadow:0 4px 14px rgba(0,0,0,.28);
+}
+.trend-tooltip.show{opacity:1;}
+.trend-tooltip .val{font-weight:700; color:var(--signal);}
 
 </style>
 </head>
@@ -20571,7 +20583,7 @@ function renderTrendLineSVG(points, granularity){
   const areaD = coords.length
     ? pathD + ' L'+coords[coords.length-1][0].toFixed(1)+','+(pad+innerH)+' L'+coords[0][0].toFixed(1)+','+(pad+innerH)+' Z'
     : '';
-  const dots = coords.map((c,i)=>'<circle cx="'+c[0].toFixed(1)+'" cy="'+c[1].toFixed(1)+'" r="3.5" class="trend-dot"><title>'+fmtTrendLabel(points[i].key,granularity)+': '+points[i].value+' conversations</title></circle>').join('');
+  const dots = coords.map((c,i)=>'<circle cx="'+c[0].toFixed(1)+'" cy="'+c[1].toFixed(1)+'" r="4" class="trend-dot" data-label="'+fmtTrendLabel(points[i].key,granularity)+'" data-value="'+points[i].value+'"><title>'+fmtTrendLabel(points[i].key,granularity)+': '+points[i].value+' conversations</title></circle>').join('');
   const labels = trendAxisLabelsHTML(points, granularity, coordX, h);
   return '<svg viewBox="0 0 '+w+' '+h+'" class="trend-svg" preserveAspectRatio="xMidYMid meet">'
     + '<line x1="'+pad+'" y1="'+(pad+innerH)+'" x2="'+(w-pad)+'" y2="'+(pad+innerH)+'" class="trend-axis-line"/>'
@@ -20592,7 +20604,7 @@ function renderTrendBarSVG(points, granularity){
   const bars = points.map((p,i)=>{
     const barH = (p.value/maxV)*innerH;
     const x = coordX(i), y = pad + innerH - barH;
-    return '<rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+barW.toFixed(1)+'" height="'+barH.toFixed(1)+'" rx="2" class="trend-bar"><title>'+fmtTrendLabel(p.key,granularity)+': '+p.value+' conversations</title></rect>';
+    return '<rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+barW.toFixed(1)+'" height="'+Math.max(barH,1).toFixed(1)+'" rx="2" class="trend-bar" data-label="'+fmtTrendLabel(p.key,granularity)+'" data-value="'+p.value+'"><title>'+fmtTrendLabel(p.key,granularity)+': '+p.value+' conversations</title></rect>';
   }).join('');
   const centerX = i => coordX(i) + barW/2;
   const labels = trendAxisLabelsHTML(points, granularity, centerX, h);
@@ -20632,10 +20644,37 @@ function renderTrendPanel(histArchive){
           </div>
           <div class="trend-change">${changeHTML}<span class="dim" style="font-size:11px">vs earlier half of this window</span></div>
         </div>
-        ${chartHTML}
+        <div class="trend-chart-wrap" id="trendChartWrap">
+          ${chartHTML}
+          <div class="trend-tooltip" id="trendTooltip"></div>
+        </div>
       </div>
     </details>
   `;
+}
+
+// Custom hover tooltip for the trend chart -- shows the exact conversation count immediately
+// on hover instead of relying on the browser's slow native <title> tooltip. The <title> tags
+// stay in the SVG as a fallback/accessibility aid; this just layers a nicer instant one on top.
+function wireTrendTooltip(){
+  const wrap = document.getElementById('trendChartWrap');
+  const tooltip = document.getElementById('trendTooltip');
+  if(!wrap || !tooltip) return;
+  function positionTooltip(e){
+    const rect = wrap.getBoundingClientRect();
+    tooltip.style.left = (e.clientX - rect.left) + 'px';
+    tooltip.style.top = (e.clientY - rect.top) + 'px';
+  }
+  wrap.querySelectorAll('.trend-dot, .trend-bar').forEach(el=>{
+    el.addEventListener('mouseenter', (e)=>{
+      const label = el.dataset.label, value = el.dataset.value;
+      tooltip.innerHTML = label+': <span class="val">'+value+'</span> conversation'+(value==='1'?'':'s');
+      tooltip.classList.add('show');
+      positionTooltip(e);
+    });
+    el.addEventListener('mousemove', positionTooltip);
+    el.addEventListener('mouseleave', ()=>{ tooltip.classList.remove('show'); });
+  });
 }
 
 function wireTrendPanel(){
@@ -20649,6 +20688,7 @@ function wireTrendPanel(){
   if(trendDetails){
     trendDetails.addEventListener('toggle', ()=>{ trendPanelOpen = trendDetails.open; });
   }
+  wireTrendTooltip();
 }
 
 function renderHistoricalMain(){
