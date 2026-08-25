@@ -599,228 +599,6 @@ html[data-theme="dark"] .intro-banner .ib-lede{color:#c7cad1;}
 </div>
 <script>
 const ARCHIVE = {
-  "2026-08-10": {
-    "date": "2026-08-10",
-    "totalConversations": 16,
-    "resolutionRate": 100,
-    "internalTotal": 7,
-    "externalTotal": 9,
-    "docsTotal": 7,
-    "panelTotal": 9,
-    "queryType": {
-      "technical": 4,
-      "generic": 12
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days (2026-08-10 00:00 IST to 2026-08-12 23:59 IST); window has barely started as of this run (2026-08-11)",
-      "totalConversations": 16,
-      "sameUserEscalations": [],
-      "deflectedCount": 16,
-      "deflectionRate": 100,
-      "patternRisk": [],
-      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. Checked all 16 unique requester emails via Tier 1 global search -- zero matches. Tier 2 keyword checks ('dark mode', 'RCS image dimension', 'nudge swift', plus 'whitelist email' and 'blacklist contact' covering this day's Email-area questions) found no genuine in-window pattern match. Window has barely elapsed (yesterday) -- treat 100% as a floor, not a confirmed result; a same-user escalation over the next 1-2 days wouldn't yet be reflected here."
-    },
-    "headline": "16 conversations yesterday (Monday Aug 10), 100% bot self-reported resolved. Ha Nguyen (gggcomsmt) is back for at least a second time in two weeks with another deep Journey Builder event-binding question, and two unrelated staff -- Anjali Inani and Romit Pandit -- asked the identical 'how to switch to dark mode' question about 15 minutes apart.",
-    "actionableInsights": [
-      {
-        "owner": "product",
-        "title": "Ha Nguyen is a recurring power user asking event-binding semantics questions",
-        "desc": "hantt.mgc@gmail.com (gggcomsmt) asked a near-identical class of question on 2026-07-30 (whether a delayed push's dynamic attribute reflects the triggering event or the customer's latest event). Yesterday: whether a notification triggered by dmp_promotion_pickup can correctly show a dynamic attribute (gia_tri_max) sourced from a later '2nd transaction' event -- the same event-snapshot-at-trigger vs. live-re-evaluation ambiguity. Worth a direct CSM/solutions-engineering follow-up with this account rather than relying on the bot to re-explain execution semantics a second time."
-      },
-      {
-        "owner": "content",
-        "title": "Two people independently asked how to enable dark mode the same day",
-        "desc": "anjali.inani@netcorecloud.com (thesouledstorecee) and romit.pandit@netcore.ai (bajajlifeceenew) -- unrelated accounts -- both asked how to switch to dark mode in the new UI within about 15 minutes of each other. A settings/theme toggle that doesn't seem discoverable; worth a quick doc snippet or a more visible in-app toggle."
-      },
-      {
-        "owner": "design",
-        "title": "A customer asked the bot to pull journey performance metrics instead of self-serving them",
-        "desc": "guilherme.matos@buser.com.br asked the bot to fetch email-volume/impact metrics for a specific journey rather than finding them himself -- the bot walked him through Engage > Journey > Performance > Co-marketer Insights. Suggests that view isn't discoverable enough on its own."
-      },
-      {
-        "owner": "calibration",
-        "title": "n=16, 100% self-reported resolved, Freshdesk window still opening",
-        "desc": "All 16 unique askers came back clean on an early Freshdesk check, but the +2-day window only started yesterday -- treat both the 100% self-reported and 100% deflection numbers as provisional."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Ha Nguyen",
-      "email": "hantt.mgc@gmail.com",
-      "query": "Asked (in Vietnamese) whether, in a journey triggered by a dmp_promotion_pickup event, a later notification using the dynamic attribute gia_tri_max sourced from a subsequent '2nd transaction' event would correctly display that event's value -- given the journey's entry event is the promotion-pickup, not the transaction.",
-      "why": "A precise, recurring question about journey event-binding semantics from the same power user who asked a structurally similar question on 2026-07-30 -- real, sustained engineering-level engagement with how the platform actually evaluates dynamic attributes at send-time."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 1,
-        "external": 3
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 0,
-        "external": 1
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 1,
-        "external": 1
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 3,
-        "external": 0
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 2,
-        "external": 1
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 3
-      }
-    ],
-    "topAskers": [],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 2,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "ninad.borkar@netcorecloud.com",
-            "q": "what is the basic difference between SDK & APK integration",
-            "panel": "NA"
-          },
-          {
-            "email": "hardeep.singh@netcorecloud.com",
-            "q": "If client has Swift UI in app then can we render nudges?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Email",
-        "internal": 3,
-        "external": 3,
-        "internalQ": [
-          {
-            "email": "avadhoot.revankar@netcorecloud.com",
-            "q": "campaign a/b testing",
-            "panel": "NA"
-          },
-          {
-            "email": "akash.sharma@netcorecloud.com",
-            "q": "What can be the reasons for the blacklisted contacts, email id is it all manual list?",
-            "panel": "NA"
-          },
-          {
-            "email": "rubal.adwani@netcorecloud.com",
-            "q": "standard use cases of AMP emails",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "ashish.mall@ambit.co",
-            "q": "How to whitelist the email id through upload option",
-            "panel": "ambitwealthcee"
-          },
-          {
-            "email": "prajput@gulfnews.com",
-            "q": "how many email newsletters do we send per day?",
-            "panel": "gulfnewssmt"
-          },
-          {
-            "email": "jairam.gowda@hdfcsec.com",
-            "q": "i want to dowload Positions during Ban Period report",
-            "panel": "hdfcsecsmt"
-          }
-        ]
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 0,
-        "external": 1,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "test@gmail.com",
-            "q": "what is the correct image dimension for rcs campaign",
-            "panel": "NA"
-          }
-        ]
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 0,
-        "external": 2,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "hantt.mgc@gmail.com",
-            "q": "[Vietnamese] Asked whether a notification triggered by dmp_promotion_pickup can correctly show a dynamic attribute (gia_tri_max) sourced from a later '2nd transaction' event",
-            "panel": "gggcomsmt"
-          },
-          {
-            "email": "guilherme.matos@buser.com.br",
-            "q": "[Portuguese] Wants email volume / impacted-people metrics for journey ID 86",
-            "panel": "busercee"
-          }
-        ]
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 2,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "anjali.inani@netcorecloud.com",
-            "q": "how can i switch to dark mode",
-            "panel": "thesouledstorecee"
-          },
-          {
-            "email": "romit.pandit@netcore.ai",
-            "q": "How to switch to dark mode in new UI?",
-            "panel": "bajajlifeceenew"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 3,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "kashyapsumit4316@gmail.com",
-            "q": "My lon rejected (off-topic, unrelated to Netcore product)",
-            "panel": "NA"
-          },
-          {
-            "email": "ashish@ddppl.com",
-            "q": "hello",
-            "panel": "traveleinstein"
-          },
-          {
-            "email": "kapil@exoticindia.com",
-            "q": "Hello",
-            "panel": "exoticindiaartcee"
-          }
-        ]
-      }
-    ]
-  },
   "2026-08-11": {
     "date": "2026-08-11",
     "totalConversations": 12,
@@ -3761,6 +3539,316 @@ const ARCHIVE = {
             "email": "ankurkumar4e@gmail.com",
             "q": "Sir loan kyu nhi mila",
             "panel": "NA"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-08-24": {
+    "date": "2026-08-24",
+    "totalConversations": 24,
+    "resolutionRate": 96,
+    "internalTotal": 8,
+    "externalTotal": 16,
+    "docsTotal": 7,
+    "panelTotal": 17,
+    "queryType": {
+      "technical": 9,
+      "generic": 15
+    },
+    "ticketDeflection": null,
+    "headline": "24 conversations on Aug 24 (Monday), 96% bot self-reported resolved -- one bare \"hello\" from Tayer (gtcfxworld_ce) was left active with no bot closure. Arjun Bora (truva_three_ce) hit a real WhatsApp/RCS template bug (\"number of localisable params doesn't match the expected number of params\"), and Arpita Nayak at The Media Ant ran a sharp bot-traffic hypothesis on a suspiciously high click rate with zero on-site conversion. Freshdesk cross-check was skipped this run -- the Chrome connector was unreachable.",
+    "actionableInsights": [
+      {
+        "owner": "product",
+        "title": "Real WhatsApp/RCS template validation bug reported by Arjun Bora (truva_three_ce)",
+        "desc": "arjun@truva.in got the error 'number of localisable params doesn't match the expected number of params' -- a concrete template-personalization validation mismatch, not a vague complaint. Same user separately asked about enabling link tracking earlier the same day (2 conversations total, unrelated topics). Worth routing the bug to the WhatsApp/RCS template engineering owners directly rather than closing as bot-resolved."
+      },
+      {
+        "owner": "content",
+        "title": "2FA/Authy account recovery after a device change is a recurring pain point",
+        "desc": "digendrakumar@aesl.in (myaakashed_cee) got locked out of login because Authy required a backup password he didn't have after switching Android devices. This mirrors a near-identical 2FA lockout flagged on 2026-08-13 (maheer.shaik@emailresolute.com) -- worth a clear 'lost your 2FA device' recovery doc or in-app flow so this doesn't keep landing on the bot."
+      },
+      {
+        "owner": "calibration",
+        "title": "One of 24 conversations (Tayer, gtcfxworld_ce) was left in 'active' state, not resolved",
+        "desc": "tayer@gmail.com's bare 'hello' (10:18 IST) never got a bot closure, unlike every other conversation today -- pulling resolutionRate to 96% instead of the more typical 100%. Same user asked a real question 2h21m later ('how to send email for another user / where is APIs in CRM') which did resolve, so this looks like an abandoned greeting rather than a genuine miss."
+      },
+      {
+        "owner": "product",
+        "title": "Ninad A K (Netcore staff, smartechai) needed 3 separate basic navigation questions in one day",
+        "desc": "ninad.karangutkar@netcore.ai asked, across 3 conversations, how many dashboards can be created, how to add cohort analysis to a dashboard, and about app personalization -- all discoverability/navigation questions from internal staff on the same panel. Worth a quick check on whether internal CS/CE teams have a clearer analytics-features walkthrough, since even staff are routing basic navigation through the bot."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Arpita Nayak",
+      "email": "arpita@themediaant.com",
+      "query": "Reported that one URL in her Aug 2026 newsletter campaign got a 30%+ click rate, confirmed the traffic hit the website, but saw zero on-site action from that traffic -- and asked Netcore to help validate her hypothesis that it was bot traffic.",
+      "why": "A genuine analytical hypothesis backed by her own click-vs-conversion data, not a basic how-to or confused ask -- real marketer-level engagement with fraud/bot-traffic detection on her own campaign data."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 2,
+        "external": 5
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 1,
+        "external": 1
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 3,
+        "external": 5
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 1,
+        "external": 2
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 3
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "ninad.karangutkar@netcore.ai",
+        "count": 3,
+        "friction": false,
+        "panel": "smartechai",
+        "queries": [
+          {
+            "theme": "Is X possible/supported",
+            "text": "How many dashboards we can create on CE Panel"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "how to add Cohort analysis to my dashboard"
+          },
+          {
+            "theme": "Where do I set up/find X",
+            "text": "app personalization"
+          }
+        ]
+      },
+      {
+        "email": "arjun@truva.in",
+        "count": 2,
+        "friction": false,
+        "panel": "truva_three_ce",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "How do I enable link tracking?"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "What does this bug means? number of localisable params doesn't match the expected number of params"
+          }
+        ]
+      },
+      {
+        "email": "tayer@gmail.com",
+        "count": 2,
+        "friction": false,
+        "panel": "gtcfxworld_ce",
+        "queries": [
+          {
+            "theme": "Bare greeting, no context yet",
+            "text": "hello"
+          },
+          {
+            "theme": "Where's the doc/API for X",
+            "text": "hwo to send email for another user / where is apis in crm"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 3,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "sales@fusioncertification.com",
+            "q": "i uploaded a data from my indiamart enquiries, but your system rejected it",
+            "panel": "buyy_cee"
+          },
+          {
+            "email": "tayer@gmail.com",
+            "q": "hwo to send email for another user / where is apis in crm",
+            "panel": "gtcfxworld_ce"
+          },
+          {
+            "email": "sramesh@integratedindia.in",
+            "q": "ID No: 5232 not added, we have uploaded",
+            "panel": "iepindiasmt"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 1,
+        "external": 5,
+        "internalQ": [
+          {
+            "email": "mohd.pakzad@netcore.ai",
+            "q": "what is domain filter",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "arjun@truva.in",
+            "q": "How do I enable link tracking?",
+            "panel": "truva_three_ce"
+          },
+          {
+            "email": "yash.tyagi@antaraseniorcare.com",
+            "q": "how to disable single opt-in",
+            "panel": "antaraseniorcarece"
+          },
+          {
+            "email": "jainmanisha2811@gmail.com",
+            "q": "I don't want advertisement mails",
+            "panel": "NA"
+          },
+          {
+            "email": "arpita@themediaant.com",
+            "q": "Saw one URL in a campaign get 30%+ click rate with traffic on site but no action taken -- asked to validate bot-traffic hypothesis",
+            "panel": "themediaantsmt"
+          },
+          {
+            "email": "esther.ogbonnaya@firstbankgroup.com",
+            "q": "My campaigns are showing delivered but not dropping",
+            "panel": "firstbanknigeria_cee"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 2,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "swati.jangir@netcore.ai",
+            "q": "how to we change waba display picture",
+            "panel": "NA"
+          },
+          {
+            "email": "paridhi.jain@netcore.ai",
+            "q": "Please share RCS, CE, Whatsapp product deck",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "arjun@truva.in",
+            "q": "What does this bug means? number of localisable params doesn't match the expected number of params",
+            "panel": "truva_three_ce"
+          },
+          {
+            "email": "sachin@truva.in",
+            "q": "how can i check why whatsapp message are failing",
+            "panel": "truva_one_ce"
+          }
+        ]
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "nitin@la-fetch.com",
+            "q": "Pricing to enable Unbxd Product Recommendations for App Push (product-catalog mapping + iOS integration) -- included in plan or add-on, one-time setup + recurring cost",
+            "panel": "lafetch_ce"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "ramakrishna.kasuba@netcore.ai",
+            "q": "The present journey has 0 emails sent in last 7 days why ?",
+            "panel": "outcasts_ce"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 4,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "ninad.karangutkar@netcore.ai",
+            "q": "How many dashboards we can create on CE Panel",
+            "panel": "smartechai"
+          },
+          {
+            "email": "ninad.karangutkar@netcore.ai",
+            "q": "how to add Cohort analysis to my dashboard",
+            "panel": "smartechai"
+          },
+          {
+            "email": "amit.sharma@netcore.ai",
+            "q": "Hey, What is netcore",
+            "panel": "tprappin1_custid"
+          },
+          {
+            "email": "ninad.karangutkar@netcore.ai",
+            "q": "app personalization",
+            "panel": "smartechai"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "digendrakumar@aesl.in",
+            "q": "Unable to login due to 2FA -- Authy backup password required, changed android device",
+            "panel": "myaakashed_cee"
+          },
+          {
+            "email": "mxcruz@landbank.com",
+            "q": "Does netcore have any anti virus anti malware",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 3,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "ddeepak63548@gmail.com",
+            "q": "Deepak",
+            "panel": "NA"
+          },
+          {
+            "email": "mahesh47850@gmail.com",
+            "q": "Hi",
+            "panel": "NA"
+          },
+          {
+            "email": "tayer@gmail.com",
+            "q": "hello",
+            "panel": "gtcfxworld_ce"
           }
         ]
       }
@@ -20280,6 +20368,316 @@ const FULL_ARCHIVE = {
             "email": "ankurkumar4e@gmail.com",
             "q": "Sir loan kyu nhi mila",
             "panel": "NA"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-08-24": {
+    "date": "2026-08-24",
+    "totalConversations": 24,
+    "resolutionRate": 96,
+    "internalTotal": 8,
+    "externalTotal": 16,
+    "docsTotal": 7,
+    "panelTotal": 17,
+    "queryType": {
+      "technical": 9,
+      "generic": 15
+    },
+    "ticketDeflection": null,
+    "headline": "24 conversations on Aug 24 (Monday), 96% bot self-reported resolved -- one bare \"hello\" from Tayer (gtcfxworld_ce) was left active with no bot closure. Arjun Bora (truva_three_ce) hit a real WhatsApp/RCS template bug (\"number of localisable params doesn't match the expected number of params\"), and Arpita Nayak at The Media Ant ran a sharp bot-traffic hypothesis on a suspiciously high click rate with zero on-site conversion. Freshdesk cross-check was skipped this run -- the Chrome connector was unreachable.",
+    "actionableInsights": [
+      {
+        "owner": "product",
+        "title": "Real WhatsApp/RCS template validation bug reported by Arjun Bora (truva_three_ce)",
+        "desc": "arjun@truva.in got the error 'number of localisable params doesn't match the expected number of params' -- a concrete template-personalization validation mismatch, not a vague complaint. Same user separately asked about enabling link tracking earlier the same day (2 conversations total, unrelated topics). Worth routing the bug to the WhatsApp/RCS template engineering owners directly rather than closing as bot-resolved."
+      },
+      {
+        "owner": "content",
+        "title": "2FA/Authy account recovery after a device change is a recurring pain point",
+        "desc": "digendrakumar@aesl.in (myaakashed_cee) got locked out of login because Authy required a backup password he didn't have after switching Android devices. This mirrors a near-identical 2FA lockout flagged on 2026-08-13 (maheer.shaik@emailresolute.com) -- worth a clear 'lost your 2FA device' recovery doc or in-app flow so this doesn't keep landing on the bot."
+      },
+      {
+        "owner": "calibration",
+        "title": "One of 24 conversations (Tayer, gtcfxworld_ce) was left in 'active' state, not resolved",
+        "desc": "tayer@gmail.com's bare 'hello' (10:18 IST) never got a bot closure, unlike every other conversation today -- pulling resolutionRate to 96% instead of the more typical 100%. Same user asked a real question 2h21m later ('how to send email for another user / where is APIs in CRM') which did resolve, so this looks like an abandoned greeting rather than a genuine miss."
+      },
+      {
+        "owner": "product",
+        "title": "Ninad A K (Netcore staff, smartechai) needed 3 separate basic navigation questions in one day",
+        "desc": "ninad.karangutkar@netcore.ai asked, across 3 conversations, how many dashboards can be created, how to add cohort analysis to a dashboard, and about app personalization -- all discoverability/navigation questions from internal staff on the same panel. Worth a quick check on whether internal CS/CE teams have a clearer analytics-features walkthrough, since even staff are routing basic navigation through the bot."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Arpita Nayak",
+      "email": "arpita@themediaant.com",
+      "query": "Reported that one URL in her Aug 2026 newsletter campaign got a 30%+ click rate, confirmed the traffic hit the website, but saw zero on-site action from that traffic -- and asked Netcore to help validate her hypothesis that it was bot traffic.",
+      "why": "A genuine analytical hypothesis backed by her own click-vs-conversion data, not a basic how-to or confused ask -- real marketer-level engagement with fraud/bot-traffic detection on her own campaign data."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 2,
+        "external": 5
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 1,
+        "external": 1
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 3,
+        "external": 5
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 1,
+        "external": 2
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 3
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "ninad.karangutkar@netcore.ai",
+        "count": 3,
+        "friction": false,
+        "panel": "smartechai",
+        "queries": [
+          {
+            "theme": "Is X possible/supported",
+            "text": "How many dashboards we can create on CE Panel"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "how to add Cohort analysis to my dashboard"
+          },
+          {
+            "theme": "Where do I set up/find X",
+            "text": "app personalization"
+          }
+        ]
+      },
+      {
+        "email": "arjun@truva.in",
+        "count": 2,
+        "friction": false,
+        "panel": "truva_three_ce",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "How do I enable link tracking?"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "What does this bug means? number of localisable params doesn't match the expected number of params"
+          }
+        ]
+      },
+      {
+        "email": "tayer@gmail.com",
+        "count": 2,
+        "friction": false,
+        "panel": "gtcfxworld_ce",
+        "queries": [
+          {
+            "theme": "Bare greeting, no context yet",
+            "text": "hello"
+          },
+          {
+            "theme": "Where's the doc/API for X",
+            "text": "hwo to send email for another user / where is apis in crm"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 3,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "sales@fusioncertification.com",
+            "q": "i uploaded a data from my indiamart enquiries, but your system rejected it",
+            "panel": "buyy_cee"
+          },
+          {
+            "email": "tayer@gmail.com",
+            "q": "hwo to send email for another user / where is apis in crm",
+            "panel": "gtcfxworld_ce"
+          },
+          {
+            "email": "sramesh@integratedindia.in",
+            "q": "ID No: 5232 not added, we have uploaded",
+            "panel": "iepindiasmt"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 1,
+        "external": 5,
+        "internalQ": [
+          {
+            "email": "mohd.pakzad@netcore.ai",
+            "q": "what is domain filter",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "arjun@truva.in",
+            "q": "How do I enable link tracking?",
+            "panel": "truva_three_ce"
+          },
+          {
+            "email": "yash.tyagi@antaraseniorcare.com",
+            "q": "how to disable single opt-in",
+            "panel": "antaraseniorcarece"
+          },
+          {
+            "email": "jainmanisha2811@gmail.com",
+            "q": "I don't want advertisement mails",
+            "panel": "NA"
+          },
+          {
+            "email": "arpita@themediaant.com",
+            "q": "Saw one URL in a campaign get 30%+ click rate with traffic on site but no action taken -- asked to validate bot-traffic hypothesis",
+            "panel": "themediaantsmt"
+          },
+          {
+            "email": "esther.ogbonnaya@firstbankgroup.com",
+            "q": "My campaigns are showing delivered but not dropping",
+            "panel": "firstbanknigeria_cee"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 2,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "swati.jangir@netcore.ai",
+            "q": "how to we change waba display picture",
+            "panel": "NA"
+          },
+          {
+            "email": "paridhi.jain@netcore.ai",
+            "q": "Please share RCS, CE, Whatsapp product deck",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "arjun@truva.in",
+            "q": "What does this bug means? number of localisable params doesn't match the expected number of params",
+            "panel": "truva_three_ce"
+          },
+          {
+            "email": "sachin@truva.in",
+            "q": "how can i check why whatsapp message are failing",
+            "panel": "truva_one_ce"
+          }
+        ]
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "nitin@la-fetch.com",
+            "q": "Pricing to enable Unbxd Product Recommendations for App Push (product-catalog mapping + iOS integration) -- included in plan or add-on, one-time setup + recurring cost",
+            "panel": "lafetch_ce"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "ramakrishna.kasuba@netcore.ai",
+            "q": "The present journey has 0 emails sent in last 7 days why ?",
+            "panel": "outcasts_ce"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 4,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "ninad.karangutkar@netcore.ai",
+            "q": "How many dashboards we can create on CE Panel",
+            "panel": "smartechai"
+          },
+          {
+            "email": "ninad.karangutkar@netcore.ai",
+            "q": "how to add Cohort analysis to my dashboard",
+            "panel": "smartechai"
+          },
+          {
+            "email": "amit.sharma@netcore.ai",
+            "q": "Hey, What is netcore",
+            "panel": "tprappin1_custid"
+          },
+          {
+            "email": "ninad.karangutkar@netcore.ai",
+            "q": "app personalization",
+            "panel": "smartechai"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "digendrakumar@aesl.in",
+            "q": "Unable to login due to 2FA -- Authy backup password required, changed android device",
+            "panel": "myaakashed_cee"
+          },
+          {
+            "email": "mxcruz@landbank.com",
+            "q": "Does netcore have any anti virus anti malware",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 3,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "ddeepak63548@gmail.com",
+            "q": "Deepak",
+            "panel": "NA"
+          },
+          {
+            "email": "mahesh47850@gmail.com",
+            "q": "Hi",
+            "panel": "NA"
+          },
+          {
+            "email": "tayer@gmail.com",
+            "q": "hello",
+            "panel": "gtcfxworld_ce"
           }
         ]
       }
