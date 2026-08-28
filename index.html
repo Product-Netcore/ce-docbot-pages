@@ -599,318 +599,6 @@ html[data-theme="dark"] .intro-banner .ib-lede{color:#c7cad1;}
 </div>
 <script>
 const ARCHIVE = {
-  "2026-08-13": {
-    "date": "2026-08-13",
-    "totalConversations": 21,
-    "resolutionRate": 100,
-    "internalTotal": 9,
-    "externalTotal": 12,
-    "docsTotal": 12,
-    "panelTotal": 9,
-    "queryType": {
-      "technical": 11,
-      "generic": 10
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days (2026-08-13 00:00 IST to 2026-08-15 23:59 IST); window only partially elapsed as of this run (2026-08-14, D+1)",
-      "totalConversations": 21,
-      "sameUserEscalations": [],
-      "deflectedCount": 21,
-      "deflectionRate": 100,
-      "patternRisk": [
-        {
-          "area": "API/Integration",
-          "docbotCount": 4,
-          "ticketCount": 1,
-          "exampleTicketSubjects": [
-            "Need help with Smartech Integration on Branch (#5232105, created 13 Aug 2026 1:00 PM IST)"
-          ],
-          "note": "Internal CS escalation thread (Mansi Singhal/Rohit Shrivastava/Sunil Yewale, Netcore) about a client's Branch/Smartech integration issue, created the same day as test@gmail.com's docbot question 'what is branch integration?'. Different requester (an internal escalation thread, not the docbot asker directly), but same specific topic (Branch integration), same day -- a pattern signal, not a confirmed per-person escalation."
-        }
-      ],
-      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal, especially with the +2-day window only partially elapsed (D+2 = Aug 15 hasn't happened yet). Tier 1: checked all 11 unique external requester emails individually via global search -- zero ticket matches for any. Tier 2: keyword searches covered 'SMTP credentials' (8 results, all weeks-to-years old), 'push notification webhook' (0), 'branch integration' (found the in-window match above), 'AMP sender email' (7 results, all a month+ old), 'FTP export' (1 unrelated result), '2FA not working' (0), 'campaign insights dashboard' (0), 'RCS personalization' (1 result, 4 months old), 'email footer' (7 results, all 17+ days old) -- no other in-window matches surfaced."
-    },
-    "headline": "21 conversations on Aug 13 (after deduping a same-user SMTP-credentials request split across two conversation records 61 seconds apart), 100% bot self-reported resolved and 100% Freshdesk-deflected so far -- but a same-day internal escalation thread on a client's Branch/Smartech integration mirrors test@gmail.com's docbot question, and Tinh Nguyen (droppii.com) pushed the bot for a written, cross-device confirmation on SDK opt-out sync behavior that the docs apparently don't clearly cover.",
-    "actionableInsights": [
-      {
-        "owner": "content",
-        "title": "Tinh Nguyen's (droppii.com) SDK opt-out multi-device sync question exposes a real doc gap",
-        "desc": "tinh.nguyen@droppii.com asked for written confirmation on whether the Smartech Android SDK's optOut() status is stored per-device/GUID or synced at the user-identity level across devices -- and explicitly said 'I couldn't find a clear explanation of this in the documentation.' This is a genuine documentation gap on a privacy/consent-handling question the customer needs for their own compliance records; worth a docs update and a direct written follow-up since the bot's answer likely won't satisfy their 'in writing' ask."
-      },
-      {
-        "owner": "product",
-        "title": "haiphamngoc's push notification delivery/webhook issue needs real investigation",
-        "desc": "haiphamngoc@tech.admicro.vn got a 200/success response from the push-trigger API but the device never received the notification, and separately said their configured webhook isn't receiving any data. The bot walked through docs and whitelist steps, but this reads like a live delivery-pipeline or webhook-config issue needing actual engineering/support investigation, not just documentation -- worth routing to the delivery team."
-      },
-      {
-        "owner": "product",
-        "title": "Same-day internal ticket on Branch/Smartech integration mirrors today's docbot question",
-        "desc": "test@gmail.com asked the bot 'what is branch integration?' and for integration steps. The same day, an internal Netcore CS escalation thread (#5232105, 'Need help with Smartech Integration on Branch') was opened for a different client. Different requesters, but the same specific integration topic landing in both channels the same day is worth a quick check on whether Branch/Smartech integration docs are as clear as they should be."
-      },
-      {
-        "owner": "calibration",
-        "title": "A same-user SMTP request got split into two bot conversation records",
-        "desc": "balaji.sathya@wisoftsolutions.com's 'I want to create SMTP credentials' ask appeared verbatim in two separate conversation objects (61 seconds apart) -- deduped to one entry per the standard rule, but worth flagging as a possible bot-session continuity glitch (first conversation opened with 'Hello' then the same request re-opened a new conversation) if this pattern recurs on other days."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Tinh Nguyen",
-      "email": "tinh.nguyen@droppii.com",
-      "query": "Asked for written confirmation on whether the Smartech Android SDK's optOut()/opt-out status is stored per-device/GUID or synced at the user-identity level across multiple devices under the same account, and whether tracking opt-out vs. push-notification opt-out behave differently in that scenario.",
-      "why": "A precise, multi-part technical question about SDK identity/consent-sync semantics, framed formally for the customer's own privacy-compliance documentation -- not a basic how-to, and explicitly flagged as something the docs don't currently answer clearly."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 2,
-        "external": 8
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 1,
-        "external": 1
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 4,
-        "external": 2
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 2,
-        "external": 0
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 1
-      }
-    ],
-    "topAskers": [
-      {
-        "email": "guruprasad@navia.co.in",
-        "count": 2,
-        "friction": false,
-        "panel": "naviacee",
-        "queries": [
-          {
-            "theme": "How do I do X",
-            "text": "I want to export journey data to my ftp server / How to do egress data transfer?"
-          },
-          {
-            "theme": "What does X mean/how it works",
-            "text": "When using an FTP transfer method I want to know what would be the format of the reports?"
-          }
-        ]
-      },
-      {
-        "email": "siddhant.bendkar@netcorecloud.com",
-        "count": 2,
-        "friction": false,
-        "panel": "NA",
-        "queries": [
-          {
-            "theme": "What does X mean/how it works",
-            "text": "what's the functionality of email API platform ?"
-          },
-          {
-            "theme": "Is X possible/supported",
-            "text": "how to enable STO on the panel / Do we track App notifications delivery on iOS devices? / Do we get the App Push notification delivery failure report?"
-          }
-        ]
-      },
-      {
-        "email": "ninad.borkar@netcorecloud.com",
-        "count": 3,
-        "friction": false,
-        "panel": "NA",
-        "queries": [
-          {
-            "theme": "What does X mean/how it works",
-            "text": "How revenue tab in dashboard help a marketer"
-          },
-          {
-            "theme": "What does X mean/how it works",
-            "text": "Share insights on DKIM & DMARK in email / SPF in email"
-          },
-          {
-            "theme": "Where do I set up/find X",
-            "text": "How to show campaign insights"
-          }
-        ]
-      }
-    ],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 1,
-        "external": 3,
-        "internalQ": [
-          {
-            "email": "tushar.gupta@netcoreunbxd.com",
-            "q": "how can I integrate netcore with my company and what features does it offer",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "haiphamngoc@tech.admicro.vn",
-            "q": "Push notification API returns success (200) but device never received it; configured webhook isn't receiving any data; asked how to add a whitelist",
-            "panel": "sndt_tuoitrevn_cee"
-          },
-          {
-            "email": "test@gmail.com",
-            "q": "what is branch integration?, what is its use? / can you give me the steps to perform this integration?",
-            "panel": "NA"
-          },
-          {
-            "email": "tinh.nguyen@droppii.com",
-            "q": "Testing Smartech Android SDK optOut(): is opt-out status stored per-device/GUID or synced at the user-identity level across devices?",
-            "panel": "sndt_droppiicee"
-          }
-        ]
-      },
-      {
-        "area": "Email",
-        "internal": 3,
-        "external": 4,
-        "internalQ": [
-          {
-            "email": "siddhant.bendkar@netcorecloud.com",
-            "q": "what's the functionality of email API platform ?",
-            "panel": "NA"
-          },
-          {
-            "email": "govind.hari@netcorecloud.com",
-            "q": "How do i create a campaign (for email) / can i remove a user manually from my blacklist / what is the logic of journey path optimizer and how does it work",
-            "panel": "smartechai"
-          },
-          {
-            "email": "ninad.borkar@netcorecloud.com",
-            "q": "Share insights on DKIM & DMARK in email / SPF in email",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "zuli.khan@gogroopie.com",
-            "q": "How do i a create a footer message / I need to create a email footer message",
-            "panel": "gguk_cee"
-          },
-          {
-            "email": "balaji.sathya@wisoftsolutions.com",
-            "q": "I want to create SMTP credentials -- where to get SMTP username/password to configure in other platforms",
-            "panel": "wisoftsolutionscee"
-          },
-          {
-            "email": "sylvester.koli@bdbindia.org",
-            "q": "what to recall the email which we have sent to members",
-            "panel": "bdbindiasmart"
-          },
-          {
-            "email": "arshalakshmi@treknomads.com",
-            "q": "We are unable to send campaign as sender email doesn't show our address, dropdown isn't working (AMP campaign, domain shows success status)",
-            "panel": "treknomadscee"
-          }
-        ]
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 1,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "sakshi.kothari@netcorecloud.com",
-            "q": "can i use user attribute personalisation in rcs using journeys?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 1,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "dhruv.bakshi@netcorecloud.com",
-            "q": "journey / what is journey",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 3,
-        "external": 4,
-        "internalQ": [
-          {
-            "email": "ninad.borkar@netcorecloud.com",
-            "q": "How revenue tab in dashboard help a marketer",
-            "panel": "NA"
-          },
-          {
-            "email": "siddhant.bendkar@netcorecloud.com",
-            "q": "how to enable STO on the panel / Do we track App notifications delivery on iOS devices? / Do we get the App Push notification delivery failure report?",
-            "panel": "NA"
-          },
-          {
-            "email": "ninad.borkar@netcorecloud.com",
-            "q": "How to show campaign insights",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "guruprasad@navia.co.in",
-            "q": "I want to export journey data to my ftp server / How to do egress data transfer?",
-            "panel": "naviacee"
-          },
-          {
-            "email": "guruprasad@navia.co.in",
-            "q": "When using an FTP transfer method I want to know what would be the format of the reports?",
-            "panel": "naviacee"
-          },
-          {
-            "email": "maheer.shaik@emailresolute.com",
-            "q": "2FA code is not working (Authenticator App troubleshooting)",
-            "panel": "NA"
-          },
-          {
-            "email": "sylvinasujesh@gmail.com",
-            "q": "hi can u help us the email ID - su**@***.tv for Account Name - marinebiztv (account/login help)",
-            "panel": "NA"
-          }
-        ]
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 1,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "rk7382091@gmail.com",
-            "q": "Hii... Yes... Yes... Loan (off-topic loan spam after greeting)",
-            "panel": "NA"
-          }
-        ]
-      }
-    ]
-  },
   "2026-08-14": {
     "date": "2026-08-14",
     "totalConversations": 15,
@@ -4018,6 +3706,320 @@ const ARCHIVE = {
           {
             "email": "gk928394@gmail.com",
             "q": "Hlo",
+            "panel": "NA"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-08-27": {
+    "date": "2026-08-27",
+    "totalConversations": 20,
+    "resolutionRate": 100,
+    "internalTotal": 8,
+    "externalTotal": 12,
+    "docsTotal": 9,
+    "panelTotal": 11,
+    "queryType": {
+      "technical": 7,
+      "generic": 13
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-08-27 00:00 IST to 2026-08-29 23:59 IST); window not yet closed as of this run (D+1)",
+      "totalConversations": 20,
+      "sameUserEscalations": [
+        {
+          "email": "suren@futurisk.in",
+          "docbotQuery": "need to topup my account with 10 lac mails",
+          "area": "Email",
+          "theme": "How do I do X",
+          "ticketId": "5244200",
+          "ticketSubject": "Feedback on Netcore CE : need to topup mail balance",
+          "ticketCreatedAt": "27 Aug 2026, 05:32 PM IST"
+        },
+        {
+          "email": "navneet.kesarkar@boimf.in",
+          "docbotQuery": "Hi, I am not able to upload database",
+          "area": "Infra/Data residency",
+          "theme": "How do I do X",
+          "ticketId": "5244334",
+          "ticketSubject": "Issue with database upload..",
+          "ticketCreatedAt": "27 Aug 2026, 08:20 PM IST"
+        }
+      ],
+      "deflectedCount": 18,
+      "deflectionRate": 90,
+      "patternRisk": [
+        {
+          "area": "CPaaS (WhatsApp/RCS/SMS)",
+          "docbotCount": 1,
+          "ticketCount": 1,
+          "exampleTicketSubjects": [
+            "Re: Ticket ID-5243893 - Request for Process to Enable Optimize with Comarketer \u2013 adidas India WhatsApp Account (#5244175, created 27 Aug 2026 5:04 PM IST)"
+          ],
+          "note": "Different requester (Milind Durgakar, adidas India) than meenakshi.kaul@netcore.ai's internal docbot question, but the exact same specific topic -- Comarketer availability/enablement for WhatsApp -- surfaced as a live Freshdesk ticket the same day."
+        },
+        {
+          "area": "Infra/Data residency",
+          "docbotCount": 6,
+          "ticketCount": 1,
+          "exampleTicketSubjects": [
+            "Mismatch in RCS Campaign uploaded list & delivery report count (#5243804, created 27 Aug 2026 11:38 AM IST)"
+          ],
+          "note": "Different requester (Shriram Finance Limited) than charishma.p@netcorecloud.com's docbot question about summary-vs-detailed report count mismatches, but the same underlying theme (report count discrepancy), same day."
+        }
+      ],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. Tier 1: checked all 18 unique requester emails (11 external + 7 internal) via the contact-search-first method (lag-proof), 2 confirmed same-user escalations found. Tier 2 keyword sweeps: 'WhatsApp' (found the in-window Comarketer match above), 'report count mismatch' (found the in-window RCS match above), 'control group' (0 in-window matches, closest was 7 days old), 'GUID' (0 genuine in-window matches -- search mostly returned 'guide/guidance' false positives), 'conversion goal' (0 results), 'email attachment' (0 in-window matches, closest was 4 days old)."
+    },
+    "headline": "20 conversations on Aug 27, 100% bot self-reported resolved -- but Freshdesk cross-check broke the recent 100%-deflection streak: suren@futurisk.in's mail-topup ask and navneet.kesarkar@boimf.in's database-upload issue both spilled into same-day tickets, landing deflection at 90%. Samarth Jain (Netcore) asked if segments can be built via MCP like Claude/ChatGPT -- a genuinely forward-looking product signal on AI-agent tooling.",
+    "actionableInsights": [
+      {
+        "owner": "product",
+        "title": "samarth.jain@netcore.ai asked if segments can be created via MCP, like Claude/ChatGPT",
+        "desc": "A direct, on-trend question about whether Netcore's platform supports MCP-based segment creation for AI agents. Not a how-to or navigation ask -- this is a real roadmap signal given the broader market move toward agentic/MCP tooling, worth a quick pulse-check with product on whether there's appetite to explore this."
+      },
+      {
+        "owner": "content",
+        "title": "Report count mismatch doc gap, and Freshdesk shows the same theme live the same day",
+        "desc": "charishma.p@netcorecloud.com asked for documentation on why summary and detailed report counts don't match and how the summary number is calculated. The Tier 2 Freshdesk sweep found a same-day ticket (#5243804, Shriram Finance) reporting an RCS campaign delivery report count mismatch -- different requester, same underlying confusion. A clear explainer on report calculation methodology would likely head off both channels."
+      },
+      {
+        "owner": "product",
+        "title": "Two confirmed escalations broke today's deflection streak -- billing topup and data upload",
+        "desc": "suren@futurisk.in's mail-credit topup request and navneet.kesarkar@boimf.in's database-upload failure both needed a live Freshdesk ticket the same day, dropping deflection to 90% after a run of 100% days. Both are action types the bot can explain but can't execute (account topup) or diagnose (upload failure) -- worth checking whether a direct 'route to support' CTA for these two categories would save the customer a second channel switch."
+      },
+      {
+        "owner": "calibration",
+        "title": "Single clean day, n=20 -- no backfill needed",
+        "desc": "Archive was current through Aug 26 with zero gaps; this run only needed to pull Aug 27. Read today's numbers at face value, though the 90% deflection rate (vs the recent 100% streak) is only 2 data points and shouldn't be over-read as a trend shift yet."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Samarth Jain (Netcore)",
+      "email": "samarth.jain@netcore.ai",
+      "query": "Asked whether the platform can create segments via MCP, the way Claude and ChatGPT do.",
+      "why": "A precise, forward-looking product question about AI-agent/MCP integration for segment building -- not a basic how-to, and directly on-trend with where the broader market is heading on agentic tooling."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 5
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 5,
+        "external": 0
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 2,
+        "external": 2
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 3
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "faruq.kazi@netcore.ai",
+        "count": 2,
+        "friction": false,
+        "panel": "NA",
+        "queries": [
+          {
+            "theme": "What does X mean/how it works",
+            "text": "How is the customer identified by Netcore for sending App push and in-app message."
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "Explain how guid works on app?"
+          }
+        ]
+      },
+      {
+        "email": "sudhanshu.vyas@freightsystems.com",
+        "count": 2,
+        "friction": false,
+        "panel": "freightsystemscee",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "how to set the conversion goal in netcore"
+          },
+          {
+            "theme": "Bare greeting, no context yet",
+            "text": "connect with human"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 4,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "faruq.kazi@netcore.ai",
+            "q": "How is the customer identified by Netcore for sending App push and in-app message.",
+            "panel": "NA"
+          },
+          {
+            "email": "faruq.kazi@netcore.ai",
+            "q": "Explain how guid works on app?",
+            "panel": "NA"
+          },
+          {
+            "email": "dhruv.bakshi@netcore.ai",
+            "q": "whats is App Nudge and what is App PZ",
+            "panel": "NA"
+          },
+          {
+            "email": "samarth.jain@netcore.ai",
+            "q": "does our platform can create segment via MCP like claude and chatgpt",
+            "panel": "smartechai"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 4,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "chiewhsien.ong@nandos.com.my",
+            "q": "for AMP, can i request member to reply with an attachment? like picture?",
+            "panel": "nandoscee"
+          },
+          {
+            "email": "swethaar@nesl.co.in",
+            "q": "How to send test emailers?",
+            "panel": "neslsmt"
+          },
+          {
+            "email": "jacques.dupreez@netcash.co.za",
+            "q": "I need to upload a pdf as an attachment, but 100kb limit is to little can we increase this to atleast 200kb?",
+            "panel": "netcashco_cee"
+          },
+          {
+            "email": "suren@futurisk.in",
+            "q": "need to topup my account with 10 lac mails",
+            "panel": "futuriskcee"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "meenakshi.kaul@netcore.ai",
+            "q": "is comarketer feature available for whatsapp in smartech.",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "tony@netcore.ai",
+            "q": "Tell me about control groups in journeys",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "namra.patel@teampureplay.com",
+            "q": "Performance of T-30_Welcome2_journey",
+            "panel": "plum_ce_new"
+          }
+        ]
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 2,
+        "external": 4,
+        "internalQ": [
+          {
+            "email": "jaishnitha.vs@netcore.ai",
+            "q": "what is slo, sto,pc and app churn management",
+            "panel": "NA"
+          },
+          {
+            "email": "charishma.p@netcorecloud.com",
+            "q": "Can you share the document where we can see why summary report count and detailed report count won't match and how the numbers are derived for the summary report",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "devika_kevlya@icicipruamc.com",
+            "q": "Lifecyclefund_DD_NFOLaunch_27Aug2026 - ID - 835, tell me the published data",
+            "panel": "icicipruamc_cee"
+          },
+          {
+            "email": "sudhanshu.vyas@freightsystems.com",
+            "q": "how to set the conversion goal in netcore",
+            "panel": "freightsystemscee"
+          },
+          {
+            "email": "rafay@justgold.app",
+            "q": "Generate me all time report of netcore",
+            "panel": "justgoldcee"
+          },
+          {
+            "email": "navneet.kesarkar@boimf.in",
+            "q": "Hi, I am not able to upload database",
+            "panel": "boimfcee"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 3,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "sudhanshu.vyas@freightsystems.com",
+            "q": "connect with human",
+            "panel": "freightsystemscee"
+          },
+          {
+            "email": "ajeetrathaur84@gmail.com",
+            "q": "My loan",
+            "panel": "NA"
+          },
+          {
+            "email": "yashdhiman855@gmail.com",
+            "q": "hye",
             "panel": "NA"
           }
         ]
@@ -21494,6 +21496,320 @@ const FULL_ARCHIVE = {
           {
             "email": "gk928394@gmail.com",
             "q": "Hlo",
+            "panel": "NA"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-08-27": {
+    "date": "2026-08-27",
+    "totalConversations": 20,
+    "resolutionRate": 100,
+    "internalTotal": 8,
+    "externalTotal": 12,
+    "docsTotal": 9,
+    "panelTotal": 11,
+    "queryType": {
+      "technical": 7,
+      "generic": 13
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-08-27 00:00 IST to 2026-08-29 23:59 IST); window not yet closed as of this run (D+1)",
+      "totalConversations": 20,
+      "sameUserEscalations": [
+        {
+          "email": "suren@futurisk.in",
+          "docbotQuery": "need to topup my account with 10 lac mails",
+          "area": "Email",
+          "theme": "How do I do X",
+          "ticketId": "5244200",
+          "ticketSubject": "Feedback on Netcore CE : need to topup mail balance",
+          "ticketCreatedAt": "27 Aug 2026, 05:32 PM IST"
+        },
+        {
+          "email": "navneet.kesarkar@boimf.in",
+          "docbotQuery": "Hi, I am not able to upload database",
+          "area": "Infra/Data residency",
+          "theme": "How do I do X",
+          "ticketId": "5244334",
+          "ticketSubject": "Issue with database upload..",
+          "ticketCreatedAt": "27 Aug 2026, 08:20 PM IST"
+        }
+      ],
+      "deflectedCount": 18,
+      "deflectionRate": 90,
+      "patternRisk": [
+        {
+          "area": "CPaaS (WhatsApp/RCS/SMS)",
+          "docbotCount": 1,
+          "ticketCount": 1,
+          "exampleTicketSubjects": [
+            "Re: Ticket ID-5243893 - Request for Process to Enable Optimize with Comarketer \u2013 adidas India WhatsApp Account (#5244175, created 27 Aug 2026 5:04 PM IST)"
+          ],
+          "note": "Different requester (Milind Durgakar, adidas India) than meenakshi.kaul@netcore.ai's internal docbot question, but the exact same specific topic -- Comarketer availability/enablement for WhatsApp -- surfaced as a live Freshdesk ticket the same day."
+        },
+        {
+          "area": "Infra/Data residency",
+          "docbotCount": 6,
+          "ticketCount": 1,
+          "exampleTicketSubjects": [
+            "Mismatch in RCS Campaign uploaded list & delivery report count (#5243804, created 27 Aug 2026 11:38 AM IST)"
+          ],
+          "note": "Different requester (Shriram Finance Limited) than charishma.p@netcorecloud.com's docbot question about summary-vs-detailed report count mismatches, but the same underlying theme (report count discrepancy), same day."
+        }
+      ],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. Tier 1: checked all 18 unique requester emails (11 external + 7 internal) via the contact-search-first method (lag-proof), 2 confirmed same-user escalations found. Tier 2 keyword sweeps: 'WhatsApp' (found the in-window Comarketer match above), 'report count mismatch' (found the in-window RCS match above), 'control group' (0 in-window matches, closest was 7 days old), 'GUID' (0 genuine in-window matches -- search mostly returned 'guide/guidance' false positives), 'conversion goal' (0 results), 'email attachment' (0 in-window matches, closest was 4 days old)."
+    },
+    "headline": "20 conversations on Aug 27, 100% bot self-reported resolved -- but Freshdesk cross-check broke the recent 100%-deflection streak: suren@futurisk.in's mail-topup ask and navneet.kesarkar@boimf.in's database-upload issue both spilled into same-day tickets, landing deflection at 90%. Samarth Jain (Netcore) asked if segments can be built via MCP like Claude/ChatGPT -- a genuinely forward-looking product signal on AI-agent tooling.",
+    "actionableInsights": [
+      {
+        "owner": "product",
+        "title": "samarth.jain@netcore.ai asked if segments can be created via MCP, like Claude/ChatGPT",
+        "desc": "A direct, on-trend question about whether Netcore's platform supports MCP-based segment creation for AI agents. Not a how-to or navigation ask -- this is a real roadmap signal given the broader market move toward agentic/MCP tooling, worth a quick pulse-check with product on whether there's appetite to explore this."
+      },
+      {
+        "owner": "content",
+        "title": "Report count mismatch doc gap, and Freshdesk shows the same theme live the same day",
+        "desc": "charishma.p@netcorecloud.com asked for documentation on why summary and detailed report counts don't match and how the summary number is calculated. The Tier 2 Freshdesk sweep found a same-day ticket (#5243804, Shriram Finance) reporting an RCS campaign delivery report count mismatch -- different requester, same underlying confusion. A clear explainer on report calculation methodology would likely head off both channels."
+      },
+      {
+        "owner": "product",
+        "title": "Two confirmed escalations broke today's deflection streak -- billing topup and data upload",
+        "desc": "suren@futurisk.in's mail-credit topup request and navneet.kesarkar@boimf.in's database-upload failure both needed a live Freshdesk ticket the same day, dropping deflection to 90% after a run of 100% days. Both are action types the bot can explain but can't execute (account topup) or diagnose (upload failure) -- worth checking whether a direct 'route to support' CTA for these two categories would save the customer a second channel switch."
+      },
+      {
+        "owner": "calibration",
+        "title": "Single clean day, n=20 -- no backfill needed",
+        "desc": "Archive was current through Aug 26 with zero gaps; this run only needed to pull Aug 27. Read today's numbers at face value, though the 90% deflection rate (vs the recent 100% streak) is only 2 data points and shouldn't be over-read as a trend shift yet."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Samarth Jain (Netcore)",
+      "email": "samarth.jain@netcore.ai",
+      "query": "Asked whether the platform can create segments via MCP, the way Claude and ChatGPT do.",
+      "why": "A precise, forward-looking product question about AI-agent/MCP integration for segment building -- not a basic how-to, and directly on-trend with where the broader market is heading on agentic tooling."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 5
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 5,
+        "external": 0
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 2,
+        "external": 2
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 3
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "faruq.kazi@netcore.ai",
+        "count": 2,
+        "friction": false,
+        "panel": "NA",
+        "queries": [
+          {
+            "theme": "What does X mean/how it works",
+            "text": "How is the customer identified by Netcore for sending App push and in-app message."
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "Explain how guid works on app?"
+          }
+        ]
+      },
+      {
+        "email": "sudhanshu.vyas@freightsystems.com",
+        "count": 2,
+        "friction": false,
+        "panel": "freightsystemscee",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "how to set the conversion goal in netcore"
+          },
+          {
+            "theme": "Bare greeting, no context yet",
+            "text": "connect with human"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 4,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "faruq.kazi@netcore.ai",
+            "q": "How is the customer identified by Netcore for sending App push and in-app message.",
+            "panel": "NA"
+          },
+          {
+            "email": "faruq.kazi@netcore.ai",
+            "q": "Explain how guid works on app?",
+            "panel": "NA"
+          },
+          {
+            "email": "dhruv.bakshi@netcore.ai",
+            "q": "whats is App Nudge and what is App PZ",
+            "panel": "NA"
+          },
+          {
+            "email": "samarth.jain@netcore.ai",
+            "q": "does our platform can create segment via MCP like claude and chatgpt",
+            "panel": "smartechai"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 4,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "chiewhsien.ong@nandos.com.my",
+            "q": "for AMP, can i request member to reply with an attachment? like picture?",
+            "panel": "nandoscee"
+          },
+          {
+            "email": "swethaar@nesl.co.in",
+            "q": "How to send test emailers?",
+            "panel": "neslsmt"
+          },
+          {
+            "email": "jacques.dupreez@netcash.co.za",
+            "q": "I need to upload a pdf as an attachment, but 100kb limit is to little can we increase this to atleast 200kb?",
+            "panel": "netcashco_cee"
+          },
+          {
+            "email": "suren@futurisk.in",
+            "q": "need to topup my account with 10 lac mails",
+            "panel": "futuriskcee"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "meenakshi.kaul@netcore.ai",
+            "q": "is comarketer feature available for whatsapp in smartech.",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "tony@netcore.ai",
+            "q": "Tell me about control groups in journeys",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "namra.patel@teampureplay.com",
+            "q": "Performance of T-30_Welcome2_journey",
+            "panel": "plum_ce_new"
+          }
+        ]
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 2,
+        "external": 4,
+        "internalQ": [
+          {
+            "email": "jaishnitha.vs@netcore.ai",
+            "q": "what is slo, sto,pc and app churn management",
+            "panel": "NA"
+          },
+          {
+            "email": "charishma.p@netcorecloud.com",
+            "q": "Can you share the document where we can see why summary report count and detailed report count won't match and how the numbers are derived for the summary report",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "devika_kevlya@icicipruamc.com",
+            "q": "Lifecyclefund_DD_NFOLaunch_27Aug2026 - ID - 835, tell me the published data",
+            "panel": "icicipruamc_cee"
+          },
+          {
+            "email": "sudhanshu.vyas@freightsystems.com",
+            "q": "how to set the conversion goal in netcore",
+            "panel": "freightsystemscee"
+          },
+          {
+            "email": "rafay@justgold.app",
+            "q": "Generate me all time report of netcore",
+            "panel": "justgoldcee"
+          },
+          {
+            "email": "navneet.kesarkar@boimf.in",
+            "q": "Hi, I am not able to upload database",
+            "panel": "boimfcee"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 3,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "sudhanshu.vyas@freightsystems.com",
+            "q": "connect with human",
+            "panel": "freightsystemscee"
+          },
+          {
+            "email": "ajeetrathaur84@gmail.com",
+            "q": "My loan",
+            "panel": "NA"
+          },
+          {
+            "email": "yashdhiman855@gmail.com",
+            "q": "hye",
             "panel": "NA"
           }
         ]
