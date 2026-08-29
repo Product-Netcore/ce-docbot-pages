@@ -599,240 +599,6 @@ html[data-theme="dark"] .intro-banner .ib-lede{color:#c7cad1;}
 </div>
 <script>
 const ARCHIVE = {
-  "2026-08-14": {
-    "date": "2026-08-14",
-    "totalConversations": 15,
-    "resolutionRate": 100,
-    "internalTotal": 5,
-    "externalTotal": 10,
-    "docsTotal": 8,
-    "panelTotal": 7,
-    "queryType": {
-      "technical": 4,
-      "generic": 11
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days (Aug 14 00:00 IST to Aug 16 23:59 IST); window nearly fully elapsed as of this run",
-      "totalConversations": 15,
-      "sameUserEscalations": [],
-      "deflectedCount": 15,
-      "deflectionRate": 100,
-      "patternRisk": [],
-      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit \u2014 treat as a directional signal. Tier 1: checked all 14 unique requester emails via global search, zero ticket matches for any. Tier 2 keyword sweeps: 'campaign data discrepancy' (11 results, most recent closed a month ago \u2014 none in-window), 'two factor authentication' (31 results, most recent created 11 Aug \u2014 just before the window, none in-window), 'SMS undelivered' (34 results, most recent from ~3 days ago but a different theme \u2014 a real delivery outage for a bank sender ID, not a conceptual question about reason codes \u2014 excluded as a false positive), 'unsubscribe button' (13 results, most recent 24 days ago), 'in-app aspect ratio' (0 results). No genuine in-window matches found."
-    },
-    "headline": "15 conversations on Aug 14 (Friday, backfilled \u2014 this date was missing from the archive), 100% bot self-reported resolved and 100% Freshdesk-deflected across all 14 unique askers \u2014 though 20% of the volume (3 of 15) was near-content-free noise: a confused off-topic debit-card message and two bare ticket-ID pings from the same BFSL user. Preetam at Sapphire Healthcare flagged a real campaign-data-vs-dashboard discrepancy, and Romit Pandit asked the identical SMS-undelivered question from two different email domains 25 minutes apart.",
-    "actionableInsights": [
-      {
-        "owner": "product",
-        "title": "Campaign data discrepancy flagged by Sapphire Healthcare, no ticket filed yet",
-        "desc": "preetam.g@sapphirehc.in reported a discrepancy between the data shown in-panel and the campaign dashboard, with a screenshot attached. Freshdesk came back clean for this user, but a live data-mismatch claim shouldn't just close as bot-resolved \u2014 worth routing to the analytics/reporting team to confirm whether this is a real sync issue."
-      },
-      {
-        "owner": "calibration",
-        "title": "Domain-skew fixed retroactively \u2014 netcore.ai confirmed as a legitimate internal alias",
-        "desc": "romit.pandit@netcorecloud.com and romit.pandit@netcore.ai asked the literal same 'what do undelivered SMS reasons mean' question 25 minutes apart -- the same Netcore employee with two accounts. On 2026-08-21 the user confirmed @netcore.ai (and @netcorecloud.ai) are legitimate internal domains following a company email migration off @netcorecloud.com, and this day's data was corrected accordingly -- both are now counted internal."
-      },
-      {
-        "owner": "content",
-        "title": "BFSL user sent two bare ticket-ID references with no other context",
-        "desc": "aman.verma@bfsl.co.in sent 'Ticket ID-523303' and shortly after 'Ticket ID-5233030' (a corrected digit) with no accompanying question. Bot marked both resolved, but there's no way to tell if the underlying need was actually addressed. A clearer bot prompt \u2014 'what do you need help with regarding this ticket?' \u2014 would likely surface the real ask instead of a bare reference."
-      },
-      {
-        "owner": "calibration",
-        "title": "n=15, single backfilled Friday \u2014 read directionally",
-        "desc": "Typical Friday volume for this archive. No handoffs today (all bot self-reported resolved), which is on the high end \u2014 worth watching whether that holds or is itself a data quirk of this backfilled pull."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Preetam G",
-      "email": "preetam.g@sapphirehc.in",
-      "query": "Flagged a discrepancy between the data shown in a screenshot and what the campaign dashboard reports, attaching visual evidence.",
-      "why": "A precise, evidence-backed data-integrity report rather than a how-to or navigation ask \u2014 the kind of signal that deserves an actual data-team look, not just a bot answer."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 1,
-        "external": 3
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 1,
-        "external": 1
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 2,
-        "external": 2
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 1,
-        "external": 1
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 3
-      }
-    ],
-    "topAskers": [
-      {
-        "email": "aman.verma@bfsl.co.in",
-        "count": 2,
-        "friction": true,
-        "panel": "bfsl_cee",
-        "queries": [
-          {
-            "theme": "Bare greeting, no context yet",
-            "text": "Ticket ID-523303"
-          },
-          {
-            "theme": "Bare greeting, no context yet",
-            "text": "Ticket ID-5233030"
-          }
-        ]
-      }
-    ],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 2,
-        "external": 2,
-        "internalQ": [
-          {
-            "email": "prateek.singh@netcorecloud.com",
-            "q": "What are different ways to upload user data to CE Panel / Is there a way to push it via S3 also? / Can we use SMTP also?",
-            "panel": "NA"
-          },
-          {
-            "email": "soumya.chaudhary@netcore.ai",
-            "q": "hi where can I see events on panel",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "test@gmail.com",
-            "q": "what is the exact aspect ratio that we should use for in-app when customer is using custom html",
-            "panel": "NA"
-          },
-          {
-            "email": "tinh.nguyen@droppi.com",
-            "q": "how to test send event from react native app and view event in dashboard",
-            "panel": "NA"
-          }
-        ]
-      },
-      {
-        "area": "Email",
-        "internal": 1,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "ishika.a@netcorecloud.com",
-            "q": "how to add the unsubscribe button on email / document link",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "vashu.panchal@clix.capital",
-            "q": "can we send attachments in email communication / can we delete any duplicate email template",
-            "panel": "clixcapitaloffersmt"
-          }
-        ]
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 2,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "romit.pandit@netcorecloud.com",
-            "q": "I want to know when a SMS is not delivered what are the meanings of the reasons that are stated in the detailed report?",
-            "panel": "NA"
-          },
-          {
-            "email": "romit.pandit@netcore.ai",
-            "q": "i want to know when a SMS is undelivered then what are the meaning of the undelivered reasons",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 0,
-        "external": 4,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "jatin.phalak@iprocess.in",
-            "q": "we have trying to login but two factor authentication page is open but otp is not recived in my email id",
-            "panel": "iprocesssmt"
-          },
-          {
-            "email": "preetam.g@sapphirehc.in",
-            "q": "there is a descripency in the data shown here and dashboard for the campaign",
-            "panel": "sapphirehsmt"
-          },
-          {
-            "email": "shubham.sharma@forestessentials.com",
-            "q": "Can you help me create segment?",
-            "panel": "forestessentialsce"
-          },
-          {
-            "email": "kapil@exoticindia.com",
-            "q": "Link to Usage Overview does not work / opens a blank page",
-            "panel": "exoticindiaartcee"
-          }
-        ]
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 3,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "payalade8788@gmail.com",
-            "q": "Hii my debit card (confused/off-topic message, unrelated to Netcore CE platform)",
-            "panel": "NA"
-          },
-          {
-            "email": "aman.verma@bfsl.co.in",
-            "q": "Ticket ID-523303",
-            "panel": "bfsl_cee"
-          },
-          {
-            "email": "aman.verma@bfsl.co.in",
-            "q": "Ticket ID-5233030",
-            "panel": "bfsl_cee"
-          }
-        ]
-      }
-    ]
-  },
   "2026-08-15": {
     "date": "2026-08-15",
     "totalConversations": 1,
@@ -4023,6 +3789,213 @@ const ARCHIVE = {
             "panel": "NA"
           }
         ]
+      }
+    ]
+  },
+  "2026-08-28": {
+    "date": "2026-08-28",
+    "totalConversations": 8,
+    "resolutionRate": 100,
+    "internalTotal": 1,
+    "externalTotal": 7,
+    "docsTotal": 1,
+    "panelTotal": 7,
+    "queryType": {
+      "technical": 1,
+      "generic": 7
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (Aug 28 00:00 IST to Aug 30 23:59 IST); window still open as of this run (D+1)",
+      "totalConversations": 8,
+      "sameUserEscalations": [
+        {
+          "email": "am_abdul@camsonline.com",
+          "docbotQuery": "Hi, please clear the harvest errors (panel: cams_sbi, UDT IDs 2075 & 2076)",
+          "area": "Infra/Data residency",
+          "theme": "How do I do X",
+          "ticketId": "5244917",
+          "ticketSubject": "Harvest Errors to be cleared - URGENT",
+          "ticketCreatedAt": "2026-08-28T17:14:00+05:30"
+        }
+      ],
+      "deflectedCount": 7,
+      "deflectionRate": 88,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. Tier 1 used the contact-search -> contact ID -> requester-filtered ticket list method (per known same-day indexing lag on ticket text search) for all 7 unique requester emails; 6 came back clean, Abdul Rahaman (CAMS/SBI) had ticket #5244917 for the identical harvest-error issue, filed ~22 minutes before his docbot conversation -- a habitual harvest-error filer (24 historical tickets) but this specific ticket is same-day, same-topic, so counted as a genuine escalation. Tier 2 keyword sweeps ('liquid tags', 'exclude domain', 'RCS template', 'app push template') found no genuine in-window (Aug 28-30) matches -- closest hits were 2-11 days old and different underlying needs (staff feature-enablement requests, not the conceptual/troubleshooting questions asked today)."
+    },
+    "headline": "Just 8 conversations on Aug 28 (Friday), 100% bot self-reported resolved -- but Freshdesk tells a sharper story: Abdul Rahaman (CAMS/SBI) filed a ticket for the exact same harvest-error issue 22 minutes before asking the bot, pulling deflection down to 88% (7 of 8). Deepak Udage (Shemaroo) ran a precise RCS delivery-funnel diagnosis (published vs sent vs delivered), and chiewhsien.ong@nandos.com.my re-asked a near-identical credits/validity question twice within 90 minutes.",
+    "actionableInsights": [
+      {
+        "owner": "product",
+        "title": "Harvest-error escalation landed in Freshdesk 22 minutes before the bot conversation",
+        "desc": "am_abdul@camsonline.com (CAMS, cams_sbi panel) filed Freshdesk ticket #5244917 for harvest errors at 17:14 IST, then asked the bot to 'clear the harvest errors' with UDT IDs 2075 & 2076 at 17:36 IST. The bot correctly explained it can't clear these directly and pointed to helpdesk@netcorecloud.com -- so the routing was right, but Abdul has filed this same ticket type 24 times historically. A self-serve harvest-error resolution flow (or at least an automatic status check) would cut a real recurring support load for this account."
+      },
+      {
+        "owner": "content",
+        "title": "RCS delivery funnel (Published vs Sent vs Delivered) needed five bot turns to explain",
+        "desc": "deepak.udage@shemaroo.com saw 0 delivery counts on an RCS campaign despite a 'Published' count showing, and needed a multi-step walkthrough of the Published -> Submitted -> Delivered lifecycle before landing on the answer. A one-line glossary callout directly in the Campaign Reports > RCS Report UI (not just the docs) would likely resolve this class of question in one turn."
+      },
+      {
+        "owner": "design",
+        "title": "Segment builder's 'Email' options are ambiguous -- 12+ turns to build a simple domain exclusion",
+        "desc": "zoviyashaikh@ecuworldwide.com spent the conversation's full 12 user turns confused between 'Reachable channel > Email', 'User Attributes > Email/EMAIL', and 'EMAIL (Primary key)' while trying to build a simple 3-domain suppression segment. All three read as \"Email\" in the picker with no inline distinction -- worth a UX pass on labeling or a tooltip explaining the difference before more customers hit this."
+      },
+      {
+        "owner": "calibration",
+        "title": "n=8, a quiet Friday -- read all rates directionally",
+        "desc": "Small sample day. chiewhsien.ong@nandos.com.my re-asked a near-identical credits/contract-validity question twice within 90 minutes (flagged as friction in topAskers) -- worth watching whether the first answer is landing clearly for this asker."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Deepak Udage (Shemaroo)",
+      "email": "deepak.udage@shemaroo.com",
+      "query": "Diagnosed an RCS campaign showing 0 delivery counts by systematically ruling out template approval status, then working through the Published vs Sent vs Submitted vs Delivered funnel with the bot to figure out why only a 'Published' count was showing.",
+      "why": "A structured, funnel-aware troubleshooting conversation rather than a basic how-to -- Deepak correctly pushed back on generic answers ('nothing is showing' / 'just published count') until he pinned down exactly which stage of the delivery lifecycle was stalling, showing real familiarity with campaign reporting mechanics."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 3
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 1,
+        "external": 1
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 0
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "chiewhsien.ong@nandos.com.my",
+        "count": 2,
+        "friction": true,
+        "panel": "nandoscee",
+        "queries": [
+          {
+            "theme": "Where do I set up/find X",
+            "text": "hi, i wan to know how many annual credit i have"
+          },
+          {
+            "theme": "Where do I set up/find X",
+            "text": "Campaigns emails left: 4,604,082 -- so in total how many credits i have? valid from when to when? / validity period of your current contract"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Email",
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "siddhant.bendkar@netcore.ai",
+            "q": "what are liquid tags",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "zoviyashaikh@ecuworldwide.com",
+            "q": "how can I exclude a domain from my email campaigns without selecting the list / trouble picking the right attribute for a 3-domain suppression segment",
+            "panel": "ecuworldwidesmt"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "deepak.udage@shemaroo.com",
+            "q": "not able to see RCS template g_car_300_200_a26; campaign showing 0 delivery counts despite a published count",
+            "panel": "saranyusmt"
+          }
+        ]
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "sakthivelb@tvscredit.com",
+            "q": "What innovation I can do with App Push Notification using templates",
+            "panel": "tvscreditsmt"
+          }
+        ]
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 4,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "chiewhsien.ong@nandos.com.my",
+            "q": "hi, i wan to know how many annual credit i have",
+            "panel": "nandoscee"
+          },
+          {
+            "email": "chiewhsien.ong@nandos.com.my",
+            "q": "Campaigns emails left: 4,604,082 -- how many total credits, validity period of contract",
+            "panel": "nandoscee"
+          },
+          {
+            "email": "am_abdul@camsonline.com",
+            "q": "Hi, please clear the harvest errors (UDT IDs 2075 & 2076, panel cams_sbi)",
+            "panel": "cams_sbi"
+          },
+          {
+            "email": "code@northeastltd.com",
+            "q": "Need to talk to an agent / Upload request ID 5328144 needs approval, panel nebsl_cee",
+            "panel": "nebsl_cee"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
       }
     ]
   }
@@ -21813,6 +21786,213 @@ const FULL_ARCHIVE = {
             "panel": "NA"
           }
         ]
+      }
+    ]
+  },
+  "2026-08-28": {
+    "date": "2026-08-28",
+    "totalConversations": 8,
+    "resolutionRate": 100,
+    "internalTotal": 1,
+    "externalTotal": 7,
+    "docsTotal": 1,
+    "panelTotal": 7,
+    "queryType": {
+      "technical": 1,
+      "generic": 7
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (Aug 28 00:00 IST to Aug 30 23:59 IST); window still open as of this run (D+1)",
+      "totalConversations": 8,
+      "sameUserEscalations": [
+        {
+          "email": "am_abdul@camsonline.com",
+          "docbotQuery": "Hi, please clear the harvest errors (panel: cams_sbi, UDT IDs 2075 & 2076)",
+          "area": "Infra/Data residency",
+          "theme": "How do I do X",
+          "ticketId": "5244917",
+          "ticketSubject": "Harvest Errors to be cleared - URGENT",
+          "ticketCreatedAt": "2026-08-28T17:14:00+05:30"
+        }
+      ],
+      "deflectedCount": 7,
+      "deflectionRate": 88,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. Tier 1 used the contact-search -> contact ID -> requester-filtered ticket list method (per known same-day indexing lag on ticket text search) for all 7 unique requester emails; 6 came back clean, Abdul Rahaman (CAMS/SBI) had ticket #5244917 for the identical harvest-error issue, filed ~22 minutes before his docbot conversation -- a habitual harvest-error filer (24 historical tickets) but this specific ticket is same-day, same-topic, so counted as a genuine escalation. Tier 2 keyword sweeps ('liquid tags', 'exclude domain', 'RCS template', 'app push template') found no genuine in-window (Aug 28-30) matches -- closest hits were 2-11 days old and different underlying needs (staff feature-enablement requests, not the conceptual/troubleshooting questions asked today)."
+    },
+    "headline": "Just 8 conversations on Aug 28 (Friday), 100% bot self-reported resolved -- but Freshdesk tells a sharper story: Abdul Rahaman (CAMS/SBI) filed a ticket for the exact same harvest-error issue 22 minutes before asking the bot, pulling deflection down to 88% (7 of 8). Deepak Udage (Shemaroo) ran a precise RCS delivery-funnel diagnosis (published vs sent vs delivered), and chiewhsien.ong@nandos.com.my re-asked a near-identical credits/validity question twice within 90 minutes.",
+    "actionableInsights": [
+      {
+        "owner": "product",
+        "title": "Harvest-error escalation landed in Freshdesk 22 minutes before the bot conversation",
+        "desc": "am_abdul@camsonline.com (CAMS, cams_sbi panel) filed Freshdesk ticket #5244917 for harvest errors at 17:14 IST, then asked the bot to 'clear the harvest errors' with UDT IDs 2075 & 2076 at 17:36 IST. The bot correctly explained it can't clear these directly and pointed to helpdesk@netcorecloud.com -- so the routing was right, but Abdul has filed this same ticket type 24 times historically. A self-serve harvest-error resolution flow (or at least an automatic status check) would cut a real recurring support load for this account."
+      },
+      {
+        "owner": "content",
+        "title": "RCS delivery funnel (Published vs Sent vs Delivered) needed five bot turns to explain",
+        "desc": "deepak.udage@shemaroo.com saw 0 delivery counts on an RCS campaign despite a 'Published' count showing, and needed a multi-step walkthrough of the Published -> Submitted -> Delivered lifecycle before landing on the answer. A one-line glossary callout directly in the Campaign Reports > RCS Report UI (not just the docs) would likely resolve this class of question in one turn."
+      },
+      {
+        "owner": "design",
+        "title": "Segment builder's 'Email' options are ambiguous -- 12+ turns to build a simple domain exclusion",
+        "desc": "zoviyashaikh@ecuworldwide.com spent the conversation's full 12 user turns confused between 'Reachable channel > Email', 'User Attributes > Email/EMAIL', and 'EMAIL (Primary key)' while trying to build a simple 3-domain suppression segment. All three read as \"Email\" in the picker with no inline distinction -- worth a UX pass on labeling or a tooltip explaining the difference before more customers hit this."
+      },
+      {
+        "owner": "calibration",
+        "title": "n=8, a quiet Friday -- read all rates directionally",
+        "desc": "Small sample day. chiewhsien.ong@nandos.com.my re-asked a near-identical credits/contract-validity question twice within 90 minutes (flagged as friction in topAskers) -- worth watching whether the first answer is landing clearly for this asker."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Deepak Udage (Shemaroo)",
+      "email": "deepak.udage@shemaroo.com",
+      "query": "Diagnosed an RCS campaign showing 0 delivery counts by systematically ruling out template approval status, then working through the Published vs Sent vs Submitted vs Delivered funnel with the bot to figure out why only a 'Published' count was showing.",
+      "why": "A structured, funnel-aware troubleshooting conversation rather than a basic how-to -- Deepak correctly pushed back on generic answers ('nothing is showing' / 'just published count') until he pinned down exactly which stage of the delivery lifecycle was stalling, showing real familiarity with campaign reporting mechanics."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 3
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 1,
+        "external": 1
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 0
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "chiewhsien.ong@nandos.com.my",
+        "count": 2,
+        "friction": true,
+        "panel": "nandoscee",
+        "queries": [
+          {
+            "theme": "Where do I set up/find X",
+            "text": "hi, i wan to know how many annual credit i have"
+          },
+          {
+            "theme": "Where do I set up/find X",
+            "text": "Campaigns emails left: 4,604,082 -- so in total how many credits i have? valid from when to when? / validity period of your current contract"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Email",
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "siddhant.bendkar@netcore.ai",
+            "q": "what are liquid tags",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "zoviyashaikh@ecuworldwide.com",
+            "q": "how can I exclude a domain from my email campaigns without selecting the list / trouble picking the right attribute for a 3-domain suppression segment",
+            "panel": "ecuworldwidesmt"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "deepak.udage@shemaroo.com",
+            "q": "not able to see RCS template g_car_300_200_a26; campaign showing 0 delivery counts despite a published count",
+            "panel": "saranyusmt"
+          }
+        ]
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "sakthivelb@tvscredit.com",
+            "q": "What innovation I can do with App Push Notification using templates",
+            "panel": "tvscreditsmt"
+          }
+        ]
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 4,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "chiewhsien.ong@nandos.com.my",
+            "q": "hi, i wan to know how many annual credit i have",
+            "panel": "nandoscee"
+          },
+          {
+            "email": "chiewhsien.ong@nandos.com.my",
+            "q": "Campaigns emails left: 4,604,082 -- how many total credits, validity period of contract",
+            "panel": "nandoscee"
+          },
+          {
+            "email": "am_abdul@camsonline.com",
+            "q": "Hi, please clear the harvest errors (UDT IDs 2075 & 2076, panel cams_sbi)",
+            "panel": "cams_sbi"
+          },
+          {
+            "email": "code@northeastltd.com",
+            "q": "Need to talk to an agent / Upload request ID 5328144 needs approval, panel nebsl_cee",
+            "panel": "nebsl_cee"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
       }
     ]
   }
