@@ -599,283 +599,6 @@ html[data-theme="dark"] .intro-banner .ib-lede{color:#c7cad1;}
 </div>
 <script>
 const ARCHIVE = {
-  "2026-08-15": {
-    "date": "2026-08-15",
-    "totalConversations": 1,
-    "resolutionRate": 100,
-    "internalTotal": 0,
-    "externalTotal": 1,
-    "docsTotal": 0,
-    "panelTotal": 1,
-    "queryType": {
-      "technical": 1,
-      "generic": 0
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days (Aug 15 00:00 IST to Aug 17 23:59 IST); window still open as of this run (D+1)",
-      "totalConversations": 1,
-      "sameUserEscalations": [],
-      "deflectedCount": 1,
-      "deflectionRate": 100,
-      "patternRisk": [],
-      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit \u2014 treat as a directional signal, doubly so at n=1 with the +2-day window not yet closed. Tier 1: direct email search for tinh.nguyen@droppii.com returned zero tickets. Tier 2: keyword search for 'voucher_id' returned zero tickets."
-    },
-    "headline": "Just 1 conversation on Aug 15 (Saturday) \u2014 but a meaty one: Tinh Nguyen at Droppii ran a three-part deep-dive into Netcore's supported data types for custom event attributes, working through whether to omit, empty-string, or array a voucher_id field to avoid schema-inference conflicts. Freshdesk-clean so far, though the window is still open through Aug 17.",
-    "actionableInsights": [
-      {
-        "owner": "calibration",
-        "title": "n=1 \u2014 read nothing into the 100% rate",
-        "desc": "Single conversation on a Saturday, consistent with the established weekend-low pattern seen repeatedly in this archive. Not a meaningful sample for resolution or deflection rates."
-      },
-      {
-        "owner": "content",
-        "title": "Custom event attribute data-type edge case (voucher_id) deserves a doc callout",
-        "desc": "tinh.nguyen@droppii.com spent 3 back-to-back messages working through whether an optional voucher_id attribute should be omitted, sent as an empty string, or sent as an array when no voucher applies \u2014 specifically asking about schema/type-inference conflicts from mixing String and Array types on the same attribute. This is exactly the kind of edge case that belongs as a one-line note in the event-schema docs (e.g. 'omit optional attributes entirely rather than sending empty values') so future integrators don't need a multi-turn bot conversation to get there."
-      },
-      {
-        "owner": "product",
-        "title": "Empty-array payload triggers a validation error that may be worth reconsidering",
-        "desc": "The user reported that sending `\"voucher_id\": []` throws 'Invalid Payload [voucher_id] Data Type', while `[\"\"]` (an array containing an empty string) is silently accepted. If arrays are the intended representation for this field, an empty array arguably should be valid too (it semantically means 'no vouchers') \u2014 or at minimum the error message should explain the expected alternative. Worth a quick check with the schema/validation owners."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Tinh Nguyen (Droppii)",
-      "email": "tinh.nguyen@droppii.com",
-      "query": "Ran a structured, three-part investigation into the correct data type/representation for an optional voucher_id custom event attribute \u2014 omit vs. empty string vs. array \u2014 explicitly asking about schema-inference conflicts and downstream impact on segmentation and automation.",
-      "why": "A methodical, engineering-grade integration question that anticipates edge cases (multi-voucher orders, type conflicts) rather than a single basic lookup \u2014 shows real care about building a robust, forward-compatible integration."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 0,
-        "external": 1
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 0
-      }
-    ],
-    "topAskers": [],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 0,
-        "external": 1,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "tinh.nguyen@droppii.com",
-            "q": "Supported data types for custom event attributes \u2014 how to represent an optional voucher_id (omit / empty string / array) without causing schema-inference conflicts",
-            "panel": "sndt_droppiicee"
-          }
-        ]
-      },
-      {
-        "area": "Email",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      }
-    ]
-  },
-  "2026-08-16": {
-    "date": "2026-08-16",
-    "totalConversations": 2,
-    "resolutionRate": 100,
-    "internalTotal": 0,
-    "externalTotal": 2,
-    "docsTotal": 2,
-    "panelTotal": 0,
-    "queryType": {
-      "technical": 0,
-      "generic": 2
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days (Aug 16 00:00 IST to Aug 18 23:59 IST); window still open as of this run (D+0/D+1)",
-      "totalConversations": 2,
-      "sameUserEscalations": [],
-      "deflectedCount": 2,
-      "deflectionRate": 100,
-      "patternRisk": [],
-      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit \u2014 treat as a directional signal, doubly so at n=2 with the +2-day window barely open. Tier 1: direct email search for both unique requesters (nehakohli2611@gmail.com, boruahh270@gmail.com) returned zero tickets. No Tier 2 area search run since neither conversation touched a real CE product area (both off-topic)."
-    },
-    "headline": "Just 2 conversations on Aug 16 (Sunday), and neither was a real CE product question \u2014 one loan-spam message and one bank-account-unblock request, both off-topic to the Netcore CE platform and both correctly handled by the bot. Zero genuine product signal today, continuing the recurring off-topic-noise pattern seen on prior quiet weekend days (Aug 2, Aug 4).",
-    "actionableInsights": [
-      {
-        "owner": "calibration",
-        "title": "n=2 \u2014 no real product signal today",
-        "desc": "Both of today's conversations were off-topic: nehakohli2611@gmail.com sent loan-spam ('U want two wheeler loan'), and boruahh270@gmail.com asked about unblocking a bank account \u2014 neither related to Netcore CE. Read Aug 16 as a null day for content/product insight."
-      },
-      {
-        "owner": "product",
-        "title": "Off-topic misuse (loan spam, banking requests) keeps reaching the bot on quiet days",
-        "desc": "This is now a recurring pattern (previously flagged Aug 2 and Aug 4) \u2014 loan-related and now banking-related spam messages land in the docbot despite having nothing to do with Netcore CE. The bot is declining/redirecting appropriately, but worth confirming there's a review process and no PII-handling risk, and whether a lightweight 'is this about the Netcore CE platform?' gate would reduce this noise."
-      },
-      {
-        "owner": "calibration",
-        "title": "Weekend-low volume pattern holds",
-        "desc": "2 conversations on a Sunday is consistent with the established weekend floor (~1-2/day) seen repeatedly across this archive."
-      }
-    ],
-    "mostInteresting": {
-      "who": "N/A",
-      "email": "N/A",
-      "query": "No genuine CE product question came through today \u2014 both conversations were off-topic (loan spam and an unrelated bank-account unblock request).",
-      "why": "Flagging the absence of real signal rather than forcing a pick from two off-topic messages."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 2
-      }
-    ],
-    "topAskers": [],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Email",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 2,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "nehakohli2611@gmail.com",
-            "q": "Hi / U want two wheeler loan (loan-spam, off-topic)",
-            "panel": "NA"
-          },
-          {
-            "email": "boruahh270@gmail.com",
-            "q": "My account block / My bank account unblock kijiye (off-topic, unrelated to Netcore CE)",
-            "panel": "NA"
-          }
-        ]
-      }
-    ]
-  },
   "2026-08-17": {
     "date": "2026-08-17",
     "totalConversations": 20,
@@ -3996,6 +3719,355 @@ const ARCHIVE = {
         "external": 0,
         "internalQ": [],
         "externalQ": []
+      }
+    ]
+  },
+  "2026-08-29": {
+    "date": "2026-08-29",
+    "totalConversations": 7,
+    "resolutionRate": 100,
+    "internalTotal": 0,
+    "externalTotal": 7,
+    "docsTotal": 2,
+    "panelTotal": 5,
+    "queryType": {
+      "technical": 4,
+      "generic": 3
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (Aug 29 00:00 IST to Aug 31 23:59 IST); window closes today (D+2)",
+      "totalConversations": 7,
+      "sameUserEscalations": [],
+      "deflectedCount": 7,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. Tier 1: contact-search method (lag-proof) used for all 5 unique requesters (mohitsonline344@gmail.com, covcteam@indianbank.bank.in, ayushi@parasol.me, shivam.shaw@toolsvilla.com, escontatechnologies@gmail.com) -- only shivam.shaw@toolsvilla.com had any Freshdesk history, and his most recent ticket (Whatsapp Billing Dashboard issue) closed 8 days ago, well outside the window. Tier 2: keyword sweeps for 'SMTP relay' (45 hits, all Pepipost/domain-whitelisting requests 4+ days old, different underlying need than the mailbaby-rejection/SMTP-relay-config asks), 'journey' (6,353 hits, too broad/noisy -- spot-checked top results, all operational journey-delivery bugs, none matching the 'create a journey for high-value viewers' ask or in-window), 'list count discrepancy' (1 hit, 1 month old), 'upload without email' (0 hits) -- no genuine in-window pattern match found."
+    },
+    "headline": "7 conversations on Aug 29 (Saturday, backfilled), 100% bot-resolved and 100% Freshdesk-deflected -- Ayushi at Parasol needed two tries to figure out CSV upload with just a phone number, and Esconta Technologies escalated from 'why is mailbaby rejecting my emails' to asking for a custom SMTP relay pointed at their own domain.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "n=7 -- Saturday weekend-low, consistent with established pattern",
+        "desc": "7 conversations on a Saturday is in line with the recurring weekend floor seen throughout this archive. Read rates directionally, not as a stable baseline."
+      },
+      {
+        "owner": "content",
+        "title": "covcteam@indianbank.bank.in confused by list-total vs. published-count mismatch",
+        "desc": "Asked 'List contains 62200 contacts but published is 53000 why' -- a common but undocumented confusion (list size vs. actually-published/sent count after suppressions, invalid contacts, opt-outs). A one-line explainer on why 'published' differs from 'list total' would resolve this class of question without back-and-forth. No matching Freshdesk ticket found, so this is purely a content gap, not an active escalation."
+      },
+      {
+        "owner": "content",
+        "title": "Ayushi (Parasol) re-asked the same CSV-upload question twice, 45 minutes apart",
+        "desc": "'How to only upload the mobile number' then 'how tp upload on phone number without email ID' -- same underlying need, not resolved on the first pass (friction=true). A clear doc note on which fields are mandatory vs. optional for CSV contact imports would likely close this in one turn."
+      },
+      {
+        "owner": "product",
+        "title": "Esconta Technologies' SMTP relay / custom-domain request is a real infra ask, not a how-to",
+        "desc": "escontatechnologies@gmail.com (taxcontaindia_ce) asked why 'mailbaby' was rejecting their emails, then 10 minutes later asked whether Netcore could configure the SMTP relay to route through their own domain (mail.taxcontaindia.com). The bot can explain but can't execute an SMTP relay config change -- worth confirming this got routed to actual support/ops rather than just being marked bot-resolved, since it's a genuine infra request."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Esconta Technologies (taxcontaindia)",
+      "email": "escontatechnologies@gmail.com",
+      "query": "Asked why their custom sending domain ('mailbaby') was rejecting outbound emails, then followed up asking whether Netcore could configure the SMTP relay to route through their own domain (mail.taxcontaindia.com) instead.",
+      "why": "A genuine custom-domain email deliverability / SMTP relay configuration question that escalates from symptom (rejected emails) to a specific technical fix -- shows real infrastructure-level thinking rather than a basic how-to lookup."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 1
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "ayushi@parasol.me",
+        "count": 2,
+        "friction": true,
+        "panel": "advpluscee",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "How to only upload the mobile number"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "how tp upload on phone number without email ID"
+          }
+        ]
+      },
+      {
+        "email": "escontatechnologies@gmail.com",
+        "count": 2,
+        "friction": true,
+        "panel": "taxcontaindia_ce",
+        "queries": [
+          {
+            "theme": "What does X mean/how it works",
+            "text": "Why mailbaby is rejecting my emails"
+          },
+          {
+            "theme": "Is X possible/supported",
+            "text": "can configure the SMTP relay to point to mail.taxcontaindia.com on your end"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "escontatechnologies@gmail.com",
+            "q": "Why mailbaby is rejecting my emails",
+            "panel": "taxcontaindia_ce"
+          },
+          {
+            "email": "escontatechnologies@gmail.com",
+            "q": "can configure the SMTP relay to point to mail.taxcontaindia.com on your end",
+            "panel": "taxcontaindia_ce"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "shivam.shaw@toolsvilla.com",
+            "q": "I want to create a journey for the people who had viewed products priced above 10000, can you create it?",
+            "panel": "toolsvillanew_cee"
+          }
+        ]
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 3,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "covcteam@indianbank.bank.in",
+            "q": "List contains 62200 contacts but published is 53000 why",
+            "panel": "NA"
+          },
+          {
+            "email": "ayushi@parasol.me",
+            "q": "How to only upload the mobile number",
+            "panel": "advpluscee"
+          },
+          {
+            "email": "ayushi@parasol.me",
+            "q": "how tp upload on phone number without email ID",
+            "panel": "advpluscee"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "mohitsonline344@gmail.com",
+            "q": "Hlo",
+            "panel": "NA"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-08-30": {
+    "date": "2026-08-30",
+    "totalConversations": 2,
+    "resolutionRate": 100,
+    "internalTotal": 0,
+    "externalTotal": 2,
+    "docsTotal": 1,
+    "panelTotal": 1,
+    "queryType": {
+      "technical": 1,
+      "generic": 1
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (Aug 30 00:00 IST to Sep 1 23:59 IST); window just opened as of this run (D+1)",
+      "totalConversations": 2,
+      "sameUserEscalations": [],
+      "deflectedCount": 2,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as directional, doubly so at n=2 with the window barely open. Tier 1: contact-search method for both unique requesters -- suyash.verma@insurancedekho.com has Freshdesk history but the most relevant ticket ('Issues with Webhook', #5239043) was created Aug 20, well before this window, so not counted as an escalation; kuldeepmegaval@gmail.com has zero Freshdesk history. Tier 2: 'webhook attention required' keyword search found 2 historical tickets on the exact same status message, both 2-3 months old and outside the window."
+    },
+    "headline": "Just 2 conversations on Aug 30 (Sunday, backfilled) -- one genuine product question (a webhook stuck on 'Attention Required') and one loan-spam message, both bot-resolved with zero Freshdesk follow-up so far.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "n=2 -- read nothing into the 100% rate",
+        "desc": "Two conversations on a Sunday is consistent with the established weekend floor. Not a meaningful sample for resolution or deflection rates, and the +2-day deflection window has barely started."
+      },
+      {
+        "owner": "content",
+        "title": "Webhook 'Attention Required' status has generated Freshdesk tickets twice before",
+        "desc": "suyash.verma@insurancedekho.com asked what the webhook 'Attention Required' status means. Two historical Freshdesk tickets (closed 2-3 months ago) show this exact status message has confused customers into filing tickets before -- worth checking whether the in-panel copy for this specific status now includes a clear, actionable explanation (e.g. what triggers it, how to clear it) so it doesn't keep generating both bot conversations and tickets."
+      },
+      {
+        "owner": "content",
+        "title": "Off-topic loan spam continues on quiet days",
+        "desc": "kuldeepmegaval@gmail.com sent an unrelated loan-amount query in Hindi, consistent with the recurring shopping/loan spam pattern flagged on multiple prior quiet days (Aug 2, Aug 4, Aug 16, Aug 19)."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Suyash Verma (InsuranceDekho)",
+      "email": "suyash.verma@insurancedekho.com",
+      "query": "Reported that their webhook integration is showing an 'Attention Required' status and asked what it means / how to resolve it.",
+      "why": "The only genuine product question of a very quiet Sunday -- a real webhook health/integration status question, and one that Freshdesk history shows has tripped up other customers into filing tickets before."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 1
+      }
+    ],
+    "topAskers": [],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "suyash.verma@insurancedekho.com",
+            "q": "my webhook shows attention required",
+            "panel": "insurance_dekhocee"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "kuldeepmegaval@gmail.com",
+            "q": "Mere lon kitne ka hoga (loan-spam, off-topic)",
+            "panel": "NA"
+          }
+        ]
       }
     ]
   }
@@ -21995,6 +22067,355 @@ const FULL_ARCHIVE = {
         "externalQ": []
       }
     ]
+  },
+  "2026-08-29": {
+    "date": "2026-08-29",
+    "totalConversations": 7,
+    "resolutionRate": 100,
+    "internalTotal": 0,
+    "externalTotal": 7,
+    "docsTotal": 2,
+    "panelTotal": 5,
+    "queryType": {
+      "technical": 4,
+      "generic": 3
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (Aug 29 00:00 IST to Aug 31 23:59 IST); window closes today (D+2)",
+      "totalConversations": 7,
+      "sameUserEscalations": [],
+      "deflectedCount": 7,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal. Tier 1: contact-search method (lag-proof) used for all 5 unique requesters (mohitsonline344@gmail.com, covcteam@indianbank.bank.in, ayushi@parasol.me, shivam.shaw@toolsvilla.com, escontatechnologies@gmail.com) -- only shivam.shaw@toolsvilla.com had any Freshdesk history, and his most recent ticket (Whatsapp Billing Dashboard issue) closed 8 days ago, well outside the window. Tier 2: keyword sweeps for 'SMTP relay' (45 hits, all Pepipost/domain-whitelisting requests 4+ days old, different underlying need than the mailbaby-rejection/SMTP-relay-config asks), 'journey' (6,353 hits, too broad/noisy -- spot-checked top results, all operational journey-delivery bugs, none matching the 'create a journey for high-value viewers' ask or in-window), 'list count discrepancy' (1 hit, 1 month old), 'upload without email' (0 hits) -- no genuine in-window pattern match found."
+    },
+    "headline": "7 conversations on Aug 29 (Saturday, backfilled), 100% bot-resolved and 100% Freshdesk-deflected -- Ayushi at Parasol needed two tries to figure out CSV upload with just a phone number, and Esconta Technologies escalated from 'why is mailbaby rejecting my emails' to asking for a custom SMTP relay pointed at their own domain.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "n=7 -- Saturday weekend-low, consistent with established pattern",
+        "desc": "7 conversations on a Saturday is in line with the recurring weekend floor seen throughout this archive. Read rates directionally, not as a stable baseline."
+      },
+      {
+        "owner": "content",
+        "title": "covcteam@indianbank.bank.in confused by list-total vs. published-count mismatch",
+        "desc": "Asked 'List contains 62200 contacts but published is 53000 why' -- a common but undocumented confusion (list size vs. actually-published/sent count after suppressions, invalid contacts, opt-outs). A one-line explainer on why 'published' differs from 'list total' would resolve this class of question without back-and-forth. No matching Freshdesk ticket found, so this is purely a content gap, not an active escalation."
+      },
+      {
+        "owner": "content",
+        "title": "Ayushi (Parasol) re-asked the same CSV-upload question twice, 45 minutes apart",
+        "desc": "'How to only upload the mobile number' then 'how tp upload on phone number without email ID' -- same underlying need, not resolved on the first pass (friction=true). A clear doc note on which fields are mandatory vs. optional for CSV contact imports would likely close this in one turn."
+      },
+      {
+        "owner": "product",
+        "title": "Esconta Technologies' SMTP relay / custom-domain request is a real infra ask, not a how-to",
+        "desc": "escontatechnologies@gmail.com (taxcontaindia_ce) asked why 'mailbaby' was rejecting their emails, then 10 minutes later asked whether Netcore could configure the SMTP relay to route through their own domain (mail.taxcontaindia.com). The bot can explain but can't execute an SMTP relay config change -- worth confirming this got routed to actual support/ops rather than just being marked bot-resolved, since it's a genuine infra request."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Esconta Technologies (taxcontaindia)",
+      "email": "escontatechnologies@gmail.com",
+      "query": "Asked why their custom sending domain ('mailbaby') was rejecting outbound emails, then followed up asking whether Netcore could configure the SMTP relay to route through their own domain (mail.taxcontaindia.com) instead.",
+      "why": "A genuine custom-domain email deliverability / SMTP relay configuration question that escalates from symptom (rejected emails) to a specific technical fix -- shows real infrastructure-level thinking rather than a basic how-to lookup."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 1
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "ayushi@parasol.me",
+        "count": 2,
+        "friction": true,
+        "panel": "advpluscee",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "How to only upload the mobile number"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "how tp upload on phone number without email ID"
+          }
+        ]
+      },
+      {
+        "email": "escontatechnologies@gmail.com",
+        "count": 2,
+        "friction": true,
+        "panel": "taxcontaindia_ce",
+        "queries": [
+          {
+            "theme": "What does X mean/how it works",
+            "text": "Why mailbaby is rejecting my emails"
+          },
+          {
+            "theme": "Is X possible/supported",
+            "text": "can configure the SMTP relay to point to mail.taxcontaindia.com on your end"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "escontatechnologies@gmail.com",
+            "q": "Why mailbaby is rejecting my emails",
+            "panel": "taxcontaindia_ce"
+          },
+          {
+            "email": "escontatechnologies@gmail.com",
+            "q": "can configure the SMTP relay to point to mail.taxcontaindia.com on your end",
+            "panel": "taxcontaindia_ce"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "shivam.shaw@toolsvilla.com",
+            "q": "I want to create a journey for the people who had viewed products priced above 10000, can you create it?",
+            "panel": "toolsvillanew_cee"
+          }
+        ]
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 3,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "covcteam@indianbank.bank.in",
+            "q": "List contains 62200 contacts but published is 53000 why",
+            "panel": "NA"
+          },
+          {
+            "email": "ayushi@parasol.me",
+            "q": "How to only upload the mobile number",
+            "panel": "advpluscee"
+          },
+          {
+            "email": "ayushi@parasol.me",
+            "q": "how tp upload on phone number without email ID",
+            "panel": "advpluscee"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "mohitsonline344@gmail.com",
+            "q": "Hlo",
+            "panel": "NA"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-08-30": {
+    "date": "2026-08-30",
+    "totalConversations": 2,
+    "resolutionRate": 100,
+    "internalTotal": 0,
+    "externalTotal": 2,
+    "docsTotal": 1,
+    "panelTotal": 1,
+    "queryType": {
+      "technical": 1,
+      "generic": 1
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (Aug 30 00:00 IST to Sep 1 23:59 IST); window just opened as of this run (D+1)",
+      "totalConversations": 2,
+      "sameUserEscalations": [],
+      "deflectedCount": 2,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as directional, doubly so at n=2 with the window barely open. Tier 1: contact-search method for both unique requesters -- suyash.verma@insurancedekho.com has Freshdesk history but the most relevant ticket ('Issues with Webhook', #5239043) was created Aug 20, well before this window, so not counted as an escalation; kuldeepmegaval@gmail.com has zero Freshdesk history. Tier 2: 'webhook attention required' keyword search found 2 historical tickets on the exact same status message, both 2-3 months old and outside the window."
+    },
+    "headline": "Just 2 conversations on Aug 30 (Sunday, backfilled) -- one genuine product question (a webhook stuck on 'Attention Required') and one loan-spam message, both bot-resolved with zero Freshdesk follow-up so far.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "n=2 -- read nothing into the 100% rate",
+        "desc": "Two conversations on a Sunday is consistent with the established weekend floor. Not a meaningful sample for resolution or deflection rates, and the +2-day deflection window has barely started."
+      },
+      {
+        "owner": "content",
+        "title": "Webhook 'Attention Required' status has generated Freshdesk tickets twice before",
+        "desc": "suyash.verma@insurancedekho.com asked what the webhook 'Attention Required' status means. Two historical Freshdesk tickets (closed 2-3 months ago) show this exact status message has confused customers into filing tickets before -- worth checking whether the in-panel copy for this specific status now includes a clear, actionable explanation (e.g. what triggers it, how to clear it) so it doesn't keep generating both bot conversations and tickets."
+      },
+      {
+        "owner": "content",
+        "title": "Off-topic loan spam continues on quiet days",
+        "desc": "kuldeepmegaval@gmail.com sent an unrelated loan-amount query in Hindi, consistent with the recurring shopping/loan spam pattern flagged on multiple prior quiet days (Aug 2, Aug 4, Aug 16, Aug 19)."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Suyash Verma (InsuranceDekho)",
+      "email": "suyash.verma@insurancedekho.com",
+      "query": "Reported that their webhook integration is showing an 'Attention Required' status and asked what it means / how to resolve it.",
+      "why": "The only genuine product question of a very quiet Sunday -- a real webhook health/integration status question, and one that Freshdesk history shows has tripped up other customers into filing tickets before."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 1
+      }
+    ],
+    "topAskers": [],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "suyash.verma@insurancedekho.com",
+            "q": "my webhook shows attention required",
+            "panel": "insurance_dekhocee"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "kuldeepmegaval@gmail.com",
+            "q": "Mere lon kitne ka hoga (loan-spam, off-topic)",
+            "panel": "NA"
+          }
+        ]
+      }
+    ]
   }
 };
 const DATES = Object.keys(FULL_ARCHIVE).sort().reverse();
@@ -22747,7 +23168,8 @@ function buildTrendSeries(histArchive, granularity){
   if(granularity === 'monthly'){
     const map = {};
     dates.forEach(d=>{
-      const key = d.slice(0,7); // YYYY-MM
+      const parts = d.split('-');
+      const key = parts[0]+'-'+parts[1];
       map[key] = (map[key]||0) + histArchive[d].totalConversations;
     });
     return Object.keys(map).sort().map(k=>({key:k, value:map[k]}));
