@@ -599,363 +599,6 @@ html[data-theme="dark"] .intro-banner .ib-lede{color:#c7cad1;}
 </div>
 <script>
 const ARCHIVE = {
-  "2026-08-18": {
-    "date": "2026-08-18",
-    "totalConversations": 27,
-    "resolutionRate": 100,
-    "internalTotal": 14,
-    "externalTotal": 13,
-    "docsTotal": 15,
-    "panelTotal": 12,
-    "queryType": {
-      "technical": 15,
-      "generic": 12
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days",
-      "totalConversations": 27,
-      "sameUserEscalations": [],
-      "deflectedCount": 27,
-      "deflectionRate": 100,
-      "patternRisk": [
-        {
-          "area": "API/Integration",
-          "docbotCount": 9,
-          "ticketCount": 2,
-          "exampleTicketSubjects": [
-            "New Onboarding – Malaysia | Email API Integration Documentation & Walkthrough",
-            "Re: Need API Key"
-          ],
-          "note": "Soft pattern only -- different requesters than docbot askers, but same underlying need (API docs/keys/integration walkthroughs), echoing the day's heaviest docbot bucket (9 of 27 conversations)."
-        }
-      ],
-      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as a directional signal."
-    },
-    "headline": "27 conversations, 100% bot-resolved and zero same-user Freshdesk escalations in the +2-day window -- corrected split (fixed 2026-08-21) is 14 internal : 13 customer, now that @netcore.ai/@netcorecloud.ai staff (sakshi.yadav, sandeep.shetty, ninad.karangutkar, ishika.a, tony.jose, akash.gupta, drashtant.pambhar, swati.jangir, saloni.shinde, vani.ganasutrisna) are correctly counted internal.",
-    "actionableInsights": [
-      {
-        "owner": "calibration",
-        "title": "Internal/external split corrected retroactively (fixed 2026-08-21)",
-        "desc": "10 of 27 conversations (sakshi.yadav, sandeep.shetty, ninad.karangutkar, ishika.a, tony.jose, akash.gupta, drashtant.pambhar, swati.jangir, saloni.shinde, vani.ganasutrisna) were originally misclassified 'external' under the old domain rule. The internal-domain allowlist was expanded to include @netcore.ai and @netcorecloud.ai, and this day's data was reclassified accordingly. Corrected split: 14 internal : 13 customer."
-      },
-      {
-        "owner": "content",
-        "title": "Two people asked about the Google/Meta Ads connector 9 minutes apart",
-        "desc": "drashtant.pambhar@netcore.ai (06:23 IST) and apekshit.babaria@netcorecloud.com (06:14 IST) both asked essentially the same question -- what Netcore's Google Ads/Meta Ads partnership means and whether there's a connector -- independently, minutes apart. A dedicated FAQ or short explainer doc on the ads integration would likely head off repeat asks like this."
-      },
-      {
-        "owner": "product",
-        "title": "404::NOT_FOUND::NotRegistered push error marked 'resolved' but is a real device-token bug",
-        "desc": "tinh.nguyen@droppii.com hit a push notification delivery error (looks like a stale/unregistered FCM or APNs token) and the bot marked the conversation resolved after explaining the error. No Freshdesk ticket followed, but the bot can't actually fix a token registration issue -- worth a product/eng check on whether 'explained' is being counted as 'resolved' for hard technical errors like this."
-      },
-      {
-        "owner": "design",
-        "title": "amit.kumar14@trustline.in used the bot for non-product asks (phone number, broken link)",
-        "desc": "Both of amit.kumar14's conversations were off-product: a request for a support phone number and a vague 'HTML link' access issue that reads more like a general support request than a CE product question. The bot doesn't seem to route non-product asks to a proper contact channel -- worth checking if a fallback/escalation prompt would serve this kind of user better than a bot answer."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Tinh Nguyen",
-      "email": "tinh.nguyen@droppii.com",
-      "query": "How to handle marketing consent withdrawal for Email and SMS when one shared consent field currently covers Push, Email, and SMS -- already using optPushNotification for Push, asking how to replicate that pattern for the other two channels.",
-      "why": "A precise, compliance-aware, multi-channel consent-architecture question referencing an actual field name (optPushNotification) -- shows real platform familiarity and a legitimate integration design question, not a how-to lookup."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 2,
-        "external": 3
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 3,
-        "external": 2
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 1,
-        "external": 2
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 5,
-        "external": 1
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 3,
-        "external": 1
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 4
-      }
-    ],
-    "topAskers": [
-      {
-        "email": "amit.kumar14@trustline.in",
-        "count": 2,
-        "friction": false,
-        "panel": "NA",
-        "queries": [
-          {
-            "theme": "Where do I set up/find X",
-            "text": "please give me your agent phone no or office agent no."
-          },
-          {
-            "theme": "How do I do X",
-            "text": "I am a user, and I am facing an issue while trying to fetch an HTML link through your website."
-          }
-        ]
-      },
-      {
-        "email": "prateek.singh@netcorecloud.com",
-        "count": 2,
-        "friction": false,
-        "panel": "NA",
-        "queries": [
-          {
-            "theme": "Where's the doc/API for X",
-            "text": "give me the image size for the in-app message templates"
-          },
-          {
-            "theme": "Is X possible/supported",
-            "text": "Customer wants to push the user level data to CE panel but they don't want to do manual upload due to data security concerns. What other options are available to do this?"
-          }
-        ]
-      },
-      {
-        "email": "tinh.nguyen@droppii.com",
-        "count": 2,
-        "friction": false,
-        "panel": "sndt_droppiicee",
-        "queries": [
-          {
-            "theme": "What does X mean/how it works",
-            "text": "404 :: NOT_FOUND :: NotRegistered netcore please help me check error when push notification"
-          },
-          {
-            "theme": "How do I do X",
-            "text": "Hi Netcore Support Team, I have a question regarding how to handle marketing consent withdrawal for Email and SMS. Currently our app has one marketing consent that applies to three channels: App Push, Email, SMS. We already handle Push consent using optPushNotification..."
-          }
-        ]
-      },
-      {
-        "email": "sigit.wibowo@cimbniaga.co.id",
-        "count": 2,
-        "friction": false,
-        "panel": "cimbniagaid",
-        "queries": [
-          {
-            "theme": "What does X mean/how it works",
-            "text": "in blocklisted contacts reason is N/A why"
-          },
-          {
-            "theme": "Bare greeting, no context yet",
-            "text": "hi"
-          }
-        ]
-      }
-    ],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 6,
-        "external": 3,
-        "internalQ": [
-          {
-            "email": "prateek.singh@netcorecloud.com",
-            "q": "Customer wants to push the user level data to CE panel but they don't want to do manual upload due to data security concerns. What other options are available to do this?",
-            "panel": "NA"
-          },
-          {
-            "email": "apekshit.babaria@netcorecloud.com",
-            "q": "How does Netcore work with Google ads and Meta ads? Is there a connector? What are the capabilities?",
-            "panel": "NA"
-          },
-          {
-            "email": "ishika.a@netcore.ai",
-            "q": "can i get a web personalization coupon drawer video tutorial",
-            "panel": "NA"
-          },
-          {
-            "email": "akash.gupta@netcore.ai",
-            "q": "Help me with the document to integrate our base JS for web pz in clients website",
-            "panel": "NA"
-          },
-          {
-            "email": "drashtant.pambhar@netcore.ai",
-            "q": "What does Netcore exactly mean when it says it partners with Google Ads and Meta ads? How is Netcore connected with them and how do they work together?",
-            "panel": "NA"
-          },
-          {
-            "email": "swati.jangir@netcore.ai",
-            "q": "can we export netcore data in snowflake?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "amit.kumar14@trustline.in",
-            "q": "I am a user, and I am facing an issue while trying to fetch an HTML link through your website.",
-            "panel": "NA"
-          },
-          {
-            "email": "tinh.nguyen@droppii.com",
-            "q": "404 :: NOT_FOUND :: NotRegistered netcore please help me check error when push notification",
-            "panel": "sndt_droppiicee"
-          },
-          {
-            "email": "test@gmail.com",
-            "q": "give me the GDPR api",
-            "panel": "NA"
-          }
-        ]
-      },
-      {
-        "area": "Email",
-        "internal": 0,
-        "external": 2,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "kadobli@ecobank.com",
-            "q": "How can I spool the report mail sent on the platform",
-            "panel": "ecobanksmart"
-          },
-          {
-            "email": "tinh.nguyen@droppii.com",
-            "q": "Hi Netcore Support Team, I have a question regarding how to handle marketing consent withdrawal for Email and SMS. Currently our app has one marketing consent that applies to three channels: App Push, Email, SMS. We already handle Push consent using optPushNotification...",
-            "panel": "sndt_droppiicee"
-          }
-        ]
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 3,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "anand.mishra@netcorecloud.com",
-            "q": "what is the correct number format for a US mobile number to send sms",
-            "panel": "NA"
-          },
-          {
-            "email": "sandeep.shetty@netcore.ai",
-            "q": "how much payload character support",
-            "panel": "NA"
-          },
-          {
-            "email": "saloni.shinde@netcore.ai",
-            "q": "what all data types are allowed when I am uploading image while creating a WhatsApp template",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 1,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "vani.ganasutrisna@netcore.ai",
-            "q": "what is utm content?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "dikshasupperb@gmail.com",
-            "q": "when will be my Diana op campaign will be sent?",
-            "panel": "craftedcotton_ce"
-          }
-        ]
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 3,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "prateek.singh@netcorecloud.com",
-            "q": "give me the image size for the in-app message templates",
-            "panel": "NA"
-          },
-          {
-            "email": "ninad.karangutkar@netcore.ai",
-            "q": "what should be revenue parameter if the goal is product purchase",
-            "panel": "smartechai"
-          },
-          {
-            "email": "tony.jose@netcore.ai",
-            "q": "How do I check if I have frequency capping enabled?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "akshatar.sangle@edelweissarc.in",
-            "q": "can you help how does the PersonalizedContent work for Campaigns",
-            "panel": "edelweissarc_cee"
-          }
-        ]
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 1,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "sakshi.yadav@netcorecloud.ai",
-            "q": "how to download segment data",
-            "panel": "iprulifece"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "sigit.wibowo@cimbniaga.co.id",
-            "q": "in blocklisted contacts reason is N/A why",
-            "panel": "cimbniagaid"
-          }
-        ]
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 5,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "amit.kumar14@trustline.in",
-            "q": "please give me your agent phone no or office agent no.",
-            "panel": "NA"
-          },
-          {
-            "email": "misbah@wakelet.com",
-            "q": "Speak to human",
-            "panel": "wakeletceusnew"
-          },
-          {
-            "email": "sigit.wibowo@cimbniaga.co.id",
-            "q": "hi",
-            "panel": "cimbniagaid"
-          },
-          {
-            "email": "anshikagarg@satyasupport.co.in",
-            "q": "Hi",
-            "panel": "satyasupport_ce"
-          },
-          {
-            "email": "srinath.r@ifheindia.org",
-            "q": "Hi",
-            "panel": "ifheindiacee"
-          }
-        ]
-      }
-    ]
-  },
   "2026-08-19": {
     "date": "2026-08-19",
     "totalConversations": 24,
@@ -4026,6 +3669,272 @@ const ARCHIVE = {
             "email": "rashidshaha18@gmail.com",
             "q": "Hii",
             "panel": "NA"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-01": {
+    "date": "2026-09-01",
+    "totalConversations": 18,
+    "resolutionRate": 100,
+    "internalTotal": 7,
+    "externalTotal": 11,
+    "docsTotal": 4,
+    "panelTotal": 14,
+    "queryType": {
+      "technical": 4,
+      "generic": 14
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-09-01 00:00 IST to 2026-09-03 23:59 IST). Checked via Freshdesk Contacts search -> contact ID -> requester-filtered ticket list (lag-proof method).",
+      "totalConversations": 18,
+      "sameUserEscalations": [],
+      "deflectedCount": 18,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "All 16 unique requester emails checked via the lag-proof contact-search method; 8 had no Freshdesk contact record at all, the rest had tickets but none within the D-to-D+2 window on a matching topic. A recurring 'Email not sending via journey with product collection - outcasts_ce' bug (3 tickets) surfaced on a 'product collection' keyword sweep -- topically close to two of today's Journey Builder/Broadcast questions -- but all 3 tickets were created Aug 27-29, before this window, so excluded as a Tier 2 match. Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as directional."
+    },
+    "headline": "18 conversations on Sept 1, 100% bot self-reported resolved and 100% Freshdesk-deflected (zero same-user escalations in the +2-day window) -- Nguyễn Thị Thu Hà (gggcomsmt) surfaced a real journey under-delivery bug (only 2,537 of 13,371 eligible contacts got sent), while two separate askers independently asked about product collections across channels within 5 minutes of each other.",
+    "actionableInsights": [
+      {
+        "owner": "product",
+        "title": "Journey sent to 2,537 of 13,371 eligible contacts -- real under-delivery, not a how-to question",
+        "desc": "hantt.mgc@gmail.com (gggcomsmt) flagged a specific journey (ID 3603) that only reached 2,537 contacts despite 13,371 meeting the trigger criteria -- a ~19% delivery rate with hard numbers attached. This reads as a genuine delivery/suppression-logic issue, not confusion. No Freshdesk contact record exists for this user, so it hasn't escalated yet -- worth a proactive check given the precision of the numbers."
+      },
+      {
+        "owner": "content",
+        "title": "Two users asked about product collections across channels within 5 minutes, and there's a live related bug",
+        "desc": "siddhithakur@katyayaniorganics.com (07:27 IST, 'which channel supports product collection?') and rimjhim.tiwari@netcorecloud.com (07:22 IST, 'can we use product collections in app push in journeys?') asked adjacent questions minutes apart. Separately, Freshdesk has 3 recent tickets (Aug 27-29, outcasts_ce account) for 'Email not sending via journey with product collection' -- a live bug in the same feature area. Worth a documentation pass on product-collection channel support, and flagging the outcasts_ce bug pattern to product/eng if not already tracked."
+      },
+      {
+        "owner": "product",
+        "title": "Meenakshi Kaul (internal) asked whether the global email blacklist check can be skipped for a specific Journey",
+        "desc": "'skip the global email blacklist check for Journey -- can we do this' is a specific deliverability-control capability question, not a lookup. If this isn't currently supported, it's worth flagging to product since bypassing suppression lists has compliance implications and should have a clear documented answer either way."
+      },
+      {
+        "owner": "calibration",
+        "title": "Several queries didn't map cleanly onto the existing 7-area taxonomy",
+        "desc": "A multi-channel automated-reporting request (Lokesh Sharma) and an APN push-notification terminology question (Mohd Pakzad) were force-fit into Broadcast/Webhooks and API/Integration respectively since no Reporting or Push-specific bucket exists. Small sample day (18) -- worth revisiting the area taxonomy if reporting/push questions keep recurring without a clean home."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Nguyễn Thị Thu Hà",
+      "email": "hantt.mgc@gmail.com",
+      "query": "Why does journey https://pr14r.netcoresmartech.com/gggcomsmt/admin/index.php/campaign/journey/preview/3603 only send to 2,537 contacts when 13,371 contacts meet the trigger's entry condition?",
+      "why": "A precise, numbers-backed delivery discrepancy report referencing a specific journey ID and exact contact counts -- real platform depth and a legitimate production concern, not a navigation or definition question."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 2,
+        "external": 3
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 1,
+        "external": 1
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 1,
+        "external": 1
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 2,
+        "external": 3
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 3
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "hantt.mgc@gmail.com",
+        "count": 2,
+        "friction": false,
+        "panel": "gggcomsmt",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "hướng dẫn cách check quota số mail còn được gửi trong journey của netcore (how to check remaining email quota in a journey)"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "Journey 3603 only sent to 2,537 of 13,371 contacts meeting the trigger condition -- why?"
+          }
+        ]
+      },
+      {
+        "email": "meenakshi.kaul@netcore.ai",
+        "count": 2,
+        "friction": false,
+        "panel": "voltas_ce",
+        "queries": [
+          {
+            "theme": "Is X possible/supported",
+            "text": "skip the global email blacklist check for Journey -- can we do this"
+          },
+          {
+            "theme": "Where do I set up/find X",
+            "text": "act_view_notifications -- in which report we send this information"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 3,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "mohd.pakzad@netcore.ai",
+            "q": "what is APN",
+            "panel": "smartechai"
+          },
+          {
+            "email": "komal.sharma@netcore.ai",
+            "q": "give documentation for activity api for offline events",
+            "panel": "NA"
+          },
+          {
+            "email": "meenakshi.kaul@netcore.ai",
+            "q": "act_view_notifications -- in which report we send this information",
+            "panel": "voltas_ce"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 3,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "kaue.vilalva@nicephotos.com.br",
+            "q": "How do I remove someone from the blocklist?",
+            "panel": "nicephotosce"
+          },
+          {
+            "email": "sudhanshu.vyas@freightsystems.com",
+            "q": "is there a way to get to know the location details of the audience who clicked on website cta in the email campaign",
+            "panel": "freightsystemscee"
+          },
+          {
+            "email": "tabsyst.dcshareeef@gmail.com",
+            "q": "the drag and drop editor isnt working",
+            "panel": "vapeandgoce"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "ishika.a@netcore.ai",
+            "q": "how to create a RCS templaate",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "lokesh.sharma@netcore.ai",
+            "q": "we require a daily report for the Client Panel and Policy Panel showing the total count of customers on whom campaigns have been deployed, across Email/SMS/RCS/WhatsApp, with T-1 automation",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "siddhithakur@katyayaniorganics.com",
+            "q": "which channel support product collection?",
+            "panel": "sndt_katyayanipartner_ce"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 2,
+        "external": 3,
+        "internalQ": [
+          {
+            "email": "meenakshi.kaul@netcore.ai",
+            "q": "skip the global email blacklist check for Journey -- can we do this",
+            "panel": "voltas_ce"
+          },
+          {
+            "email": "rimjhim.tiwari@netcorecloud.com",
+            "q": "can we use product collections in app push in journeys?",
+            "panel": "katyayanipartner_ce"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "hantt.mgc@gmail.com",
+            "q": "hướng dẫn cách check quota số mail còn được gửi trong journey của netcore",
+            "panel": "gggcomsmt"
+          },
+          {
+            "email": "hantt.mgc@gmail.com",
+            "q": "Journey 3603 only sent to 2,537 of 13,371 eligible contacts -- why?",
+            "panel": "gggcomsmt"
+          },
+          {
+            "email": "yahya@cityhyper.com",
+            "q": "How can i target users who has visited a specific product page",
+            "panel": "cchyper_ce"
+          }
+        ]
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 4,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "chris.antwi-agyei@zenithbank.com.gh",
+            "q": "hi",
+            "panel": "zenithbankghanacee"
+          },
+          {
+            "email": "shashi.kiran1375@gmail.com",
+            "q": "Hi, i ordered two tshirts today... I am not able to track there order (off-topic, unrelated to Netcore product)",
+            "panel": "NA"
+          },
+          {
+            "email": "info@anfopublicationhouse.com",
+            "q": "please provide me panel name of this account",
+            "panel": "allmultidisciplinary"
+          },
+          {
+            "email": "neha.nagpal@nationalhrd.org",
+            "q": "hi",
+            "panel": "nationalhrdsmart"
           }
         ]
       }
@@ -22592,6 +22501,272 @@ const FULL_ARCHIVE = {
             "email": "rashidshaha18@gmail.com",
             "q": "Hii",
             "panel": "NA"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-01": {
+    "date": "2026-09-01",
+    "totalConversations": 18,
+    "resolutionRate": 100,
+    "internalTotal": 7,
+    "externalTotal": 11,
+    "docsTotal": 4,
+    "panelTotal": 14,
+    "queryType": {
+      "technical": 4,
+      "generic": 14
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-09-01 00:00 IST to 2026-09-03 23:59 IST). Checked via Freshdesk Contacts search -> contact ID -> requester-filtered ticket list (lag-proof method).",
+      "totalConversations": 18,
+      "sameUserEscalations": [],
+      "deflectedCount": 18,
+      "deflectionRate": 100,
+      "patternRisk": [],
+      "caveat": "All 16 unique requester emails checked via the lag-proof contact-search method; 8 had no Freshdesk contact record at all, the rest had tickets but none within the D-to-D+2 window on a matching topic. A recurring 'Email not sending via journey with product collection - outcasts_ce' bug (3 tickets) surfaced on a 'product collection' keyword sweep -- topically close to two of today's Journey Builder/Broadcast questions -- but all 3 tickets were created Aug 27-29, before this window, so excluded as a Tier 2 match. Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as directional."
+    },
+    "headline": "18 conversations on Sept 1, 100% bot self-reported resolved and 100% Freshdesk-deflected (zero same-user escalations in the +2-day window) -- Nguyễn Thị Thu Hà (gggcomsmt) surfaced a real journey under-delivery bug (only 2,537 of 13,371 eligible contacts got sent), while two separate askers independently asked about product collections across channels within 5 minutes of each other.",
+    "actionableInsights": [
+      {
+        "owner": "product",
+        "title": "Journey sent to 2,537 of 13,371 eligible contacts -- real under-delivery, not a how-to question",
+        "desc": "hantt.mgc@gmail.com (gggcomsmt) flagged a specific journey (ID 3603) that only reached 2,537 contacts despite 13,371 meeting the trigger criteria -- a ~19% delivery rate with hard numbers attached. This reads as a genuine delivery/suppression-logic issue, not confusion. No Freshdesk contact record exists for this user, so it hasn't escalated yet -- worth a proactive check given the precision of the numbers."
+      },
+      {
+        "owner": "content",
+        "title": "Two users asked about product collections across channels within 5 minutes, and there's a live related bug",
+        "desc": "siddhithakur@katyayaniorganics.com (07:27 IST, 'which channel supports product collection?') and rimjhim.tiwari@netcorecloud.com (07:22 IST, 'can we use product collections in app push in journeys?') asked adjacent questions minutes apart. Separately, Freshdesk has 3 recent tickets (Aug 27-29, outcasts_ce account) for 'Email not sending via journey with product collection' -- a live bug in the same feature area. Worth a documentation pass on product-collection channel support, and flagging the outcasts_ce bug pattern to product/eng if not already tracked."
+      },
+      {
+        "owner": "product",
+        "title": "Meenakshi Kaul (internal) asked whether the global email blacklist check can be skipped for a specific Journey",
+        "desc": "'skip the global email blacklist check for Journey -- can we do this' is a specific deliverability-control capability question, not a lookup. If this isn't currently supported, it's worth flagging to product since bypassing suppression lists has compliance implications and should have a clear documented answer either way."
+      },
+      {
+        "owner": "calibration",
+        "title": "Several queries didn't map cleanly onto the existing 7-area taxonomy",
+        "desc": "A multi-channel automated-reporting request (Lokesh Sharma) and an APN push-notification terminology question (Mohd Pakzad) were force-fit into Broadcast/Webhooks and API/Integration respectively since no Reporting or Push-specific bucket exists. Small sample day (18) -- worth revisiting the area taxonomy if reporting/push questions keep recurring without a clean home."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Nguyễn Thị Thu Hà",
+      "email": "hantt.mgc@gmail.com",
+      "query": "Why does journey https://pr14r.netcoresmartech.com/gggcomsmt/admin/index.php/campaign/journey/preview/3603 only send to 2,537 contacts when 13,371 contacts meet the trigger's entry condition?",
+      "why": "A precise, numbers-backed delivery discrepancy report referencing a specific journey ID and exact contact counts -- real platform depth and a legitimate production concern, not a navigation or definition question."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 2,
+        "external": 3
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 1,
+        "external": 1
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 1,
+        "external": 1
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 2,
+        "external": 3
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 3
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "hantt.mgc@gmail.com",
+        "count": 2,
+        "friction": false,
+        "panel": "gggcomsmt",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "hướng dẫn cách check quota số mail còn được gửi trong journey của netcore (how to check remaining email quota in a journey)"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "Journey 3603 only sent to 2,537 of 13,371 contacts meeting the trigger condition -- why?"
+          }
+        ]
+      },
+      {
+        "email": "meenakshi.kaul@netcore.ai",
+        "count": 2,
+        "friction": false,
+        "panel": "voltas_ce",
+        "queries": [
+          {
+            "theme": "Is X possible/supported",
+            "text": "skip the global email blacklist check for Journey -- can we do this"
+          },
+          {
+            "theme": "Where do I set up/find X",
+            "text": "act_view_notifications -- in which report we send this information"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 3,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "mohd.pakzad@netcore.ai",
+            "q": "what is APN",
+            "panel": "smartechai"
+          },
+          {
+            "email": "komal.sharma@netcore.ai",
+            "q": "give documentation for activity api for offline events",
+            "panel": "NA"
+          },
+          {
+            "email": "meenakshi.kaul@netcore.ai",
+            "q": "act_view_notifications -- in which report we send this information",
+            "panel": "voltas_ce"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 3,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "kaue.vilalva@nicephotos.com.br",
+            "q": "How do I remove someone from the blocklist?",
+            "panel": "nicephotosce"
+          },
+          {
+            "email": "sudhanshu.vyas@freightsystems.com",
+            "q": "is there a way to get to know the location details of the audience who clicked on website cta in the email campaign",
+            "panel": "freightsystemscee"
+          },
+          {
+            "email": "tabsyst.dcshareeef@gmail.com",
+            "q": "the drag and drop editor isnt working",
+            "panel": "vapeandgoce"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 1,
+        "external": 0,
+        "internalQ": [
+          {
+            "email": "ishika.a@netcore.ai",
+            "q": "how to create a RCS templaate",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "lokesh.sharma@netcore.ai",
+            "q": "we require a daily report for the Client Panel and Policy Panel showing the total count of customers on whom campaigns have been deployed, across Email/SMS/RCS/WhatsApp, with T-1 automation",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "siddhithakur@katyayaniorganics.com",
+            "q": "which channel support product collection?",
+            "panel": "sndt_katyayanipartner_ce"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 2,
+        "external": 3,
+        "internalQ": [
+          {
+            "email": "meenakshi.kaul@netcore.ai",
+            "q": "skip the global email blacklist check for Journey -- can we do this",
+            "panel": "voltas_ce"
+          },
+          {
+            "email": "rimjhim.tiwari@netcorecloud.com",
+            "q": "can we use product collections in app push in journeys?",
+            "panel": "katyayanipartner_ce"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "hantt.mgc@gmail.com",
+            "q": "hướng dẫn cách check quota số mail còn được gửi trong journey của netcore",
+            "panel": "gggcomsmt"
+          },
+          {
+            "email": "hantt.mgc@gmail.com",
+            "q": "Journey 3603 only sent to 2,537 of 13,371 eligible contacts -- why?",
+            "panel": "gggcomsmt"
+          },
+          {
+            "email": "yahya@cityhyper.com",
+            "q": "How can i target users who has visited a specific product page",
+            "panel": "cchyper_ce"
+          }
+        ]
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 4,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "chris.antwi-agyei@zenithbank.com.gh",
+            "q": "hi",
+            "panel": "zenithbankghanacee"
+          },
+          {
+            "email": "shashi.kiran1375@gmail.com",
+            "q": "Hi, i ordered two tshirts today... I am not able to track there order (off-topic, unrelated to Netcore product)",
+            "panel": "NA"
+          },
+          {
+            "email": "info@anfopublicationhouse.com",
+            "q": "please provide me panel name of this account",
+            "panel": "allmultidisciplinary"
+          },
+          {
+            "email": "neha.nagpal@nationalhrd.org",
+            "q": "hi",
+            "panel": "nationalhrdsmart"
           }
         ]
       }
