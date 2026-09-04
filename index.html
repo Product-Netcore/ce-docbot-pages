@@ -2,7 +2,7 @@
 {
   "name": "Ce Docbot Summary 2026 06 17",
   "schemaVersion": 1,
-  "description": "CE Docbot 14-day rolling summary (Jul 7 – Jul 20, 2026) — latest day 2026-07-20"
+  "description": "CE Docbot 14-day rolling summary — latest day 2026-09-02"
 }
 </script>
 <html lang="en">
@@ -599,242 +599,6 @@ html[data-theme="dark"] .intro-banner .ib-lede{color:#c7cad1;}
 </div>
 <script>
 const ARCHIVE = {
-  "2026-08-20": {
-    "date": "2026-08-20",
-    "totalConversations": 13,
-    "resolutionRate": 100,
-    "internalTotal": 5,
-    "externalTotal": 8,
-    "docsTotal": 4,
-    "panelTotal": 9,
-    "queryType": {
-      "technical": 6,
-      "generic": 7
-    },
-    "ticketDeflection": {
-      "windowNote": "Same IST day through +2 days (2026-08-20 00:00 IST to 2026-08-22 23:59 IST); window still open as of this run (2026-08-21, today) -- D+2 = Aug 22 hasn't happened yet",
-      "totalConversations": 13,
-      "sameUserEscalations": [],
-      "deflectedCount": 13,
-      "deflectionRate": 100,
-      "patternRisk": [
-        {
-          "area": "API/Integration",
-          "docbotCount": 3,
-          "ticketCount": 1,
-          "exampleTicketSubjects": [
-            "Currency being fetched from product feed || 2XL"
-          ],
-          "note": "One in-window product-feed ticket surfaced (2XL account, currency-value bug, created ~12h before this run) but it's a data-accuracy bug, not the catalogue/feed-structure question ishim878@gmail.com asked the bot -- different symptom, same general feature area, not counted as Tier 1."
-        }
-      ],
-      "caveat": "Browser-search based on Freshdesk's UI, not an exhaustive API audit -- treat as directional, doubly so with the +2-day window barely open. Checked all 12 unique requester emails individually via Tier 1 global search -- zero ticket matches for any. Tier 2 keyword sweeps covered all 6 substantive areas: 'INVALID_DATATYPE' (1 hit, closed 5 days ago, different failure type -- primary key vs email validation), 'liquid tags' (44 hits, all 'enable liquid tags' feature-activation requests -- different theme than the conceptual 'where are liquid tags applicable' question), 'Limechat' (58 hits, closest 3 days old, outside window), 'custom activity' (8 hits, all weeks-to-years old), 'app push' (249 hits, several in-window but all delivery/reach performance issues, not the copy-generation/campaign-setup asks from today), 'WhatsApp AI Agent' (0 hits). No genuine in-window pattern match found for any area."
-    },
-    "headline": "13 conversations on Aug 20, 100% bot self-reported resolved and 100% Freshdesk-deflected across all 12 unique askers -- corrected split (fixed 2026-08-21) is 5 internal : 8 customer, now that @netcore.ai is recognized as an internal Netcore domain (Saloni Shinde, Ninad Karangutkar x2, Akash Sharma, Rajeev Pillai were previously miscounted as customers).",
-    "actionableInsights": [
-      {
-        "owner": "calibration",
-        "title": "Domain-skew issue fixed retroactively across the archive (2026-08-21)",
-        "desc": "After 3 consecutive flagged runs (Aug 17-20), the user confirmed @netcore.ai and @netcorecloud.ai are legitimate internal Netcore domains following a recent migration off @netcorecloud.com. The internal-domain allowlist was expanded and every affected historical day (Aug 10, 14, 17, 18, 19, 20 -- 37 conversations total) was reclassified with aggregates recomputed. New runs going forward should use the corrected 4-domain allowlist (@netcorecloud.com, @netcoreunbxd.com, @netcore.ai, @netcorecloud.ai)."
-      },
-      {
-        "owner": "product",
-        "title": "Rajeev Pillai (@netcore.ai) asked whether product-arrival-triggered personalized emails are possible via API",
-        "desc": "Asked on a client's behalf whether Netcore has an API to trigger personalized emails when specific new products arrive, filterable off product data from an existing external API. A real product-arrival-trigger + personalization API question -- worth confirming the exact API/webhook path so this doesn't need a second escalation from the actual client later."
-      },
-      {
-        "owner": "content",
-        "title": "Saloni Shinde asked the bot for a Limechat documentation link instead of finding it herself",
-        "desc": "'can you share the link for Limechat documentation' -- Limechat is a very active integration topic (58 Freshdesk tickets on file, several in-window), so a discoverable doc link in the partner-integrations index would likely resolve this class of ask without a bot round-trip."
-      },
-      {
-        "owner": "content",
-        "title": "Ninad Karangutkar needed two follow-on questions to get from 'what's an activity' to 'can I create one'",
-        "desc": "Asked 'what is the difference between events and activity' then, 2 minutes later, 'can we create custom activity?' while sitting in Journey Builder's create-journey screen -- a natural progression, not re-asking, but suggests the events-vs-activity distinction isn't obvious enough from the create-journey screen alone. A contextual tooltip or inline doc link there could shortcut both questions."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Niviez Iqriyyana (Oona Insurance)",
-      "email": "nivieza.iqriyyana@oona-insurance.co.id",
-      "query": "Does Netcore have a Conversational AI solution or an AI Agent partner that can be integrated with our WhatsApp channel? If yes, could you also share how the architecture works and how it integrates with Netcore and WhatsApp?",
-      "why": "A forward-looking, architecture-level question about AI-agent/WhatsApp integration rather than basic navigation help -- shows real evaluation-stage product interest, not just troubleshooting."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 0,
-        "external": 2
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 1,
-        "external": 1
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 2,
-        "external": 1
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 2,
-        "external": 2
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 2
-      }
-    ],
-    "topAskers": [
-      {
-        "email": "ninad.karangutkar@netcore.ai",
-        "count": 2,
-        "friction": false,
-        "panel": "smartechai",
-        "queries": [
-          {
-            "theme": "What does X mean/how it works",
-            "text": "What is the difference between events and activity"
-          },
-          {
-            "theme": "Is X possible/supported",
-            "text": "can we create custom activity ?"
-          }
-        ]
-      }
-    ],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 1,
-        "external": 2,
-        "internalQ": [
-          {
-            "email": "rajeev.pillai@netcore.ai",
-            "q": "My client wants to start sending personalized emails to customers when specific new products arrive, filtered on existing product-API data -- is there an API on the platform we can use for this?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "ishim878@gmail.com",
-            "q": "Hey if a brand wants to start merch triggers and they want to implement the product catalogue and product feed, so they are asking what all information comes in that, can you pls help",
-            "panel": "NA"
-          },
-          {
-            "email": "tarun@truva.in",
-            "q": "Give me. the documentation of netcore events",
-            "panel": "truva_three_ce"
-          }
-        ]
-      },
-      {
-        "area": "Email",
-        "internal": 1,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "akash.sharma@netcore.ai",
-            "q": "Liquid tags are applicable on",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 1,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "saloni.shinde@netcore.ai",
-            "q": "can you share the link for Limechat documentation",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "nivieza.iqriyyana@oona-insurance.co.id",
-            "q": "Does Netcore have a Conversational AI solution or an AI Agent partner that can be integrated with our WhatsApp channel? If yes, could you also share how the architecture works and how it integrates with Netcore and WhatsApp?",
-            "panel": "oonamobile_cee"
-          }
-        ]
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 2,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "courtneyloveoraa@gmail.com",
-            "q": "try to make a subject and preview for an app push for the rain in espana series. something like Subject: Let's go back to where it all started! Preview:",
-            "panel": "vivaonecee"
-          },
-          {
-            "email": "amangilaya@viva.com.ph",
-            "q": "Hi. I heard you can help us set up a campaign?",
-            "panel": "vivaonecee"
-          }
-        ]
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 2,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "ninad.karangutkar@netcore.ai",
-            "q": "What is the difference between events and activity",
-            "panel": "smartechai"
-          },
-          {
-            "email": "ninad.karangutkar@netcore.ai",
-            "q": "can we create custom activity ?",
-            "panel": "smartechai"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 0,
-        "external": 1,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "saravanan.karuppasamy@nidohomefin.com",
-            "q": "When i uploading the CSV file i am getting an error of INVALID_DATATYPE(NAME(Not a valid email))",
-            "panel": "nidohomefinmarketing"
-          }
-        ]
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 2,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "venkat@rareads.net",
-            "q": "Hi",
-            "panel": "rareads_cee"
-          },
-          {
-            "email": "anshikagarg@satyasupport.co.in",
-            "q": "connect me with an agent",
-            "panel": "satyasupport_ce"
-          }
-        ]
-      }
-    ]
-  },
   "2026-08-21": {
     "date": "2026-08-21",
     "totalConversations": 17,
@@ -3931,6 +3695,311 @@ const ARCHIVE = {
           {
             "email": "mohammedilyas427162@gmail.com",
             "q": "Hi",
+            "panel": "NA"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-03": {
+    "date": "2026-09-03",
+    "totalConversations": 21,
+    "resolutionRate": 100,
+    "internalTotal": 6,
+    "externalTotal": 15,
+    "docsTotal": 8,
+    "panelTotal": 13,
+    "queryType": {
+      "technical": 7,
+      "generic": 14
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-09-03 00:00 IST to 2026-09-05 23:59 IST); window still open as of this run (2026-09-04, today) -- D+2 = Sep 5 hasn't happened yet",
+      "totalConversations": 21,
+      "sameUserEscalations": [
+        {
+          "email": "jayram.gunjal@unionmf.com",
+          "docbotQuery": "Stuck at 2FA login screen (pasted the 'Enter the 6-digit verification code' prompt text, no clear question)",
+          "area": "Infra/Data residency",
+          "theme": "How do I do X",
+          "ticketId": "5248036",
+          "ticketSubject": "Unable to get authentication code",
+          "ticketCreatedAt": "2026-09-03 ~10:57 IST, ~18 minutes after the docbot conversation (10:39 IST) -- same login/2FA issue"
+        },
+        {
+          "email": "neerajk@mastertrust.co.in",
+          "docbotQuery": "Portal working very slow, contact mapping in lists taking 2-3 hours, asked to connect with a live agent",
+          "area": "Infra/Data residency",
+          "theme": "How do I do X",
+          "ticketId": "5248035",
+          "ticketSubject": "Feedback on Netcore CE : Issue in adding Contacts in list",
+          "ticketCreatedAt": "2026-09-03 10:55 IST, ~a minute before the docbot conversation ended -- same contact-list issue"
+        },
+        {
+          "email": "saumya.jain@kangaroocars.com",
+          "docbotQuery": "Launched a journey today that isn't sending; test emails also failing; asked the bot how to raise a ticket for the issue",
+          "area": "Journey Builder",
+          "theme": "How do I do X",
+          "ticketId": "5248584",
+          "ticketSubject": "Feedback on Netcore CE : Ongoing Journey Not Triggering Emails",
+          "ticketCreatedAt": "2026-09-03 18:08 IST, same day -- she explicitly asked the bot how to raise a ticket, then did"
+        },
+        {
+          "email": "gourab.banerjee@sc.com",
+          "docbotQuery": "Campaign shows delivered but clients haven't received it; asked to connect to a team agent",
+          "area": "Email",
+          "theme": "How do I do X",
+          "ticketId": "5247975",
+          "ticketSubject": "Campaign Delivery Unsuccessful",
+          "ticketCreatedAt": "2026-09-03 09:37 IST, ~3 minutes before the docbot conversation -- same delivery issue"
+        }
+      ],
+      "deflectedCount": 17,
+      "deflectionRate": 81,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI via the lag-proof contact-search method (search email -> open contact -> read Timeline for same-day tickets), not an exhaustive API audit. All 20 unique requester emails checked individually via this method (100% coverage of yesterday's askers) -- 4 of 20 had a genuine same-day/same-topic ticket. Tier 2 keyword sweeps run: 'WhatsApp Carousel' (4 hits, all 1-3 months old, none in-window) and 'list upload failed' (156 hits -- an extremely high-volume, routine, automated ticket category -- no in-window match tied to today's specific askers' panels or topics). Given volume, Tier 2 was not exhaustively swept across all 7 areas this run."
+    },
+    "headline": "21 conversations on Sep 3, 100% bot self-reported resolved but only 81% actually held -- 4 of 21 spilled into same-day Freshdesk tickets within minutes (a 2FA lockout, a contact-list mapping issue, a non-sending journey, and a stuck campaign), the roughest deflection rate in weeks.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "4 same-user escalations today -- 81% deflection, lowest in recent weeks",
+        "desc": "jayram.gunjal@unionmf.com (2FA lockout -> ticket #5248036, 18 min later), neerajk@mastertrust.co.in (contact-list mapping -> ticket #5248035), saumya.jain@kangaroocars.com (non-sending journey -> ticket #5248584, she explicitly asked the bot how to raise a ticket), and gourab.banerjee@sc.com (campaign delivery -> ticket #5247975, minutes apart). All 4 bot conversations were self-marked 'resolved' despite the user needing a human ticket right after -- resolutionRate should be read as self-report only, not accuracy."
+      },
+      {
+        "owner": "product",
+        "title": "Grant (Toy Kingdom) surfaced a real UI/doc mismatch on Blocklist contacts",
+        "desc": "grantk@toykingdom.co.za asked for a detailed audience sign-up breakdown (total/active/inactive/unsubscribed), then specifically about Blocklisted contacts; when the bot pointed him to Audience > Blocklist contacts, he reported 'There is no mention of Blacklist contacts. under Audience.' Worth checking whether the panel UI matches the bot's guidance -- possible naming drift or nav mismatch."
+      },
+      {
+        "owner": "product",
+        "title": "A live-looking API key was pasted into the (public) Docs Portal chat",
+        "desc": "test@gmail.com asked 'which is the api?' while pasting a full getuser API call with an embedded apikey value, in the unauthenticated Docs Portal chat. Security-hygiene risk worth a quick check on whether the key is real and should be rotated, plus a docs-portal-level nudge against pasting live keys into support chats."
+      },
+      {
+        "owner": "product",
+        "title": "dkrishnamurthy102@gmail.com re-asked about upload ID 2825 status twice in 24 minutes, never filed a ticket",
+        "desc": "First conversation (17:02 IST) got no clear resolution on data-upload status; second conversation (17:26 IST) escalated to 'can you send customer care number' and 'it take 24 housr i need reply now' -- but no Freshdesk ticket was ever raised. Both marked bot-'resolved.' Looks like he gave up rather than got helped -- worth checking if upload-status queries need a real-time lookup instead of static doc answers."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Grant (Toy Kingdom)",
+      "email": "grantk@toykingdom.co.za",
+      "query": "Asked for a precise audience sign-up breakdown (total/active/inactive/unsubscribed), then pushed specifically on Blocklisted contacts -- and when the bot's guidance didn't match what he saw in the panel, reported the mismatch back clearly instead of giving up.",
+      "why": "Not confused -- methodically drilling into audience reporting and catching a real UI/documentation gap along the way. Multi-turn, specific, and product-savvy rather than a basic how-to ask."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 3,
+        "external": 9
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 2,
+        "external": 1
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 1,
+        "external": 1
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "dkrishnamurthy102@gmail.com",
+        "count": 2,
+        "friction": true,
+        "panel": "sulekhacee",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "loaded 4 data but still not uploaded / uploaded 4 campaign date still not received uploaded status / ID 2825 need status"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "Need status for Id 2825, no response, can you send customer care number, it take 24 hours i need reply now"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 1,
+        "external": 3,
+        "internalQ": [
+          {
+            "email": "prajakta.talegaonkar@netcore.ai",
+            "q": "I tried creating new application in NetCore dashboard but after creating it is showing as pending",
+            "panel": "apcebdloyalty"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "test@gmail.com",
+            "q": "which is the api? (pasted a live-looking API call with an embedded apikey value -- redacted here for security)",
+            "panel": "NA"
+          },
+          {
+            "email": "dkrishnamurthy102@gmail.com",
+            "q": "loaded 4 data but still not uploaded / uploaded 4 campaign date still not received uploaded status / ID 2825 need status",
+            "panel": "sulekhacee"
+          },
+          {
+            "email": "dkrishnamurthy102@gmail.com",
+            "q": "Need status for Id 2825, no response, can you send customer care number, it take 24 hours i need reply now",
+            "panel": "sulekhacee"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 4,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "rachel.mehta@vayana.com",
+            "q": "I am not getting the test emails I'm sending out, from the campaign page",
+            "panel": "vayanacee"
+          },
+          {
+            "email": "sumali.purkyastha@gopeoplematters.com",
+            "q": "When I click on use for a uncategorised template, it doesnt open",
+            "panel": "peoplematter_cee"
+          },
+          {
+            "email": "nandhunandhu03480@gmail.com",
+            "q": "horizontal image slider / what is AMP",
+            "panel": "sulekhacee"
+          },
+          {
+            "email": "gourab.banerjee@sc.com",
+            "q": "campaign has been delivered however, clients havent received it yet -- connect me to a team agent",
+            "panel": "scsec_cee"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "mukesh.netcore@gmail.com",
+            "q": "is journey supports WhatsApp Carousel Template?",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 3,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "gargi.sethia@netcore.ai",
+            "q": "how to create dynamic attribute for social proof feature?",
+            "panel": "NA"
+          },
+          {
+            "email": "gourab.dash@netcore.ai",
+            "q": "client reported two lists with the same name available in the panel, is this possible?",
+            "panel": "NA"
+          },
+          {
+            "email": "avadhoot.revankar@netcore.ai",
+            "q": "Can i personalise products added to cart in the web message? how to do activity payload based personalisation in web message?",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "grantk@toykingdom.co.za",
+            "q": "Where do I find info about newsletter sign ups -- wants total/active/inactive/unsubscribed breakdown, then asked about Blocklisted contacts",
+            "panel": "toykingdomcee"
+          },
+          {
+            "email": "chiewhsien.ong@nandos.com.my",
+            "q": "what is the maximum character for push notification, title and subtitle",
+            "panel": "nandoscee"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "adarsh.shetty@centrum.co.in",
+            "q": "i want to build a journey",
+            "panel": "centrumcee"
+          },
+          {
+            "email": "saumya.jain@kangaroocars.com",
+            "q": "launched a journey today, but it is not actually getting sent -- no error messages, test emails also not delivering, how to raise a ticket",
+            "panel": "sureport_cee"
+          }
+        ]
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 1,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "swati.jangir@netcore.ai",
+            "q": "can we see reachability for anonymous users on panel",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "jayram.gunjal@unionmf.com",
+            "q": "stuck at 2FA login screen -- pasted verification code prompt text",
+            "panel": "unionmfwa_cee"
+          },
+          {
+            "email": "neerajk@mastertrust.co.in",
+            "q": "portal working very slow, contact mapping in lists taking 2-3 hours, wants live agent",
+            "panel": "mastermart"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "imran.shaikh@netcore.ai",
+            "q": "Hi Neco",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "sunil.bika80@gmail.com",
+            "q": "[off-topic, Hindi] Indian Bank FD withdrawal query -- unrelated to Netcore CE",
             "panel": "NA"
           }
         ]
@@ -23040,6 +23109,311 @@ const FULL_ARCHIVE = {
           {
             "email": "mohammedilyas427162@gmail.com",
             "q": "Hi",
+            "panel": "NA"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-03": {
+    "date": "2026-09-03",
+    "totalConversations": 21,
+    "resolutionRate": 100,
+    "internalTotal": 6,
+    "externalTotal": 15,
+    "docsTotal": 8,
+    "panelTotal": 13,
+    "queryType": {
+      "technical": 7,
+      "generic": 14
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-09-03 00:00 IST to 2026-09-05 23:59 IST); window still open as of this run (2026-09-04, today) -- D+2 = Sep 5 hasn't happened yet",
+      "totalConversations": 21,
+      "sameUserEscalations": [
+        {
+          "email": "jayram.gunjal@unionmf.com",
+          "docbotQuery": "Stuck at 2FA login screen (pasted the 'Enter the 6-digit verification code' prompt text, no clear question)",
+          "area": "Infra/Data residency",
+          "theme": "How do I do X",
+          "ticketId": "5248036",
+          "ticketSubject": "Unable to get authentication code",
+          "ticketCreatedAt": "2026-09-03 ~10:57 IST, ~18 minutes after the docbot conversation (10:39 IST) -- same login/2FA issue"
+        },
+        {
+          "email": "neerajk@mastertrust.co.in",
+          "docbotQuery": "Portal working very slow, contact mapping in lists taking 2-3 hours, asked to connect with a live agent",
+          "area": "Infra/Data residency",
+          "theme": "How do I do X",
+          "ticketId": "5248035",
+          "ticketSubject": "Feedback on Netcore CE : Issue in adding Contacts in list",
+          "ticketCreatedAt": "2026-09-03 10:55 IST, ~a minute before the docbot conversation ended -- same contact-list issue"
+        },
+        {
+          "email": "saumya.jain@kangaroocars.com",
+          "docbotQuery": "Launched a journey today that isn't sending; test emails also failing; asked the bot how to raise a ticket for the issue",
+          "area": "Journey Builder",
+          "theme": "How do I do X",
+          "ticketId": "5248584",
+          "ticketSubject": "Feedback on Netcore CE : Ongoing Journey Not Triggering Emails",
+          "ticketCreatedAt": "2026-09-03 18:08 IST, same day -- she explicitly asked the bot how to raise a ticket, then did"
+        },
+        {
+          "email": "gourab.banerjee@sc.com",
+          "docbotQuery": "Campaign shows delivered but clients haven't received it; asked to connect to a team agent",
+          "area": "Email",
+          "theme": "How do I do X",
+          "ticketId": "5247975",
+          "ticketSubject": "Campaign Delivery Unsuccessful",
+          "ticketCreatedAt": "2026-09-03 09:37 IST, ~3 minutes before the docbot conversation -- same delivery issue"
+        }
+      ],
+      "deflectedCount": 17,
+      "deflectionRate": 81,
+      "patternRisk": [],
+      "caveat": "Browser-search based on Freshdesk's UI via the lag-proof contact-search method (search email -> open contact -> read Timeline for same-day tickets), not an exhaustive API audit. All 20 unique requester emails checked individually via this method (100% coverage of yesterday's askers) -- 4 of 20 had a genuine same-day/same-topic ticket. Tier 2 keyword sweeps run: 'WhatsApp Carousel' (4 hits, all 1-3 months old, none in-window) and 'list upload failed' (156 hits -- an extremely high-volume, routine, automated ticket category -- no in-window match tied to today's specific askers' panels or topics). Given volume, Tier 2 was not exhaustively swept across all 7 areas this run."
+    },
+    "headline": "21 conversations on Sep 3, 100% bot self-reported resolved but only 81% actually held -- 4 of 21 spilled into same-day Freshdesk tickets within minutes (a 2FA lockout, a contact-list mapping issue, a non-sending journey, and a stuck campaign), the roughest deflection rate in weeks.",
+    "actionableInsights": [
+      {
+        "owner": "calibration",
+        "title": "4 same-user escalations today -- 81% deflection, lowest in recent weeks",
+        "desc": "jayram.gunjal@unionmf.com (2FA lockout -> ticket #5248036, 18 min later), neerajk@mastertrust.co.in (contact-list mapping -> ticket #5248035), saumya.jain@kangaroocars.com (non-sending journey -> ticket #5248584, she explicitly asked the bot how to raise a ticket), and gourab.banerjee@sc.com (campaign delivery -> ticket #5247975, minutes apart). All 4 bot conversations were self-marked 'resolved' despite the user needing a human ticket right after -- resolutionRate should be read as self-report only, not accuracy."
+      },
+      {
+        "owner": "product",
+        "title": "Grant (Toy Kingdom) surfaced a real UI/doc mismatch on Blocklist contacts",
+        "desc": "grantk@toykingdom.co.za asked for a detailed audience sign-up breakdown (total/active/inactive/unsubscribed), then specifically about Blocklisted contacts; when the bot pointed him to Audience > Blocklist contacts, he reported 'There is no mention of Blacklist contacts. under Audience.' Worth checking whether the panel UI matches the bot's guidance -- possible naming drift or nav mismatch."
+      },
+      {
+        "owner": "product",
+        "title": "A live-looking API key was pasted into the (public) Docs Portal chat",
+        "desc": "test@gmail.com asked 'which is the api?' while pasting a full getuser API call with an embedded apikey value, in the unauthenticated Docs Portal chat. Security-hygiene risk worth a quick check on whether the key is real and should be rotated, plus a docs-portal-level nudge against pasting live keys into support chats."
+      },
+      {
+        "owner": "product",
+        "title": "dkrishnamurthy102@gmail.com re-asked about upload ID 2825 status twice in 24 minutes, never filed a ticket",
+        "desc": "First conversation (17:02 IST) got no clear resolution on data-upload status; second conversation (17:26 IST) escalated to 'can you send customer care number' and 'it take 24 housr i need reply now' -- but no Freshdesk ticket was ever raised. Both marked bot-'resolved.' Looks like he gave up rather than got helped -- worth checking if upload-status queries need a real-time lookup instead of static doc answers."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Grant (Toy Kingdom)",
+      "email": "grantk@toykingdom.co.za",
+      "query": "Asked for a precise audience sign-up breakdown (total/active/inactive/unsubscribed), then pushed specifically on Blocklisted contacts -- and when the bot's guidance didn't match what he saw in the panel, reported the mismatch back clearly instead of giving up.",
+      "why": "Not confused -- methodically drilling into audience reporting and catching a real UI/documentation gap along the way. Multi-turn, specific, and product-savvy rather than a basic how-to ask."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 3,
+        "external": 9
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 2
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 2,
+        "external": 1
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 1,
+        "external": 1
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "dkrishnamurthy102@gmail.com",
+        "count": 2,
+        "friction": true,
+        "panel": "sulekhacee",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "loaded 4 data but still not uploaded / uploaded 4 campaign date still not received uploaded status / ID 2825 need status"
+          },
+          {
+            "theme": "How do I do X",
+            "text": "Need status for Id 2825, no response, can you send customer care number, it take 24 hours i need reply now"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 1,
+        "external": 3,
+        "internalQ": [
+          {
+            "email": "prajakta.talegaonkar@netcore.ai",
+            "q": "I tried creating new application in NetCore dashboard but after creating it is showing as pending",
+            "panel": "apcebdloyalty"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "test@gmail.com",
+            "q": "which is the api? (pasted a live-looking API call with an embedded apikey value -- redacted here for security)",
+            "panel": "NA"
+          },
+          {
+            "email": "dkrishnamurthy102@gmail.com",
+            "q": "loaded 4 data but still not uploaded / uploaded 4 campaign date still not received uploaded status / ID 2825 need status",
+            "panel": "sulekhacee"
+          },
+          {
+            "email": "dkrishnamurthy102@gmail.com",
+            "q": "Need status for Id 2825, no response, can you send customer care number, it take 24 hours i need reply now",
+            "panel": "sulekhacee"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 4,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "rachel.mehta@vayana.com",
+            "q": "I am not getting the test emails I'm sending out, from the campaign page",
+            "panel": "vayanacee"
+          },
+          {
+            "email": "sumali.purkyastha@gopeoplematters.com",
+            "q": "When I click on use for a uncategorised template, it doesnt open",
+            "panel": "peoplematter_cee"
+          },
+          {
+            "email": "nandhunandhu03480@gmail.com",
+            "q": "horizontal image slider / what is AMP",
+            "panel": "sulekhacee"
+          },
+          {
+            "email": "gourab.banerjee@sc.com",
+            "q": "campaign has been delivered however, clients havent received it yet -- connect me to a team agent",
+            "panel": "scsec_cee"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "mukesh.netcore@gmail.com",
+            "q": "is journey supports WhatsApp Carousel Template?",
+            "panel": "NA"
+          }
+        ]
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 3,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "gargi.sethia@netcore.ai",
+            "q": "how to create dynamic attribute for social proof feature?",
+            "panel": "NA"
+          },
+          {
+            "email": "gourab.dash@netcore.ai",
+            "q": "client reported two lists with the same name available in the panel, is this possible?",
+            "panel": "NA"
+          },
+          {
+            "email": "avadhoot.revankar@netcore.ai",
+            "q": "Can i personalise products added to cart in the web message? how to do activity payload based personalisation in web message?",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "grantk@toykingdom.co.za",
+            "q": "Where do I find info about newsletter sign ups -- wants total/active/inactive/unsubscribed breakdown, then asked about Blocklisted contacts",
+            "panel": "toykingdomcee"
+          },
+          {
+            "email": "chiewhsien.ong@nandos.com.my",
+            "q": "what is the maximum character for push notification, title and subtitle",
+            "panel": "nandoscee"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "adarsh.shetty@centrum.co.in",
+            "q": "i want to build a journey",
+            "panel": "centrumcee"
+          },
+          {
+            "email": "saumya.jain@kangaroocars.com",
+            "q": "launched a journey today, but it is not actually getting sent -- no error messages, test emails also not delivering, how to raise a ticket",
+            "panel": "sureport_cee"
+          }
+        ]
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 1,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "swati.jangir@netcore.ai",
+            "q": "can we see reachability for anonymous users on panel",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "jayram.gunjal@unionmf.com",
+            "q": "stuck at 2FA login screen -- pasted verification code prompt text",
+            "panel": "unionmfwa_cee"
+          },
+          {
+            "email": "neerajk@mastertrust.co.in",
+            "q": "portal working very slow, contact mapping in lists taking 2-3 hours, wants live agent",
+            "panel": "mastermart"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "imran.shaikh@netcore.ai",
+            "q": "Hi Neco",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "sunil.bika80@gmail.com",
+            "q": "[off-topic, Hindi] Indian Bank FD withdrawal query -- unrelated to Netcore CE",
             "panel": "NA"
           }
         ]
