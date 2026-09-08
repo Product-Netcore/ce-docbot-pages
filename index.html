@@ -599,371 +599,6 @@ html[data-theme="dark"] .intro-banner .ib-lede{color:#c7cad1;}
 </div>
 <script>
 const ARCHIVE = {
-  "2026-08-24": {
-    "date": "2026-08-24",
-    "totalConversations": 24,
-    "resolutionRate": 96,
-    "internalTotal": 8,
-    "externalTotal": 16,
-    "docsTotal": 7,
-    "panelTotal": 17,
-    "queryType": {
-      "technical": 9,
-      "generic": 15
-    },
-    "ticketDeflection": {
-      "windowNote": "Escalation window checked: 2026-08-24 00:00 IST through 2026-08-26 23:59 IST (D to D+2). Tier 1 = same user's own docbot query later surfaced as a Freshdesk ticket. Tier 2 = a different user in the same company/area raised a related ticket. Checked via Freshdesk Contacts search -> contact ID -> requester-filtered ticket list, which avoids the full-text ticket search's confirmed same-day indexing lag (see caveat).",
-      "totalConversations": 24,
-      "sameUserEscalations": [
-        {
-          "email": "nitin@la-fetch.com",
-          "docbotQuery": "Pricing to enable Unbxd Product Recommendations for App Push (product-catalog mapping + iOS integration) -- included in plan or add-on, one-time setup + recurring cost",
-          "area": "Broadcast/Webhooks",
-          "theme": "Is X possible/supported",
-          "ticketId": "5242282",
-          "ticketSubject": "Custom Activity Payload personalization not available in App Push (Journey) - need help enabling or fixing",
-          "ticketCreatedAt": "2026-08-24 (confirmed via requester-filtered ticket list; call scheduled with agent Prajakta T. as of check time)"
-        },
-        {
-          "email": "swati.jangir@netcore.ai",
-          "docbotQuery": "how to we change waba display picture",
-          "area": "CPaaS (WhatsApp/RCS/SMS)",
-          "theme": "How do I do X",
-          "ticketId": "5241479",
-          "ticketSubject": "WhatsApp template approval",
-          "ticketCreatedAt": "2026-08-24 (same day, confirmed via requester-filtered ticket list)"
-        },
-        {
-          "email": "sales@fusioncertification.com",
-          "docbotQuery": "i uploaded a data from my indiamart enquiries, but your system rejected it",
-          "area": "API/Integration",
-          "theme": "Troubleshooting a failure",
-          "ticketId": "5241870",
-          "ticketSubject": "RE: List Upload failed for email certification enquiries.csv (client: buyy_cee)",
-          "ticketCreatedAt": "resolved ~7h before check on 2026-08-25 -- created within window, same panel (buyy_cee) as the docbot query"
-        }
-      ],
-      "deflectedCount": 21,
-      "deflectionRate": 88,
-      "patternRisk": [
-        {
-          "area": "API/Integration",
-          "docbotCount": 3,
-          "ticketCount": 1,
-          "exampleTicketSubjects": [
-            "ID No: 5232 not added, we have uploaded -- Ticket #5242328, part of a 33-ticket recurring 'List Approval - iepindia.smt panel - urgent' pattern for this requester"
-          ],
-          "note": "sramesh@integratedindia.in's docbot question was about an ID not being added; a same-day ticket exists, but this requester has 33 historical tickets with near-identical subject lines, so this reads as a recurring operational workflow rather than a novel bot-failure escalation. Flagged, not counted as a same-user escalation above."
-        },
-        {
-          "area": "Email",
-          "docbotCount": 1,
-          "ticketCount": 1,
-          "exampleTicketSubjects": [
-            "Bounce/delivery issue -- Ticket #5241470, raised by Ifeoluwa.Omotoso@firstbankgroup.com, same company as the docbot asker"
-          ],
-          "note": "esther.ogbonnaya@firstbankgroup.com asked why campaigns show 'delivered' but aren't dropping; a colleague at the same company (First Bank Nigeria) raised a related bounce/delivery ticket within the window. Same company, different individual -- a Tier 2 pattern signal, not a direct same-user escalation."
-        }
-      ],
-      "caveat": "Freshdesk's full-text ticket search (/a/search/tickets) has a confirmed same-day indexing lag -- a real same-day escalation (this run's nitin@la-fetch.com match) returned 0 results on direct search yet existed and was found via Contacts search. All 20 unique 08-24 askers were re-verified using the lag-proof method (contact search -> contact ID -> requester-filtered ticket list) rather than the raw ticket search, so this deflection data supersedes any partial/earlier check. 15 of 20 askers had zero Freshdesk contact record at all; 2 had only old, unrelated tickets (arjun@truva.in, sachin@truva.in, arpita@themediaant.com, mxcruz@landbank.com); paridhi.jain@netcore.ai (internal staff) had several tickets in-window but all on unrelated topics (her own routine ticket queue, not an escalation of her docbot question)."
-    },
-    "headline": "24 conversations on Aug 24 (Monday), 96% bot self-reported resolved -- one bare \"hello\" from Tayer (gtcfxworld_ce) was left active with no bot closure. Arjun Bora (truva_three_ce) hit a real WhatsApp/RCS template bug (\"number of localisable params doesn't match the expected number of params\"), and Arpita Nayak at The Media Ant ran a sharp bot-traffic hypothesis on a suspiciously high click rate with zero on-site conversion. Freshdesk cross-check found 3 same-user escalations (12.5% of conversations): nitin@la-fetch.com (App Push/Unbxd pricing), swati.jangir@netcore.ai (WABA display picture -> WhatsApp template approval), and sales@fusioncertification.com (data upload rejection -> confirmed list-upload failure ticket, same panel).",
-    "actionableInsights": [
-      {
-        "owner": "product",
-        "title": "Real WhatsApp/RCS template validation bug reported by Arjun Bora (truva_three_ce)",
-        "desc": "arjun@truva.in got the error 'number of localisable params doesn't match the expected number of params' -- a concrete template-personalization validation mismatch, not a vague complaint. Same user separately asked about enabling link tracking earlier the same day (2 conversations total, unrelated topics). Worth routing the bug to the WhatsApp/RCS template engineering owners directly rather than closing as bot-resolved."
-      },
-      {
-        "owner": "content",
-        "title": "2FA/Authy account recovery after a device change is a recurring pain point",
-        "desc": "digendrakumar@aesl.in (myaakashed_cee) got locked out of login because Authy required a backup password he didn't have after switching Android devices. This mirrors a near-identical 2FA lockout flagged on 2026-08-13 (maheer.shaik@emailresolute.com) -- worth a clear 'lost your 2FA device' recovery doc or in-app flow so this doesn't keep landing on the bot."
-      },
-      {
-        "owner": "calibration",
-        "title": "One of 24 conversations (Tayer, gtcfxworld_ce) was left in 'active' state, not resolved",
-        "desc": "tayer@gmail.com's bare 'hello' (10:18 IST) never got a bot closure, unlike every other conversation today -- pulling resolutionRate to 96% instead of the more typical 100%. Same user asked a real question 2h21m later ('how to send email for another user / where is APIs in CRM') which did resolve, so this looks like an abandoned greeting rather than a genuine miss."
-      },
-      {
-        "owner": "product",
-        "title": "Ninad A K (Netcore staff, smartechai) needed 3 separate basic navigation questions in one day",
-        "desc": "ninad.karangutkar@netcore.ai asked, across 3 conversations, how many dashboards can be created, how to add cohort analysis to a dashboard, and about app personalization -- all discoverability/navigation questions from internal staff on the same panel. Worth a quick check on whether internal CS/CE teams have a clearer analytics-features walkthrough, since even staff are routing basic navigation through the bot."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Arpita Nayak",
-      "email": "arpita@themediaant.com",
-      "query": "Reported that one URL in her Aug 2026 newsletter campaign got a 30%+ click rate, confirmed the traffic hit the website, but saw zero on-site action from that traffic -- and asked Netcore to help validate her hypothesis that it was bot traffic.",
-      "why": "A genuine analytical hypothesis backed by her own click-vs-conversion data, not a basic how-to or confused ask -- real marketer-level engagement with fraud/bot-traffic detection on her own campaign data."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 2,
-        "external": 5
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 1,
-        "external": 1
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 1,
-        "external": 0
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 3,
-        "external": 5
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 1,
-        "external": 2
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 3
-      }
-    ],
-    "topAskers": [
-      {
-        "email": "ninad.karangutkar@netcore.ai",
-        "count": 3,
-        "friction": false,
-        "panel": "smartechai",
-        "queries": [
-          {
-            "theme": "Is X possible/supported",
-            "text": "How many dashboards we can create on CE Panel"
-          },
-          {
-            "theme": "How do I do X",
-            "text": "how to add Cohort analysis to my dashboard"
-          },
-          {
-            "theme": "Where do I set up/find X",
-            "text": "app personalization"
-          }
-        ]
-      },
-      {
-        "email": "arjun@truva.in",
-        "count": 2,
-        "friction": false,
-        "panel": "truva_three_ce",
-        "queries": [
-          {
-            "theme": "How do I do X",
-            "text": "How do I enable link tracking?"
-          },
-          {
-            "theme": "What does X mean/how it works",
-            "text": "What does this bug means? number of localisable params doesn't match the expected number of params"
-          }
-        ]
-      },
-      {
-        "email": "tayer@gmail.com",
-        "count": 2,
-        "friction": false,
-        "panel": "gtcfxworld_ce",
-        "queries": [
-          {
-            "theme": "Bare greeting, no context yet",
-            "text": "hello"
-          },
-          {
-            "theme": "Where's the doc/API for X",
-            "text": "hwo to send email for another user / where is apis in crm"
-          }
-        ]
-      }
-    ],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 0,
-        "external": 3,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "sales@fusioncertification.com",
-            "q": "i uploaded a data from my indiamart enquiries, but your system rejected it",
-            "panel": "buyy_cee"
-          },
-          {
-            "email": "tayer@gmail.com",
-            "q": "hwo to send email for another user / where is apis in crm",
-            "panel": "gtcfxworld_ce"
-          },
-          {
-            "email": "sramesh@integratedindia.in",
-            "q": "ID No: 5232 not added, we have uploaded",
-            "panel": "iepindiasmt"
-          }
-        ]
-      },
-      {
-        "area": "Email",
-        "internal": 1,
-        "external": 5,
-        "internalQ": [
-          {
-            "email": "mohd.pakzad@netcore.ai",
-            "q": "what is domain filter",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "arjun@truva.in",
-            "q": "How do I enable link tracking?",
-            "panel": "truva_three_ce"
-          },
-          {
-            "email": "yash.tyagi@antaraseniorcare.com",
-            "q": "how to disable single opt-in",
-            "panel": "antaraseniorcarece"
-          },
-          {
-            "email": "jainmanisha2811@gmail.com",
-            "q": "I don't want advertisement mails",
-            "panel": "NA"
-          },
-          {
-            "email": "arpita@themediaant.com",
-            "q": "Saw one URL in a campaign get 30%+ click rate with traffic on site but no action taken -- asked to validate bot-traffic hypothesis",
-            "panel": "themediaantsmt"
-          },
-          {
-            "email": "esther.ogbonnaya@firstbankgroup.com",
-            "q": "My campaigns are showing delivered but not dropping",
-            "panel": "firstbanknigeria_cee"
-          }
-        ]
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 2,
-        "external": 2,
-        "internalQ": [
-          {
-            "email": "swati.jangir@netcore.ai",
-            "q": "how to we change waba display picture",
-            "panel": "NA"
-          },
-          {
-            "email": "paridhi.jain@netcore.ai",
-            "q": "Please share RCS, CE, Whatsapp product deck",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "arjun@truva.in",
-            "q": "What does this bug means? number of localisable params doesn't match the expected number of params",
-            "panel": "truva_three_ce"
-          },
-          {
-            "email": "sachin@truva.in",
-            "q": "how can i check why whatsapp message are failing",
-            "panel": "truva_one_ce"
-          }
-        ]
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 0,
-        "external": 1,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "nitin@la-fetch.com",
-            "q": "Pricing to enable Unbxd Product Recommendations for App Push (product-catalog mapping + iOS integration) -- included in plan or add-on, one-time setup + recurring cost",
-            "panel": "lafetch_ce"
-          }
-        ]
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 1,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "ramakrishna.kasuba@netcore.ai",
-            "q": "The present journey has 0 emails sent in last 7 days why ?",
-            "panel": "outcasts_ce"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 4,
-        "external": 2,
-        "internalQ": [
-          {
-            "email": "ninad.karangutkar@netcore.ai",
-            "q": "How many dashboards we can create on CE Panel",
-            "panel": "smartechai"
-          },
-          {
-            "email": "ninad.karangutkar@netcore.ai",
-            "q": "how to add Cohort analysis to my dashboard",
-            "panel": "smartechai"
-          },
-          {
-            "email": "amit.sharma@netcore.ai",
-            "q": "Hey, What is netcore",
-            "panel": "tprappin1_custid"
-          },
-          {
-            "email": "ninad.karangutkar@netcore.ai",
-            "q": "app personalization",
-            "panel": "smartechai"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "digendrakumar@aesl.in",
-            "q": "Unable to login due to 2FA -- Authy backup password required, changed android device",
-            "panel": "myaakashed_cee"
-          },
-          {
-            "email": "mxcruz@landbank.com",
-            "q": "Does netcore have any anti virus anti malware",
-            "panel": "NA"
-          }
-        ]
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 3,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "ddeepak63548@gmail.com",
-            "q": "Deepak",
-            "panel": "NA"
-          },
-          {
-            "email": "mahesh47850@gmail.com",
-            "q": "Hi",
-            "panel": "NA"
-          },
-          {
-            "email": "tayer@gmail.com",
-            "q": "hello",
-            "panel": "gtcfxworld_ce"
-          }
-        ]
-      }
-    ]
-  },
   "2026-08-25": {
     "date": "2026-08-25",
     "totalConversations": 18,
@@ -4118,6 +3753,252 @@ const ARCHIVE = {
           {
             "email": "ajayk045958@gmail.com",
             "q": "Ismein humne paise ke liye kiya tha aur ismein to bike dikha (off-topic, unrelated to Netcore CE)",
+            "panel": "NA"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-07": {
+    "date": "2026-09-07",
+    "totalConversations": 13,
+    "resolutionRate": 100,
+    "internalTotal": 5,
+    "externalTotal": 8,
+    "docsTotal": 4,
+    "panelTotal": 9,
+    "queryType": {
+      "technical": 3,
+      "generic": 10
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-09-07 00:00 IST to 2026-09-09 23:59 IST); window not yet closed as of this run (D+1)",
+      "totalConversations": 13,
+      "sameUserEscalations": [
+        {
+          "email": "chinedu.ogbonna@sycamore.ng",
+          "docbotQuery": "Asked why push notifications kept sending after a journey was 'Paused' (only 'Stop' halted them), whether in-flight/queued sends can be immediately suspended without a full stop, and requested a recommended SOP for urgently halting a live journey.",
+          "area": "Journey Builder",
+          "theme": "What does X mean/how it works",
+          "ticketId": "5250961",
+          "ticketSubject": "Journey behavior issues: Pause/Stop, cross-channel repetition, audience scoping",
+          "ticketCreatedAt": "2026-09-07T16:17:00+05:30 (Mon, 7 Sep 2026, 4:17 PM IST) -- same day, ~29 minutes after his docbot conversation (3:48 PM IST), same underlying Pause/Stop topic"
+        }
+      ],
+      "deflectedCount": 12,
+      "deflectionRate": 92,
+      "patternRisk": [
+        {
+          "area": "Email",
+          "docbotCount": 2,
+          "ticketCount": 2,
+          "exampleTicketSubjects": [
+            "Test email not received (#5253255, Asteroid Technology, created 8 Sep 9:26 AM IST)",
+            "Test Campaign Email Not Sent to One Recipient -- rupeeraftaar_cee (#5253634, Asteroid Technology, created 8 Sep 12:23 PM IST)"
+          ],
+          "note": "A different company (Asteroid Technology, across two of the panels they manage) filed two separate email-delivery-failure tickets today -- same broad theme (test/campaign emails not being received) as itsupport@adilstore.com's and marketing@nmtronics.com's docbot questions. A pattern-level echo, not a direct escalation for either asker."
+        }
+      ],
+      "caveat": "Browser-search based on Freshdesk's UI (contact-search -> contact ID -> requester-filtered ticket list, per the confirmed same-day indexing lag on ticket text search), not an exhaustive API audit -- treat as a directional signal. All 12 unique requester emails checked individually via the lag-proof method; 1 confirmed same-user escalation (chinedu.ogbonna@sycamore.ng). Two internal staff (ishika.a@netcore.ai, swati.jangir@netcore.ai) had many historical tickets but all from their own routine customer-ticket-handling work, not personal escalations, and none fell in-window. Tier 2 keyword sweeps covered 'event payload limit' (0 in-window matches), 'DAU WAU dashboard'/'funnel report' (0 matches), 'list update urgent' (0 in-window matches -- 3 hits all pre-dated the window) -- the Email sweep ('not receiving test email') found the in-window Asteroid Technology matches above. Window only closed D+1 (open through Sep 9), so a late escalation could still land."
+    },
+    "headline": "13 conversations on Sep 7 (Monday), 100% bot self-reported resolved -- but Freshdesk cross-check found a real miss: Chinedu Ogbonna (Sycamore) filed a ticket for the exact same Journey Pause/Stop behavior just 29 minutes after asking the bot, landing deflection at 92% (12/13). Separately, a different company (Asteroid Technology) hit the same 'test email not received' wall two other askers ran into with the bot today.",
+    "actionableInsights": [
+      {
+        "owner": "product",
+        "title": "Pause doesn't halt in-flight journey sends -- confirmed by a same-day Freshdesk escalation",
+        "desc": "chinedu.ogbonna@sycamore.ng (Sycamore) asked the bot why push notifications kept firing after he 'Paused' a journey, and 29 minutes later filed Freshdesk ticket #5250961 on the exact same issue plus two related concerns (cross-channel repetition, audience scoping). This is now a confirmed real-incident escalation, not a hypothetical -- worth flagging directly to the journey-engine owners: 'Pause' semantics don't match customer expectations, and there's no documented SOP for urgently halting a live journey."
+      },
+      {
+        "owner": "content",
+        "title": "Two unrelated 'email not received' docbot asks echoed by a different company's Freshdesk tickets same day",
+        "desc": "itsupport@adilstore.com (contacts report) and marketing@nmtronics.com (test email) both hit email-non-delivery confusion with the bot; the same day, Asteroid Technology (across two panels they manage) filed two similar test/campaign-email-not-received tickets. A self-serve deliverability checklist (spam folder, sender domain verification, suppression list, list-size mismatch) could likely head off this recurring class of question across accounts."
+      },
+      {
+        "owner": "content",
+        "title": "Event/payload and API-key questions surfaced from both internal and external askers",
+        "desc": "anand.mishra@netcorecloud.com (internal) asked for the max event/payload count per primary key, and pablo.sans@holzkern.com (external) asked for a worked example of sending contact data via API key -- both point at the same underlying gap: hard platform limits and a canonical 'send data via API' example aren't easy to self-serve find."
+      },
+      {
+        "owner": "calibration",
+        "title": "n=13, deflection window still open (D+1) -- read 92% as provisional",
+        "desc": "Only 1 of the 2 post-day window has elapsed for yesterday's conversations, so a late escalation could still land and shift the 92% deflection rate further. Don Gonzales (Netcore, smartechai) asked two unrelated product questions (funnel-building, In-App message editor) about 16 hours apart -- not friction, just an active internal user across the day."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Chinedu Ogbonna (Sycamore)",
+      "email": "chinedu.ogbonna@sycamore.ng",
+      "query": "Reported a live incident where pausing a Journey did not stop in-flight push notifications (only fully Stopping did), asked for the precise Pause vs Stop behavior difference, whether in-flight sends can be halted without a full stop/rebuild, and requested a recommended SOP for urgently suspending message delivery from a live journey.",
+      "why": "A structured, real-incident report with numbered follow-up questions and an explicit best-practice ask -- not a basic how-to. He escalated the same issue to Freshdesk 29 minutes later, confirming this was a genuine operational gap, not just curiosity."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 1,
+        "external": 6
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 3,
+        "external": 1
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 1
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "don.gonzales@netcore.ai",
+        "count": 2,
+        "friction": false,
+        "panel": "smartechai",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "In your CE panel, build a 3-step funnel... Can you show me step by step and navigate how to do this"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "What editor is used to design In-App messages?"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 1,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "anand.mishra@netcorecloud.com",
+            "q": "What is the maximum count of event and payloads per user/primary key",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "pablo.sans@holzkern.com",
+            "q": "i want an example of how i can send contact information using my api key",
+            "panel": "holzkerneu"
+          },
+          {
+            "email": "prashanth.395133@actcorp.in",
+            "q": "2806 2807 2808 2809 get these lists Updated soon plz",
+            "panel": "actcorpincee"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "itsupport@adilstore.com",
+            "q": "contacts report not receiving in email",
+            "panel": "adilstorecee"
+          },
+          {
+            "email": "marketing@nmtronics.com",
+            "q": "Hello I am not receiving test email",
+            "panel": "nmtronicscee"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "kulwinder.singh@way.com",
+            "q": "\"Flash Sale: 11% off parking just few hours left\" refine this for US audience",
+            "panel": "cheapestairportpark"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "chinedu.ogbonna@sycamore.ng",
+            "q": "Detailed report: journey 'Pause' didn't stop in-flight push sends (only 'Stop' did) -- asked for the Pause vs Stop behavior difference, a way to halt in-flight/queued sends without a full stop, and a recommended SOP for urgently suspending a live journey.",
+            "panel": "sycamorecee"
+          }
+        ]
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 4,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "don.gonzales@netcore.ai",
+            "q": "In your CE panel, build a 3-step funnel... Can you show me step by step and navigate how to do this",
+            "panel": "smartechai"
+          },
+          {
+            "email": "ishika.a@netcore.ai",
+            "q": "segment conditions",
+            "panel": "NA"
+          },
+          {
+            "email": "swati.jangir@netcore.ai",
+            "q": "data export methods",
+            "panel": "NA"
+          },
+          {
+            "email": "don.gonzales@netcore.ai",
+            "q": "What editor is used to design In-App messages?",
+            "panel": "smartechai"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "shivam.sharma@leverageedu.com",
+            "q": "how to get DAU and WAU ?",
+            "panel": "leverageedu_cee"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "info.csc.parvej@gmail.com",
+            "q": "Hi",
             "panel": "NA"
           }
         ]
@@ -24188,6 +24069,252 @@ const FULL_ARCHIVE = {
           {
             "email": "ajayk045958@gmail.com",
             "q": "Ismein humne paise ke liye kiya tha aur ismein to bike dikha (off-topic, unrelated to Netcore CE)",
+            "panel": "NA"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-07": {
+    "date": "2026-09-07",
+    "totalConversations": 13,
+    "resolutionRate": 100,
+    "internalTotal": 5,
+    "externalTotal": 8,
+    "docsTotal": 4,
+    "panelTotal": 9,
+    "queryType": {
+      "technical": 3,
+      "generic": 10
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-09-07 00:00 IST to 2026-09-09 23:59 IST); window not yet closed as of this run (D+1)",
+      "totalConversations": 13,
+      "sameUserEscalations": [
+        {
+          "email": "chinedu.ogbonna@sycamore.ng",
+          "docbotQuery": "Asked why push notifications kept sending after a journey was 'Paused' (only 'Stop' halted them), whether in-flight/queued sends can be immediately suspended without a full stop, and requested a recommended SOP for urgently halting a live journey.",
+          "area": "Journey Builder",
+          "theme": "What does X mean/how it works",
+          "ticketId": "5250961",
+          "ticketSubject": "Journey behavior issues: Pause/Stop, cross-channel repetition, audience scoping",
+          "ticketCreatedAt": "2026-09-07T16:17:00+05:30 (Mon, 7 Sep 2026, 4:17 PM IST) -- same day, ~29 minutes after his docbot conversation (3:48 PM IST), same underlying Pause/Stop topic"
+        }
+      ],
+      "deflectedCount": 12,
+      "deflectionRate": 92,
+      "patternRisk": [
+        {
+          "area": "Email",
+          "docbotCount": 2,
+          "ticketCount": 2,
+          "exampleTicketSubjects": [
+            "Test email not received (#5253255, Asteroid Technology, created 8 Sep 9:26 AM IST)",
+            "Test Campaign Email Not Sent to One Recipient -- rupeeraftaar_cee (#5253634, Asteroid Technology, created 8 Sep 12:23 PM IST)"
+          ],
+          "note": "A different company (Asteroid Technology, across two of the panels they manage) filed two separate email-delivery-failure tickets today -- same broad theme (test/campaign emails not being received) as itsupport@adilstore.com's and marketing@nmtronics.com's docbot questions. A pattern-level echo, not a direct escalation for either asker."
+        }
+      ],
+      "caveat": "Browser-search based on Freshdesk's UI (contact-search -> contact ID -> requester-filtered ticket list, per the confirmed same-day indexing lag on ticket text search), not an exhaustive API audit -- treat as a directional signal. All 12 unique requester emails checked individually via the lag-proof method; 1 confirmed same-user escalation (chinedu.ogbonna@sycamore.ng). Two internal staff (ishika.a@netcore.ai, swati.jangir@netcore.ai) had many historical tickets but all from their own routine customer-ticket-handling work, not personal escalations, and none fell in-window. Tier 2 keyword sweeps covered 'event payload limit' (0 in-window matches), 'DAU WAU dashboard'/'funnel report' (0 matches), 'list update urgent' (0 in-window matches -- 3 hits all pre-dated the window) -- the Email sweep ('not receiving test email') found the in-window Asteroid Technology matches above. Window only closed D+1 (open through Sep 9), so a late escalation could still land."
+    },
+    "headline": "13 conversations on Sep 7 (Monday), 100% bot self-reported resolved -- but Freshdesk cross-check found a real miss: Chinedu Ogbonna (Sycamore) filed a ticket for the exact same Journey Pause/Stop behavior just 29 minutes after asking the bot, landing deflection at 92% (12/13). Separately, a different company (Asteroid Technology) hit the same 'test email not received' wall two other askers ran into with the bot today.",
+    "actionableInsights": [
+      {
+        "owner": "product",
+        "title": "Pause doesn't halt in-flight journey sends -- confirmed by a same-day Freshdesk escalation",
+        "desc": "chinedu.ogbonna@sycamore.ng (Sycamore) asked the bot why push notifications kept firing after he 'Paused' a journey, and 29 minutes later filed Freshdesk ticket #5250961 on the exact same issue plus two related concerns (cross-channel repetition, audience scoping). This is now a confirmed real-incident escalation, not a hypothetical -- worth flagging directly to the journey-engine owners: 'Pause' semantics don't match customer expectations, and there's no documented SOP for urgently halting a live journey."
+      },
+      {
+        "owner": "content",
+        "title": "Two unrelated 'email not received' docbot asks echoed by a different company's Freshdesk tickets same day",
+        "desc": "itsupport@adilstore.com (contacts report) and marketing@nmtronics.com (test email) both hit email-non-delivery confusion with the bot; the same day, Asteroid Technology (across two panels they manage) filed two similar test/campaign-email-not-received tickets. A self-serve deliverability checklist (spam folder, sender domain verification, suppression list, list-size mismatch) could likely head off this recurring class of question across accounts."
+      },
+      {
+        "owner": "content",
+        "title": "Event/payload and API-key questions surfaced from both internal and external askers",
+        "desc": "anand.mishra@netcorecloud.com (internal) asked for the max event/payload count per primary key, and pablo.sans@holzkern.com (external) asked for a worked example of sending contact data via API key -- both point at the same underlying gap: hard platform limits and a canonical 'send data via API' example aren't easy to self-serve find."
+      },
+      {
+        "owner": "calibration",
+        "title": "n=13, deflection window still open (D+1) -- read 92% as provisional",
+        "desc": "Only 1 of the 2 post-day window has elapsed for yesterday's conversations, so a late escalation could still land and shift the 92% deflection rate further. Don Gonzales (Netcore, smartechai) asked two unrelated product questions (funnel-building, In-App message editor) about 16 hours apart -- not friction, just an active internal user across the day."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Chinedu Ogbonna (Sycamore)",
+      "email": "chinedu.ogbonna@sycamore.ng",
+      "query": "Reported a live incident where pausing a Journey did not stop in-flight push notifications (only fully Stopping did), asked for the precise Pause vs Stop behavior difference, whether in-flight sends can be halted without a full stop/rebuild, and requested a recommended SOP for urgently suspending message delivery from a live journey.",
+      "why": "A structured, real-incident report with numbered follow-up questions and an explicit best-practice ask -- not a basic how-to. He escalated the same issue to Freshdesk 29 minutes later, confirming this was a genuine operational gap, not just curiosity."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 1,
+        "external": 6
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 1,
+        "external": 0
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 3,
+        "external": 1
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 0,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 1
+      }
+    ],
+    "topAskers": [
+      {
+        "email": "don.gonzales@netcore.ai",
+        "count": 2,
+        "friction": false,
+        "panel": "smartechai",
+        "queries": [
+          {
+            "theme": "How do I do X",
+            "text": "In your CE panel, build a 3-step funnel... Can you show me step by step and navigate how to do this"
+          },
+          {
+            "theme": "What does X mean/how it works",
+            "text": "What editor is used to design In-App messages?"
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 1,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "anand.mishra@netcorecloud.com",
+            "q": "What is the maximum count of event and payloads per user/primary key",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "pablo.sans@holzkern.com",
+            "q": "i want an example of how i can send contact information using my api key",
+            "panel": "holzkerneu"
+          },
+          {
+            "email": "prashanth.395133@actcorp.in",
+            "q": "2806 2807 2808 2809 get these lists Updated soon plz",
+            "panel": "actcorpincee"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "itsupport@adilstore.com",
+            "q": "contacts report not receiving in email",
+            "panel": "adilstorecee"
+          },
+          {
+            "email": "marketing@nmtronics.com",
+            "q": "Hello I am not receiving test email",
+            "panel": "nmtronicscee"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "kulwinder.singh@way.com",
+            "q": "\"Flash Sale: 11% off parking just few hours left\" refine this for US audience",
+            "panel": "cheapestairportpark"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "chinedu.ogbonna@sycamore.ng",
+            "q": "Detailed report: journey 'Pause' didn't stop in-flight push sends (only 'Stop' did) -- asked for the Pause vs Stop behavior difference, a way to halt in-flight/queued sends without a full stop, and a recommended SOP for urgently suspending a live journey.",
+            "panel": "sycamorecee"
+          }
+        ]
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 4,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "don.gonzales@netcore.ai",
+            "q": "In your CE panel, build a 3-step funnel... Can you show me step by step and navigate how to do this",
+            "panel": "smartechai"
+          },
+          {
+            "email": "ishika.a@netcore.ai",
+            "q": "segment conditions",
+            "panel": "NA"
+          },
+          {
+            "email": "swati.jangir@netcore.ai",
+            "q": "data export methods",
+            "panel": "NA"
+          },
+          {
+            "email": "don.gonzales@netcore.ai",
+            "q": "What editor is used to design In-App messages?",
+            "panel": "smartechai"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "shivam.sharma@leverageedu.com",
+            "q": "how to get DAU and WAU ?",
+            "panel": "leverageedu_cee"
+          }
+        ]
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 1,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "info.csc.parvej@gmail.com",
+            "q": "Hi",
             "panel": "NA"
           }
         ]
