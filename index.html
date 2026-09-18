@@ -236,6 +236,30 @@ html[data-theme="dark"] .dash{color:#4a4558;}
 .sec-title{font-size:23px; font-weight:800; margin-bottom:6px; letter-spacing:-.01em;}
 .sec-sub{font-size:14px; color:var(--dimtext); line-height:1.55; margin-bottom:18px; max-width:680px;}
 
+/* accordion sections (Daily + Historical) -- click a section to open it, all others auto-close */
+details.flow-section.acc{
+  border:1px solid var(--paperline); border-radius:16px; background:var(--paper2);
+  margin:14px 0; overflow:hidden;
+}
+details.flow-section.acc:first-of-type{ margin-top:0; }
+details.flow-section.acc > summary{
+  list-style:none; cursor:pointer; padding:20px 52px 20px 22px; position:relative;
+}
+details.flow-section.acc > summary::-webkit-details-marker{ display:none; }
+details.flow-section.acc > summary::marker{ content:''; }
+details.flow-section.acc > summary .sec-label{ margin-bottom:6px; }
+details.flow-section.acc > summary .sec-title{ margin-bottom:0; }
+details.flow-section.acc > summary .sec-sub{ margin:8px 0 0; }
+details.flow-section.acc > summary .verdict-banner{ margin:8px 0 0; }
+details.flow-section.acc > summary .acc-caret{
+  position:absolute; top:22px; right:22px; font-family:'JetBrains Mono',monospace; font-size:13px;
+  color:var(--dimtext); transition:transform .15s ease;
+}
+details.flow-section.acc[open] > summary .acc-caret{ transform:rotate(90deg); color:var(--violet); }
+details.flow-section.acc > summary:hover .acc-caret{ color:var(--violet); }
+details.flow-section.acc > .acc-body{ padding:0 22px 24px; animation:fadeUp .25s ease both; }
+details.flow-section.acc[open] > summary{ border-bottom:1px solid var(--paperline); }
+
 /* deflection */
 .acc-sub{font-size:13.5px; line-height:1.55; color:var(--dimtext); margin:-4px 0 16px;}
 .deflect-na{font-size:13.5px; color:var(--dimtext); font-style:italic; background:var(--paper2); border:1px solid var(--paperline); border-radius:12px; padding:16px 18px;}
@@ -26639,110 +26663,115 @@ function renderDailyMain(data){
       <span class="status-chip ${statusCls}">${statusLabel}</span>
     </div>
 
-    <div class="flow-section anim" id="sec-verdict" style="margin-top:0;">
-      <div class="verdict-banner tone-${tone}">
-        <div class="headline-take">${data.headline}</div>
-      </div>
-      <div class="stats">
-        <div class="stat"><div class="v">${data.totalConversations}</div><div class="l">Conversations</div></div>
-        <div class="stat"><div class="v">${data.resolutionRate}%</div><div class="l">Bot-handled*</div></div>
-        <div class="stat"><div class="v">${data.internalTotal}:${data.externalTotal}</div><div class="l">Netcore : Customer</div></div>
-        <div class="stat"><div class="v">${data.docsTotal}:${data.panelTotal}</div><div class="l">Docs : In-Panel</div></div>
-      </div>
-      <div class="qtype-row">
-        <span>Query type —</span>
-        <span class="qtype-pill tech" id="qtypeTechBtn">Technical ${data.queryType.technical}</span>
-        <span class="qtype-pill gen" id="qtypeGenBtn">Generic ${data.queryType.generic}</span>
-        <span class="qtype-hint">click a pill to see which questions</span>
-      </div>
-      <div class="qtype-panel" id="qtypePanel"></div>
-      <div class="footnote-mark">* self-reported by the bot's own session state — see the Ticket Deflection section below for the Freshdesk-checked version of this signal, where available</div>
-    </div>
-
-    <div class="flow-section anim" id="sec-deflect">
-      <div class="sec-label">02 · Did the bot save a ticket?</div>
-      <h2 class="sec-title">Ticket deflection</h2>
-      ${renderDeflection(data.ticketDeflection)}
-    </div>
-
-    <div class="flow-section anim" id="sec-act">
-      <div class="sec-label">03 · Act on this</div>
-      <h2 class="sec-title">What to actually do with this</h2>
-      <div class="sec-sub">Today's signals, routed to whoever should act on them.</div>
-      ${data.actionableInsights.map(i=>`
-        <div class="insight-row ${i.owner}">
-          <div class="owner-chip ${i.owner}">${OWNER_LABEL[i.owner]}</div>
-          <div class="ititle">${i.title}</div>
-          <div class="idesc">${i.desc}</div>
+    <details class="flow-section acc anim" id="sec-verdict" open style="margin-top:0;">
+      <summary><div class="sec-label">01 · Verdict</div><span class="acc-caret">▸</span></summary>
+      <div class="acc-body">
+        <div class="verdict-banner tone-${tone}">
+          <div class="headline-take">${data.headline}</div>
         </div>
-      `).join('')}
-      <div class="pull-quote">
-        <div class="qmark">&ldquo;</div>
-        <div class="tag" style="color:var(--violet)">Question of the day</div>
-        <div class="quote">${data.mostInteresting.query}</div>
-        <div class="who"><span class="avatar"></span>${data.mostInteresting.who} · ${data.mostInteresting.email}</div>
-        <div class="why">${data.mostInteresting.why}</div>
+        <div class="stats">
+          <div class="stat"><div class="v">${data.totalConversations}</div><div class="l">Conversations</div></div>
+          <div class="stat"><div class="v">${data.resolutionRate}%</div><div class="l">Bot-handled*</div></div>
+          <div class="stat"><div class="v">${data.internalTotal}:${data.externalTotal}</div><div class="l">Netcore : Customer</div></div>
+          <div class="stat"><div class="v">${data.docsTotal}:${data.panelTotal}</div><div class="l">Docs : In-Panel</div></div>
+        </div>
+        <div class="qtype-row">
+          <span>Query type —</span>
+          <span class="qtype-pill tech" id="qtypeTechBtn">Technical ${data.queryType.technical}</span>
+          <span class="qtype-pill gen" id="qtypeGenBtn">Generic ${data.queryType.generic}</span>
+          <span class="qtype-hint">click a pill to see which questions</span>
+        </div>
+        <div class="qtype-panel" id="qtypePanel"></div>
+        <div class="footnote-mark">* self-reported by the bot's own session state — see the Ticket Deflection section below for the Freshdesk-checked version of this signal, where available</div>
       </div>
-    </div>
+    </details>
 
-    <div class="flow-section anim" id="sec-signal">
-      <div class="sec-label">04 · Signal</div>
-      <h2 class="sec-title">Where the knowledge gap lives</h2>
-      <div class="sec-sub">Same question themes, pulled apart by who's asking. A long Netcore bar with no customer counterpart usually means an internal enablement gap, not a customer-facing content gap.</div>
-      <div class="content-card">
-        <div class="tow-head"><span class="in">◄ Netcore team</span><span class="ex">Customer ►</span></div>
-        ${data.themesBySource.map(t=>{
-          const intPct = (t.internal/maxTheme*100);
-          const extPct = (t.external/maxTheme*100);
-          return '<div class="div-row"><div class="div-left"><span class="val">'+(t.internal||'')+'</span><div class="bar" style="width:'+intPct+'%"></div></div><div class="div-center">'+t.theme+'</div><div class="div-right"><div class="bar" style="width:'+extPct+'%"></div><span class="val">'+(t.external||'')+'</span></div></div>';
-        }).join('')}
+    <details class="flow-section acc anim" id="sec-deflect">
+      <summary><div class="sec-label">02 · Did the bot save a ticket?</div><h2 class="sec-title">Ticket deflection</h2><span class="acc-caret">▸</span></summary>
+      <div class="acc-body">
+        ${renderDeflection(data.ticketDeflection)}
       </div>
-    </div>
+    </details>
 
-    <div class="flow-section anim" id="sec-beat">
-      <div class="sec-label">05 · Beat report</div>
-      <h2 class="sec-title">Query areas, by team</h2>
-      <div class="sec-sub">Who's asking about what, by team, and the underlying question. <span class="email-in">Netcore emails</span> · <span class="email-ex">customer emails</span>.</div>
-      ${(() => {
-        const nonEmpty = data.areas.filter(a=>a.internal||a.external);
-        if(!nonEmpty.length) return '<div class="deflect-empty">No conversations today.</div>';
-        return nonEmpty.map(a=>{
-          const isGreeting = a.area.indexOf('General') === 0;
-          const renderQ = (arr, side) => arr.length ? arr.map(x=>'<div class="aq-item"><span class="mono '+(side==='in'?'email-in':'email-ex')+'">'+x.email+'</span>'+(x.panel && x.panel!=='NA' ? '<span class="panel-tag">'+x.panel+'</span>' : '')+'<span class="qtext">'+x.q+'</span></div>').join('') : '<div class="area-col-empty">—</div>';
-          return '<div class="area-card '+(isGreeting?'greeting-card':'')+'"><div class="area-card-head"><span class="name">'+a.area+'</span><div class="area-card-pills">'+(a.internal?'<span class="countpill in">Netcore '+a.internal+'</span>':'')+(a.external?'<span class="countpill ex">Customer '+a.external+'</span>':'')+'</div></div><div class="area-card-cols"><div>'+renderQ(a.internalQ,'in')+'</div><div>'+renderQ(a.externalQ,'ex')+'</div></div></div>';
-        }).join('');
-      })()}
-    </div>
-
-    <div class="flow-section anim" id="sec-askers">
-      <div class="sec-label">Most active today</div>
-      <h2 class="sec-title">Top askers</h2>
-      <div class="sec-sub">${data.topAskers.length ? 'Most active users today, with what they actually asked. Everyone else asked once each.' : 'Nobody repeated today — every question came from a different person, one ask each.'}</div>
-      <div class="topask-grid">
-        ${data.topAskers.length ? data.topAskers.map((u,i)=>`
-          <div class="topask-card">
-            <div class="topask-head">
-              <div class="topask-id"><span class="rank">${i+1}</span><span class="topask-email">${u.email}</span>${u.panel && u.panel!=='NA' ? '<span class="panel-tag">'+u.panel+'</span>' : ''}</div>
-              <span class="qcount">${u.count}×</span>
-            </div>
-            ${u.queries.map(q=>'<div class="topask-q"><span class="t">'+q.theme+'</span>'+q.text+'</div>').join('')}
-            ${u.friction ? '<div class="friction">⚠ same question re-asked — possible content gap</div>' : ''}
+    <details class="flow-section acc anim" id="sec-act">
+      <summary><div class="sec-label">03 · Act on this</div><h2 class="sec-title">What to actually do with this</h2><div class="sec-sub">Today's signals, routed to whoever should act on them.</div><span class="acc-caret">▸</span></summary>
+      <div class="acc-body">
+        ${data.actionableInsights.map(i=>`
+          <div class="insight-row ${i.owner}">
+            <div class="owner-chip ${i.owner}">${OWNER_LABEL[i.owner]}</div>
+            <div class="ititle">${i.title}</div>
+            <div class="idesc">${i.desc}</div>
           </div>
-        `).join('') : renderAllAskersFallback(data)}
+        `).join('')}
+        <div class="pull-quote">
+          <div class="qmark">&ldquo;</div>
+          <div class="tag" style="color:var(--violet)">Question of the day</div>
+          <div class="quote">${data.mostInteresting.query}</div>
+          <div class="who"><span class="avatar"></span>${data.mostInteresting.who} · ${data.mostInteresting.email}</div>
+          <div class="why">${data.mostInteresting.why}</div>
+        </div>
       </div>
-    </div>
+    </details>
 
-    <div class="flow-section anim" id="sec-caveats">
-      <div class="sec-label">07 · Caveats</div>
-      <h2 class="sec-title">What this can (and can't) tell you yet</h2>
-      <div class="caveat-card">
-        <ul>
-          <li>"Bot-handled" is the bot's own self-reported session state. From 2026-06-24 onward, the Ticket Deflection section above cross-checks this against Freshdesk directly — treat that as the stronger signal when it's present, and this self-reported number as directional on days without it.</li>
-          <li>One day of data has no baseline. Numbers here are directional, not trends — wait for at least a week before treating any single count as a pattern.</li>
-          <li>Theme and area tags are classified from the first message of each conversation. Long threads may have evolved into something different than the opener suggests.</li>
-        </ul>
+    <details class="flow-section acc anim" id="sec-signal">
+      <summary><div class="sec-label">04 · Signal</div><h2 class="sec-title">Where the knowledge gap lives</h2><div class="sec-sub">Same question themes, pulled apart by who's asking. A long Netcore bar with no customer counterpart usually means an internal enablement gap, not a customer-facing content gap.</div><span class="acc-caret">▸</span></summary>
+      <div class="acc-body">
+        <div class="content-card">
+          <div class="tow-head"><span class="in">◄ Netcore team</span><span class="ex">Customer ►</span></div>
+          ${data.themesBySource.map(t=>{
+            const intPct = (t.internal/maxTheme*100);
+            const extPct = (t.external/maxTheme*100);
+            return '<div class="div-row"><div class="div-left"><span class="val">'+(t.internal||'')+'</span><div class="bar" style="width:'+intPct+'%"></div></div><div class="div-center">'+t.theme+'</div><div class="div-right"><div class="bar" style="width:'+extPct+'%"></div><span class="val">'+(t.external||'')+'</span></div></div>';
+          }).join('')}
+        </div>
       </div>
-    </div>
+    </details>
+
+    <details class="flow-section acc anim" id="sec-beat">
+      <summary><div class="sec-label">05 · Beat report</div><h2 class="sec-title">Query areas, by team</h2><div class="sec-sub">Who's asking about what, by team, and the underlying question. <span class="email-in">Netcore emails</span> · <span class="email-ex">customer emails</span>.</div><span class="acc-caret">▸</span></summary>
+      <div class="acc-body">
+        ${(() => {
+          const nonEmpty = data.areas.filter(a=>a.internal||a.external);
+          if(!nonEmpty.length) return '<div class="deflect-empty">No conversations today.</div>';
+          return nonEmpty.map(a=>{
+            const isGreeting = a.area.indexOf('General') === 0;
+            const renderQ = (arr, side) => arr.length ? arr.map(x=>'<div class="aq-item"><span class="mono '+(side==='in'?'email-in':'email-ex')+'">'+x.email+'</span>'+(x.panel && x.panel!=='NA' ? '<span class="panel-tag">'+x.panel+'</span>' : '')+'<span class="qtext">'+x.q+'</span></div>').join('') : '<div class="area-col-empty">—</div>';
+            return '<div class="area-card '+(isGreeting?'greeting-card':'')+'"><div class="area-card-head"><span class="name">'+a.area+'</span><div class="area-card-pills">'+(a.internal?'<span class="countpill in">Netcore '+a.internal+'</span>':'')+(a.external?'<span class="countpill ex">Customer '+a.external+'</span>':'')+'</div></div><div class="area-card-cols"><div>'+renderQ(a.internalQ,'in')+'</div><div>'+renderQ(a.externalQ,'ex')+'</div></div></div>';
+          }).join('');
+        })()}
+      </div>
+    </details>
+
+    <details class="flow-section acc anim" id="sec-askers">
+      <summary><div class="sec-label">Most active today</div><h2 class="sec-title">Top askers</h2><div class="sec-sub">${data.topAskers.length ? 'Most active users today, with what they actually asked. Everyone else asked once each.' : 'Nobody repeated today — every question came from a different person, one ask each.'}</div><span class="acc-caret">▸</span></summary>
+      <div class="acc-body">
+        <div class="topask-grid">
+          ${data.topAskers.length ? data.topAskers.map((u,i)=>`
+            <div class="topask-card">
+              <div class="topask-head">
+                <div class="topask-id"><span class="rank">${i+1}</span><span class="topask-email">${u.email}</span>${u.panel && u.panel!=='NA' ? '<span class="panel-tag">'+u.panel+'</span>' : ''}</div>
+                <span class="qcount">${u.count}×</span>
+              </div>
+              ${u.queries.map(q=>'<div class="topask-q"><span class="t">'+q.theme+'</span>'+q.text+'</div>').join('')}
+              ${u.friction ? '<div class="friction">⚠ same question re-asked — possible content gap</div>' : ''}
+            </div>
+          `).join('') : renderAllAskersFallback(data)}
+        </div>
+      </div>
+    </details>
+
+    <details class="flow-section acc anim" id="sec-caveats">
+      <summary><div class="sec-label">07 · Caveats</div><h2 class="sec-title">What this can (and can't) tell you yet</h2><span class="acc-caret">▸</span></summary>
+      <div class="acc-body">
+        <div class="caveat-card">
+          <ul>
+            <li>"Bot-handled" is the bot's own self-reported session state. From 2026-06-24 onward, the Ticket Deflection section above cross-checks this against Freshdesk directly — treat that as the stronger signal when it's present, and this self-reported number as directional on days without it.</li>
+            <li>One day of data has no baseline. Numbers here are directional, not trends — wait for at least a week before treating any single count as a pattern.</li>
+            <li>Theme and area tags are classified from the first message of each conversation. Long threads may have evolved into something different than the opener suggests.</li>
+          </ul>
+        </div>
+      </div>
+    </details>
     <div class="footer-note">CE Docbot daily pulse · Featurebase, Netcore CE workspace</div>
   `;
 }
@@ -27174,12 +27203,13 @@ function renderVisitorQuestions(){
     : '<div class="visitorq-empty">No visitor questions harvested yet — ask the bot something in the "Ask CE Docbot" panel on the left, and it\'ll show up here after the next daily pipeline run.</div>';
 
   return `
-    <div class="content-card" id="sec-h-visitorq">
-      <div class="sec-label" style="margin-bottom:6px;">06 · Visitor questions</div>
-      <h3 style="font-size:16px;font-weight:800;margin-bottom:8px;">What people are asking the bot</h3>
-      <div class="sec-sub" style="margin-bottom:14px;">Every question typed into the "Ask CE Docbot" chat panel, plus how it was answered. ${gapCount ? '<span class="mono">'+gapCount+'</span> question'+(gapCount===1?'':'s')+' the bot couldn\'t answer from current data -- these are the real gaps worth closing first.' : 'Live chat runs client-side; this list is a daily-refreshed snapshot logged for internal tracking.'}</div>
+    <details class="flow-section acc anim" id="sec-h-visitorq">
+      <summary><div class="sec-label">06 · Visitor questions</div><h3 style="font-size:16px;font-weight:800;margin:0;">What people are asking the bot</h3><span class="acc-caret">▸</span></summary>
+      <div class="acc-body">
+      <div class="sec-sub" style="margin:8px 0 14px;">Every question typed into the "Ask CE Docbot" chat panel, plus how it was answered. ${gapCount ? '<span class="mono">'+gapCount+'</span> question'+(gapCount===1?'':'s')+' the bot couldn\'t answer from current data -- these are the real gaps worth closing first.' : 'Live chat runs client-side; this list is a daily-refreshed snapshot logged for internal tracking.'}</div>
       ${body}
-    </div>
+      </div>
+    </details>
   `;
 }
 
@@ -27231,49 +27261,50 @@ function renderHistoricalMain(){
       <span class="status-chip ${m.avgResolution>=60?'live':(m.avgResolution>=30?'warn':'off')}">${m.dates.length} day${m.dates.length>1?'s':''} tracked</span>
     </div>
 
-    <div class="flow-section anim" id="sec-h-verdict" style="margin-top:0;">
-      <div class="master-card">
-        <div class="master-label">◄ Master summary — all days</div>
-        <div class="master-sub">Cumulative across all ${m.dates.length} day${m.dates.length>1?'s':''} tracked so far — recomputed fresh from every individual question in the archive each time a new day is added, not just same-day highlights.</div>
-        <div class="master-stats">
-          <div class="master-stat"><div class="v">${m.totalConv}</div><div class="l">Conversations, all-time</div></div>
-          <div class="master-stat"><div class="v">${m.avgResolution}%</div><div class="l">Avg bot-handled / day*</div>${mRecent?'<div class="mini-metric">Last 3 days: <span class="mono">'+mRecent.avgResolution+'%</span></div>':''}</div>
-          <div class="master-stat"><div class="v">${m.deflRate!==null ? m.deflRate+'%' : '—'}</div><div class="l">Tickets deflected${deflWindowLabel ? ' ('+deflWindowLabel+')' : ' — not yet tracked'}</div>${mRecent&&mRecent.deflRate!==null?'<div class="mini-metric">Last 3 days: <span class="mono">'+mRecent.deflRate+'%</span></div>':''}</div>
-          <div class="master-stat"><div class="v">${m.totalInternal}:${m.totalExternal}</div><div class="l">Netcore : Customer</div></div>
-          <div class="master-stat" id="statQtypeH" style="cursor:pointer;"><div class="v">${m.techTotal}:${m.genTotal}</div><div class="l">Technical : Generic — click for examples</div></div>
-        </div>
-        <div class="qtype-panel" id="qtypePanelH"></div>
-        <div class="master-cols">
-          <div>
-            <div class="master-subtag">Power users — most questions</div>
-            ${powerColumn(combinedTop)}
+    <details class="flow-section acc anim" id="sec-h-verdict" open style="margin-top:0;">
+      <summary><div class="sec-label">01 · All-time verdict</div><span class="acc-caret">▸</span></summary>
+      <div class="acc-body">
+        <div class="master-card">
+          <div class="master-label">◄ Master summary — all days</div>
+          <div class="master-sub">Cumulative across all ${m.dates.length} day${m.dates.length>1?'s':''} tracked so far — recomputed fresh from every individual question in the archive each time a new day is added, not just same-day highlights.</div>
+          <div class="master-stats">
+            <div class="master-stat"><div class="v">${m.totalConv}</div><div class="l">Conversations, all-time</div></div>
+            <div class="master-stat"><div class="v">${m.avgResolution}%</div><div class="l">Avg bot-handled / day*</div>${mRecent?'<div class="mini-metric">Last 3 days: <span class="mono">'+mRecent.avgResolution+'%</span></div>':''}</div>
+            <div class="master-stat"><div class="v">${m.deflRate!==null ? m.deflRate+'%' : '—'}</div><div class="l">Tickets deflected${deflWindowLabel ? ' ('+deflWindowLabel+')' : ' — not yet tracked'}</div>${mRecent&&mRecent.deflRate!==null?'<div class="mini-metric">Last 3 days: <span class="mono">'+mRecent.deflRate+'%</span></div>':''}</div>
+            <div class="master-stat"><div class="v">${m.totalInternal}:${m.totalExternal}</div><div class="l">Netcore : Customer</div></div>
+            <div class="master-stat" id="statQtypeH" style="cursor:pointer;"><div class="v">${m.techTotal}:${m.genTotal}</div><div class="l">Technical : Generic — click for examples</div></div>
           </div>
-          <div>
-            <div class="master-subtag">Busiest sections</div>
-            ${m.topAreas.slice(0,6).map(a=>`
-              <div class="busiest-row" data-drill-area="${a.area}" style="cursor:pointer;" title="Click to see all ${a.total} questions for ${a.area}">
-                <span class="busiest-name">${a.area}</span>
-                <div class="busiest-bar-track"><div class="busiest-bar" style="width:${Math.max((a.total/topAreaTotal)*100,4)}%"></div></div>
-                <span class="busiest-count">${a.total}</span>
-              </div>
-            `).join('')}
+          <div class="qtype-panel" id="qtypePanelH"></div>
+          <div class="master-cols">
+            <div>
+              <div class="master-subtag">Power users — most questions</div>
+              ${powerColumn(combinedTop)}
+            </div>
+            <div>
+              <div class="master-subtag">Busiest sections</div>
+              ${m.topAreas.slice(0,6).map(a=>`
+                <div class="busiest-row" data-drill-area="${a.area}" style="cursor:pointer;" title="Click to see all ${a.total} questions for ${a.area}">
+                  <span class="busiest-name">${a.area}</span>
+                  <div class="busiest-bar-track"><div class="busiest-bar" style="width:${Math.max((a.total/topAreaTotal)*100,4)}%"></div></div>
+                  <span class="busiest-count">${a.total}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+          <div class="checkin-block">
+            <div class="checkin-label">↻ Worth a proactive check-in — asked on more than one day</div>
+            ${checkinList.length ? '<div class="checkin-chips">'+checkinList.map(u=>'<span class="checkin-chip" data-drill-email="'+u.email+'">'+u.email+'</span>').join('')+'</div>' : '<div class="checkin-empty">No one has asked on more than one day yet.</div>'}
           </div>
         </div>
-        <div class="checkin-block">
-          <div class="checkin-label">↻ Worth a proactive check-in — asked on more than one day</div>
-          ${checkinList.length ? '<div class="checkin-chips">'+checkinList.map(u=>'<span class="checkin-chip" data-drill-email="'+u.email+'">'+u.email+'</span>').join('')+'</div>' : '<div class="checkin-empty">No one has asked on more than one day yet.</div>'}
-        </div>
+        <div class="footnote-mark">* self-reported by the bot's own session state. The deflection figure is the stronger, Freshdesk-checked signal — ${m.deflChecked} conversations checked so far, ${m.deflDeflected} with no matching ticket from that user (${m.deflEscalations.length} confirmed same-user escalation${m.deflEscalations.length===1?'':'s'}). Coverage widens as deflection tracking rolls back across earlier days.</div>
+        ${renderSinceStrip(since)}
+        ${renderTrendPanel(histArchive)}
       </div>
-      <div class="footnote-mark">* self-reported by the bot's own session state. The deflection figure is the stronger, Freshdesk-checked signal — ${m.deflChecked} conversations checked so far, ${m.deflDeflected} with no matching ticket from that user (${m.deflEscalations.length} confirmed same-user escalation${m.deflEscalations.length===1?'':'s'}). Coverage widens as deflection tracking rolls back across earlier days.</div>
-      ${renderSinceStrip(since)}
-      ${renderTrendPanel(histArchive)}
-    </div>
+    </details>
 
-    <div class="flow-section anim" id="sec-h-takeaways">
-      <div class="sec-label">02 · Key takeaways</div>
-      <h2 class="sec-title">What's actually worth acting on — for leadership</h2>
-      <div class="sec-sub">Trending Now is rebuilt from a since-last-report diff every time a day is added — it's the only card here guaranteed to change. The other six hold structurally across the whole tracked period (${fmtDate(m.dates[0])} – ${fmtDate(m.dates[m.dates.length-1])}).</div>
-
+    <details class="flow-section acc anim" id="sec-h-takeaways">
+      <summary><div class="sec-label">02 · Key takeaways</div><h2 class="sec-title">What's actually worth acting on — for leadership</h2><div class="sec-sub">Trending Now is rebuilt from a since-last-report diff every time a day is added — it's the only card here guaranteed to change. The other six hold structurally across the whole tracked period (${fmtDate(m.dates[0])} – ${fmtDate(m.dates[m.dates.length-1])}).</div><span class="acc-caret">▸</span></summary>
+      <div class="acc-body">
       <div class="takeaway-card">
         <div class="takeaway-num">01</div>
         <div class="takeaway-body">
@@ -27354,12 +27385,12 @@ function renderHistoricalMain(){
           </ul>
         </div>
       </div>
-    </div>
+      </div>
+    </details>
 
-    <div class="flow-section anim" id="sec-h-areas">
-      <div class="sec-label">03 · Busiest sections</div>
-      <h2 class="sec-title">Where questions land most — the full breakdown</h2>
-      <div class="sec-sub">The compact bars above give the leaderboard view; this expands the top areas with the reasoning behind each, plus trend direction.</div>
+    <details class="flow-section acc anim" id="sec-h-areas">
+      <summary><div class="sec-label">03 · Busiest sections</div><h2 class="sec-title">Where questions land most — the full breakdown</h2><div class="sec-sub">The compact bars above give the leaderboard view; this expands the top areas with the reasoning behind each, plus trend direction.</div><span class="acc-caret">▸</span></summary>
+      <div class="acc-body">
       ${(() => {
         const top3 = m.topAreas.slice(0,3);
         const rest = m.topAreas.slice(3);
@@ -27399,12 +27430,12 @@ function renderHistoricalMain(){
         </div>
       </div>` : ''}`;
       })()}
-    </div>
+      </div>
+    </details>
 
-    <div class="flow-section anim" id="sec-h-power">
-      <div class="sec-label">04 · Power users</div>
-      <h2 class="sec-title">Most sessions across the full duration</h2>
-      <div class="sec-sub">Two views — who is leaning on the bot the most internally, and which customers are doing the same. The count below is <strong>sessions</strong>, not individual questions — a Featurebase spot-check of these conversations found most sessions carry more than one real question (≈1.6 on average), so actual question volume per person runs higher than the count shown.</div>
+    <details class="flow-section acc anim" id="sec-h-power">
+      <summary><div class="sec-label">04 · Power users</div><h2 class="sec-title">Most sessions across the full duration</h2><div class="sec-sub">Two views — who is leaning on the bot the most internally, and which customers are doing the same. The count below is <strong>sessions</strong>, not individual questions — a Featurebase spot-check of these conversations found most sessions carry more than one real question (≈1.6 on average), so actual question volume per person runs higher than the count shown.</div><span class="acc-caret">▸</span></summary>
+      <div class="acc-body">
       <div class="master-card">
         <div class="master-cols">
           <div>
@@ -27419,16 +27450,17 @@ function renderHistoricalMain(){
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </details>
 
-    <div class="flow-section anim" id="sec-h-hygiene">
-      <div class="sec-label">05 · Data hygiene</div>
-      <h2 class="sec-title">Excluded from analysis</h2>
-      <div class="sec-sub">${m.suppressedCount} message${m.suppressedCount===1?'':'s'} auto-detected as off-topic / bot-style traffic — loan, credit-card, lottery, job, KYC and similar spam patterns with no connection to Netcore CE — and excluded from every aggregate above (Busiest sections, Power users, both drilldowns). Nothing is hidden: every excluded item is listed below with its reason, so this stays auditable rather than a silent filter. Scope note — the "Conversations, all-time" counter at the top of this page still includes these, since it's read straight from each day's own pipeline total rather than recomputed here.</div>
+    <details class="flow-section acc anim" id="sec-h-hygiene">
+      <summary><div class="sec-label">05 · Data hygiene</div><h2 class="sec-title">Excluded from analysis</h2><div class="sec-sub">${m.suppressedCount} message${m.suppressedCount===1?'':'s'} auto-detected as off-topic / bot-style traffic — loan, credit-card, lottery, job, KYC and similar spam patterns with no connection to Netcore CE — and excluded from every aggregate above (Busiest sections, Power users, both drilldowns). Nothing is hidden: every excluded item is listed below with its reason, so this stays auditable rather than a silent filter. Scope note — the "Conversations, all-time" counter at the top of this page still includes these, since it's read straight from each day's own pipeline total rather than recomputed here.</div><span class="acc-caret">▸</span></summary>
+      <div class="acc-body">
       <div class="content-card">
         ${renderSuppressedFeed(m.suppressed)}
       </div>
-    </div>
+      </div>
+    </details>
 
     ${renderVisitorQuestions()}
 
