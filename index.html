@@ -2,7 +2,7 @@
 {
   "name": "Ce Docbot Summary 2026 06 17",
   "schemaVersion": 1,
-  "description": "CE Docbot 14-day rolling summary — latest day 2026-09-17"
+  "description": "CE Docbot 14-day rolling summary — latest day 2026-09-02"
 }
 </script>
 <html lang="en">
@@ -702,378 +702,6 @@ html[data-theme="dark"] .pat-row, html[data-theme="dark"] .pat-scroll{background
 </div>
 <script>
 const ARCHIVE = {
-  "2026-09-04": {
-    "date": "2026-09-04",
-    "totalConversations": 31,
-    "resolutionRate": 97,
-    "internalTotal": 8,
-    "externalTotal": 23,
-    "docsTotal": 9,
-    "panelTotal": 22,
-    "queryType": {
-      "technical": 7,
-      "generic": 24
-    },
-    "ticketDeflection": {
-      "windowNote": "Escalation window checked: 2026-09-04 00:00 IST through 2026-09-06 23:59 IST (D to D+2); window fully elapsed as of this run (2026-09-07). Checked via Freshdesk global search per unique requester email (Tier 1) plus topical keyword sweeps (Tier 2).",
-      "totalConversations": 31,
-      "sameUserEscalations": [],
-      "deflectedCount": 31,
-      "deflectionRate": 100,
-      "patternRisk": [],
-      "caveat": "All 25 unique 09-04 askers checked individually via Freshdesk's global search -- zero ticket matches for any requester email. Tier 2 keyword sweeps ('download segments UDT', 'HTML template not showing', 'blacklisted contact') surfaced topically-adjacent tickets (SMS template-ID issues, old blacklist-download requests) but none matched both topic and the D-to-D+2 window on inspection, so no pattern risk is recorded. This was a 3-day backfill (09-04, 09-05, 09-06 pulled in one pass on 2026-09-07), so Tier 2 sweep breadth was intentionally reduced versus a single-day run -- treat as directional, not exhaustive."
-    },
-    "headline": "31 conversations on Sep 4 (Friday, backfilled -- part of a 3-day pipeline gap), 97% bot self-reported resolved and 100% Freshdesk-deflected across all 25 unique askers. marketing@transwindtech.com hit 4 separate onboarding snags in one demo session, and Don Gonzales (Netcore) ran a sharp conversion-window edge-case scenario through the bot. One list-upload failure (ideaktiv_cee) was handed off to a human rather than resolved.",
-    "actionableInsights": [
-      {
-        "owner": "calibration",
-        "title": "Backfilled 3-day gap -- pipeline missed 09-04, 09-05, 09-06 entirely",
-        "desc": "No run fired between 2026-09-04 and 2026-09-06 (last clean entry was 09-03). All three days were pulled and classified in this single 2026-09-07 run. Freshdesk Tier 1 was fully checked for all unique askers across all three days; Tier 2 area sweeps were lighter than usual given the backfill scope."
-      },
-      {
-        "owner": "product",
-        "title": "transwindtech_ce (marketing@transwindtech.com) hit 4 separate onboarding blockers in one demo session",
-        "desc": "marketing@transwindtech.com asked 4 distinct questions within ~40 minutes while trying a demo: a saved contact not appearing in the list, unable to add a sending domain, a sender-email 'no space' validation error, and being unable to edit drafts. None were literal repeats, but the density suggests a rough first-time setup experience -- worth a look at whether the trial/demo onboarding flow needs a guided checklist."
-      },
-      {
-        "owner": "content",
-        "title": "hakimi@ideaktiv.com's list-upload failure was handed off to a human, not resolved by the bot",
-        "desc": "ideaktiv_cee reported uploading a contact list where the system said 'request successful' but the dashboard showed 0 users -- the bot handed this off rather than resolving it (the one non-resolved conversation of the day, pulling resolutionRate to 97%). No matching Freshdesk ticket was found for this email, so it's unclear if this got escalated elsewhere or silently dropped -- worth confirming with the handoff queue."
-      },
-      {
-        "owner": "calibration",
-        "title": "31 conversations, 100% same-user Freshdesk deflection across all 25 unique askers",
-        "desc": "Every unique requester from 09-04 was checked individually against Freshdesk with zero matches in the D+2 window -- a clean deflection day once the gap was backfilled."
-      }
-    ],
-    "mostInteresting": {
-      "who": "Don Gonzales (Netcore, smartechai)",
-      "email": "don.gonzales@netcore.ai",
-      "query": "Scenario: You set a conversion window of 1 day for a 4-step funnel. Bharat completes all 4 steps in 20 hours; Hari doesn't complete the last step within the window. What happens to Hari?",
-      "why": "A precise edge-case question about funnel/conversion-window logic using named test scenarios -- the kind of systems-level product question that shows real engagement with how the feature behaves under specific timing conditions, not a basic how-to."
-    },
-    "themesBySource": [
-      {
-        "theme": "How do I do X",
-        "internal": 2,
-        "external": 7
-      },
-      {
-        "theme": "Where's the doc/API for X",
-        "internal": 0,
-        "external": 0
-      },
-      {
-        "theme": "Where do I set up/find X",
-        "internal": 1,
-        "external": 2
-      },
-      {
-        "theme": "What does X mean/how it works",
-        "internal": 3,
-        "external": 1
-      },
-      {
-        "theme": "Is X possible/supported",
-        "internal": 2,
-        "external": 8
-      },
-      {
-        "theme": "Bare greeting, no context yet",
-        "internal": 0,
-        "external": 5
-      }
-    ],
-    "topAskers": [
-      {
-        "email": "don.gonzales@netcore.ai",
-        "count": 2,
-        "friction": false,
-        "panel": "smartechai",
-        "queries": [
-          {
-            "theme": "Is X possible/supported",
-            "text": "Why can't i download segments to do a test UDT in a demo panel"
-          },
-          {
-            "theme": "What does X mean/how it works",
-            "text": "Conversion window of 1 day for a 4-step funnel scenario - what happens to a user who doesn't complete the last step in time"
-          }
-        ]
-      },
-      {
-        "email": "jaishnitha.vs@netcore.ai",
-        "count": 2,
-        "friction": false,
-        "panel": "NA",
-        "queries": [
-          {
-            "theme": "How do I do X",
-            "text": "ERR10018 max payload parameter length 512 chars - what to do to rectify"
-          },
-          {
-            "theme": "How do I do X",
-            "text": "how to send data through api"
-          }
-        ]
-      },
-      {
-        "email": "kulwinder.singh@way.com",
-        "count": 2,
-        "friction": false,
-        "panel": "cheapestairportpark",
-        "queries": [
-          {
-            "theme": "How do I do X",
-            "text": "Please create content for email audience who did transactions between aug, sept and october"
-          },
-          {
-            "theme": "How do I do X",
-            "text": "make this subject line towards Labour day flash sale..."
-          }
-        ]
-      },
-      {
-        "email": "marketing@transwindtech.com",
-        "count": 4,
-        "friction": false,
-        "panel": "transwindtech_ce",
-        "queries": [
-          {
-            "theme": "Is X possible/supported",
-            "text": "To proceed with demo I selected single contact to add, after saving its not appearing in the contact lists"
-          },
-          {
-            "theme": "Is X possible/supported",
-            "text": "I am not able to add domain"
-          },
-          {
-            "theme": "Is X possible/supported",
-            "text": "I am asked to add sender email, saying no space should be there, but I am not adding any space"
-          },
-          {
-            "theme": "Is X possible/supported",
-            "text": "I want to edit the drafts, i am not able to"
-          }
-        ]
-      }
-    ],
-    "areas": [
-      {
-        "area": "API/Integration",
-        "internal": 5,
-        "external": 4,
-        "internalQ": [
-          {
-            "email": "don.gonzales@netcore.ai",
-            "q": "Why can't i download segments to do a test UDT in a demo panel",
-            "panel": "smartechai"
-          },
-          {
-            "email": "jaishnitha.vs@netcore.ai",
-            "q": "ERR10018 max payload parameter length 512 chars - what to do to rectify",
-            "panel": "NA"
-          },
-          {
-            "email": "jaishnitha.vs@netcore.ai",
-            "q": "how to send data through api",
-            "panel": "NA"
-          },
-          {
-            "email": "nidhi.girish@netcorecloud.com",
-            "q": "where is upload option",
-            "panel": "stg1_email_lakshmi"
-          },
-          {
-            "email": "sakshi.kothari@netcore.ai",
-            "q": "how does date attribute stored in netcore",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "vuonghuynhkhai4869@gmail.com",
-            "q": "How to back end server send event of a user",
-            "panel": "NA"
-          },
-          {
-            "email": "marketing@transwindtech.com",
-            "q": "To proceed with demo I selected single contact to add, after saving its not appearing in the contact lists",
-            "panel": "transwindtech_ce"
-          },
-          {
-            "email": "hakimi@ideaktiv.com",
-            "q": "error uploading list, user count shows 0 (handed off to human)",
-            "panel": "ideaktiv_cee"
-          },
-          {
-            "email": "zoviyashaikh@ecuworldwide.com",
-            "q": "I wanted to know if it is possible to extract contacts from one netcore to another netcore",
-            "panel": "ecuworldwidesmt"
-          }
-        ]
-      },
-      {
-        "area": "Email",
-        "internal": 0,
-        "external": 10,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "mdmiranda@landbank.com",
-            "q": "what is the dimensions for carousel for mobile view",
-            "panel": "NA"
-          },
-          {
-            "email": "ftanutama@asuransiastra.com",
-            "q": "How to check email usage",
-            "panel": "asuransiastrasmart"
-          },
-          {
-            "email": "kulwinder.singh@way.com",
-            "q": "Please create content for email audience who did transactions between aug, sept and october",
-            "panel": "cheapestairportpark"
-          },
-          {
-            "email": "dkrishnamurthy102@gmail.com",
-            "q": "hi how to do horizontal image slider in netcore",
-            "panel": "sulekhacee"
-          },
-          {
-            "email": "fezeka.nyawo@planetfitness.co.za",
-            "q": "Can't see my uploaded HTML template",
-            "panel": "planetfitnessco_cee"
-          },
-          {
-            "email": "kulwinder.singh@way.com",
-            "q": "make this subject line towards Labour day flash sale...",
-            "panel": "cheapestairportpark"
-          },
-          {
-            "email": "marketing@transwindtech.com",
-            "q": "I am not able to add domain",
-            "panel": "transwindtech_ce"
-          },
-          {
-            "email": "marketing@transwindtech.com",
-            "q": "I am asked to add sender email, saying no space should be there, but I am not adding any space",
-            "panel": "transwindtech_ce"
-          },
-          {
-            "email": "marketing@transwindtech.com",
-            "q": "I want to edit the drafts, i am not able to",
-            "panel": "transwindtech_ce"
-          },
-          {
-            "email": "stanley.nwaogu@premiumtrustbank.com",
-            "q": "How do I get to see blacklisted contact",
-            "panel": "premiumtrustbank"
-          }
-        ]
-      },
-      {
-        "area": "CPaaS (WhatsApp/RCS/SMS)",
-        "internal": 0,
-        "external": 0,
-        "internalQ": [],
-        "externalQ": []
-      },
-      {
-        "area": "Broadcast/Webhooks",
-        "internal": 1,
-        "external": 3,
-        "internalQ": [
-          {
-            "email": "gourab.dash@netcore.ai",
-            "q": "What is UCE inaap?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "aditya.gupta@adi-media.com",
-            "q": "hi what is the maximum size of file we can send in a campaign",
-            "panel": "adimediacomcee"
-          },
-          {
-            "email": "saravanan.karuppasamy@nidohomefin.com",
-            "q": "how can i download the delivery report for month",
-            "panel": "nidohomefinmarketing"
-          },
-          {
-            "email": "rafay@justgold.app",
-            "q": "Generate me a full last month report of revenue",
-            "panel": "justgoldcee"
-          }
-        ]
-      },
-      {
-        "area": "Journey Builder",
-        "internal": 1,
-        "external": 1,
-        "internalQ": [
-          {
-            "email": "don.gonzales@netcore.ai",
-            "q": "Conversion window of 1 day for a 4-step funnel scenario - what happens to a user who doesn't complete the last step in time",
-            "panel": "smartechai"
-          }
-        ],
-        "externalQ": [
-          {
-            "email": "ha.ntt1@ggg.com.vn",
-            "q": "explain Product collection - if turned on, how will the current flow change",
-            "panel": "gggcomsmt"
-          }
-        ]
-      },
-      {
-        "area": "Infra/Data residency",
-        "internal": 1,
-        "external": 0,
-        "internalQ": [
-          {
-            "email": "deepesh.lakhera@netcore.ai",
-            "q": "Does your product require licensing? Is any third party licensing required? Does your product rely significantly upon OSS?",
-            "panel": "NA"
-          }
-        ],
-        "externalQ": []
-      },
-      {
-        "area": "General/Unclear (greeting only)",
-        "internal": 0,
-        "external": 5,
-        "internalQ": [],
-        "externalQ": [
-          {
-            "email": "bhushan.deosthali@wowholidays.in",
-            "q": "hi",
-            "panel": "wowholidayscee"
-          },
-          {
-            "email": "shakti.singh@utsavfashion.com",
-            "q": "[image only, no text - uploaded screenshot with no question context]",
-            "panel": "utsavfashioninfo"
-          },
-          {
-            "email": "jared.onkangi@sc.com",
-            "q": "Hello",
-            "panel": "sckenya"
-          },
-          {
-            "email": "kumaraadityakumar412@gmail.com",
-            "q": "Hii",
-            "panel": "NA"
-          },
-          {
-            "email": "ninamaraj399@gmail.com",
-            "q": "Hi",
-            "panel": "NA"
-          }
-        ]
-      }
-    ]
-  },
   "2026-09-05": {
     "date": "2026-09-05",
     "totalConversations": 2,
@@ -3711,6 +3339,235 @@ const ARCHIVE = {
           {
             "email": "inawabkhan1997@gmail.com",
             "q": "[off-topic, Hindi] ATM card renewal query -- unrelated to Netcore CE",
+            "panel": "NA"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-18": {
+    "date": "2026-09-18",
+    "totalConversations": 15,
+    "resolutionRate": 100,
+    "internalTotal": 7,
+    "externalTotal": 8,
+    "docsTotal": 8,
+    "panelTotal": 7,
+    "queryType": {
+      "technical": 6,
+      "generic": 9
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-09-18 00:00 IST to 2026-09-20 23:59 IST); window not yet closed as of this run (D+1, Sep 19).",
+      "totalConversations": 15,
+      "sameUserEscalations": [],
+      "deflectedCount": 15,
+      "deflectionRate": 100,
+      "patternRisk": [
+        {
+          "area": "API/Integration",
+          "docbotCount": 6,
+          "ticketCount": 2,
+          "exampleTicketSubjects": [
+            "Issue While Uploading CSV to Anonymous List (#5290239, The Leela, created 18 Sep 3:15 PM IST)",
+            "Feedback on Netcore CE: Couldn't download detailed campaigns report & Not receiving list upload confirmation emails (#5290491, Pradeep, created 18 Sep 4:46 PM IST)"
+          ],
+          "note": "Two unrelated customers filed same-day list/CSV-upload-failure tickets -- same broad theme as asif.shaikh@firstconnectdigital.com's (techpapersworldcee) docbot question about a failed list upload. A pattern-level echo, not a direct escalation for him specifically."
+        }
+      ],
+      "caveat": "Browser-search via Freshdesk's contact-search -> contact ID -> requester-filtered ticket list (lag-proof method) for all 15 unique requester emails; 2 look-alike matches were individually opened and ruled out as unrelated (Tufel Khan's ticket was an unrelated banking/account-deduction complaint; Sakshi Kothari's ticket was her forwarding an old, unrelated ICICI Securities production issue) -- zero genuine same-user escalations. Tier 2 keyword sweeps: 'list upload' (found the 2 in-window API/Integration matches above), 'gggcomsmt' account history (58 tickets, all older than the window -- no fresh ticket for the two gggcomsmt on-site-popup docbot questions), 'whatsapp retry' (0 in-window matches), 'AMP email' (0 in-window matches -- closest hit was a 3-month-old ticket merely closed today). Window doesn't close until Sep 20, so a late escalation could still land -- read as provisional."
+    },
+    "headline": "15 docbot conversations on Sep 18 (Friday), 100% bot self-reported resolved and 100% Freshdesk-deflected so far (window open through Sep 20) -- though a list-upload theme (techpapersworldcee) echoed same-day in two unrelated customers' Freshdesk tickets. Rimjhim Tiwari (internal) asked for a full cross-channel spec sheet, and Govind Hari (internal) tested an App Push template pulling live content from an external API via Liquid tags.",
+    "actionableInsights": [
+      {
+        "owner": "content",
+        "title": "List/CSV upload failure echoed same-day across two unrelated Freshdesk tickets",
+        "desc": "asif.shaikh@firstconnectdigital.com (techpapersworldcee) hit a list upload failure with the bot; the same day, Anjali Inani (The Leela, CSV to anonymous list) and Pradeep (list upload confirmation emails) filed separate Freshdesk tickets on the same broad theme. Worth checking whether list/CSV upload has a recurring format or validation gap that the bot's guidance doesn't fully cover."
+      },
+      {
+        "owner": "product",
+        "title": "Two gggcomsmt (GGG.com.vn) users hit on-site popup click issues within 30 minutes of each other",
+        "desc": "Chinh Pham and Ha Nguyen, same panel, both reported a popup (ID 1210) not being clickable. No fresh Freshdesk ticket for this specific issue yet, but the account has a long history (58 tickets) of platform-stability escalations -- worth a proactive CSM check given the track record."
+      },
+      {
+        "owner": "content",
+        "title": "Rimjhim Tiwari (internal) asked for a full cross-channel spec sheet in one go",
+        "desc": "Asked for dimensions, character limits, and doc links across email, SMS, WhatsApp, RCS, web push, and web message -- suggests no single consolidated reference exists. A channel-spec quick-reference would likely close this class of broad ask."
+      },
+      {
+        "owner": "calibration",
+        "title": "n=15, 100% same-user Freshdesk deflection, but window still open (D+1)",
+        "desc": "All 15 unique askers checked individually; 2 look-alike ticket matches were investigated and ruled out as unrelated topics (not counted). Freshdesk window doesn't close until Sep 20 -- read today's 100% as provisional, not final."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Govind Hari (Netcore)",
+      "email": "govind.hari@netcorecloud.com",
+      "query": "Asked the bot to show the syntax for an App Push notification template using Liquid tags, with content fetched live from an external API (used a public cat-facts API as a test case).",
+      "why": "A creative, hands-on technical test of dynamic personalization -- prototyping live API-fetched content in a push template using a throwaway public API -- rather than a basic how-to or navigation question. Shows real engagement with the templating/API mechanics."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 1,
+        "external": 3
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 2,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 2,
+        "external": 2
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 2,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 2
+      }
+    ],
+    "topAskers": [],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 4,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "sakshi.kothari@netcore.ai",
+            "q": "can we track clicks of a custom nudge on product experience",
+            "panel": "NA"
+          },
+          {
+            "email": "akshay.sagar@netcore.ai",
+            "q": "tell me about campaign api",
+            "panel": "NA"
+          },
+          {
+            "email": "rimjhim.tiwari@netcorecloud.com",
+            "q": "Hi, please share channel specifications for all channels, with dimensions, character limits, documentation links - For email, sms, whatsapp, rcs, web push, web message",
+            "panel": "zodiacdemotestce"
+          },
+          {
+            "email": "govind.hari@netcorecloud.com",
+            "q": "show me the syntax for an App push notification template with Liquid tags and content fetch from this API (cats facts)",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "asif.shaikh@firstconnectdigital.com",
+            "q": "442 Mercury Magazine Entrepreneur 18 Sept - why this list getting failed to upload",
+            "panel": "techpapersworldcee"
+          },
+          {
+            "email": "vuonghuynhkhai4869@gmail.com",
+            "q": "How to create segment with activity send from server-side",
+            "panel": "droppiicee"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 2,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "anand.mishra@netcorecloud.com",
+            "q": "Can we get partial responses on AMP email, without submission",
+            "panel": "NA"
+          },
+          {
+            "email": "dinesh.tathe@netcore.ai",
+            "q": "Tell me what is HTML Hosted images, Inline images and Auto Image hosting and when each one is used",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "brijesh@freepricecompare.com",
+            "q": "I want to send email to 1 segment half contacts at 10am and half contacts at 5 pm",
+            "panel": "freepricecompare_ce"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "shakir.bakali@netcore.ai",
+            "q": "what is the whatsapp retry mechanism",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "chiewhsien.ong@nandos.com.my",
+            "q": "where do i upload the media for whatsapp blast?",
+            "panel": "nandoscee"
+          }
+        ]
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "chinh.pham@ggg.com.vn",
+            "q": "loi pop-up (popup error)",
+            "panel": "gggcomsmt"
+          },
+          {
+            "email": "ha.ntt1@ggg.com.vn",
+            "q": "vi sao popup 1210 khong the click vao duoc (why can't popup 1210 be clicked)",
+            "panel": "gggcomsmt"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "khantufel340@gmail.com",
+            "q": "Hi",
+            "panel": "NA"
+          },
+          {
+            "email": "ranjankumar10903@gmail.com",
+            "q": "Ion Lena Hai (off-topic, unrelated to Netcore CE)",
             "panel": "NA"
           }
         ]
@@ -26140,6 +25997,235 @@ const FULL_ARCHIVE = {
           {
             "email": "inawabkhan1997@gmail.com",
             "q": "[off-topic, Hindi] ATM card renewal query -- unrelated to Netcore CE",
+            "panel": "NA"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-18": {
+    "date": "2026-09-18",
+    "totalConversations": 15,
+    "resolutionRate": 100,
+    "internalTotal": 7,
+    "externalTotal": 8,
+    "docsTotal": 8,
+    "panelTotal": 7,
+    "queryType": {
+      "technical": 6,
+      "generic": 9
+    },
+    "ticketDeflection": {
+      "windowNote": "Same IST day through +2 days (2026-09-18 00:00 IST to 2026-09-20 23:59 IST); window not yet closed as of this run (D+1, Sep 19).",
+      "totalConversations": 15,
+      "sameUserEscalations": [],
+      "deflectedCount": 15,
+      "deflectionRate": 100,
+      "patternRisk": [
+        {
+          "area": "API/Integration",
+          "docbotCount": 6,
+          "ticketCount": 2,
+          "exampleTicketSubjects": [
+            "Issue While Uploading CSV to Anonymous List (#5290239, The Leela, created 18 Sep 3:15 PM IST)",
+            "Feedback on Netcore CE: Couldn't download detailed campaigns report & Not receiving list upload confirmation emails (#5290491, Pradeep, created 18 Sep 4:46 PM IST)"
+          ],
+          "note": "Two unrelated customers filed same-day list/CSV-upload-failure tickets -- same broad theme as asif.shaikh@firstconnectdigital.com's (techpapersworldcee) docbot question about a failed list upload. A pattern-level echo, not a direct escalation for him specifically."
+        }
+      ],
+      "caveat": "Browser-search via Freshdesk's contact-search -> contact ID -> requester-filtered ticket list (lag-proof method) for all 15 unique requester emails; 2 look-alike matches were individually opened and ruled out as unrelated (Tufel Khan's ticket was an unrelated banking/account-deduction complaint; Sakshi Kothari's ticket was her forwarding an old, unrelated ICICI Securities production issue) -- zero genuine same-user escalations. Tier 2 keyword sweeps: 'list upload' (found the 2 in-window API/Integration matches above), 'gggcomsmt' account history (58 tickets, all older than the window -- no fresh ticket for the two gggcomsmt on-site-popup docbot questions), 'whatsapp retry' (0 in-window matches), 'AMP email' (0 in-window matches -- closest hit was a 3-month-old ticket merely closed today). Window doesn't close until Sep 20, so a late escalation could still land -- read as provisional."
+    },
+    "headline": "15 docbot conversations on Sep 18 (Friday), 100% bot self-reported resolved and 100% Freshdesk-deflected so far (window open through Sep 20) -- though a list-upload theme (techpapersworldcee) echoed same-day in two unrelated customers' Freshdesk tickets. Rimjhim Tiwari (internal) asked for a full cross-channel spec sheet, and Govind Hari (internal) tested an App Push template pulling live content from an external API via Liquid tags.",
+    "actionableInsights": [
+      {
+        "owner": "content",
+        "title": "List/CSV upload failure echoed same-day across two unrelated Freshdesk tickets",
+        "desc": "asif.shaikh@firstconnectdigital.com (techpapersworldcee) hit a list upload failure with the bot; the same day, Anjali Inani (The Leela, CSV to anonymous list) and Pradeep (list upload confirmation emails) filed separate Freshdesk tickets on the same broad theme. Worth checking whether list/CSV upload has a recurring format or validation gap that the bot's guidance doesn't fully cover."
+      },
+      {
+        "owner": "product",
+        "title": "Two gggcomsmt (GGG.com.vn) users hit on-site popup click issues within 30 minutes of each other",
+        "desc": "Chinh Pham and Ha Nguyen, same panel, both reported a popup (ID 1210) not being clickable. No fresh Freshdesk ticket for this specific issue yet, but the account has a long history (58 tickets) of platform-stability escalations -- worth a proactive CSM check given the track record."
+      },
+      {
+        "owner": "content",
+        "title": "Rimjhim Tiwari (internal) asked for a full cross-channel spec sheet in one go",
+        "desc": "Asked for dimensions, character limits, and doc links across email, SMS, WhatsApp, RCS, web push, and web message -- suggests no single consolidated reference exists. A channel-spec quick-reference would likely close this class of broad ask."
+      },
+      {
+        "owner": "calibration",
+        "title": "n=15, 100% same-user Freshdesk deflection, but window still open (D+1)",
+        "desc": "All 15 unique askers checked individually; 2 look-alike ticket matches were investigated and ruled out as unrelated topics (not counted). Freshdesk window doesn't close until Sep 20 -- read today's 100% as provisional, not final."
+      }
+    ],
+    "mostInteresting": {
+      "who": "Govind Hari (Netcore)",
+      "email": "govind.hari@netcorecloud.com",
+      "query": "Asked the bot to show the syntax for an App Push notification template using Liquid tags, with content fetched live from an external API (used a public cat-facts API as a test case).",
+      "why": "A creative, hands-on technical test of dynamic personalization -- prototyping live API-fetched content in a push template using a throwaway public API -- rather than a basic how-to or navigation question. Shows real engagement with the templating/API mechanics."
+    },
+    "themesBySource": [
+      {
+        "theme": "How do I do X",
+        "internal": 1,
+        "external": 3
+      },
+      {
+        "theme": "Where's the doc/API for X",
+        "internal": 2,
+        "external": 0
+      },
+      {
+        "theme": "Where do I set up/find X",
+        "internal": 0,
+        "external": 1
+      },
+      {
+        "theme": "What does X mean/how it works",
+        "internal": 2,
+        "external": 2
+      },
+      {
+        "theme": "Is X possible/supported",
+        "internal": 2,
+        "external": 0
+      },
+      {
+        "theme": "Bare greeting, no context yet",
+        "internal": 0,
+        "external": 2
+      }
+    ],
+    "topAskers": [],
+    "areas": [
+      {
+        "area": "API/Integration",
+        "internal": 4,
+        "external": 2,
+        "internalQ": [
+          {
+            "email": "sakshi.kothari@netcore.ai",
+            "q": "can we track clicks of a custom nudge on product experience",
+            "panel": "NA"
+          },
+          {
+            "email": "akshay.sagar@netcore.ai",
+            "q": "tell me about campaign api",
+            "panel": "NA"
+          },
+          {
+            "email": "rimjhim.tiwari@netcorecloud.com",
+            "q": "Hi, please share channel specifications for all channels, with dimensions, character limits, documentation links - For email, sms, whatsapp, rcs, web push, web message",
+            "panel": "zodiacdemotestce"
+          },
+          {
+            "email": "govind.hari@netcorecloud.com",
+            "q": "show me the syntax for an App push notification template with Liquid tags and content fetch from this API (cats facts)",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "asif.shaikh@firstconnectdigital.com",
+            "q": "442 Mercury Magazine Entrepreneur 18 Sept - why this list getting failed to upload",
+            "panel": "techpapersworldcee"
+          },
+          {
+            "email": "vuonghuynhkhai4869@gmail.com",
+            "q": "How to create segment with activity send from server-side",
+            "panel": "droppiicee"
+          }
+        ]
+      },
+      {
+        "area": "Email",
+        "internal": 2,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "anand.mishra@netcorecloud.com",
+            "q": "Can we get partial responses on AMP email, without submission",
+            "panel": "NA"
+          },
+          {
+            "email": "dinesh.tathe@netcore.ai",
+            "q": "Tell me what is HTML Hosted images, Inline images and Auto Image hosting and when each one is used",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "brijesh@freepricecompare.com",
+            "q": "I want to send email to 1 segment half contacts at 10am and half contacts at 5 pm",
+            "panel": "freepricecompare_ce"
+          }
+        ]
+      },
+      {
+        "area": "CPaaS (WhatsApp/RCS/SMS)",
+        "internal": 1,
+        "external": 1,
+        "internalQ": [
+          {
+            "email": "shakir.bakali@netcore.ai",
+            "q": "what is the whatsapp retry mechanism",
+            "panel": "NA"
+          }
+        ],
+        "externalQ": [
+          {
+            "email": "chiewhsien.ong@nandos.com.my",
+            "q": "where do i upload the media for whatsapp blast?",
+            "panel": "nandoscee"
+          }
+        ]
+      },
+      {
+        "area": "Broadcast/Webhooks",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "chinh.pham@ggg.com.vn",
+            "q": "loi pop-up (popup error)",
+            "panel": "gggcomsmt"
+          },
+          {
+            "email": "ha.ntt1@ggg.com.vn",
+            "q": "vi sao popup 1210 khong the click vao duoc (why can't popup 1210 be clicked)",
+            "panel": "gggcomsmt"
+          }
+        ]
+      },
+      {
+        "area": "Journey Builder",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "Infra/Data residency",
+        "internal": 0,
+        "external": 0,
+        "internalQ": [],
+        "externalQ": []
+      },
+      {
+        "area": "General/Unclear (greeting only)",
+        "internal": 0,
+        "external": 2,
+        "internalQ": [],
+        "externalQ": [
+          {
+            "email": "khantufel340@gmail.com",
+            "q": "Hi",
+            "panel": "NA"
+          },
+          {
+            "email": "ranjankumar10903@gmail.com",
+            "q": "Ion Lena Hai (off-topic, unrelated to Netcore CE)",
             "panel": "NA"
           }
         ]
