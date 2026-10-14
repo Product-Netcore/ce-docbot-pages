@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CE Docbot · Neural Dashboard</title>
+<link rel="stylesheet" href="nocturne.css">
+<style>
+  html, body { height: 100%; margin: 0; }
+  a { color: var(--color-accent); } a:hover { color: var(--color-accent-300); }
+  .scroll { scrollbar-color: var(--color-neutral-700) transparent; }
+  .row-btn { background: transparent; border: 0; border-radius: var(--radius-md); color: var(--color-text); font: inherit; cursor: pointer; text-align: left; }
+  .row-btn:hover { background: color-mix(in srgb, var(--color-accent) 10%, transparent); }
+  .row-btn:active { background: color-mix(in srgb, var(--color-accent) 18%, transparent); }
+  .act-btn { display: flex; flex-direction: column; gap: 4px; text-align: left; background: var(--color-surface); border: 0; border-radius: var(--radius-md); padding: 10px 12px; color: var(--color-text); font: inherit; cursor: pointer; box-shadow: var(--shadow-sm); }
+  .act-btn:hover { box-shadow: 0 0 0 1px var(--color-accent-600); }
+  .bar { grid-column: 1 / -1; display: flex; height: 5px; border-radius: 3px; overflow: hidden; background: var(--color-neutral-900); }
+  .lbl-xs { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-500); }
+  .ellip { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .src-pill { white-space: nowrap; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 7px; border-radius: 6px; }
+  .boot { height: 100vh; display: grid; place-items: center; background: var(--color-bg); color: var(--color-neutral-400); font: 14px var(--font-body); }
+  @media (max-width: 640px) {
+    .app { height: auto !important; overflow: visible !important; }
+    .app main { display: flex !important; flex-direction: column; }
+    .app main > section { overflow: visible !important; box-shadow: 0 1px 0 var(--color-divider) !important; }
+    .app main > .map { height: 88vh; flex: none; }
+  }
+</style>
+</head>
+<body>
+<div id="root"><div class="boot">Reading the dispatch archive…</div></div>
+
+<script src="vendor/react.production.min.js"></script>
+<script src="vendor/react-dom.production.min.js"></script>
+<script src="vendor/htm.umd.js"></script>
+<script>
+/* ── Engine loader ─────────────────────────────────────────────────────────
+   The classic dashboard (../index.html) embeds the daily dispatch archive and
+   all of its calculations in one inline script. We fetch that page, lift the
+   script out and run it in isolation (minus its DOM boot), so this view always
+   reads the same data and maths as the classic page, with zero changes to it.
+   If that fails, we fall back to a bundled snapshot. */
+const ENGINE_EXPORTS = 'return {FULL_ARCHIVE, DATES, computeMasterSummary, computePatternIntel, computeFilteredArchive, computeSinceLastReport, buildTrendingSignals, classifyPattern, classifyQueryType, computeAreaTrend, detectSpam, PATTERNS, PAT_GAP_KEYS, CURATED: (typeof CURATED!=="undefined"?CURATED:null), OWNER_LABEL};';
+
+async function loadLiveEngine() {
+  const res = await fetch('../index.html', { cache: 'no-cache' });
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  const doc = new DOMParser().parseFromString(await res.text(), 'text/html');
+  const s = [...doc.querySelectorAll('script:not([type]), script[type="text/javascript"]')].find(x => x.textContent.includes('const FULL_ARCHIVE'));
+  if (!s) throw new Error('engine script not found');
+  const code = s.textContent.replace(/\bboot\(\);\s*$/, '');
+  const E = new Function(code + '\n' + ENGINE_EXPORTS)();
+  if (!E.FULL_ARCHIVE || !Object.keys(E.FULL_ARCHIVE).length) throw new Error('empty archive');
+  return E;
+}
+function loadSnapshotEngine() {
+  return new Promise((ok, fail) => {
+    const el = document.createElement('script');
+    el.src = 'docbot-engine-snapshot.js';
+    el.onload = () => window.DocbotEngine ? ok(window.DocbotEngine) : fail(new Error('snapshot empty'));
+    el.onerror = () => fail(new Error('snapshot missing'));
+    document.head.appendChild(el);
+  });
+}
+window.__engine = loadLiveEngine()
+  .then(E => ({ E, source: 'live' }))
+  .catch(err => { console.warn('[docbot v2] live engine failed, using snapshot:', err); return loadSnapshotEngine().then(E => ({ E, source: 'snapshot' })); });
+</script>
+
+<script>
+(() => {
+const h = React.createElement;
+const html = htm.bind(h);
+
+// Map settings (were design-time props in the prototype)
+const SETTINGS = { signalFlow: true, labelDensity: 'focus', maxBranch: 14 };
+
+/* ── Neural map ─────────────────────────────────────────────────────────── */
+const hash = s => { let x = 0; for (let i = 0; i < s.length; i++) x = (x * 31 + s.charCodeAt(i)) | 0; return (x >>> 0) / 4294967296; };
+
+class Graph extends React.Component {
+  constructor(p) { super(p); this.anim = {}; this.cam = null; this.size = { w: 800, h: 600 }; this.ref = React.createRef(); this.t = 0; this.hover = null; }
+  componentDidMount() {
+    this.ro = new ResizeObserver(([e]) => { if (e.contentRect.width > 0 && e.contentRect.height > 0) this.size = { w: e.contentRect.width, h: e.contentRect.height }; });
+    this.ro.observe(this.ref.current);
+    let last = performance.now();
+    const loop = now => { const dt = Math.min(0.05, (now - last) / 1000); last = now; this.step(dt); this.forceUpdate(); this.raf = requestAnimationFrame(loop); };
+    this.raf = requestAnimationFrame(loop);
+  }
+  componentWillUnmount() { cancelAnimationFrame(this.raf); this.ro && this.ro.disconnect(); }
+  padR() { return Math.min(336, this.size.w * 0.46 + 20); }
+  step(dt) {
+    this.t += dt;
+    if (this.ref.current && (!this.size.w || !this.size.h)) { const r = this.ref.current.getBoundingClientRect(); if (r.width > 0) this.size = { w: r.width, h: r.height }; }
+    const k = 1 - Math.exp(-dt * 6.5), live = new Set();
+    if (this.props.epoch !== this.epoch) { this.epoch = this.props.epoch; Object.keys(this.anim).forEach(id => { if (id !== 'root') delete this.anim[id]; }); }
+    this.props.nodes.forEach(n => {
+      live.add(n.id);
+      let a = this.anim[n.id];
+      if (!a) { const p = this.anim[n.parentId]; a = this.anim[n.id] = { x: p ? p.x : n.x, y: p ? p.y : n.y, s: 0, ph: hash(n.id) * 6.28 }; }
+      a.n = n; a.dead = false;
+      a.x += (n.x - a.x) * k; a.y += (n.y - a.y) * k; a.s += (1 - a.s) * k;
+    });
+    Object.keys(this.anim).forEach(id => {
+      if (live.has(id)) return;
+      const a = this.anim[id]; a.dead = true;
+      const p = this.anim[a.n.parentId];
+      if (p) { a.x += (p.x - a.x) * k; a.y += (p.y - a.y) * k; }
+      a.s -= a.s * k * 1.5;
+      if (a.s < 0.03) delete this.anim[id];
+    });
+    const c = this.props.camera, w = this.size.w - this.padR(), H = this.size.h;
+    const z = Math.max(0.42, Math.min(1.45, Math.min(w / (c.x1 - c.x0), H / (c.y1 - c.y0))));
+    const tx = (c.x0 + c.x1) / 2, ty = (c.y0 + c.y1) / 2;
+    if (!this.cam) this.cam = { x: tx, y: ty, z };
+    const kc = 1 - Math.exp(-dt * 3.2);
+    this.cam.x += (tx - this.cam.x) * kc; this.cam.y += (ty - this.cam.y) * kc; this.cam.z += (z - this.cam.z) * kc;
+  }
+  render() {
+    const { w, h: H } = this.size, c = this.cam || { x: 0, y: 0, z: 1 }, t = this.t, P = this.props, cxs = (w - this.padR()) / 2;
+    const list = Object.values(this.anim), pos = {};
+    list.forEach(a => { const f = a.n.kind === 'root' ? 0 : 2.4; pos[a.n.id] = [a.x + Math.cos(t * 0.7 + a.ph) * f, a.y + Math.sin(t * 0.9 + a.ph) * f]; });
+    const edges = [], pulses = [], nodesEl = [];
+    list.forEach(a => {
+      const n = a.n, p = pos[n.parentId]; if (!p) return;
+      const q = pos[n.id], dx = q[0] - p[0], dy = q[1] - p[1], len = Math.hypot(dx, dy) || 1;
+      const bend = (hash(n.id) - 0.5) * 0.35 * len;
+      const cx = (p[0] + q[0]) / 2 - dy / len * bend, cy = (p[1] + q[1]) / 2 + dx / len * bend;
+      const hot = n.role === 'focus' || n.role === 'path', live = n.role === 'child', hov = this.hover === n.id;
+      edges.push(h('path', { key: 'e' + n.id, d: `M${p[0]},${p[1]} Q${cx},${cy} ${q[0]},${q[1]}`, fill: 'none', stroke: hot ? 'var(--color-accent)' : live || hov ? 'var(--color-accent-700)' : 'var(--color-neutral-800)', strokeWidth: (hot ? 1.8 : 1) / Math.max(0.6, c.z), opacity: a.s * (n.role === 'sib' ? 0.55 : 0.95) }));
+      if (P.signal && (hot || live) && !a.dead) {
+        const cnt = hot ? 3 : 1, sp = hot ? 0.55 : 0.32;
+        for (let i = 0; i < cnt; i++) {
+          const u = (t * sp + a.ph / 6.28 + i / cnt) % 1, v = 1 - u;
+          pulses.push(h('circle', { key: 'p' + n.id + i, cx: v * v * p[0] + 2 * v * u * cx + u * u * q[0], cy: v * v * p[1] + 2 * v * u * cy + u * u * q[1], r: (hot ? 2.6 : 1.8) / Math.max(0.7, c.z), fill: hot ? 'var(--color-accent-300)' : 'var(--color-accent-400)', opacity: Math.sin(Math.PI * u) * a.s, filter: hot ? 'url(#nGlow)' : undefined }));
+        }
+      }
+    });
+    list.slice().sort((a, b) => (a.n.role === 'focus') - (b.n.role === 'focus')).forEach(a => {
+      const n = a.n, q = pos[n.id], hov = this.hover === n.id;
+      const leaf = n.kind === 'q' || n.kind === 'insight' || n.kind === 'ticket';
+      const isFocus = n.role === 'focus', onPath = n.role === 'path' || isFocus;
+      const fill = n.kind === 'root' ? 'var(--color-accent-900)' : n.kind === 'q' ? (n.src === 'int' ? 'var(--color-neutral-400)' : 'var(--color-accent-500)') : n.kind === 'insight' ? 'var(--color-accent-300)' : n.kind === 'ticket' ? 'var(--color-neutral-300)' : n.kind === 'bucket' && n.gap ? 'var(--color-accent-900)' : 'var(--color-surface)';
+      const stroke = onPath ? 'var(--color-accent)' : n.kind === 'hub' || (n.kind === 'bucket' && n.gap) ? 'var(--color-accent-600)' : n.kind === 'asker' ? (n.src === 'int' ? 'var(--color-neutral-400)' : 'var(--color-accent-500)') : leaf ? 'none' : 'var(--color-neutral-600)';
+      const kids = [];
+      if (isFocus || n.kind === 'root') kids.push(h('circle', { key: 'g', r: n.r + 12, fill: 'var(--color-accent)', opacity: 0.22 + 0.08 * Math.sin(t * 2), filter: 'url(#nGlow)' }));
+      if (isFocus) kids.push(h('circle', { key: 'ring', r: n.r + 7, fill: 'none', stroke: 'var(--color-accent-400)', strokeWidth: 1, strokeDasharray: '2 5', transform: `rotate(${t * 25})` }));
+      kids.push(h('circle', { key: 'c', r: n.r, fill, stroke, strokeWidth: onPath ? 2 : 1.2 }));
+      if (n.r >= 14) kids.push(h('text', { key: 'v', textAnchor: 'middle', dy: '0.35em', fontSize: n.kind === 'root' ? 15 : 11, fontWeight: 500, fill: 'var(--color-text)', style: { pointerEvents: 'none' } }, String(n.value)));
+      if (P.labels === 'all' || n.role !== 'sib' || hov || n.depth <= 1) {
+        const lop = n.role === 'sib' && !hov ? 0.6 : 1;
+        if (!onPath && n.depth >= 2) {
+          const right = Math.cos(n.ang * Math.PI / 180) >= 0;
+          kids.push(h('text', { key: 'l', transform: `rotate(${right ? n.ang : n.ang + 180})`, x: right ? n.r + 7 : -(n.r + 7), dy: '0.35em', textAnchor: right ? 'start' : 'end', fontSize: 11.5, fill: hov ? 'var(--color-text)' : 'var(--color-neutral-300)', opacity: lop, style: { pointerEvents: 'none' } }, hov && n.full ? n.full.slice(0, 80) : n.label));
+        } else {
+          kids.push(h('text', { key: 'l', y: n.r + 17, textAnchor: 'middle', fontSize: n.kind === 'root' ? 14 : 12.5, fontWeight: 500, fill: 'var(--color-text)', opacity: lop, style: { pointerEvents: 'none' } }, n.label));
+        }
+      }
+      nodesEl.push(h('g', { key: 'n' + n.id, transform: `translate(${q[0]},${q[1]}) scale(${a.s * (hov ? 1.15 : 1)})`, opacity: n.role === 'sib' ? 0.5 : 1, style: { cursor: 'pointer', pointerEvents: a.dead ? 'none' : 'auto' },
+        onClick: () => P.onSelect(n.id), onMouseEnter: () => { this.hover = n.id; }, onMouseLeave: () => { if (this.hover === n.id) this.hover = null; } }, kids));
+    });
+    const gs = 26 * c.z;
+    return h('div', { ref: this.ref, style: { position: 'absolute', inset: 0, overflow: 'hidden', backgroundImage: 'radial-gradient(color-mix(in srgb, var(--color-neutral-500) 22%, transparent) 1px, transparent 1.2px)', backgroundSize: `${gs}px ${gs}px`, backgroundPosition: `${-c.x * c.z + cxs}px ${-c.y * c.z + H / 2}px` } },
+      h('svg', { width: w, height: H, style: { display: 'block', fontFamily: 'var(--font-body)' } },
+        h('defs', null,
+          h('filter', { id: 'nGlow', x: '-100%', y: '-100%', width: '300%', height: '300%' }, h('feGaussianBlur', { stdDeviation: 7 })),
+          h('radialGradient', { id: 'nCore' }, h('stop', { offset: '0%', stopColor: 'var(--color-section-glow)', stopOpacity: 0.55 }), h('stop', { offset: '100%', stopColor: 'var(--color-bg)', stopOpacity: 0 }))),
+        h('g', { transform: `translate(${cxs},${H / 2}) scale(${c.z}) translate(${-c.x},${-c.y})` },
+          h('circle', { cx: 0, cy: 0, r: 420, fill: 'url(#nCore)' }),
+          h('g', null, edges), h('g', null, pulses), h('g', null, nodesEl))));
+  }
+}
+
+/* ── Data model + views ─────────────────────────────────────────────────── */
+class App extends React.Component {
+  state = { tab: 'daily', date: null, range: 'all', path: ['root'] };
+
+  constructor(p) {
+    super(p);
+    this.E = p.engine; this.D = this.E.FULL_ARCHIVE; this.dates = Object.keys(this.D).sort();
+    this.state.date = this.dates[this.dates.length - 1];
+  }
+  componentDidMount() { this._key = e => { if (e.key === 'Escape') this.up(); }; window.addEventListener('keydown', this._key); }
+  componentWillUnmount() { window.removeEventListener('keydown', this._key); }
+
+  cap() { return SETTINGS.maxBranch; }
+  slug(s) { return String(s).toLowerCase().replace(/[^a-z0-9@.]+/g, '-'); }
+  areaName(a) { return a === 'General/Unclear (greeting only)' ? 'Greetings only' : a === 'CPaaS (WhatsApp/RCS/SMS)' ? 'CPaaS · WhatsApp/RCS/SMS' : a; }
+  ownerName(o) {
+    const k = (o || 'other').split('/')[0].trim().toLowerCase();
+    return ({ content: 'Content', calibration: 'Calibration', product: 'Product', design: 'Design', security: 'Security', cs: 'CS & support', ops: 'Ops' })[k] || 'Other';
+  }
+  fmtDate(d, long) {
+    const dt = new Date(d + 'T00:00:00');
+    return dt.toLocaleDateString('en-GB', long ? { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' } : { day: 'numeric', month: 'short' });
+  }
+  trunc(s, n) { s = (s || '').replace(/\s+/g, ' ').trim(); return s.length > n ? s.slice(0, n - 1) + '…' : s; }
+  isInt(email) { return /@(netcorecloud\.com|netcore\.(ai|com)|netcoreunbxd\.com)$/i.test(email || ''); }
+  text(markup) { const d = new DOMParser().parseFromString(String(markup).replace(/<span class="badge-new">NEW<\/span>/g, ' (new)'), 'text/html'); return (d.body.textContent || '').replace(/\s+/g, ' ').trim(); }
+
+  aggregate(days) {
+    const D = this.D;
+    const A = { days, conv: 0, int: 0, ext: 0, tech: 0, gen: 0, resW: 0, defl: [], areas: {}, themes: {}, askers: {}, owners: {}, risks: {} };
+    days.forEach(d => {
+      const x = D[d]; if (!x) return;
+      A.conv += x.totalConversations || 0; A.int += x.internalTotal || 0; A.ext += x.externalTotal || 0;
+      A.tech += (x.queryType && x.queryType.technical) || 0; A.gen += (x.queryType && x.queryType.generic) || 0;
+      A.resW += (x.resolutionRate || 0) * (x.totalConversations || 0);
+      const td = x.ticketDeflection;
+      if (td) {
+        A.defl.push(td.deflectionRate);
+        (td.patternRisk || []).forEach(p => {
+          const r = A.risks[p.area] || (A.risks[p.area] = { name: p.area, docbot: 0, tickets: 0, items: [] });
+          r.docbot += p.docbotCount || 0; r.tickets += p.ticketCount || 0;
+          (p.exampleTicketSubjects || []).forEach(s => r.items.push({ s, date: d, note: p.note }));
+        });
+        (td.sameUserEscalations || []).forEach(e => {
+          const r = A.risks['Same-user escalations'] || (A.risks['Same-user escalations'] = { name: 'Same-user escalations', docbot: 0, tickets: 0, items: [] });
+          r.docbot++; r.tickets++;
+          r.items.push({ s: e.ticketSubject, date: d, note: e.email + ' asked Docbot: “' + e.docbotQuery + '”, then filed ticket #' + e.ticketId + '.' });
+        });
+      }
+      (x.areas || []).forEach(a => {
+        const name = this.areaName(a.area);
+        const o = A.areas[name] || (A.areas[name] = { name, int: 0, ext: 0, qs: [] });
+        o.int += a.internal || 0; o.ext += a.external || 0;
+        (a.externalQ || []).forEach(q => o.qs.push({ q: q.q, email: q.email, panel: q.panel, src: 'ext', date: d, area: name }));
+        (a.internalQ || []).forEach(q => o.qs.push({ q: q.q, email: q.email, panel: q.panel, src: 'int', date: d, area: name }));
+      });
+      (x.themesBySource || []).forEach(t => {
+        const o = A.themes[t.theme] || (A.themes[t.theme] = { name: t.theme, int: 0, ext: 0, qs: [] });
+        o.int += t.internal || 0; o.ext += t.external || 0;
+      });
+      (x.topAskers || []).forEach(a => (a.queries || []).forEach(q => {
+        const o = A.themes[q.theme];
+        if (o) o.qs.push({ q: q.text, email: a.email, panel: a.panel, src: this.isInt(a.email) ? 'int' : 'ext', date: d, theme: q.theme });
+      }));
+      (x.actionableInsights || []).forEach(i => {
+        const ow = this.ownerName(i.owner);
+        const o = A.owners[ow] || (A.owners[ow] = { name: ow, items: [] });
+        o.items.push({ title: i.title, desc: i.desc, date: d, owner: i.owner });
+      });
+    });
+    Object.values(A.areas).forEach(a => a.qs.forEach(q => {
+      if (!q.email) return;
+      const o = A.askers[q.email] || (A.askers[q.email] = { email: q.email, src: q.src, qs: [], panels: {} });
+      o.qs.push(q); if (q.panel && q.panel !== 'NA') o.panels[q.panel] = 1;
+    }));
+    const byDate = (a, b) => (a.date < b.date ? 1 : -1);
+    [A.areas, A.themes, A.askers].forEach(m => Object.values(m).forEach(a => a.qs.sort(byDate)));
+    Object.values(A.owners).forEach(a => a.items.sort(byDate));
+    Object.values(A.risks).forEach(a => a.items.sort(byDate));
+    A.res = A.conv ? Math.round(A.resW / A.conv) : 0;
+    A.deflRate = A.defl.length ? Math.round(A.defl.reduce((s, v) => s + v, 0) / A.defl.length) : null;
+    A.askerCount = Object.keys(A.askers).length;
+    return A;
+  }
+
+  model() {
+    const { tab, date, range } = this.state;
+    const key = tab + '|' + (tab === 'daily' ? date : range);
+    if (this._mk === key) return this._m;
+    const E = this.E, M = { tab };
+    if (tab === 'daily') {
+      M.days = [date];
+      M.agg = this.aggregate(M.days);
+      const i = this.dates.indexOf(date);
+      M.prev = i > 0 ? this.aggregate([this.dates[i - 1]]) : null;
+      M.day = this.D[date];
+    } else {
+      const arch = E.computeFilteredArchive(this.D, range);
+      M.days = Object.keys(arch).sort();
+      M.agg = this.aggregate(M.days);
+      M.m = E.computeMasterSummary(arch);
+      if (tab === 'historical') { try { M.signals = E.buildTrendingSignals(E.computeSinceLastReport(arch)).map(s => this.text(s.html)); } catch (e) { M.signals = []; } }
+      if (tab === 'patterns') M.pi = E.computePatternIntel(arch);
+    }
+    this._mk = key; this._m = M; this._kids = {};
+    return M;
+  }
+
+  qNode(parent, q, i, leaf) { return { id: parent.id + '/q' + i, kind: 'q', label: this.trunc(q.q, 34), full: q.q, value: 1, src: q.src, ref: q, leaf }; }
+  askerNode(id, a) { return { id, kind: 'asker', label: a.email.split('@')[0], value: a.qs.length, src: a.src, ref: a }; }
+
+  kids(n) {
+    const ck = n.id + '|' + this.cap();
+    if (this._kids[ck]) return this._kids[ck];
+    const M = this._m, A = M.agg;
+    let all = [];
+    const tot = o => o.int + o.ext;
+    if (n.kind === 'root' && M.tab === 'patterns') {
+      all = M.pi.buckets.map(b => ({ id: 'root/' + b.key, kind: 'bucket', label: b.label, value: b.total, ref: b, gap: this.E.PAT_GAP_KEYS.indexOf(b.key) >= 0 }));
+    } else if (n.kind === 'root') {
+      all = [
+        { id: 'root/areas', kind: 'hub', hub: 'areas', label: 'Product areas', value: Object.keys(A.areas).length },
+        { id: 'root/themes', kind: 'hub', hub: 'themes', label: 'Intent themes', value: Object.keys(A.themes).length },
+        { id: 'root/askers', kind: 'hub', hub: 'askers', label: 'Askers', value: A.askerCount },
+        { id: 'root/insights', kind: 'hub', hub: 'insights', label: 'Action items', value: Object.values(A.owners).reduce((s, o) => s + o.items.length, 0) },
+        { id: 'root/risks', kind: 'hub', hub: 'risks', label: 'Ticket risk', value: Object.values(A.risks).reduce((s, o) => s + o.tickets, 0) }
+      ];
+    } else if (n.kind === 'hub') {
+      if (n.hub === 'areas') all = Object.values(A.areas).filter(a => tot(a) > 0).sort((a, b) => tot(b) - tot(a)).map(a => ({ id: n.id + '/' + this.slug(a.name), kind: 'area', label: a.name, value: tot(a), ref: a }));
+      if (n.hub === 'themes') all = Object.values(A.themes).filter(a => tot(a) > 0).sort((a, b) => tot(b) - tot(a)).map(a => ({ id: n.id + '/' + this.slug(a.name), kind: 'theme', label: a.name, value: tot(a), ref: a }));
+      if (n.hub === 'askers') all = Object.values(A.askers).sort((a, b) => b.qs.length - a.qs.length).map(a => this.askerNode(n.id + '/' + this.slug(a.email), a));
+      if (n.hub === 'insights') all = Object.values(A.owners).sort((a, b) => b.items.length - a.items.length).map(a => ({ id: n.id + '/' + this.slug(a.name), kind: 'owner', label: a.name, value: a.items.length, ref: a }));
+      if (n.hub === 'risks') all = Object.values(A.risks).sort((a, b) => b.tickets - a.tickets).map(a => ({ id: n.id + '/' + this.slug(a.name), kind: 'risk', label: a.name, value: a.tickets, ref: a }));
+    } else if (n.kind === 'area' || n.kind === 'theme') {
+      all = n.ref.qs.map((q, i) => this.qNode(n, q, i, false));
+    } else if (n.kind === 'bucket') {
+      all = n.ref.items.slice().sort((a, b) => (a.date < b.date ? 1 : -1)).map((q, i) => this.qNode(n, { q: q.q, email: q.email, panel: q.panel, src: q.side === 'internal' ? 'int' : 'ext', date: q.date, area: q.area }, i, false));
+    } else if (n.kind === 'asker') {
+      all = n.ref.qs.map((q, i) => this.qNode(n, q, i, true));
+    } else if (n.kind === 'q' && !n.leaf && n.ref.email && A.askers[n.ref.email]) {
+      all = [this.askerNode(n.id + '/u', A.askers[n.ref.email])];
+    } else if (n.kind === 'owner') {
+      all = n.ref.items.map((it, i) => ({ id: n.id + '/i' + i, kind: 'insight', label: this.trunc(it.title, 34), full: it.title, value: 1, ref: it }));
+    } else if (n.kind === 'risk') {
+      all = n.ref.items.map((it, i) => ({ id: n.id + '/k' + i, kind: 'ticket', label: this.trunc(it.s, 34), full: it.s, value: 1, ref: it }));
+    }
+    const res = { shown: all.slice(0, this.cap()), total: all.length };
+    this._kids[ck] = res;
+    return res;
+  }
+
+  rootNode() {
+    const M = this._m;
+    const label = M.tab === 'patterns' ? 'Patterns' : M.tab === 'historical' ? 'History' : 'Today';
+    return { id: 'root', kind: 'root', label, value: M.tab === 'patterns' ? M.pi.total : M.agg.conv };
+  }
+  resolvePath() {
+    const out = [this.rootNode()];
+    for (let i = 1; i < this.state.path.length; i++) {
+      const k = this.kids(out[i - 1]).shown.find(c => c.id === this.state.path[i]);
+      if (!k) break;
+      out.push(k);
+    }
+    return out;
+  }
+
+  radius(n, max) {
+    if (n.kind === 'root') return 34;
+    if (n.kind === 'hub') return 22;
+    if (n.kind === 'q' || n.kind === 'insight' || n.kind === 'ticket') return 6.5;
+    return 9 + 15 * Math.sqrt((n.value || 0) / (max || 1));
+  }
+
+  layout(path) {
+    const focus = path[path.length - 1];
+    const pathIds = new Set(path.map(p => p.id));
+    const nodes = [Object.assign({}, path[0], { x: 0, y: 0, ang: 0, r: 34, parentId: null, depth: 0 })];
+    const pos = { root: { x: 0, y: 0, ang: 0 } };
+    path.forEach((p, i) => {
+      const kids = this.kids(p).shown; const n = kids.length; if (!n) return;
+      const pp = pos[p.id];
+      const max = Math.max.apply(null, kids.map(k => k.value || 0));
+      const angs = i === 0 ? kids.map((_, j) => -90 + j * 360 / n) : (() => { const span = Math.max(40, Math.min(230, n * 19)); return kids.map((_, j) => n === 1 ? pp.ang : pp.ang - span / 2 + span * j / (n - 1)); })();
+      const base = i === 0 ? (n > 8 ? 250 : 220) : i === 1 ? 250 : 215;
+      kids.forEach((k, j) => {
+        const r = base + (n > 7 && j % 2 ? 64 : 0);
+        const a = angs[j] * Math.PI / 180;
+        pos[k.id] = { x: pp.x + Math.cos(a) * r, y: pp.y + Math.sin(a) * r, ang: angs[j] };
+        nodes.push(Object.assign({}, k, pos[k.id], { r: this.radius(k, max), parentId: p.id, depth: i + 1 }));
+      });
+    });
+    nodes.forEach(n => { n.role = n.id === focus.id ? 'focus' : pathIds.has(n.id) ? 'path' : n.parentId === focus.id ? 'child' : 'sib'; });
+    let set = nodes.filter(n => n.id === focus.id || n.parentId === focus.id || (path.length > 1 && n.id === path[path.length - 2].id));
+    if (set.length <= 2 && path.length > 1) { const par = path[path.length - 2].id; set = nodes.filter(n => n.id === par || n.parentId === par); }
+    const xs = [], ys = [];
+    set.forEach(n => {
+      xs.push(n.x); ys.push(n.y);
+      if (n.role !== 'focus' && n.role !== 'path' && n.depth >= 2) {
+        const a = n.ang * Math.PI / 180, L = n.r + 7 + Math.min(34, (n.label || '').length) * 6.2;
+        xs.push(n.x + Math.cos(a) * L); ys.push(n.y + Math.sin(a) * L);
+      } else { xs.push(n.x - 70, n.x + 70); ys.push(n.y + n.r + 24); }
+    });
+    const pad = 30;
+    return { nodes, camera: { x0: Math.min.apply(null, xs) - pad, x1: Math.max.apply(null, xs) + pad, y0: Math.min.apply(null, ys) - pad - 44, y1: Math.max.apply(null, ys) + pad + 50 } };
+  }
+
+  select = id => {
+    const path = this.state.path, at = path.indexOf(id);
+    if (at >= 0) { this.setState({ path: path.slice(0, at + 1) }); return; }
+    const n = (this._lastNodes || []).find(x => x.id === id);
+    if (!n) return;
+    const pi = path.indexOf(n.parentId);
+    if (pi >= 0) this.setState({ path: path.slice(0, pi + 1).concat(id) });
+  };
+  goPath(ids) { this.setState({ path: ['root'].concat(ids) }); }
+  up = () => this.setState(s => ({ path: s.path.length > 1 ? s.path.slice(0, -1) : s.path }));
+  reset = () => this.setState({ path: ['root'] });
+  shiftDay(d) { const i = this.dates.indexOf(this.state.date) + d; if (i >= 0 && i < this.dates.length) this.setState({ date: this.dates[i], path: ['root'] }); }
+
+  spark(vals, ds, hi) {
+    const max = Math.max(1, Math.max.apply(null, vals));
+    const W = 300, H = 60, step = W / Math.max(1, vals.length - 1);
+    const pts = vals.map((y, i) => [i * step, H - 4 - (y / max) * (H - 10)]);
+    const line = 'M' + pts.map(p => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' L');
+    const i0 = hi ? ds.indexOf(hi[0]) : 0, i1 = hi ? ds.indexOf(hi[hi.length - 1]) : ds.length - 1;
+    return { line, area: line + ` L${W},${H} L0,${H} Z`, max, rx: Math.max(0, i0 * step - step / 2), rw: Math.max(step, (i1 - i0) * step + step), from: this.fmtDate(ds[0]), to: this.fmtDate(ds[ds.length - 1]) };
+  }
+  series(n) {
+    const D = this.D, ds = this.dates, M = this._m;
+    let f = null;
+    if (n.kind === 'root' || n.kind === 'hub') f = d => D[d].totalConversations;
+    if (n.kind === 'area') f = d => (D[d].areas || []).filter(a => this.areaName(a.area) === n.ref.name).reduce((s, a) => s + a.internal + a.external, 0);
+    if (n.kind === 'theme') f = d => (D[d].themesBySource || []).filter(t => t.theme === n.ref.name).reduce((s, t) => s + t.internal + t.external, 0);
+    if (n.kind === 'asker') f = d => (D[d].areas || []).reduce((s, a) => s + (a.internalQ || []).concat(a.externalQ || []).filter(q => q.email === n.ref.email).length, 0);
+    if (n.kind === 'owner') f = d => (D[d].actionableInsights || []).filter(i => this.ownerName(i.owner) === n.ref.name).length;
+    if (n.kind === 'bucket') { const c = {}; n.ref.items.forEach(it => c[it.date] = (c[it.date] || 0) + 1); return this.spark(M.days.map(d => c[d] || 0), M.days, null); }
+    if (!f) return null;
+    return this.spark(ds.map(d => f(d) || 0), ds, M.days);
+  }
+
+  detail(n) {
+    const M = this._m, A = M.agg;
+    const pct = (a, b) => (b ? Math.round(a / b * 100) + '%' : '—');
+    const kr = this.kids(n);
+    const dotFor = k => k.kind === 'q' || k.kind === 'asker' ? (k.src === 'int' ? 'var(--color-neutral-400)' : 'var(--color-accent-500)') : k.kind === 'insight' ? 'var(--color-accent-300)' : 'var(--color-neutral-300)';
+    const metaFor = k => k.kind === 'q' || k.kind === 'insight' || k.kind === 'ticket' ? this.fmtDate(k.ref.date) : k.kind === 'asker' ? k.value + ' q' : String(k.value);
+    const d = { kicker: '', title: n.label, sub: '', metrics: [], paras: [], split: null, spark: this.series(n), listTitle: 'Branches',
+      list: kr.shown.map(k => ({ id: k.id, label: k.full || k.label, meta: metaFor(k), dot: dotFor(k), go: () => this.select(k.id) })),
+      moreNote: kr.total > kr.shown.length ? `${kr.shown.length} of ${kr.total}` : String(kr.total) };
+    const defl = A.deflRate == null ? '—' : A.deflRate + '%';
+    if (n.kind === 'root') {
+      d.kicker = 'Start here'; d.title = this.scopeLabel();
+      if (M.tab === 'patterns') {
+        d.metrics = [{ label: 'Questions', value: M.pi.total }, { label: 'Bot can’t serve', value: M.pi.gapPct + '%' }, { label: 'Patterns', value: M.pi.buckets.length }];
+        d.paras.push({ label: 'How to read', text: 'Every question lands in one usage pattern. Bigger nodes carry more volume; open one to read its questions, then open a question to meet who asked it.' });
+        d.listTitle = 'Patterns';
+      } else {
+        d.metrics = [{ label: 'Convos', value: A.conv }, { label: 'Resolved', value: A.res + '%' }, { label: 'Deflected', value: defl }];
+        d.split = { ext: A.ext, int: A.int };
+        d.paras.push({ label: 'How to read', text: 'Five lenses on the same conversations. Open a lens, then keep clicking to go deeper — area → question → asker.' });
+        d.listTitle = 'Lenses';
+      }
+    } else if (n.kind === 'hub') {
+      d.kicker = 'Lens';
+      d.paras.push({ label: 'About', text: { areas: 'Conversations routed into the product area they touched.', themes: 'The intent behind each question, split by customer and Netcore askers.', askers: 'Who is asking, ranked by question count in this window.', insights: 'Follow-ups the daily dispatch raised, grouped by owning team.', risks: 'Where Docbot conversations and Freshdesk tickets overlapped — including people who asked the bot and then filed a ticket anyway.' }[n.hub] });
+      d.metrics = [{ label: 'Branches', value: kr.total }, { label: 'Convos', value: A.conv }, { label: n.hub === 'risks' ? 'Deflected' : 'Days', value: n.hub === 'risks' ? defl : A.days.length }];
+    } else if (n.kind === 'area' || n.kind === 'theme') {
+      const a = n.ref, t = a.int + a.ext;
+      d.kicker = n.kind === 'area' ? 'Product area' : 'Intent theme';
+      d.metrics = [{ label: 'Convos', value: t }, { label: 'Share', value: pct(t, A.conv) }, { label: 'Sampled', value: a.qs.length }];
+      d.split = { ext: a.ext, int: a.int }; d.listTitle = 'Questions';
+      if (M.m && n.kind === 'area') { const tr = this.E.computeAreaTrend(a.name, M.m); if (tr) d.paras.push({ label: 'Trend', text: `${tr.firstCount} in the first half of the window, ${tr.secondCount} in the second (${tr.pctChange >= 0 ? '+' : ''}${tr.pctChange}%).` }); }
+    } else if (n.kind === 'bucket') {
+      const b = n.ref, C = this.E.CURATED;
+      d.kicker = 'Usage pattern' + (n.gap ? ' · bot can’t serve' : ''); d.title = b.label;
+      d.metrics = [{ label: 'Questions', value: b.total }, { label: 'Share', value: b.pct + '%' }, { label: 'Trend', value: (b.delta > 0 ? '+' : '') + b.delta + '%' }];
+      d.split = { ext: b.external, int: b.internal };
+      d.paras.push({ label: 'What it is', text: b.blurb });
+      if (C && C.signals && C.signals[b.key]) d.paras.push({ label: 'Read', text: C.signals[b.key] });
+      d.paras.push({ label: 'Owner', text: (this.E.OWNER_LABEL[b.owner] || b.owner) });
+      d.listTitle = 'Latest questions';
+    } else if (n.kind === 'q') {
+      const q = n.ref;
+      d.kicker = (q.src === 'int' ? 'Netcore' : 'Customer') + ' question'; d.title = q.q;
+      d.sub = [q.area || q.theme, this.fmtDate(q.date, true)].filter(Boolean).join(' · ');
+      d.metrics = [{ label: 'Asker', value: (q.email || '—').split('@')[0] }, { label: 'Panel', value: q.panel && q.panel !== 'NA' ? q.panel : '—' }, { label: 'Asked', value: A.askers[q.email] ? A.askers[q.email].qs.length + '×' : '1×' }];
+      d.paras.push({ label: 'Email', text: q.email || 'Unknown' });
+      d.paras.push({ label: 'Pattern', text: (this.E.PATTERNS.find(p => p.key === this.E.classifyPattern({ q: q.q })) || {}).label || '—' });
+      d.listTitle = 'Asker';
+    } else if (n.kind === 'asker') {
+      const a = n.ref, areas = {};
+      a.qs.forEach(q => areas[q.area] = (areas[q.area] || 0) + 1);
+      d.kicker = (a.src === 'int' ? 'Netcore' : 'Customer') + ' asker'; d.title = a.email;
+      d.metrics = [{ label: 'Questions', value: a.qs.length }, { label: 'Areas', value: Object.keys(areas).length }, { label: 'Days', value: new Set(a.qs.map(q => q.date)).size }];
+      d.paras.push({ label: 'Areas touched', text: Object.entries(areas).sort((x, y) => y[1] - x[1]).map(([k, v]) => `${k} (${v})`).join(', ') });
+      if (Object.keys(a.panels).length) d.paras.push({ label: 'Panels', text: Object.keys(a.panels).join(', ') });
+      d.listTitle = 'Their questions';
+    } else if (n.kind === 'owner') {
+      d.kicker = 'Owner'; d.metrics = [{ label: 'Items', value: n.ref.items.length }, { label: 'Days', value: new Set(n.ref.items.map(i => i.date)).size }, { label: 'Of all', value: pct(n.ref.items.length, Object.values(A.owners).reduce((s, o) => s + o.items.length, 0)) }];
+      d.listTitle = 'Action items';
+    } else if (n.kind === 'insight') {
+      d.kicker = 'Action item · ' + n.ref.owner; d.title = n.ref.title; d.sub = this.fmtDate(n.ref.date, true);
+      d.paras.push({ label: 'Detail', text: n.ref.desc });
+    } else if (n.kind === 'risk') {
+      d.kicker = 'Ticket risk'; d.metrics = [{ label: 'Docbot', value: n.ref.docbot }, { label: 'Tickets', value: n.ref.tickets }, { label: 'Days', value: new Set(n.ref.items.map(i => i.date)).size }];
+      d.listTitle = 'Tickets';
+    } else if (n.kind === 'ticket') {
+      d.kicker = 'Freshdesk ticket'; d.title = n.ref.s; d.sub = this.fmtDate(n.ref.date, true);
+      if (n.ref.note) d.paras.push({ label: 'Overlap', text: n.ref.note });
+    }
+    if (d.split) { const t = d.split.ext + d.split.int; d.split.extPct = (t ? d.split.ext / t * 100 : 0).toFixed(1) + '%'; }
+    return d;
+  }
+
+  scopeLabel() {
+    const { tab, date } = this.state;
+    if (tab === 'daily') return this.fmtDate(date, true);
+    const ds = this._m ? this._m.days : this.dates;
+    return this.fmtDate(ds[0]) + ' – ' + this.fmtDate(ds[ds.length - 1]) + ' · ' + ds.length + ' days';
+  }
+
+  bars(list, max) { return list.map(a => Object.assign(a, { extW: (a.ext / max * 100).toFixed(1) + '%', intW: (a.int / max * 100).toFixed(1) + '%' })); }
+
+  report() {
+    const M = this._m, A = M.agg, E = this.E, R = {};
+    const delta = (a, b, u) => { if (b == null || a == null) return ' '; const v = a - b; return (v > 0 ? '+' : v < 0 ? '−' : '±') + Math.abs(v) + (u || '') + ' vs prev day'; };
+    if (M.tab === 'daily') {
+      const P = M.prev, x = M.day;
+      R.verdictKicker = 'Verdict · ' + this.fmtDate(this.state.date, true);
+      R.verdict = x.headline;
+      R.stats = [
+        { label: 'Conversations', value: A.conv, delta: delta(A.conv, P && P.conv) },
+        { label: 'Bot resolved', value: A.res + '%', delta: delta(A.res, P && P.res, ' pts') },
+        { label: 'Ticket deflected', value: A.deflRate == null ? '—' : A.deflRate + '%', delta: delta(A.deflRate, P && P.deflRate, ' pts') },
+        { label: 'Customer / Netcore', value: A.ext + ' / ' + A.int, delta: delta(A.ext, P && P.ext) + (P ? ' customers' : '') }
+      ];
+      R.dActions = (x.actionableInsights || []).map(i => ({ owner: E.OWNER_LABEL[i.owner] || this.ownerName(i.owner), title: i.title, desc: i.desc, go: () => this.goPath(['root/insights', 'root/insights/' + this.slug(this.ownerName(i.owner))]) }));
+      const areas = Object.values(A.areas).filter(a => a.int + a.ext > 0).sort((a, b) => (b.int + b.ext) - (a.int + a.ext));
+      const max = Math.max(1, ...areas.map(a => a.int + a.ext));
+      R.dAreas = this.bars(areas.map(a => ({ label: a.name, meta: (a.int + a.ext) + '', ext: a.ext, int: a.int, go: () => this.goPath(['root/areas', 'root/areas/' + this.slug(a.name)]) })), max);
+      const td = x.ticketDeflection;
+      R.dDeflNote = td ? `${td.deflectedCount} of ${td.totalConversations} conversations didn’t turn into a ticket from the same person (${td.deflectionRate}%). ${(td.sameUserEscalations || []).length} escalated.` : 'Ticket deflection wasn’t checked for this day.';
+      R.dRisks = Object.values(A.risks).map(r => ({ label: r.name, meta: r.docbot + ' bot · ' + r.tickets + ' tickets', note: this.trunc((r.items[0] || {}).note || (r.items[0] || {}).s || '', 160), go: () => this.goPath(['root/risks', 'root/risks/' + this.slug(r.name)]) }));
+      R.dAskers = (x.topAskers || []).map(u => ({ label: u.email, meta: u.count + ' q' + (u.friction ? ' · friction' : ''), dot: this.isInt(u.email) ? 'var(--color-neutral-400)' : 'var(--color-accent-500)', go: () => this.goPath(['root/askers', 'root/askers/' + this.slug(u.email)]) }));
+      R.dPick = x.mostInteresting || {}; R.dHasPick = !!(x.mostInteresting && x.mostInteresting.query);
+    } else if (M.tab === 'historical') {
+      const m = M.m;
+      R.verdictKicker = 'Verdict · ' + M.days.length + ' days';
+      const sm = m.sharpestMover;
+      R.verdict = `${m.totalConv} conversations, ${m.avgResolution}% self-resolved on average${m.deflRate != null ? `, ${m.deflRate}% deflected from tickets` : ''}. ${m.topAreas[0] ? m.topAreas[0].area + ' is the busiest area' : ''}${sm ? `; ${sm.area} is moving fastest (${sm.trend.pctChange >= 0 ? '+' : ''}${sm.trend.pctChange}%).` : '.'}`;
+      R.stats = [
+        { label: 'Conversations', value: m.totalConv, delta: (M.days.length ? (m.totalConv / M.days.length).toFixed(1) : 0) + ' a day' },
+        { label: 'Avg resolved', value: m.avgResolution + '%', delta: 'self-reported' },
+        { label: 'Ticket deflected', value: m.deflRate == null ? '—' : m.deflRate + '%', delta: m.deflEscalations.length + ' escalations' },
+        { label: 'Weekday / weekend', value: m.weekdayAvg + ' / ' + m.weekendAvg, delta: 'avg per day' }
+      ];
+      R.hSpark = this.spark(M.days.map(d => this.D[d].totalConversations), M.days, null);
+      R.hSignals = (M.signals.length ? M.signals : ['Nothing new since the previous report.']).map(t => ({ text: t }));
+      const max = Math.max(1, ...m.topAreas.map(a => a.total));
+      R.hAreas = this.bars(m.topAreas.map(a => {
+        const tr = E.computeAreaTrend(a.area, m);
+        return { label: a.area, meta: a.total + ' · ' + a.pct + '%', ext: a.external, int: a.internal, note: (a.pattern ? a.pattern.label : '') + (tr ? ` · ${tr.pctChange >= 0 ? '+' : ''}${tr.pctChange}% 2nd half` : ''), go: () => this.goPath(['root/areas', 'root/areas/' + this.slug(this.areaName(a.area))]) };
+      }), max);
+      const pu = u => ({ label: u.email, meta: u.count + ' q · ' + u.dayCount + ' days · ' + u.topArea, go: () => this.goPath(['root/askers', 'root/askers/' + this.slug(u.email)]) });
+      R.hPowerExt = m.powerUsersExternal.slice(0, 5).map(pu);
+      R.hPowerInt = m.powerUsersInternal.slice(0, 5).map(pu);
+      R.hHygiene = [
+        { value: m.suppressedCount, label: 'excluded as spam / greeting' },
+        { value: m.deletionHits.length, label: 'data-deletion requests' },
+        { value: m.competitorHits.length, label: 'competitor-domain visits' },
+        { value: m.uploadHits.length, label: 'upload / harvest issues' }
+      ];
+    } else {
+      const pi = M.pi, C = E.CURATED || {};
+      R.verdictKicker = 'Verdict · ' + M.days.length + ' days';
+      R.verdict = `${pi.gapPct}% of ${pi.total} questions ask for something the bot structurally can’t do — read account data, generate content or act. ${pi.greetExtPct}% of customer sessions stop at a greeting.`;
+      R.stats = [
+        { label: 'Questions', value: pi.total, delta: 'after spam filter' },
+        { label: 'Bot can’t serve', value: pi.gapPct + '%', delta: pi.gapItems.length + ' asks' },
+        { label: 'Greeting cliff', value: pi.greetExtPct + '%', delta: 'of customer sessions' },
+        { label: 'Customer domains', value: pi.domains.size, delta: pi.askerExt.size + ' customers · ' + pi.askerInt.size + ' staff' }
+      ];
+      const max = Math.max(1, ...pi.buckets.map(b => b.total));
+      R.pBuckets = this.bars(pi.buckets.map(b => ({ key: b.key, label: b.label, pctText: b.pct + '%', dText: (b.delta > 0 ? '↑' : b.delta < 0 ? '↓' : '') + Math.abs(b.delta) + '%', dColor: b.delta > 0 ? 'var(--color-accent-300)' : 'var(--color-neutral-500)', gap: E.PAT_GAP_KEYS.indexOf(b.key) >= 0, ext: b.external, int: b.internal, go: () => this.goPath(['root/' + b.key]) })), max);
+      R.pInteresting = (C.interesting || []).slice(0, 5).map(i => ({ theme: i.theme, quote: i.quote, why: i.why, meta: this.fmtDate(i.date) + ' · ' + i.who }));
+      R.pRoadmap = (C.roadmapGaps || []).slice(0, 6).map(r => ({ gap: r.gap, ask: r.ask, meta: this.fmtDate(r.date) + ' · ' + r.who }));
+      R.pWatch = pi.watchlist.map(w => ({ label: w.email, meta: (w.content ? w.content + ' content' : '') + (w.content && w.analyst ? ' · ' : '') + (w.analyst ? w.analyst + ' analyst' : ''), go: () => this.goPath(['root/askers', 'root/askers/' + this.slug(w.email)]) }));
+      R.pVendors = pi.vendors.slice(0, 10).map(([v, c]) => ({ label: v + ' · ' + c }));
+      R.pPriorities = (C.priorities || []).map(p => ({ when: p.when, move: p.move, fixes: p.fixes }));
+    }
+    return R;
+  }
+
+  /* ── Render ── */
+  renderBars(a) {
+    return html`<span class="bar"><span style=${{ width: a.extW, background: 'var(--color-accent-500)' }}></span><span style=${{ width: a.intW, background: 'var(--color-neutral-500)' }}></span></span>`;
+  }
+
+  renderDaily(R) {
+    return html`<div style=${{ display: 'flex', flexDirection: 'column', gap: 26 }}>
+      ${R.dActions.length > 0 && html`<div style=${{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <h5 style=${{ margin: 0 }}>Act on this</h5>
+        ${R.dActions.map((a, i) => html`<button key=${i} class="act-btn" onClick=${a.go}>
+          <span style=${{ display: 'flex', gap: 8, alignItems: 'center' }}><span class="tag tag-accent">${a.owner}</span></span>
+          <span style=${{ fontSize: 14, fontWeight: 500, lineHeight: 1.3 }}>${a.title}</span>
+          <span style=${{ fontSize: 12.5, lineHeight: 1.5, color: 'var(--color-neutral-300)', textWrap: 'pretty' }}>${a.desc}</span>
+        </button>`)}
+      </div>`}
+      <div style=${{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+        <h5 style=${{ margin: '0 0 6px' }}>Where questions landed</h5>
+        ${R.dAreas.map(a => html`<button key=${a.label} class="row-btn" onClick=${a.go} style=${{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) auto', gap: '5px 10px', padding: '7px 8px' }}>
+          <span style=${{ fontSize: 13 }}>${a.label}</span>
+          <span style=${{ fontSize: 12, color: 'var(--color-neutral-400)', fontVariantNumeric: 'tabular-nums' }}>${a.meta}</span>
+          ${this.renderBars(a)}
+        </button>`)}
+      </div>
+      <div style=${{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <h5 style=${{ margin: 0 }}>Did the bot save a ticket?</h5>
+        <p style=${{ margin: 0, fontSize: 13, color: 'var(--color-neutral-300)', textWrap: 'pretty' }}>${R.dDeflNote}</p>
+        ${R.dRisks.map(r => html`<button key=${r.label} class="row-btn" onClick=${r.go} style=${{ display: 'flex', flexDirection: 'column', gap: 3, padding: '7px 8px' }}>
+          <span style=${{ display: 'flex', justifyContent: 'space-between', gap: 10, fontSize: 13 }}><span>${r.label}</span><span style=${{ color: 'var(--color-neutral-400)', fontSize: 12 }}>${r.meta}</span></span>
+          <span style=${{ fontSize: 12, color: 'var(--color-neutral-500)', lineHeight: 1.45 }}>${r.note}</span>
+        </button>`)}
+      </div>
+      ${R.dAskers.length > 0 && html`<div style=${{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+        <h5 style=${{ margin: '0 0 6px' }}>Top askers</h5>
+        ${R.dAskers.map(u => html`<button key=${u.label} class="row-btn" onClick=${u.go} style=${{ display: 'flex', alignItems: 'center', gap: 10, padding: '7px 8px' }}>
+          <span style=${{ width: 8, height: 8, flex: 'none', borderRadius: '50%', background: u.dot }}></span>
+          <span class="ellip" style=${{ flex: 1, minWidth: 0, fontSize: 13 }}>${u.label}</span>
+          <span style=${{ fontSize: 11, color: 'var(--color-neutral-500)' }}>${u.meta}</span>
+        </button>`)}
+      </div>`}
+      ${R.dHasPick && html`<div style=${{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+        <h5 style=${{ margin: 0 }}>Most interesting</h5>
+        <p style=${{ margin: 0, fontSize: 14, lineHeight: 1.5, color: 'var(--color-accent-200)', textWrap: 'pretty' }}>“${R.dPick.query}”</p>
+        <span style=${{ fontSize: 12, color: 'var(--color-neutral-400)' }}>${R.dPick.who}</span>
+        <p style=${{ margin: 0, fontSize: 12.5, lineHeight: 1.5, color: 'var(--color-neutral-300)' }}>${R.dPick.why}</p>
+      </div>`}
+    </div>`;
+  }
+
+  renderHist(R) {
+    const puCol = (title, color, list) => html`<div style=${{ display: 'flex', flexDirection: 'column', gap: 2, minWidth: 0 }}>
+      <h6 style=${{ margin: '0 0 6px', color }}>${title}</h6>
+      ${list.map(u => html`<button key=${u.label} class="row-btn" onClick=${u.go} style=${{ display: 'flex', flexDirection: 'column', padding: '5px 6px', minWidth: 0 }}>
+        <span class="ellip" style=${{ fontSize: 12.5, maxWidth: '100%' }}>${u.label}</span>
+        <span style=${{ fontSize: 11, color: 'var(--color-neutral-500)' }}>${u.meta}</span>
+      </button>`)}
+    </div>`;
+    return html`<div style=${{ display: 'flex', flexDirection: 'column', gap: 26 }}>
+      <div style=${{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+        <div style=${{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: 'var(--color-neutral-500)' }}><span>Daily conversations</span><span>peak ${R.hSpark.max}</span></div>
+        <svg viewBox="0 0 300 60" preserveAspectRatio="none" style=${{ width: '100%', height: 64, display: 'block' }}>
+          <path d=${R.hSpark.area} fill="color-mix(in srgb, var(--color-accent) 16%, transparent)"></path>
+          <path d=${R.hSpark.line} fill="none" stroke="var(--color-accent)" stroke-width="1.5" vector-effect="non-scaling-stroke"></path>
+        </svg>
+        <div style=${{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: 'var(--color-neutral-600)' }}><span>${R.hSpark.from}</span><span>${R.hSpark.to}</span></div>
+      </div>
+      <div style=${{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <h5 style=${{ margin: 0 }}>Since the last report</h5>
+        ${R.hSignals.map((s, i) => html`<div key=${i} style=${{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+          <span style=${{ width: 6, height: 6, flex: 'none', marginTop: 7, borderRadius: '50%', background: 'var(--color-accent)' }}></span>
+          <p style=${{ margin: 0, fontSize: 13, lineHeight: 1.5, color: 'var(--color-neutral-200)', textWrap: 'pretty' }}>${s.text}</p>
+        </div>`)}
+      </div>
+      <div style=${{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+        <h5 style=${{ margin: '0 0 6px' }}>Busiest sections</h5>
+        ${R.hAreas.map(a => html`<button key=${a.label} class="row-btn" onClick=${a.go} style=${{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) auto', gap: '5px 10px', padding: '7px 8px' }}>
+          <span style=${{ fontSize: 13 }}>${a.label}</span>
+          <span style=${{ fontSize: 12, color: 'var(--color-neutral-400)', fontVariantNumeric: 'tabular-nums' }}>${a.meta}</span>
+          ${this.renderBars(a)}
+          <span style=${{ gridColumn: '1 / -1', fontSize: 11, color: 'var(--color-neutral-500)' }}>${a.note}</span>
+        </button>`)}
+      </div>
+      <div style=${{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 16 }}>
+        ${puCol('Power users · customers', 'var(--color-accent-300)', R.hPowerExt)}
+        ${puCol('Power users · Netcore', 'var(--color-neutral-400)', R.hPowerInt)}
+      </div>
+      <div style=${{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <h5 style=${{ margin: 0 }}>Data hygiene</h5>
+        <div style=${{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+          ${R.hHygiene.map(g => html`<span key=${g.label} class="tag tag-neutral" style=${{ gap: 6 }}><strong style=${{ fontWeight: 500 }}>${g.value}</strong>${g.label}</span>`)}
+        </div>
+      </div>
+    </div>`;
+  }
+
+  renderPat(R) {
+    return html`<div style=${{ display: 'flex', flexDirection: 'column', gap: 26 }}>
+      <div style=${{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+        <div style=${{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', paddingBottom: 6 }}>
+          <h5 style=${{ margin: 0 }}>Usage patterns</h5>
+          <span style=${{ fontSize: 11, color: 'var(--color-neutral-500)' }}>share · trend</span>
+        </div>
+        ${R.pBuckets.map(b => html`<button key=${b.key} class="row-btn" onClick=${b.go} style=${{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 44px 52px', alignItems: 'center', gap: '5px 10px', padding: '7px 8px' }}>
+          <span style=${{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
+            <span class="ellip" style=${{ fontSize: 13 }}>${b.label}</span>
+            ${b.gap && html`<span class="tag tag-outline" style=${{ padding: '0 6px', fontSize: 10 }}>gap</span>`}
+          </span>
+          <span style=${{ fontSize: 12, color: 'var(--color-neutral-300)', textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>${b.pctText}</span>
+          <span style=${{ fontSize: 11, textAlign: 'right', color: b.dColor, fontVariantNumeric: 'tabular-nums' }}>${b.dText}</span>
+          <span class="bar" style=${{ height: 4, borderRadius: 2 }}><span style=${{ width: b.extW, background: 'var(--color-accent-500)' }}></span><span style=${{ width: b.intW, background: 'var(--color-neutral-500)' }}></span></span>
+        </button>`)}
+      </div>
+      ${R.pInteresting.length > 0 && html`<div style=${{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <h5 style=${{ margin: 0 }}>Most interesting</h5>
+        ${R.pInteresting.map((i, k) => html`<div key=${k} style=${{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+          <span style=${{ fontSize: 11, color: 'var(--color-neutral-500)' }}>${i.meta}</span>
+          <span style=${{ fontSize: 13.5, fontWeight: 500 }}>${i.theme}</span>
+          <p style=${{ margin: 0, fontSize: 13, lineHeight: 1.5, color: 'var(--color-accent-200)', textWrap: 'pretty' }}>“${i.quote}”</p>
+          <p style=${{ margin: 0, fontSize: 12.5, lineHeight: 1.5, color: 'var(--color-neutral-400)', textWrap: 'pretty' }}>${i.why}</p>
+        </div>`)}
+      </div>`}
+      ${R.pRoadmap.length > 0 && html`<div style=${{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+        <h5 style=${{ margin: '0 0 6px' }}>Roadmap signals</h5>
+        ${R.pRoadmap.map((r, k) => html`<div key=${k} style=${{ display: 'flex', flexDirection: 'column', gap: 2, padding: '6px 0' }}>
+          <span style=${{ fontSize: 13, fontWeight: 500 }}>${r.gap}</span>
+          <span style=${{ fontSize: 12.5, color: 'var(--color-neutral-300)', lineHeight: 1.45 }}>${r.ask}</span>
+          <span style=${{ fontSize: 11, color: 'var(--color-neutral-500)' }}>${r.meta}</span>
+        </div>`)}
+      </div>`}
+      <div style=${{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <h5 style=${{ margin: 0 }}>Route, don’t answer</h5>
+        ${R.pWatch.map(u => html`<button key=${u.label} class="row-btn" onClick=${u.go} style=${{ display: 'flex', alignItems: 'center', gap: 10, padding: '6px 8px' }}>
+          <span class="ellip" style=${{ flex: 1, minWidth: 0, fontSize: 13 }}>${u.label}</span>
+          <span style=${{ fontSize: 11, color: 'var(--color-neutral-500)' }}>${u.meta}</span>
+        </button>`)}
+        <div style=${{ display: 'flex', flexWrap: 'wrap', gap: 6, paddingTop: 2 }}>
+          ${R.pVendors.map(v => html`<span key=${v.label} class="tag tag-neutral">${v.label}</span>`)}
+        </div>
+      </div>
+      ${R.pPriorities.length > 0 && html`<div style=${{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <h5 style=${{ margin: 0 }}>Now · next · later</h5>
+        ${R.pPriorities.map((p, k) => html`<div key=${k} style=${{ display: 'grid', gridTemplateColumns: '48px minmax(0, 1fr)', gap: 10 }}>
+          <span style=${{ fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-accent)', paddingTop: 3 }}>${p.when}</span>
+          <div style=${{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+            <span style=${{ fontSize: 13, lineHeight: 1.4 }}>${p.move}</span>
+            <span style=${{ fontSize: 12, color: 'var(--color-neutral-500)', lineHeight: 1.4 }}>Fixes: ${p.fixes}</span>
+          </div>
+        </div>`)}
+      </div>`}
+    </div>`;
+  }
+
+  renderDetail(det) {
+    return html`<aside class="card elev-md scroll" style=${{ position: 'absolute', top: 12, right: 12, bottom: 12, width: 'min(316px, 46%)', overflowY: 'auto', padding: 16, gap: 14, background: 'color-mix(in srgb, var(--color-surface) 92%, transparent)', backdropFilter: 'blur(8px)' }}>
+      <div style=${{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+        <span class="card-kicker">${det.kicker}</span>
+        <span style=${{ fontSize: 17, fontWeight: 500, lineHeight: 1.25, textWrap: 'pretty', overflowWrap: 'anywhere' }}>${det.title}</span>
+        ${det.sub && html`<span style=${{ fontSize: 12, color: 'var(--color-neutral-500)', overflowWrap: 'anywhere' }}>${det.sub}</span>`}
+      </div>
+      ${det.metrics.length > 0 && html`<div style=${{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 6 }}>
+        ${det.metrics.map(m => html`<div key=${m.label} style=${{ display: 'flex', flexDirection: 'column', gap: 1, padding: 8, borderRadius: 'var(--radius-md)', background: 'var(--color-bg)' }}>
+          <span style=${{ fontSize: 9.5, letterSpacing: '0.04em', textTransform: 'uppercase', color: 'var(--color-neutral-500)', overflowWrap: 'anywhere' }}>${m.label}</span>
+          <span style=${{ fontSize: 16, fontWeight: 500, overflowWrap: 'anywhere' }}>${m.value}</span>
+        </div>`)}
+      </div>`}
+      ${det.split && html`<div style=${{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+        <div style=${{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: 'var(--color-neutral-400)' }}><span>Customer ${det.split.ext}</span><span>Netcore ${det.split.int}</span></div>
+        <div style=${{ display: 'flex', height: 5, borderRadius: 3, overflow: 'hidden', background: 'var(--color-neutral-500)' }}>
+          <div style=${{ width: det.split.extPct, background: 'var(--color-accent-500)', transition: 'width 600ms ease' }}></div>
+        </div>
+      </div>`}
+      ${det.spark && html`<div style=${{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+        <div style=${{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: 'var(--color-neutral-500)' }}><span>Daily volume</span><span>peak ${det.spark.max}</span></div>
+        <svg viewBox="0 0 300 60" preserveAspectRatio="none" style=${{ width: '100%', height: 48, display: 'block' }}>
+          <rect x=${det.spark.rx} y="0" width=${det.spark.rw} height="60" fill="var(--color-accent-900)"></rect>
+          <path d=${det.spark.area} fill="color-mix(in srgb, var(--color-accent) 16%, transparent)"></path>
+          <path d=${det.spark.line} fill="none" stroke="var(--color-accent)" stroke-width="1.5" vector-effect="non-scaling-stroke"></path>
+        </svg>
+        <div style=${{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: 'var(--color-neutral-600)' }}><span>${det.spark.from}</span><span>${det.spark.to}</span></div>
+      </div>`}
+      ${det.paras.map(p => html`<div key=${p.label} style=${{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+        <span class="lbl-xs">${p.label}</span>
+        <p style=${{ margin: 0, fontSize: 13, lineHeight: 1.5, color: 'var(--color-neutral-200)', textWrap: 'pretty', overflowWrap: 'anywhere' }}>${p.text}</p>
+      </div>`)}
+      ${det.list.length > 0 && html`<div style=${{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+        <div style=${{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', paddingBottom: 4 }}>
+          <span class="lbl-xs">${det.listTitle}</span>
+          <span style=${{ fontSize: 11, color: 'var(--color-neutral-600)' }}>${det.moreNote}</span>
+        </div>
+        ${det.list.map(it => html`<button key=${it.id} class="row-btn" onClick=${it.go} style=${{ display: 'flex', alignItems: 'center', gap: 9, width: '100%', padding: 6 }}>
+          <span style=${{ width: 7, height: 7, flex: 'none', borderRadius: '50%', background: it.dot }}></span>
+          <span style=${{ flex: 1, minWidth: 0, fontSize: 12.5, lineHeight: 1.35, overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>${it.label}</span>
+          <span style=${{ flex: 'none', fontSize: 11, color: 'var(--color-neutral-500)', fontVariantNumeric: 'tabular-nums' }}>${it.meta}</span>
+        </button>`)}
+      </div>`}
+    </aside>`;
+  }
+
+  render() {
+    const s = this.state, src = this.props.source;
+    const setTab = tab => () => this.setState({ tab, path: ['root'] });
+    const M = this.model();
+    const path = this.resolvePath();
+    const { nodes, camera } = this.layout(path);
+    this._lastNodes = nodes;
+    const R = this.report(), det = this.detail(path[path.length - 1]);
+    const crumbs = path.map((p, i) => ({ id: p.id, label: this.trunc(p.full || p.label, 30), sep: i === 0 ? '' : '/', color: i === path.length - 1 ? 'var(--color-text)' : 'var(--color-accent)', go: () => this.select(p.id) }));
+    const selStyle = { minHeight: 32, padding: '4px 8px', fontSize: 13 };
+    const chevron = d => html`<svg width="14" height="14" viewBox="0 0 256 256" fill="currentColor"><path d=${d}></path></svg>`;
+    const lastDate = this.dates[this.dates.length - 1];
+
+    return html`<div class="app" style=${{ height: '100vh', minHeight: 680, display: 'flex', flexDirection: 'column', background: 'radial-gradient(120% 80% at 70% 0%, var(--color-accent-900) 0%, var(--color-bg) 55%)', color: 'var(--color-text)', overflow: 'hidden' }}>
+      <header class="nav" style=${{ flexWrap: 'wrap', padding: '12px 20px', gap: 14, boxShadow: '0 1px 0 var(--color-divider)' }}>
+        <div style=${{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <svg width="22" height="22" viewBox="0 0 256 256" fill="var(--color-accent)"><path d="M212,152a28,28,0,0,0-25.6,16.7L135.5,153a28,28,0,0,0-7.5-25.2l26.6-38.8A28,28,0,1,0,140,72a27.6,27.6,0,0,0,1.6,9.4L114.3,121a28.3,28.3,0,0,0-14.3-1A27.8,27.8,0,0,0,72,100a28,28,0,1,0,25.6,39.3l17,5.3a28,28,0,1,0,53.3,17.3L184,166.9A28,28,0,1,0,212,152ZM168,44a12,12,0,1,1-12,12A12,12,0,0,1,168,44ZM72,140a12,12,0,1,1,12-12A12,12,0,0,1,72,140Zm56,32a12,12,0,1,1,12-12A12,12,0,0,1,128,172Zm84,24a12,12,0,1,1,12-12A12,12,0,0,1,212,196Z"></path></svg>
+          <div style=${{ display: 'flex', flexDirection: 'column', lineHeight: 1.15 }}>
+            <span class="nav-brand" style=${{ fontSize: 16 }}>CE Docbot</span>
+            <span style=${{ fontSize: 11, color: 'var(--color-neutral-500)' }}>${this.scopeLabel()}</span>
+          </div>
+        </div>
+        <div class="seg" style=${{ marginLeft: 12 }}>
+          <label class="seg-opt"><input type="radio" name="tab" checked=${s.tab === 'daily'} onChange=${setTab('daily')} />Daily</label>
+          <label class="seg-opt"><input type="radio" name="tab" checked=${s.tab === 'historical'} onChange=${setTab('historical')} />Historical</label>
+          <label class="seg-opt"><input type="radio" name="tab" checked=${s.tab === 'patterns'} onChange=${setTab('patterns')} />Patterns</label>
+        </div>
+        <div style=${{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 4 }}>
+          <span class="src-pill" title=${src === 'live' ? 'Reading the same data as the classic dashboard' : 'Live data unavailable — showing the bundled snapshot'} style=${{ marginRight: 8, background: src === 'live' ? 'var(--color-accent-800)' : 'var(--color-neutral-800)', color: src === 'live' ? 'var(--color-accent-100)' : 'var(--color-neutral-200)' }}>${src === 'live' ? 'Live' : 'Snapshot'} · to ${this.fmtDate(lastDate)}</span>
+          ${s.tab === 'daily' ? html`
+            <button class="btn btn-secondary btn-icon" onClick=${() => this.shiftDay(-1)} title="Previous day" style=${{ width: 32, height: 32 }}>${chevron('M165.7,202.3a8,8,0,0,1-11.4,11.4l-80-80a8,8,0,0,1,0-11.4l80-80a8,8,0,0,1,11.4,11.4L91.3,128Z')}</button>
+            <select class="input" value=${s.date} onChange=${e => this.setState({ date: e.target.value, path: ['root'] })} style=${{ ...selStyle, width: 168 }}>
+              ${this.dates.slice().reverse().map(d => html`<option key=${d} value=${d}>${this.fmtDate(d, true)}</option>`)}
+            </select>
+            <button class="btn btn-secondary btn-icon" onClick=${() => this.shiftDay(1)} title="Next day" style=${{ width: 32, height: 32 }}>${chevron('M181.7,133.7l-80,80a8,8,0,0,1-11.4-11.4L164.7,128,90.3,53.7a8,8,0,0,1,11.4-11.4l80,80A8,8,0,0,1,181.7,133.7Z')}</button>
+          ` : html`
+            <select class="input" value=${s.range} onChange=${e => this.setState({ range: e.target.value, path: ['root'] })} style=${{ ...selStyle, width: 150 }}>
+              <option value="all">All time</option>
+              <option value="7">Last 7 days</option>
+              <option value="14">Last 14 days</option>
+              <option value="30">Last 30 days</option>
+              <option value="90">Last 90 days</option>
+            </select>
+          `}
+          <a href="../" class="btn btn-ghost" style=${{ fontSize: 12, padding: '5px 10px', marginLeft: 6, whiteSpace: 'nowrap' }}>Classic view</a>
+        </div>
+      </header>
+
+      <main style=${{ flex: 1, minHeight: 0, display: 'grid', gridTemplateColumns: 'minmax(300px, 420px) minmax(0, 1fr)' }}>
+        <section class="scroll" style=${{ minWidth: 0, minHeight: 0, overflowY: 'auto', padding: '20px 22px 32px', display: 'flex', flexDirection: 'column', gap: 26, boxShadow: '1px 0 0 var(--color-divider)' }}>
+          <div style=${{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <span class="card-kicker">${R.verdictKicker}</span>
+            <p style=${{ margin: 0, fontSize: 16, lineHeight: 1.45, color: 'var(--color-neutral-100)', textWrap: 'pretty' }}>${R.verdict}</p>
+            <div style=${{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '14px 18px', paddingTop: 4 }}>
+              ${R.stats.map(k => html`<div key=${k.label} style=${{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                <span style=${{ fontSize: 10, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-neutral-500)' }}>${k.label}</span>
+                <span style=${{ fontSize: 26, fontWeight: 500, letterSpacing: '-0.02em', lineHeight: 1.15 }}>${k.value}</span>
+                <span style=${{ fontSize: 11, color: 'var(--color-neutral-500)' }}>${k.delta}</span>
+              </div>`)}
+            </div>
+          </div>
+          ${s.tab === 'daily' ? this.renderDaily(R) : s.tab === 'historical' ? this.renderHist(R) : this.renderPat(R)}
+        </section>
+
+        <div class="map" style=${{ position: 'relative', minWidth: 0, minHeight: 0, overflow: 'hidden' }}>
+          <${Graph} nodes=${nodes} camera=${camera} epoch=${this._mk} onSelect=${this.select} signal=${SETTINGS.signalFlow} labels=${SETTINGS.labelDensity} />
+          <nav style=${{ position: 'absolute', top: 12, left: 14, right: 'min(340px, 48%)', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 2, pointerEvents: 'none' }}>
+            ${crumbs.map(c => html`<span key=${c.id} style=${{ display: 'flex', alignItems: 'center', gap: 2, pointerEvents: 'auto' }}>
+              <span style=${{ color: 'var(--color-neutral-600)', fontSize: 12 }}>${c.sep}</span>
+              <button class="btn btn-ghost" onClick=${c.go} style=${{ fontSize: 12, padding: '3px 6px', color: c.color }}>${c.label}</button>
+            </span>`)}
+          </nav>
+          <div style=${{ position: 'absolute', left: 0, right: 'min(336px, 48%)', bottom: 0, padding: '28px 14px 12px', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8, pointerEvents: 'none', background: 'linear-gradient(to top, var(--color-bg) 40%, transparent)' }}>
+            <div style=${{ display: 'flex', alignItems: 'center', gap: 6, marginRight: 'auto', pointerEvents: 'auto' }}>
+              <button class="btn btn-secondary" onClick=${this.up} style=${{ fontSize: 12, padding: '5px 10px', background: 'var(--color-bg)' }}>Up a level</button>
+              <button class="btn btn-secondary" onClick=${this.reset} style=${{ fontSize: 12, padding: '5px 10px', background: 'var(--color-bg)' }}>Reset</button>
+            </div>
+            <div style=${{ display: 'flex', flexWrap: 'wrap', gap: 12, fontSize: 11, color: 'var(--color-neutral-400)' }}>
+              <span style=${{ display: 'flex', alignItems: 'center', gap: 6 }}><span style=${{ width: 8, height: 8, borderRadius: '50%', background: 'var(--color-accent-500)' }}></span>Customer</span>
+              <span style=${{ display: 'flex', alignItems: 'center', gap: 6 }}><span style=${{ width: 8, height: 8, borderRadius: '50%', background: 'var(--color-neutral-400)' }}></span>Netcore</span>
+            </div>
+          </div>
+          ${this.renderDetail(det)}
+        </div>
+      </main>
+    </div>`;
+  }
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+window.__engine
+  .then(({ E, source }) => root.render(h(App, { engine: E, source })))
+  .catch(err => {
+    console.error(err);
+    root.render(h('div', { className: 'boot' }, 'Couldn’t load the dispatch archive. Try the ', h('a', { href: '../' }, 'classic view'), '.'));
+  });
+})();
+</script>
+</body>
+</html>
