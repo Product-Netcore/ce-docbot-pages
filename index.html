@@ -2474,7 +2474,7 @@ const PAT_NAV = [
 const RIVAL_RE = /\b(klaviyo|clevertap|moengage|webengage|braze|iterable|insider|salesforce|hubspot|mailchimp)\b/i;
 
 /* ---------------------------------------------------------------------------------------
-   CURATED — the written analysis (18 Sep 2026 read of the 15 Jun – 17 Sep window).
+   CURATED — the written analysis (14 Oct 2026 refresh of the 15 Jun – 13 Oct window; first written 18 Sep).
 
    Everything else on this tab is derived from the archive at render time. This block is the
    part a human wrote: the read-between-the-lines conclusions, the themed picks, the roadmap
@@ -2487,27 +2487,40 @@ const RIVAL_RE = /\b(klaviyo|clevertap|moengage|webengage|braze|iterable|insider
    ------------------------------------------------------------------------------------- */
 
 const CURATED = {
-  authoredOn: '2026-09-18',
+  authoredOn: '2026-10-14',
   windowFrom: '2026-06-15',
-  windowTo: '2026-09-17',
+  windowTo: '2026-10-13',
 
   // One line per pattern: what the bucket tells us, for the Usage patterns table.
   signals: {
-    how_to:          'The job the bot was built for. Everything else on this page is what it was not built for.',
-    learning:        'Onboarding load, mostly staff. Same-day repeats usually mean a training session needs a follow-up doc.',
-    account_state:   'Needs read-only account status in the bot — upload progress, suspension reason, credits. Today it ends in a doc link and comes back as a ticket.',
-    solution_design: 'Each ask is either a capability we do not have or a behaviour we never wrote down. Richest roadmap input on this page.',
-    semantics:       'Docs do not state exact behaviour. These users ask for written confirmation and quote our answer back, so a wrong one becomes a promise.',
-    analyst:         'The widest gap between what people expect and what a docs bot can do. Hand the question, intact, to Insight Agent.',
-    ai_mcp:          'People want to drive Netcore from their own AI tools. Points to an llms.txt and a public MCP story.',
-    content_gen:     'Live demand for content generation inside the product. Route to Co-Marketer / Content Agent and flag the account to its CSM.',
-    sales_rfp:       'The bot is standing in for battlecards and security questionnaires. Needs a vetted corpus with limits on what it may claim.',
-    do_for_me:       'The agentic backlog, in customers\' own words. Until it exists, deep-link to the exact screen with state pre-filled.',
-    noise:           'Recipients reaching us by accident — and a live compliance signal whenever an unsubscribe link 404s.'
+    how_to: "Still the job the bot was built for, and still ~70% of volume. Everything else on this page is what it was not built for.",
+    learning: "Growing and mostly staff: onboarding load is now the second-biggest bucket. Same-day repeats usually mean a training session needs a follow-up doc.",
+    account_state: "The fastest-growing bucket since September and now mostly customers. Needs read-only account status in the bot — upload progress, suspension reason, credits, report delivery. Today it ends in a doc link and comes back as a ticket.",
+    solution_design: "Up again. Each ask is a capability we do not have or a behaviour we never wrote down — frequency capping, A/B on live journeys, value-based branching keep recurring. Richest roadmap input on this page.",
+    semantics: "Docs do not state exact behaviour. Users ask for written confirmation and quote our answer back; PII-in-events and consent scope are the live themes.",
+    analyst: "Quieter than in the summer, but the gap is unchanged: the bot cannot read data, and these users are mostly builders. Hand the question, intact, to Insight Agent.",
+    ai_mcp: "Fewer asks, but a customer has now actually tried ChatGPT + MCP and hit an error. Moves this from curiosity to support load — needs an MCP setup guide and llms.txt.",
+    content_gen: "Cooled since the Way.com subject-line streak. Still route to Co-Marketer / Content Agent and flag the account to its CSM when it recurs.",
+    sales_rfp: "Lower since September, but the bot is still standing in for battlecards and security questionnaires. Needs a vetted corpus with limits on what it may claim.",
+    do_for_me: "The agentic backlog, in customers' own words. Until it exists, deep-link to the exact screen with state pre-filled.",
+    noise: "Recipients reaching us by accident — now including a formal privacy/erasure request. A live compliance signal whenever an unsubscribe link 404s or a privacy ask has no path."
   },
 
   // Themed picks — the "most interesting ones". Pinned above the archive's own daily picks.
   interesting: [
+    {"theme": "Sales enablement — explain a feature", "date": "2026-10-13", "who": "Netcore (Akash Sharma)", "pattern": "sales_rfp", "quote": "explain Custom Audience to an asset-management client and how they can use it; then Addressable Anonymous with use cases", "why": "Staff using the bot as a pre-sales coach, two features in one session. Feature explainers for non-expert audiences are a content gap."},
+    {"theme": "Report emails not arriving", "date": "2026-10-13", "who": "iresearchservices and Vayana", "pattern": "account_state", "quote": "I am not receiving detailed data emails, could please help me with it", "why": "Two accounts in 24 hours reporting report or data download emails not arriving; both also filed tickets. A delivery fault the bot cannot diagnose: route to a human with the ticket pre-filled."},
+    {"theme": "Docbot as code reviewer", "date": "2026-10-12", "who": "AhaGuru", "pattern": "do_for_me", "quote": "AhaGuru FYC popup: pasted full custom-HTML popup code, \"i think there is error in code, check that\"", "why": "An 11-message session debugging a pasted popup. Custom-HTML has no validator in the editor, so the docs bot became the linter. Decide: build the validator or set expectations."},
+    {"theme": "Power user repairing a live journey", "date": "2026-10-12", "who": "GGG (Vietnam)", "pattern": "semantics", "quote": "Journey 3763: if I switch entry from event to a segment with a 12/10 start date, are results from the earlier run retained?", "why": "Third GGG entry in this list (July, September, now). Repairing a live journey to send make-good notifications, in Vietnamese, while also venting about a journey bug. A ticket on journey #3943 sat alongside."},
+    {"theme": "Docbot as template builder", "date": "2026-10-08", "who": "Way.com (Global Airport Parking)", "pattern": "content_gen", "quote": "I have payload for search performed and then i want to creating 3*3 dynamic grid for that as per search", "why": "Same account as the subject-line asks, now pasting a real search-event payload to build a dynamic listing grid; on 2 Oct it asked for an API key to auto-create templates. A power user to route to Content Agent and its CSM."},
+    {"theme": "Docbot as journey analyst", "date": "2026-10-06", "who": "Alice Blue", "pattern": "analyst", "quote": "how is my journey looking, \"Mobile OTP\". are there any gaps that make users not proceed further? can you create journeys if I give you the prompt", "why": "A customer asking the docs bot to read their live journey and build a new one. It cannot see the account: hand it to Insight Agent."},
+    {"theme": "Pre-sales feasibility check", "date": "2026-10-05", "who": "Netcore (Amey Vaidya)", "pattern": "sales_rfp", "quote": "Quick tech stack check for a jewelry account: Magento backend, headless website + PWA with JS and GTM frontend. Will our standard integration work?", "why": "The bot as a solutions-engineer sounding board for a headless architecture. Answers here steer a deal, so they need a vetted corpus."},
+    {"theme": "Value-based journey design", "date": "2026-10-03", "who": "Netcore (Anusha N)", "pattern": "solution_design", "quote": "cart abandonment journey: average cart value above 2000 gets email, below 2000 gets WhatsApp", "why": "A channel split on a computed attribute, followed by Wait for Event vs Has done event. Needs a documented recipe; the bot is being asked to design the journey."},
+    {"theme": "AI-native demand — a customer actually trying it", "date": "2026-10-01", "who": "ideaktiv", "pattern": "ai_mcp", "quote": "I want to connect Netcore CEE MCP on Chatgpt but got error.", "why": "Earlier MCP asks were staff wondering if it is possible. This is a customer wiring the CE MCP into ChatGPT and hitting an error: the public MCP story now needs support docs."},
+    {"theme": "Live-journey edit risk", "date": "2026-09-29", "who": "Netcore (Rajeev Pillai)", "pattern": "solution_design", "quote": "Live journey with users in flight: add an A/B Split Action between two nodes without breaking the connection?", "why": "A client scenario with users mid-flight. Exposes that there is no documented, non-destructive way to insert a node into a live journey."},
+    {"theme": "Solution design — frequency capping (again)", "date": "2026-09-26", "who": "Netcore (Lokesh Sharma)", "pattern": "solution_design", "quote": "how frequency capping works in the journey for email. primary is mobile and different numbers, 4 numbers have the same email id", "why": "Second independent sighting of the World of Oud problem: capping keyed on the primary key, not the email address. Shared family emails in BFSI and retail make this a pattern, not an edge case."},
+    {"theme": "Privacy request sent to a docs bot", "date": "2026-09-22", "who": "Christine Sandell (recipient)", "pattern": "noise", "quote": "Please DELETE and UNSUBSCRIBE my email address from your database", "why": "A recipient, not a customer, asking for erasure. A same-user Freshdesk ticket (#5302991) followed within minutes: the bot has no path for privacy requests, so they surface as tickets with a compliance clock running."},
+    {"theme": "Exact behaviour — PII in events", "date": "2026-09-21", "who": "ComSense Consulting", "pattern": "semantics", "quote": "Can PII data within an event payload be masked?", "why": "A compliance-driven question about payload-level privacy controls, from an account designing its event schema. A confident wrong answer becomes a data-handling commitment."},
     { theme:'Docbot as copywriter', date:'2026-09-16', who:'Way.com', pattern:'content_gen',
       quote:'subject lines - Flying out of LGA? Save 10% on Airport Parking Today',
       why:'One of six copy asks in eight weeks from the same account — a docs bot being used as a daily subject-line tool. The same account also asked how to split journey pathways "as we are able to do in Klaviyo".' },
@@ -2548,6 +2561,13 @@ const CURATED = {
 
   // Solution-design asks mapped to the capability each one exposes.
   roadmapGaps: [
+    {"date": "2026-10-13", "who": "Netcore (Saloni Shinde)", "ask": "Shorten a long link used inside an RCS message body.", "gap": "Link shortening on RCS"},
+    {"date": "2026-10-13", "who": "Netcore (Dhruv Bakshi)", "ask": "Connect a Meta ad account with a WhatsApp account for lead campaigns.", "gap": "Meta lead-ads to WhatsApp setup guide"},
+    {"date": "2026-10-12", "who": "GGG (Vietnam)", "ask": "Change a live journey from event entry to segment entry without losing earlier results.", "gap": "Entry edits on live journeys with report continuity"},
+    {"date": "2026-10-03", "who": "Netcore (Anusha N)", "ask": "Branch a journey by average cart value: above 2000 email, below 2000 WhatsApp.", "gap": "Documented branching on computed attributes"},
+    {"date": "2026-09-29", "who": "Netcore (Rajeev Pillai)", "ask": "Insert an A/B Split between two nodes of a live journey without breaking the connection.", "gap": "Non-destructive node insertion in live journeys"},
+    {"date": "2026-09-26", "who": "Netcore (Lokesh Sharma)", "ask": "Frequency cap by email when the primary key is mobile and four numbers share one email.", "gap": "Frequency capping on the channel address (second sighting)"},
+    {"date": "2026-09-21", "who": "ComSense Consulting", "ask": "Mask PII inside an event payload.", "gap": "Payload-level PII masking"},
     { date:'2026-07-09', who:'World of Oud',      ask:'One email per address per day across all journeys and campaigns, when the primary key is IC Number and users share emails.', gap:'Frequency capping on the channel address, not the primary key' },
     { date:'2026-08-09', who:'Growth Darji',      ask:'Message only admins whose profile company matches the company on the triggering event.',                                      gap:'Journey filters that match event data against profile attributes' },
     { date:'2026-09-11', who:'Netcore (CSM ask)', ask:'Send SMS 24h after an RCS failure, but hold it if that lands between 9 PM and 9 AM — without capping the whole journey.',       gap:'Quiet hours on a single node' },
@@ -2562,19 +2582,19 @@ const CURATED = {
   priorities: [
     { when:'now',   move:'Suggested questions seeded from the panel screen the user is on',                          fixes:'The greeting cliff — customers who open the bot and never state a question', metric:'greeting' },
     { when:'now',   move:'Route by intent: copy to Content Agent, analytics to Insight Agent, account issues to a human with the ticket pre-filled', fixes:'Dead-end asks the bot cannot satisfy', metric:'gap' },
-    { when:'now',   move:'Redact credential-looking strings at ingest; investigate the unsubscribe 404s',            fixes:'Security and compliance',                                                  metric:'risk' },
-    { when:'next',  move:'Read-only account status in the bot: upload progress, suspension reason, credits left',    fixes:'Account-state asks and upload/harvest questions',                           metric:'account' },
+    { when:'now',   move:'Redact credential-looking strings at ingest; give privacy/erasure requests a path; investigate the unsubscribe 404s',            fixes:'Security and compliance',                                                  metric:'risk' },
+    { when:'next',  move:'Read-only account status in the bot: upload progress, suspension reason, credits left',    fixes:'Account-state asks (up ~60% since Sep) and upload/harvest/report-delivery questions',                           metric:'account' },
     { when:'next',  move:'Behaviour-contract pages (journey conditions, consent, Pause vs Stop) and a reachable-to-sent funnel explainer', fixes:'Power-user trust and count-mismatch questions',      metric:'semantics' },
     { when:'next',  move:'Vetted security-review and battlecard answers, with claim limits; a learning-path mode for new joiners', fixes:'Internal sales and onboarding use',                          metric:'internaluse' },
     { when:'next',  move:'Replace "resolved %" with answerable vs unanswerable question rates',                      fixes:'The current metric counts bare greetings as success',                       metric:'resolution' },
-    { when:'later', move:'Agent actions (draft a campaign or segment), llms.txt, a public MCP story',                fixes:'AI-native demand',                                                         metric:'ai' },
+    { when:'later', move:'Agent actions (draft a campaign or segment), llms.txt, an MCP setup guide for ChatGPT/Claude',                fixes:'AI-native demand — now with a real failed attempt',                                                         metric:'ai' },
     { when:'later', move:'Take the roadmap gaps below into the backlog',                                             fixes:'Solution-design asks',                                                     metric:'design' }
   ]
 };
 
 /* Daily extension of the written layer. curated-daily.json is appended to by the scheduled run
    (see USAGE-PATTERNS-TAB-README.md) and spliced in by apply_patterns_tab.py. */
-const CURATED_DAILY = /*CURATED-DAILY-START*/{"through": "2026-10-13", "interesting": [{"theme": "Privacy request sent to a docs bot", "date": "2026-09-22", "who": "Christine Sandell (recipient)", "pattern": "noise", "quote": "Please DELETE and UNSUBSCRIBE my email address from your database", "why": "A recipient, not a customer, asking for erasure. A same-user Freshdesk ticket (#5302991) followed within minutes: the bot has no path for privacy requests, so they surface as tickets with a compliance clock running."}, {"theme": "Exact behaviour — PII in events", "date": "2026-09-21", "who": "ComSense Consulting", "pattern": "semantics", "quote": "Can PII data within an event payload be masked?", "why": "A compliance-driven question about payload-level privacy controls, from an account designing its event schema. A confident wrong answer becomes a data-handling commitment."}, {"theme": "Solution design — frequency capping (again)", "date": "2026-09-26", "who": "Netcore (Lokesh Sharma)", "pattern": "solution_design", "quote": "how frequency capping works in the journey for email. primary is mobile and different numbers, 4 numbers have the same email id", "why": "Second independent sighting of the World of Oud problem: capping keyed on the primary key, not the email address. Shared family emails in BFSI and retail make this a pattern, not an edge case."}, {"theme": "Live-journey edit risk", "date": "2026-09-29", "who": "Netcore (Rajeev Pillai)", "pattern": "solution_design", "quote": "Live journey with users in flight: add an A/B Split Action between two nodes without breaking the connection?", "why": "A client scenario with users mid-flight. Exposes that there is no documented, non-destructive way to insert a node into a live journey."}, {"theme": "AI-native demand — a customer actually trying it", "date": "2026-10-01", "who": "ideaktiv", "pattern": "ai_mcp", "quote": "I want to connect Netcore CEE MCP on Chatgpt but got error.", "why": "Earlier MCP asks were staff wondering if it is possible. This is a customer wiring the CE MCP into ChatGPT and hitting an error: the public MCP story now needs support docs."}, {"theme": "Docbot as template builder", "date": "2026-10-08", "who": "Way.com (Global Airport Parking)", "pattern": "content_gen", "quote": "I have payload for search performed and then i want to creating 3*3 dynamic grid for that as per search", "why": "Same account as the subject-line asks, now pasting a real search-event payload to build a dynamic listing grid; on 2 Oct it asked for an API key to auto-create templates. A power user to route to Content Agent and its CSM."}, {"theme": "Value-based journey design", "date": "2026-10-03", "who": "Netcore (Anusha N)", "pattern": "solution_design", "quote": "cart abandonment journey: average cart value above 2000 gets email, below 2000 gets WhatsApp", "why": "A channel split on a computed attribute, followed by Wait for Event vs Has done event. Needs a documented recipe; the bot is being asked to design the journey."}, {"theme": "Pre-sales feasibility check", "date": "2026-10-05", "who": "Netcore (Amey Vaidya)", "pattern": "sales_rfp", "quote": "Quick tech stack check for a jewelry account: Magento backend, headless website + PWA with JS and GTM frontend. Will our standard integration work?", "why": "The bot as a solutions-engineer sounding board for a headless architecture. Answers here steer a deal, so they need a vetted corpus."}, {"theme": "Docbot as journey analyst", "date": "2026-10-06", "who": "Alice Blue", "pattern": "analyst", "quote": "how is my journey looking, \"Mobile OTP\". are there any gaps that make users not proceed further? can you create journeys if I give you the prompt", "why": "A customer asking the docs bot to read their live journey and build a new one. It cannot see the account: hand it to Insight Agent."}, {"theme": "Docbot as code reviewer", "date": "2026-10-12", "who": "AhaGuru", "pattern": "do_for_me", "quote": "AhaGuru FYC popup: pasted full custom-HTML popup code, \"i think there is error in code, check that\"", "why": "An 11-message session debugging a pasted popup. Custom-HTML has no validator in the editor, so the docs bot became the linter. Decide: build the validator or set expectations."}, {"theme": "Power user repairing a live journey", "date": "2026-10-12", "who": "GGG (Vietnam)", "pattern": "semantics", "quote": "Journey 3763: if I switch entry from event to a segment with a 12/10 start date, are results from the earlier run retained?", "why": "Third GGG entry in this list (July, September, now). Repairing a live journey to send make-good notifications, in Vietnamese, while also venting about a journey bug. A ticket on journey #3943 sat alongside."}, {"theme": "Sales enablement — explain a feature", "date": "2026-10-13", "who": "Netcore (Akash Sharma)", "pattern": "sales_rfp", "quote": "explain Custom Audience to an asset-management client and how they can use it; then Addressable Anonymous with use cases", "why": "Staff using the bot as a pre-sales coach, two features in one session. Feature explainers for non-expert audiences are a content gap."}, {"theme": "Report emails not arriving", "date": "2026-10-13", "who": "iresearchservices and Vayana", "pattern": "account_state", "quote": "I am not receiving detailed data emails, could please help me with it", "why": "Two accounts in 24 hours reporting report or data download emails not arriving; both also filed tickets. A delivery fault the bot cannot diagnose: route to a human with the ticket pre-filled."}], "roadmapGaps": [{"date": "2026-09-26", "who": "Netcore (Lokesh Sharma)", "ask": "Frequency cap by email when the primary key is mobile and four numbers share one email.", "gap": "Frequency capping on the channel address (second sighting)"}, {"date": "2026-09-29", "who": "Netcore (Rajeev Pillai)", "ask": "Insert an A/B Split between two nodes of a live journey without breaking the connection.", "gap": "Non-destructive node insertion in live journeys"}, {"date": "2026-09-21", "who": "ComSense Consulting", "ask": "Mask PII inside an event payload.", "gap": "Payload-level PII masking"}, {"date": "2026-10-03", "who": "Netcore (Anusha N)", "ask": "Branch a journey by average cart value: above 2000 email, below 2000 WhatsApp.", "gap": "Documented branching on computed attributes"}, {"date": "2026-10-12", "who": "GGG (Vietnam)", "ask": "Change a live journey from event entry to segment entry without losing earlier results.", "gap": "Entry edits on live journeys with report continuity"}, {"date": "2026-10-13", "who": "Netcore (Saloni Shinde)", "ask": "Shorten a long link used inside an RCS message body.", "gap": "Link shortening on RCS"}, {"date": "2026-10-13", "who": "Netcore (Dhruv Bakshi)", "ask": "Connect a Meta ad account with a WhatsApp account for lead campaigns.", "gap": "Meta lead-ads to WhatsApp setup guide"}]}/*CURATED-DAILY-END*/;
+const CURATED_DAILY = /*CURATED-DAILY-START*/{"through": "2026-10-13", "interesting": [], "roadmapGaps": []}/*CURATED-DAILY-END*/;
 (function mergeCuratedDaily(){
   const di=(CURATED_DAILY.interesting||[]).slice().sort((a,b)=>b.date.localeCompare(a.date));
   const dg=(CURATED_DAILY.roadmapGaps||[]).slice().sort((a,b)=>b.date.localeCompare(a.date));
@@ -2897,7 +2917,7 @@ function renderPatternsMain(){
     { eyebrow:'Insight 02 · Customers drop off after "hi"', kpi: intel.greetExtPct+'%', kpiL:'of customer chats never state a question',
       big: intel.greetExtPct+'%', bigColor:'var(--crit)',
       bigNote:`of customer conversations (${intel.greetExt} of ${m.totalExternal}) never get past a greeting. Among Netcore staff it is ${intel.greetIntPct}%.`,
-      h:'An empty chat box doesn\'t tell customers what to ask.',
+      h:'An empty chat box doesn\'t tell customers what to ask — and the share is not improving.',
       list:[ 'Customers open the bot, type "hi" and leave — often with a real problem they never state.',
              `${m.panelTotal||''} of traffic comes from inside the panel, where the bot already knows which screen the user is on.`,
              'Staff know what the bot can do. Customers don\'t.' ],
@@ -2906,8 +2926,8 @@ function renderPatternsMain(){
     { eyebrow:'Insight 03 · Escalations', kpi: intel.escAccount.length+' / '+intel.escalations.length, kpiL:'escalations were account-state problems, not doc gaps',
       big: intel.escAccount.length+'<span style="font-size:.45em;color:var(--ink-3)"> / '+intel.escalations.length+'</span>',
       bigNote:`confirmed escalations were <b>account-state problems</b>, not documentation gaps. ${intel.escExternal.length} of ${intel.escalations.length} came from customers.`,
-      h:'Better docs will not reduce these tickets.',
-      list:[ 'Upload stuck, harvest error, 2FA lockout, journey not sending, credits — none of these are fixable by writing a better page.',
+      h:'Better docs will not reduce these tickets — and they are mostly customer-raised.',
+      list:[ 'Upload stuck, harvest error, 2FA lockout, journey not sending, credits — none of these are fixable by writing a better page; report-email delivery and privacy requests joined the list in October.',
              `Meanwhile the bot self-reports <span class="mono">${m.avgResolution}%</span> resolved and the Freshdesk check reads <span class="mono">${m.deflRate!==null?m.deflRate+'%':'—'}</span> deflected — with bare greetings counted as success in both.` ],
       so:'<b>Metric risk:</b> report <b>answerable vs unanswerable questions</b> instead, and put read-only account status in the bot.',
       risk:true },
@@ -2992,8 +3012,8 @@ function renderPatternsMain(){
 
       <section class="pat-slide" id="sec-p-verdict" style="padding-top:26px">
         <div class="eyebrow">CE Docbot · Usage patterns · ${fmtDate(intel.dates[0])} – ${fmtDate(intel.dates[intel.dates.length-1])} · ${intel.dates.length} day${intel.dates.length>1?'s':''}</div>
-        <h1>Users don't treat Docbot as doc search.<br><span style="color:var(--accent)">They treat it like an AI coworker.</span></h1>
-        <p class="lede">Customers and staff ask it to write copy, analyse campaigns, design journeys and answer security-review questions. Daily says what happened yesterday, Historical says what happened in total — this page says <em>what kind of work people bring the bot</em>, and therefore what to build, route or fix.</p>
+        <h1>Docbot is more than doc search.<br><span style="color:var(--accent)">It's where customers go to ask "why is my account doing this?"</span></h1>
+        <p class="lede">Most questions are still how-to, but the growth is in account-state problems, journey design and onboarding — plus the odd copy, analytics and security-review ask. Daily says what happened yesterday, Historical says what happened in total — this page says <em>what kind of work people bring the bot</em>, and therefore what to build, route or fix.</p>
         <div class="pat-chipbar"><span class="pat-chipbar-label">Duration</span>${rangeChips}</div>
         <div class="pat-grid pat-g5 pat-mt">
           <div class="pat-card pat-tile"><div class="n num">${intel.total}</div><div class="l">questions classified</div><div class="s">${m.totalConv} conversations logged</div></div>
@@ -3020,7 +3040,7 @@ function renderPatternsMain(){
 
       <section class="pat-slide" id="sec-p-mix">
         <div class="eyebrow">Pattern mix</div>
-        <h2>Staff ask "explain it to me". Customers ask "help me get it done".</h2>
+        <h2>Staff ask "teach me". Customers ask "why is this happening, and fix it".</h2>
         <p class="lede">The same ${intel.total} questions by weight, split by who asked. First match wins, so the buckets add up.</p>
         <div class="pat-card pat-mt">
           <div class="pat-legend"><span><i style="background:var(--s-staff)"></i>Netcore staff</span><span><i style="background:var(--s-cust)"></i>Customers</span><span class="muted">hover a row for detail</span></div>
@@ -3055,14 +3075,14 @@ function renderPatternsMain(){
       <section class="pat-slide" id="sec-p-new">
         <div class="eyebrow">Read between the lines</div>
         <h2>What this page says that Daily and Historical can't.</h2>
-        <p class="lede">The findings that only show up when you group questions by the kind of work being asked for. Numbers recompute with the duration; the framing is the ${fmtDate(CURATED.authoredOn)} read. Click a card to jump to the detail.</p>
+        <p class="lede">The findings that only show up when you group questions by the kind of work being asked for. Numbers recompute with the duration; the framing is the ${fmtDate(CURATED.authoredOn)} refresh. Click a card to jump to the detail.</p>
         ${insightIndex}
         ${insightHTML}
       </section>
 
       <section class="pat-slide" id="sec-p-gap">
         <div class="eyebrow">The expectation gap</div>
-        <h2>Users assume Docbot can see their account. It can't, and that gap is the biggest unmet need.</h2>
+        <h2>Users assume Docbot can see their account. It can't, and account-state questions are the fastest-growing unmet need.</h2>
         <div class="pat-grid pat-g2 pat-mt">
           <ul class="q">
             ${ana.items.slice(0,4).map(q=>'<li><b>'+patEsc((q.email.split("@")[1]||q.email))+':</b> <span class="quote">“'+patEsc((q.q||'').slice(0,150))+'”</span></li>').join('') || '<li>No analyst asks in this duration.</li>'}
