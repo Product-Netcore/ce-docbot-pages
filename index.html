@@ -2474,7 +2474,7 @@ const PAT_NAV = [
 const RIVAL_RE = /\b(klaviyo|clevertap|moengage|webengage|braze|iterable|insider|salesforce|hubspot|mailchimp)\b/i;
 
 /* ---------------------------------------------------------------------------------------
-   CURATED — the written analysis (14 Oct 2026 refresh of the 15 Jun – 13 Oct window; first written 18 Sep).
+   CURATED — the written analysis (27 Oct 2026 monthly refresh of the 15 Jun – 26 Oct window; first written 18 Sep).
 
    Everything else on this tab is derived from the archive at render time. This block is the
    part a human wrote: the read-between-the-lines conclusions, the themed picks, the roadmap
@@ -2487,23 +2487,23 @@ const RIVAL_RE = /\b(klaviyo|clevertap|moengage|webengage|braze|iterable|insider
    ------------------------------------------------------------------------------------- */
 
 const CURATED = {
-  authoredOn: '2026-10-14',
+  authoredOn: '2026-10-27',
   windowFrom: '2026-06-15',
-  windowTo: '2026-10-13',
+  windowTo: '2026-10-26',
 
   // One line per pattern: what the bucket tells us, for the Usage patterns table.
   signals: {
     how_to: "Still the job the bot was built for, and still ~70% of volume. Everything else on this page is what it was not built for.",
-    learning: "Growing and mostly staff: onboarding load is now the second-biggest bucket. Same-day repeats usually mean a training session needs a follow-up doc.",
-    account_state: "The fastest-growing bucket since September and now mostly customers. Needs read-only account status in the bot — upload progress, suspension reason, credits, report delivery. Today it ends in a doc link and comes back as a ticket.",
-    solution_design: "Up again. Each ask is a capability we do not have or a behaviour we never wrote down — frequency capping, A/B on live journeys, value-based branching keep recurring. Richest roadmap input on this page.",
-    semantics: "Docs do not state exact behaviour. Users ask for written confirmation and quote our answer back; PII-in-events and consent scope are the live themes.",
-    analyst: "Quieter than in the summer, but the gap is unchanged: the bot cannot read data, and these users are mostly builders. Hand the question, intact, to Insight Agent.",
-    ai_mcp: "Fewer asks, but a customer has now actually tried ChatGPT + MCP and hit an error. Moves this from curiosity to support load — needs an MCP setup guide and llms.txt.",
-    content_gen: "Cooled since the Way.com subject-line streak. Still route to Co-Marketer / Content Agent and flag the account to its CSM when it recurs.",
-    sales_rfp: "Lower since September, but the bot is still standing in for battlecards and security questionnaires. Needs a vetted corpus with limits on what it may claim.",
-    do_for_me: "The agentic backlog, in customers' own words. Until it exists, deep-link to the exact screen with state pre-filled.",
-    noise: "Recipients reaching us by accident — now including a formal privacy/erasure request. A live compliance signal whenever an unsubscribe link 404s or a privacy ask has no path."
+    learning: "Up from 6% to 11% of questions in 30 days, and three in four are staff. Same-person bursts of definition questions (late bind, slice and send, split vs A/B) look like training sessions; each cluster is a missing glossary page.",
+    account_state: "Roughly doubled in 30 days (21 to 44) and 42 of the 44 are customers. The loudest cluster is list uploads that stall or show zero (about 7 list IDs), then campaign and report emails that never arrive, then authenticator lockouts. The bot ends in a doc link and the ask returns as a ticket: read-only account status is now the fix.",
+    solution_design: "Slipped to under 4% and the mix turned customer-led. Fewer staff designing journeys, more customers hitting limits mid-build: HTML import without an auto footer, a streak push that sent duplicates inside its 24h cap, segment refresh versus published campaigns.",
+    semantics: "Quiet, and the asks changed character: staff now ask for definitions (list vs segment vs UDT, UDT vs ad-hoc segment, A/B vs split campaign) rather than power users pinning down edge behaviour. The behaviour-contract gap is still real but the fresh evidence is thin.",
+    analyst: "Four asks in 30 days, steady. Two are staff asking for performance reads and one is a customer counting emails sent for an IPO campaign. The gap is unchanged: the bot cannot read data, so hand it to Insight Agent.",
+    ai_mcp: "Down to three asks from thirteen, but the customer-side one changed: someone asked whether their account is already connected to ChatGPT. Evaluation is shifting from staff curiosity to customers assuming it exists, so the MCP setup guide still matters.",
+    content_gen: "Zero copy asks in 30 days after the Way.com subject-line streak. Not gone: the same account came back on 26 Oct for a dynamic parking-lot grid. Keep routing to Co-Marketer / Content Agent and tell the CSM when it recurs.",
+    sales_rfp: "Three asks, all staff, and now RFP answer validation: a drafted data-minimisation response pasted in for checking, plus payload purge and retention questions. The bot is a security-questionnaire reviewer. Needs a vetted corpus with claim limits.",
+    do_for_me: "Six asks, and two are staff pasting certification-style tasks (build a WhatsApp broadcast, set up web personalisation, submit a screenshot). Customers still ask for journeys from a prompt. Until agent actions exist, deep-link to the exact screen with state pre-filled.",
+    noise: "Nothing reached us by accident in 30 days, after seven in the month before, but a few people reported 404 error pages on third-party sites. The privacy-request path is still missing, so the compliance signal stays live whenever one returns."
   },
 
   // Themed picks — the "most interesting ones". Pinned above the archive's own daily picks.
@@ -2583,7 +2583,9 @@ const CURATED = {
     { when:'now',   move:'Suggested questions seeded from the panel screen the user is on',                          fixes:'The greeting cliff — customers who open the bot and never state a question', metric:'greeting' },
     { when:'now',   move:'Route by intent: copy to Content Agent, analytics to Insight Agent, account issues to a human with the ticket pre-filled', fixes:'Dead-end asks the bot cannot satisfy', metric:'gap' },
     { when:'now',   move:'Redact credential-looking strings at ingest; give privacy/erasure requests a path; investigate the unsubscribe 404s',            fixes:'Security and compliance',                                                  metric:'risk' },
-    { when:'next',  move:'Read-only account status in the bot: upload progress, suspension reason, credits left',    fixes:'Account-state asks (up ~60% since Sep) and upload/harvest/report-delivery questions',                           metric:'account' },
+    { when:'now',   move:'Read-only account status in the bot: upload progress, suspension reason, credits left',    fixes:'Account-state asks doubled in 30 days (21 to 44), led by list uploads stuck or showing zero',                    metric:'account' },
+    { when:'next',  move:'Delivery triage in the bot: a checklist for "sent but not received" and report-email-not-arriving (bounce, sender domain, DLR) before it escalates', fixes:'Five customer reports in four weeks that sent or report emails did not arrive',                                      metric:'account' },
+    { when:'next',  move:'Self-serve path for authenticator and 2FA lockouts, plus a visible route to support',      fixes:'Four lockout asks in 30 days against two the month before',                                                    metric:'risk' },
     { when:'next',  move:'Behaviour-contract pages (journey conditions, consent, Pause vs Stop) and a reachable-to-sent funnel explainer', fixes:'Power-user trust and count-mismatch questions',      metric:'semantics' },
     { when:'next',  move:'Vetted security-review and battlecard answers, with claim limits; a learning-path mode for new joiners', fixes:'Internal sales and onboarding use',                          metric:'internaluse' },
     { when:'next',  move:'Replace "resolved %" with answerable vs unanswerable question rates',                      fixes:'The current metric counts bare greetings as success',                       metric:'resolution' },
